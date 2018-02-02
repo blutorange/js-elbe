@@ -1,0 +1,32 @@
+{
+  "name": "monado",
+  "version": "1.0.0",
+  "description": "Utility methods for working with iterables.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "npx typedoc --mode file --name js-streams --readme README.md --out doc main.ts",
+    "transpile": "npx tsc -p tsconfig.json",
+    "build": "npm run doc ; npm run transpile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blutorange/js-iterables.git"
+  },
+  "keywords": [
+    "iterables"
+  ],
+  "author": "Andre Wachsmuth",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/blutorange/js-iterables/issues"
+  },
+  "dependencies": {
+    "comparators": "https://github.com/blutorange/js-comparators"
+  },
+  "homepage": "https://github.com/blutorange/js-iterables#readme",
+  "devDependencies": {
+    "typedoc": "^0.9.0",
+    "typescript": "^2.7.1"
+  }
+}
