@@ -62,6 +62,15 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
     static repeat(item, amount = -1) {
         return new InplaceStream(Methods_1.repeat(item, amount));
     }
+    static fromObject(object) {
+        return new InplaceStream(Methods_1.fromObject(object));
+    }
+    static fromObjectKeys(object) {
+        return new InplaceStream(Methods_1.fromObjectKeys(object));
+    }
+    static fromObjectValues(object) {
+        return new InplaceStream(Methods_1.fromObjectValues(object));
+    }
 }
 exports.InplaceStream = InplaceStream;
 ;
@@ -70,5 +79,8 @@ exports.InplaceStreamFactory = {
     generate: InplaceStream.generate,
     iterate: InplaceStream.iterate,
     repeat: InplaceStream.repeat,
-    times: InplaceStream.times
+    times: InplaceStream.times,
+    fromObject: InplaceStream.fromObject,
+    fromObjectKeys: InplaceStream.fromObjectKeys,
+    fromObjectValues: InplaceStream.fromObjectValues,
 };

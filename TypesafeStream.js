@@ -62,6 +62,15 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
     static times(amount, start = 0, step = 1) {
         return new TypesafeStream(Methods_1.times(amount, start, step));
     }
+    static fromObject(object) {
+        return new TypesafeStream(Methods_1.fromObject(object));
+    }
+    static fromObjectKeys(object) {
+        return new TypesafeStream(Methods_1.fromObjectKeys(object));
+    }
+    static fromObjectValues(object) {
+        return new TypesafeStream(Methods_1.fromObjectValues(object));
+    }
 }
 ;
 exports.TypesafeStreamFactory = {
@@ -69,5 +78,8 @@ exports.TypesafeStreamFactory = {
     generate: TypesafeStream.generate,
     iterate: TypesafeStream.iterate,
     repeat: TypesafeStream.repeat,
-    times: TypesafeStream.times
+    times: TypesafeStream.times,
+    fromObject: TypesafeStream.fromObject,
+    fromObjectKeys: TypesafeStream.fromObjectKeys,
+    fromObjectValues: TypesafeStream.fromObjectValues,
 };

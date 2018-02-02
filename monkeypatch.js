@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Stream_1 = require("./Stream");
+const TypesafeStream_1 = require("./TypesafeStream");
 const InplaceStream_1 = require("./InplaceStream");
 const Methods_1 = require("./Methods");
 function patch(type, getStream, wrapStream) {
@@ -14,7 +14,7 @@ function patch(type, getStream, wrapStream) {
     });
 }
 function monkeyPatch(types, inplace = false) {
-    const stream = inplace ? InplaceStream_1.InplaceStream.from : Stream_1.TypesafeStream.from;
+    const stream = inplace ? InplaceStream_1.InplaceStreamFactory.from : TypesafeStream_1.TypesafeStreamFactory.from;
     patch(Array, array => array, stream);
     patch(Set, set => set.values(), stream);
     patch(Map, map => map.entries(), stream);

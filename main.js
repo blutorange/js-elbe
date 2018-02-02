@@ -7,5 +7,5 @@ __export(require("./monkeypatch"));
 __export(require("./Collectors"));
 __export(require("./Methods"));
 __export(require("./InplaceStream"));
-__export(require("./Stream"));
+__export(require("./TypesafeStream"));
 __export(require("./Try"));

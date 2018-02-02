@@ -92,6 +92,13 @@ class AbstractStream {
         this.check();
         return Methods_1.toSet(this.iterable);
     }
+    toJSON() {
+        this.check();
+        return this.toArray();
+    }
+    toString() {
+        return `Stream[done=${this.done}]`;
+    }
     toMap(keyMapper, valueMapper) {
         this.check();
         return Methods_1.toMap(this.iterable, keyMapper, valueMapper);
