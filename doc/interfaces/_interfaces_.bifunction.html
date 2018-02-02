@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Function | js-streams</title>
+	<title>BiFunction | js-streams</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -56,10 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="function.html">Function</a>
+					<a href="../modules/_interfaces_.html">&quot;Interfaces&quot;</a>
+				</li>
+				<li>
+					<a href="_interfaces_.bifunction.html">BiFunction</a>
 				</li>
 			</ul>
-			<h1>Interface Function&lt;T, R&gt;</h1>
+			<h1>Interface BiFunction&lt;S, T, R&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -69,6 +70,9 @@
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
+					<li>
+						<h4>S</h4>
+					</li>
 					<li>
 						<h4>T</h4>
 					</li>
@@ -81,26 +85,29 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Function</span>
+						<span class="target">BiFunction</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span>, arg2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in main.ts:5</li>
+								<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/Interfaces.ts#L24">Interfaces.ts:24</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>arg1: <span class="tsd-signature-type">T</span></h5>
+								<h5>arg1: <span class="tsd-signature-type">S</span></h5>
+							</li>
+							<li>
+								<h5>arg2: <span class="tsd-signature-type">T</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
@@ -114,133 +121,76 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_collectors_.html">"<wbr>Collectors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_interfaces_.html">"<wbr>Interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_methods_.html">"<wbr>Methods"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_try_.html">"<wbr>Try"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_main_.html">"main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_monkeypatch_.html">"monkeypatch"</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="../classes/inplacestream.html" class="tsd-kind-icon">Inplace<wbr>Stream</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../classes/stream.html" class="tsd-kind-icon">Stream</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="consumer.html" class="tsd-kind-icon">Consumer</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.biconsumer.html" class="tsd-kind-icon">Bi<wbr>Consumer</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="function.html" class="tsd-kind-icon">Function</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="istream.html" class="tsd-kind-icon">IStream</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.collector.html" class="tsd-kind-icon">Collector</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="predicate.html" class="tsd-kind-icon">Predicate</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.consumer.html" class="tsd-kind-icon">Consumer</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="supplier.html" class="tsd-kind-icon">Supplier</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.function.html" class="tsd-kind-icon">Function</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#value_types" class="tsd-kind-icon">VALUE_<wbr>TYPES</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_.istreamfactory.html" class="tsd-kind-icon">IStream<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_.itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#concat" class="tsd-kind-icon">concat</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.predicate.html" class="tsd-kind-icon">Predicate</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#distinct" class="tsd-kind-icon">distinct</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_.statistics.html" class="tsd-kind-icon">Statistics</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#distinctby" class="tsd-kind-icon">distinct<wbr>By</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.stream.html" class="tsd-kind-icon">Stream</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#every" class="tsd-kind-icon">every</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.supplier.html" class="tsd-kind-icon">Supplier</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#filter" class="tsd-kind-icon">filter</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#find" class="tsd-kind-icon">find</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#fromobject" class="tsd-kind-icon">from<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#fromobjectkeys" class="tsd-kind-icon">from<wbr>Object<wbr>Keys</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#fromobjectvalues" class="tsd-kind-icon">from<wbr>Object<wbr>Values</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#generate" class="tsd-kind-icon">generate</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#includes" class="tsd-kind-icon">includes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#iterate" class="tsd-kind-icon">iterate</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#limit" class="tsd-kind-icon">limit</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#map" class="tsd-kind-icon">map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#max" class="tsd-kind-icon">max</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#min" class="tsd-kind-icon">min</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#monkeypatch" class="tsd-kind-icon">monkey<wbr>Patch</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#none" class="tsd-kind-icon">none</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#patch" class="tsd-kind-icon">patch</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#reduce" class="tsd-kind-icon">reduce</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#repeat" class="tsd-kind-icon">repeat</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#reverse" class="tsd-kind-icon">reverse</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#size" class="tsd-kind-icon">size</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#skip" class="tsd-kind-icon">skip</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#some" class="tsd-kind-icon">some</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#sort" class="tsd-kind-icon">sort</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#times" class="tsd-kind-icon">times</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="../globals.html#toarray" class="tsd-kind-icon">to<wbr>Array</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.try.html" class="tsd-kind-icon">Try</a>
 					</li>
 				</ul>
 			</nav>

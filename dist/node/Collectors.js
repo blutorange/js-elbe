@@ -139,10 +139,10 @@ exports.Collectors = {
             }
         };
     },
-    sum() {
+    sum(converter = toNumber()) {
         return {
             accumulator(collected, item) {
-                collected.sum += Number(item);
+                collected.sum += converter(item);
             },
             supplier() {
                 return { sum: 0 };

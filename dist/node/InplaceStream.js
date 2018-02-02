@@ -7,12 +7,12 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         this.iterable = Methods_1.concat(this.iterable, ...iterables);
         return this;
     }
-    distinct() {
-        this.iterable = Methods_1.distinct(this.iterable);
+    unique() {
+        this.iterable = Methods_1.unique(this.iterable);
         return this;
     }
-    distinctBy(keyExtractor) {
-        this.iterable = Methods_1.distinctBy(this.iterable, keyExtractor);
+    uniqueBy(keyExtractor) {
+        this.iterable = Methods_1.uniqueBy(this.iterable, keyExtractor);
         return this;
     }
     flatMap(mapper) {
@@ -23,12 +23,20 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         this.iterable = Methods_1.filter(this.iterable, predicate);
         return this;
     }
+    index() {
+        this.iterable = Methods_1.index(this.iterable);
+        return this;
+    }
     limit(limitTo) {
         this.iterable = Methods_1.limit(this.iterable, limitTo);
         return this;
     }
     map(mapper) {
         this.iterable = Methods_1.map(this.iterable, mapper);
+        return this;
+    }
+    process(consumer) {
+        this.iterable = Methods_1.process(this.iterable, consumer);
         return this;
     }
     reverse() {
@@ -50,8 +58,8 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
     static from(items) {
         return new InplaceStream(items);
     }
-    static times(amount, start = 0, step = 1) {
-        return new InplaceStream(Methods_1.times(amount, start, step));
+    static times(amount, start, end) {
+        return new InplaceStream(Methods_1.times(amount, start, end));
     }
     static generate(generator, amount = -1) {
         return new InplaceStream(Methods_1.generate(generator, amount));
@@ -72,7 +80,6 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         return new InplaceStream(Methods_1.fromObjectValues(object));
     }
 }
-exports.InplaceStream = InplaceStream;
 ;
 exports.InplaceStreamFactory = {
     from: InplaceStream.from,

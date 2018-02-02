@@ -13,11 +13,14 @@ function patch(type, getStream, wrapStream) {
         }
     });
 }
-function monkeyPatch(types, inplace = false) {
+;
+function monkeyPatch(inplace = false) {
     const stream = inplace ? InplaceStream_1.InplaceStreamFactory.from : TypesafeStream_1.TypesafeStreamFactory.from;
     patch(Array, array => array, stream);
     patch(Set, set => set.values(), stream);
     patch(Map, map => map.entries(), stream);
     patch(Object, object => Methods_1.fromObject(object), stream);
+    patch(String, string => string, stream);
 }
 exports.monkeyPatch = monkeyPatch;
+;

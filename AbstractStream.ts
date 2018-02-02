@@ -1,10 +1,7 @@
 import { natural, Comparator } from "comparators";
 
-import { Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction, Try } from "./Interfaces";
-import { collect, collectWith, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, toArray, toSet, toMap } from "./Methods";
-import { Collectors } from "./Collectors";
-
-const IDENTITY = x => x;
+import { Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
+import { collect, collectWith, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap } from "./Methods";
 
 export abstract class AbstractStream<T> {
 
@@ -32,7 +29,7 @@ export abstract class AbstractStream<T> {
         return collect(this.iterable, collector);
     }
 
-    collectWith<S,R=S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S,R> = IDENTITY): R {
+    collectWith<S,R=S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S,R>): R {
         this.check();
         return collectWith(this.iterable, supplier, accumulator, finisher);
     }
@@ -108,6 +105,11 @@ export abstract class AbstractStream<T> {
         this.check();
         return some(this.iterable, predicate);
     }
+
+    sum(converter?: Function<T, number>) : number {
+        this.check();
+        return sum(this.iterable, converter);
+    }
         
     toArray() : T[] {
         this.check();
@@ -119,8 +121,7 @@ export abstract class AbstractStream<T> {
         return toSet(this.iterable);
     }
 
-    toJSON() {
-        this.check();
+    toJSON() : T[] {
         return this.toArray();
     }
 

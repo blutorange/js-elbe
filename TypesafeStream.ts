@@ -1,7 +1,7 @@
 import { Comparator } from "comparators";
 
-import { StreamFactory, Stream, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction, Try } from "./Interfaces";
-import { fromObject, fromObjectKeys, fromObjectValues, concat, distinct, distinctBy, doTry, flatMap, limit, map, reverse, skip, sort, generate, iterate, repeat, times, filter } from "./Methods";
+import { IStreamFactory, Stream, Consumer, Function, Predicate, Try } from "./Interfaces";
+import { fromObject, fromObjectKeys, process, index, fromObjectValues, concat, unique, uniqueBy, doTry, flatMap, limit, map, reverse, skip, sort, generate, iterate, repeat, times, filter } from "./Methods";
 import { AbstractStream } from "./AbstractStream";
 
 class TypesafeStream<T> extends AbstractStream<T> implements Stream<T> {
@@ -10,14 +10,14 @@ class TypesafeStream<T> extends AbstractStream<T> implements Stream<T> {
         return new TypesafeStream(concat(this.iterable, ...iterables));
     }
 
-    distinct() : Stream<T> {
+    unique() : Stream<T> {
         this.check();
-        return new TypesafeStream(distinct(this.iterable));
+        return new TypesafeStream(unique(this.iterable));
     }
 
-    distinctBy(keyExtractor: Function<T,any>) : Stream<T> {
+    uniqueBy(keyExtractor: Function<T,any>) : Stream<T> {
         this.check();
-        return new TypesafeStream(distinctBy(this.iterable, keyExtractor));
+        return new TypesafeStream(uniqueBy(this.iterable, keyExtractor));
     }
 
     flatMap<S>(mapper: Function<T,Iterable<S>>) : Stream<S> {
@@ -30,6 +30,10 @@ class TypesafeStream<T> extends AbstractStream<T> implements Stream<T> {
         return new TypesafeStream(filter(this.iterable, predicate));
     }
 
+    index() : Stream<[number, T]> {
+        return new TypesafeStream(index(this.iterable));
+    }
+ 
     limit(limitTo: number) : Stream<T> {
         this.check();
         return new TypesafeStream(limit(this.iterable, limitTo));
@@ -38,6 +42,11 @@ class TypesafeStream<T> extends AbstractStream<T> implements Stream<T> {
     map<S>(mapper : Function<T,S>) : Stream<S> {
         this.check();
         return new TypesafeStream(map(this.iterable, mapper));
+    }
+
+    process(consumer: Consumer<T>) : Stream<T> {
+        this.check();
+        return new TypesafeStream(process(this.iterable, consumer));
     }
 
     reverse() : Stream<T> {
@@ -76,24 +85,24 @@ class TypesafeStream<T> extends AbstractStream<T> implements Stream<T> {
         return new TypesafeStream(repeat(item, amount));
     }
 
-    static times(amount: number, start: number = 0, step: number = 1) : Stream<number> {
-        return new TypesafeStream(times(amount, start, step));
+    static times(amount: number, start?: number, end?: number) : Stream<number> {
+        return new TypesafeStream(times(amount, start, end));
     }
 
-    static fromObject<T>(object: {[s: string] : T}) : Iterable<[string,T]> {
+    static fromObject<T>(object: {[s: string] : T}) : Stream<[string,T]> {
         return new TypesafeStream(fromObject(object));
     }
 
-    static fromObjectKeys(object: {[s: string] : any}) : Iterable<string> {
+    static fromObjectKeys(object: {[s: string] : any}) : Stream<string> {
         return new TypesafeStream(fromObjectKeys(object));
     }
 
-    static fromObjectValues<T>(object: {[s: string] : T}) : Iterable<T> {
+    static fromObjectValues<T>(object: {[s: string] : T}) : Stream<T> {
         return new TypesafeStream(fromObjectValues(object));
     }
 };
 
-export const TypesafeStreamFactory : StreamFactory = {
+export const TypesafeStreamFactory : IStreamFactory = {
     from: TypesafeStream.from,
     generate: TypesafeStream.generate,
     iterate: TypesafeStream.iterate,

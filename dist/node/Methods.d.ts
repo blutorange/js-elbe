@@ -1,0 +1,50 @@
+import { Comparator } from "comparators";
+import { Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
+export declare function map<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<S>;
+export declare function flatMap<T, S>(iterable: Iterable<T>, mapper: Function<T, Iterable<S>>): Iterable<S>;
+export declare function filter<T>(iterable: Iterable<T>, predicate: Predicate<T>): Iterable<T>;
+export declare function doTry<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<Try<S>>;
+export declare function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>): {
+    false: T[];
+    true: T[];
+};
+export declare function group<T, K>(iterable: Iterable<T>, classifier: Function<T, K>): Map<K, T[]>;
+export declare function join<T>(iterable: Iterable<T>, delimiter?: string, prefix?: string, suffix?: string): string;
+export declare function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T>;
+export declare function unique<T>(iterable: Iterable<T>): Iterable<T>;
+export declare function uniqueBy<T>(iterable: Iterable<T>, keyExtractor: Function<T, any>): Iterable<T>;
+export declare function index<T>(iterable: Iterable<T>): Iterable<[number, T]>;
+export declare function limit<T>(iterable: Iterable<T>, limit: number): Iterable<T>;
+export declare function process<T>(iterable: Iterable<T>, consumer: Consumer<T>): IterableIterator<T>;
+export declare function skip<T>(iterable: Iterable<T>, skip: number): Iterable<T>;
+export declare function reverse<T>(iterable: Iterable<T>): Iterable<T>;
+export declare function concat<T>(iterable: Iterable<T>, ...moreIterables: Iterable<T>[]): Iterable<T>;
+export declare function size(iterable: Iterable<any>): number;
+export declare function find<T>(iterable: Iterable<T>, predicate: Predicate<T>): T;
+export declare function every<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
+export declare function some<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
+export declare function none<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
+export declare function has<T>(iterable: Iterable<T>, object: T): boolean;
+export declare function min<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T;
+export declare function max<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T;
+export declare function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<S, T, S>, initialValue: S): S;
+export declare function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): T;
+export declare function sum<T>(iterable: Iterable<T>, converter?: Function<T, number>): number;
+export declare function collect<T, S, R = S>(iterable: Iterable<T>, collector: Collector<T, S, R>): R;
+export declare function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
+export declare function toArray<T>(iterable: Iterable<T>): T[];
+export declare function toSet<T>(iterable: Iterable<T>): Set<T>;
+export declare function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
+export declare function fromObject<T>(object: {
+    [s: string]: T;
+}): Iterable<[string, T]>;
+export declare function fromObjectKeys(object: {
+    [s: string]: any;
+}): Iterable<string>;
+export declare function fromObjectValues<T>(object: {
+    [s: string]: T;
+}): Iterable<T>;
+export declare function generate<T>(generator: Function<number, T>, amount?: number): Iterable<T>;
+export declare function times(amount: number, start?: number, end?: number): Iterable<number>;
+export declare function repeat<T>(item: T, amount?: number): Iterable<T>;
+export declare function iterate<T>(seed: T, next: Function<T, T>, amount?: number): Iterable<T>;

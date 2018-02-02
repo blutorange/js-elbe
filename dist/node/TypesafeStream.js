@@ -7,13 +7,13 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.concat(this.iterable, ...iterables));
     }
-    distinct() {
+    unique() {
         this.check();
-        return new TypesafeStream(Methods_1.distinct(this.iterable));
+        return new TypesafeStream(Methods_1.unique(this.iterable));
     }
-    distinctBy(keyExtractor) {
+    uniqueBy(keyExtractor) {
         this.check();
-        return new TypesafeStream(Methods_1.distinctBy(this.iterable, keyExtractor));
+        return new TypesafeStream(Methods_1.uniqueBy(this.iterable, keyExtractor));
     }
     flatMap(mapper) {
         this.check();
@@ -23,6 +23,9 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.filter(this.iterable, predicate));
     }
+    index() {
+        return new TypesafeStream(Methods_1.index(this.iterable));
+    }
     limit(limitTo) {
         this.check();
         return new TypesafeStream(Methods_1.limit(this.iterable, limitTo));
@@ -30,6 +33,10 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
     map(mapper) {
         this.check();
         return new TypesafeStream(Methods_1.map(this.iterable, mapper));
+    }
+    process(consumer) {
+        this.check();
+        return new TypesafeStream(Methods_1.process(this.iterable, consumer));
     }
     reverse() {
         this.check();
@@ -59,8 +66,8 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
     static repeat(item, amount = -1) {
         return new TypesafeStream(Methods_1.repeat(item, amount));
     }
-    static times(amount, start = 0, step = 1) {
-        return new TypesafeStream(Methods_1.times(amount, start, step));
+    static times(amount, start, end) {
+        return new TypesafeStream(Methods_1.times(amount, start, end));
     }
     static fromObject(object) {
         return new TypesafeStream(Methods_1.fromObject(object));

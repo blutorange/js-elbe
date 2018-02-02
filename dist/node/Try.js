@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const TypesafeStream_1 = require("./TypesafeStream");
 function isTry(result) {
     return result instanceof TryImpl;
 }
@@ -52,6 +53,14 @@ class TryImpl {
             }
         }
         return this;
+    }
+    *iterate() {
+        if (this.success) {
+            yield this.value;
+        }
+    }
+    stream(factory = TypesafeStream_1.TypesafeStreamFactory) {
+        return factory.from(this.iterate());
     }
     then(mapper) {
         return this.map(mapper).flatMap(v => isTry(v) ? v : TryImpl.success(v));

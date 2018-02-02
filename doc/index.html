@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -64,6 +62,94 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<p>Iterators are great, and works well with Sets and Maps, eg. <code>(new Map()).entries()</code>.
+					Until I realized you can&#39;t really do much with iterators, and having to do manual iterations
+				all the time is a pain.</p>
+				<h1 id="docs">Docs</h1>
+				<p>See the directory <code>doc</code> for documentation on all methods.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+</code></pre>
+				<p>This returns an object with the following entries:</p>
+				<ul>
+					<li><a href="./modules/_collectors_.html">Collectors</a></li>
+					<li><a href="./modules/_inplacestream_.html#inplacestreamfactory">InplaceStreamFactory</a></li>
+					<li><a href="./modules/_methods_.html">Methods</a></li>
+					<li><a href="./modules/_monkeypatch_.html">monkeyPatch</a></li>
+					<li><a href="./modules/_try_.html#tryfactory">TryFactory</a></li>
+					<li><a href="./modules/_typesafestream_.html#typesafestreamfactory">TypesafeStreamFactory</a></li>
+				</ul>
+				<h1 id="install">Install</h1>
+				<p>You know the drill.</p>
+				<pre><code class="lang-bash">npm install --save streams@https://github.com/blutorange/js-streams
+</code></pre>
+				<p>Or use the standalone in <code>dist/streams.js</code>. With node it simply exports itself, within a browser it registers globally as <code>window.Streams</code>.</p>
+				<h1 id="usage">Usage</h1>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+<span class="hljs-keyword">const</span> times = lib.InplaceStreamFactory.times;
+times(<span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x*x<span class="hljs-number">-2</span>).map(<span class="hljs-built_in">Math</span>.abs).min(); <span class="hljs-comment">// 1.41</span>
+</code></pre>
+				<p>There are three different ways of using the stream methods:</p>
+				<h2 id="standalone-methods">Standalone methods</h2>
+				<p>All methods are available as stand-alone functions taking an iterable
+				as their first argument.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { Collectors, <span class="hljs-attr">Methods</span>: {map, filter, collect} } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+<span class="hljs-keyword">const</span> iterable = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+map(iterable, x =&gt; <span class="hljs-number">2</span>*x);
+filter(iterable, x =&gt; x &gt; <span class="hljs-number">1</span>);
+collect(iterable, Collectors.join());
+</code></pre>
+				<h2 id="stream-wrapper">Stream wrapper</h2>
+				<p>For easier chaining, there are also two wrapper classes for
+				the stand-alone functions.</p>
+				<p>The inplace stream comes with less overhead, but is not typesafe. This
+				is most likely irrelevant unless you are using TypeScript.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.from;
+<span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+</code></pre>
+				<p>The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.from;
+<span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+</code></pre>
+				<p>Once a stream is chained, it must not be used anymore, or an error is thrown:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.from;
+<span class="hljs-keyword">const</span> stream = <span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+<span class="hljs-keyword">from</span>.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x);
+<span class="hljs-keyword">from</span>.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Error: "Stream was already consumed."</span>
+</code></pre>
+				<p>Similarly for inplace streams: </p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.from;
+<span class="hljs-keyword">const</span> stream = <span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+<span class="hljs-keyword">from</span>.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// Iterable[2,4,6]</span>
+<span class="hljs-keyword">from</span>.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// Iterable[4,6]</span>
+<span class="hljs-keyword">from</span>.join() <span class="hljs-comment">// "46"</span>
+<span class="hljs-keyword">from</span>.join() <span class="hljs-comment">// Error: "Stream was already consumed."</span>
+</code></pre>
+				<h2 id="monkey-patching">Monkey patching</h2>
+				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to objects:</p>
+				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).monkeypatch();
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet(); <span class="hljs-comment">// Set[2,4,6]</span>
+<span class="hljs-string">"foobar"</span>.stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-string">"d"</span>).toArray(); <span class="hljs-comment">// ["f", "o", "o", "r"]</span>
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).stream(); <span class="hljs-comment">// Iterable[1,2,3]</span>
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>], [<span class="hljs-string">"bar"</span>, <span class="hljs-number">9</span>]).stream(); <span class="hljs-comment">// Iterable[ ["foo", 3], ["bar", 9] ]</span>
+({<span class="hljs-attr">foo</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">9</span>}).stream(); <span class="hljs-comment">// Iterable[ ["foo", 3], ["bar", 9] ]</span>
+</code></pre>
+				<h1 id="catching-errors">Catching errors</h1>
+				<p>Use the <code>try</code> method to handle errors during stream operations.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse);
+<span class="hljs-keyword">from</span>(json1, json2, json3).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> lib.TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x))) <span class="hljs-comment">// same as the above</span>
+</code></pre>
+				<p>This returns a stream with <code>Try</code> objects encapsulating the error, if one occured.</p>
+				<p>To get the values of the successful operations:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.stream()).toArray; <span class="hljs-comment">// Successfully parsed JSON objects.</span>
+</code></pre>
+				<p>To get the values of the successful and failed operations:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.success);
+result.false.forEach(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the errors</span>
+result.true.forEach(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the succesful values</span>
+</code></pre>
+				<p>To provide a default for failed operations:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.orElse(<span class="hljs-literal">undefined</span>)); <span class="hljs-comment">// JSON object or undefined.</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -72,130 +158,37 @@
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_collectors_.html">"<wbr>Collectors"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_interfaces_.html">"<wbr>Interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_methods_.html">"<wbr>Methods"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_try_.html">"<wbr>Try"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_main_.html">"main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_monkeypatch_.html">"monkeypatch"</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-is-not-exported">
-						<a href="classes/inplacestream.html" class="tsd-kind-icon">Inplace<wbr>Stream</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter tsd-is-not-exported">
-						<a href="classes/stream.html" class="tsd-kind-icon">Stream</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/consumer.html" class="tsd-kind-icon">Consumer</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/function.html" class="tsd-kind-icon">Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/istream.html" class="tsd-kind-icon">IStream</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/predicate.html" class="tsd-kind-icon">Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/supplier.html" class="tsd-kind-icon">Supplier</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#value_types" class="tsd-kind-icon">VALUE_<wbr>TYPES</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#concat" class="tsd-kind-icon">concat</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#distinct" class="tsd-kind-icon">distinct</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#distinctby" class="tsd-kind-icon">distinct<wbr>By</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#every" class="tsd-kind-icon">every</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#filter" class="tsd-kind-icon">filter</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#find" class="tsd-kind-icon">find</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#fromobject" class="tsd-kind-icon">from<wbr>Object</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#fromobjectkeys" class="tsd-kind-icon">from<wbr>Object<wbr>Keys</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#fromobjectvalues" class="tsd-kind-icon">from<wbr>Object<wbr>Values</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#generate" class="tsd-kind-icon">generate</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#includes" class="tsd-kind-icon">includes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#iterate" class="tsd-kind-icon">iterate</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#limit" class="tsd-kind-icon">limit</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#map" class="tsd-kind-icon">map</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#max" class="tsd-kind-icon">max</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#min" class="tsd-kind-icon">min</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#monkeypatch" class="tsd-kind-icon">monkey<wbr>Patch</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#none" class="tsd-kind-icon">none</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#patch" class="tsd-kind-icon">patch</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#reduce" class="tsd-kind-icon">reduce</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#repeat" class="tsd-kind-icon">repeat</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#reverse" class="tsd-kind-icon">reverse</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#size" class="tsd-kind-icon">size</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#skip" class="tsd-kind-icon">skip</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#some" class="tsd-kind-icon">some</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#sort" class="tsd-kind-icon">sort</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#times" class="tsd-kind-icon">times</a>
-					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<a href="globals.html#toarray" class="tsd-kind-icon">to<wbr>Array</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

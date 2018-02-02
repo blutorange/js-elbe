@@ -1,4 +1,5 @@
-import {Consumer,Function,Supplier,Try,ITryFactory} from "./Interfaces";
+import { IStreamFactory, Stream, Function, Supplier, Try, ITryFactory } from "./Interfaces";
+import { TypesafeStreamFactory } from "./TypesafeStream";
 
 function isTry<S>(result: S|Try<S>) : result is Try<S> {
     return result instanceof TryImpl;
@@ -66,6 +67,16 @@ class TryImpl<T> implements Try<T> {
         }
         // undefined is both a T and S, so we can reuse this
         return this as Try<any>;
+    }
+
+    * iterate() : Iterable<T> {
+        if (this.success) {
+            yield this.value;
+        }
+    }
+
+    stream(factory: IStreamFactory = TypesafeStreamFactory) : Stream<T> {
+        return factory.from(this.iterate());
     }
 
     then<S>(mapper: Function<T, S|Try<S>>) : Try<S> {

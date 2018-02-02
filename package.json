@@ -1,20 +1,23 @@
 {
   "name": "monado",
   "version": "1.0.0",
-  "description": "Utility methods for working with iterables.",
-  "main": "main.js",
+  "description": "Utility methods for working with iterables as streams.",
+  "main": "dist/node/main.js",
+  "types": "dist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "npx typedoc --mode file --name js-streams --readme README.md --out doc main.ts",
+    "doc": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/doc/./g' README.md  > README.typedoc && npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
-    "build": "npm run doc ; npm run transpile"
+    "web": "npx babel dist/node/*.js --out-dir dist/web/ && npx browserify dist/web/main.js --standalone Streams -o dist/streams.js && npx minify dist/streams.js --out-file dist/streams.min.js",
+    "build": "npm run doc ; npm run transpile; npm run web"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/blutorange/js-iterables.git"
   },
   "keywords": [
-    "iterables"
+    "iterable",
+    "stream"
   ],
   "author": "Andre Wachsmuth",
   "license": "Unlicense",
@@ -26,7 +29,15 @@
   },
   "homepage": "https://github.com/blutorange/js-iterables#readme",
   "devDependencies": {
-    "typedoc": "^0.9.0",
-    "typescript": "^2.7.1"
+    "@babel/cli": "^7.0.0-beta.39",
+    "@babel/core": "^7.0.0-beta.39",
+    "@babel/preset-env": "^7.0.0-beta.39",
+    "babel-minify": "^0.3.0",
+    "browserify": "^15.2.0",
+    "core-js": "^2.5.3",
+    "regenerator-runtime": "^0.11.1",
+    "tslib": "^1.9.0",
+    "typedoc": "^0.10.0",
+    "typescript": "^2.8.0-dev.20180202"
   }
 }

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const comparators_1 = require("comparators");
 const Methods_1 = require("./Methods");
-const IDENTITY = x => x;
 class AbstractStream {
     constructor(iterable) {
         this.done = false;
@@ -22,7 +21,7 @@ class AbstractStream {
         this.check();
         return Methods_1.collect(this.iterable, collector);
     }
-    collectWith(supplier, accumulator, finisher = IDENTITY) {
+    collectWith(supplier, accumulator, finisher) {
         this.check();
         return Methods_1.collectWith(this.iterable, supplier, accumulator, finisher);
     }
@@ -84,6 +83,10 @@ class AbstractStream {
         this.check();
         return Methods_1.some(this.iterable, predicate);
     }
+    sum(converter) {
+        this.check();
+        return Methods_1.sum(this.iterable, converter);
+    }
     toArray() {
         this.check();
         return Methods_1.toArray(this.iterable);
@@ -93,7 +96,6 @@ class AbstractStream {
         return Methods_1.toSet(this.iterable);
     }
     toJSON() {
-        this.check();
         return this.toArray();
     }
     toString() {

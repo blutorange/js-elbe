@@ -72,6 +72,22 @@ export const Collectors = {
         };
     },
 
+    count() : Collector<any,{count:number},number> {
+        return {
+            accumulator(collected: {count:number}, item: any) : void {
+                collected.count += 1;
+            },
+            supplier() : {count:number} {
+                return {
+                    count: 0
+                };
+            },
+            finisher(result: {count:number}) : number {
+                return result.count;
+            }
+        };
+    },
+
     toSet<T>() : Collector<T, Set<T>> {
         return {
             accumulator(collected: Set<T>, item: T) : void {
@@ -154,10 +170,10 @@ export const Collectors = {
         };
     },
 
-    sum<T>() : Collector<T, {sum:number}, number> {
+    sum<T>(converter: Function<T, number> = toNumber()) : Collector<T, {sum:number}, number> {
         return {
             accumulator(collected: {sum:number}, item: T) {
-                collected.sum += Number(item);
+                collected.sum += converter(item);
             },
 
             supplier() : {sum:number} {
@@ -221,7 +237,7 @@ export const Collectors = {
         };
     },
 
-    summarize<T>(converter: Function<T, number> = toNumber()) : Collector<T, StatisticsImpl, Statistics> {
+    summarize<T>(converter: Function<T, number> = toNumber()) : Collector<T, any, Statistics> {
         return {
             accumulator(collected: StatisticsImpl, item: T) {
                 collected.accept(converter(item));

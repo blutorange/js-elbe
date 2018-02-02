@@ -4,7 +4,6 @@ const comparators_1 = require("comparators");
 const Collectors_1 = require("./Collectors");
 const Try_1 = require("./Try");
 const hasOwnProperty = Object.prototype.hasOwnProperty;
-const IDENTITY = x => x;
 function* map(iterable, mapper) {
     for (let item of iterable) {
         yield mapper(item);
@@ -33,8 +32,8 @@ function* doTry(iterable, mapper) {
     }
 }
 exports.doTry = doTry;
-function partition(iterable, predicate) {
-    return collect(iterable, Collectors_1.Collectors.partition(predicate));
+function partition(iterable, discriminator) {
+    return collect(iterable, Collectors_1.Collectors.partition(discriminator));
 }
 exports.partition = partition;
 ;
@@ -53,12 +52,12 @@ function sort(iterable, comparator) {
     return arr[Symbol.iterator]();
 }
 exports.sort = sort;
-function distinct(iterable) {
+function unique(iterable) {
     const set = new Set(iterable);
     return set.values();
 }
-exports.distinct = distinct;
-function* distinctBy(iterable, keyExtractor) {
+exports.unique = unique;
+function* uniqueBy(iterable, keyExtractor) {
     const set = new Set();
     for (let item of iterable) {
         const key = keyExtractor(item);
@@ -68,21 +67,37 @@ function* distinctBy(iterable, keyExtractor) {
         }
     }
 }
-exports.distinctBy = distinctBy;
+exports.uniqueBy = uniqueBy;
+function* index(iterable) {
+    let i = 0;
+    for (let item of iterable) {
+        yield [i, item];
+        i += 1;
+    }
+}
+exports.index = index;
+;
 function* limit(iterable, limit) {
     for (let item of iterable) {
         yield item;
         if (--limit < 1) {
-            return;
+            break;
         }
     }
 }
 exports.limit = limit;
+function* process(iterable, consumer) {
+    for (let item of iterable) {
+        consumer(item);
+        yield item;
+    }
+}
+exports.process = process;
 function* skip(iterable, skip) {
     const it = iterable[Symbol.iterator]();
     while (skip-- > 0) {
         if (it.next().done) {
-            return;
+            break;
         }
     }
     for (let entry = it.next(); !entry.done; entry = it.next()) {
@@ -110,7 +125,7 @@ function* concat(iterable, ...moreIterables) {
 exports.concat = concat;
 function size(iterable) {
     let i = 0;
-    for (let item of iterable)
+    for (let it = iterable[Symbol.iterator](); !it.next().done;)
         ++i;
     return i;
 }
@@ -204,11 +219,17 @@ function reduceSame(iterable, reducer) {
     return reduced;
 }
 exports.reduceSame = reduceSame;
+function sum(iterable, converter) {
+    return collect(iterable, Collectors_1.Collectors.sum(converter));
+}
+exports.sum = sum;
+;
 function collect(iterable, collector) {
     return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }
 exports.collect = collect;
-function collectWith(iterable, supplier, accumulator, finisher = IDENTITY) {
+;
+function collectWith(iterable, supplier, accumulator, finisher) {
     const collected = supplier();
     for (let item of iterable) {
         accumulator(collected, item);
@@ -216,6 +237,7 @@ function collectWith(iterable, supplier, accumulator, finisher = IDENTITY) {
     return finisher(collected);
 }
 exports.collectWith = collectWith;
+;
 function toArray(iterable) {
     return Array.from(iterable);
 }
@@ -252,25 +274,38 @@ function* fromObjectValues(object) {
     }
 }
 exports.fromObjectValues = fromObjectValues;
-function* generate(generator, amount = -1) {
+function* generate(generator, amount = Infinity) {
+    amount = Math.max(0, amount);
     for (let i = 0; i < amount; ++i) {
         yield generator(i);
     }
 }
 exports.generate = generate;
-function* times(amount, start = 0, step = 1) {
-    for (let i = 0, j = start; i < amount; ++i, j += step) {
-        yield j;
+function* times(amount, start = 0, end = start + amount - 1) {
+    amount = Math.floor(Math.max(0, amount));
+    let step = amount > 1 ? (end - start) / (amount - 1) : 0;
+    if (!isFinite(step)) {
+        step = NaN;
+    }
+    const half = Math.floor(amount / 2);
+    for (let i = 0; i < half; ++i) {
+        yield start + i * step;
+    }
+    for (let i = amount - half - 1; i >= 0; --i) {
+        yield end - i * step;
     }
 }
 exports.times = times;
-function* repeat(item, amount = -1) {
+function* repeat(item, amount = Infinity) {
+    amount = Math.max(0, amount);
     for (let i = 0; i < amount; ++i) {
         yield item;
     }
 }
 exports.repeat = repeat;
-function* iterate(seed, next, amount = -1) {
+;
+function* iterate(seed, next, amount = Infinity) {
+    amount = Math.max(0, amount);
     for (let i = 0; i < amount; ++i) {
         yield seed;
         seed = next(seed);
