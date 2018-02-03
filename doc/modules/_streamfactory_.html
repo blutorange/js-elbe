@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BiConsumer | js-streams</title>
+	<title>&quot;StreamFactory&quot; | js-streams</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,84 +54,95 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_interfaces_.html">&quot;Interfaces&quot;</a>
-				</li>
-				<li>
-					<a href="_interfaces_.biconsumer.html">BiConsumer</a>
+					<a href="_streamfactory_.html">&quot;StreamFactory&quot;</a>
 				</li>
 			</ul>
-			<h1>Interface BiConsumer&lt;S, T&gt;</h1>
+			<h1>External module &quot;StreamFactory&quot;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A consumer that takes two value and outputs nothing.</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>S</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Type of the first consumed value.</p>
-							</div>
-						</div>
-					</li>
-					<li>
-						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Type of the second consumed value.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">BiConsumer</span>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span>, arg2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L66">Interfaces.ts:66</a></li>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_streamfactory_.html#inplacestreamfactory" class="tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_streamfactory_.html#typesafestreamfactory" class="tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_streamfactory_.html#stream" class="tsd-kind-icon">stream</a></li>
 							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A consumer that takes two value and outputs nothing.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>arg1: <span class="tsd-signature-type">S</span></h5>
-							</li>
-							<li>
-								<h5>arg2: <span class="tsd-signature-type">T</span></h5>
-							</li>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_streamfactory_.html#createfactory" class="tsd-kind-icon">create<wbr>Factory</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="inplacestreamfactory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Inplace<wbr>Stream<wbr>Factory</h3>
+					<div class="tsd-signature tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.streamfactory.html" class="tsd-signature-type">StreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(true)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in StreamFactory.ts:44</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="typesafestreamfactory" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Typesafe<wbr>Stream<wbr>Factory</h3>
+					<div class="tsd-signature tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.streamfactory.html" class="tsd-signature-type">StreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(false)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in StreamFactory.ts:43</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="stream" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> stream</h3>
+					<div class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_interfaces_.streamfactory.html#stream" class="tsd-signature-type">stream</a><span class="tsd-signature-symbol"> =&nbsp;InplaceStreamFactory.stream</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in StreamFactory.ts:46</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="createfactory" class="tsd-anchor"></a>
+					<h3>create<wbr>Factory</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Factory<span class="tsd-signature-symbol">(</span>inplace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.streamfactory.html" class="tsd-signature-type">StreamFactory</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in StreamFactory.ts:6</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> inplace: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_interfaces_.streamfactory.html" class="tsd-signature-type">StreamFactory</a></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -141,78 +152,50 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
+						<a href="_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_collectors_.html">"<wbr>Collectors"</a>
+						<a href="_collectors_.html">"<wbr>Collectors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
+						<a href="_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_interfaces_.html">"<wbr>Interfaces"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_methods_.html">"<wbr>Methods"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_interfaces_.html">"<wbr>Interfaces"</a>
+						<a href="_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_methods_.html">"<wbr>Methods"</a>
+						<a href="_try_.html">"<wbr>Try"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
+						<a href="_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_try_.html">"<wbr>Try"</a>
+						<a href="_main_.html">"main"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_main_.html">"main"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_monkeypatch_.html">"monkeypatch"</a>
+						<a href="_monkeypatch_.html">"monkeypatch"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.biconsumer.html" class="tsd-kind-icon">Bi<wbr>Consumer</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="_streamfactory_.html#inplacestreamfactory" class="tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory</a>
 					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="_streamfactory_.html#typesafestreamfactory" class="tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.collector.html" class="tsd-kind-icon">Collector</a>
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="_streamfactory_.html#stream" class="tsd-kind-icon">stream</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.consumer.html" class="tsd-kind-icon">Consumer</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.function.html" class="tsd-kind-icon">Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.predicate.html" class="tsd-kind-icon">Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.statistics.html" class="tsd-kind-icon">Statistics</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.stream.html" class="tsd-kind-icon">Stream</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.streamfactory.html" class="tsd-kind-icon">Stream<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.supplier.html" class="tsd-kind-icon">Supplier</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.try.html" class="tsd-kind-icon">Try</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_streamfactory_.html#createfactory" class="tsd-kind-icon">create<wbr>Factory</a>
 					</li>
 				</ul>
 			</nav>

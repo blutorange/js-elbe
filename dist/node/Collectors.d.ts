@@ -1,6 +1,9 @@
 import { Collector, Function, Predicate, Statistics } from "./Interfaces";
 export declare const Collectors: {
     toArray<T>(): Collector<T, T[], T[]>;
+    count(): Collector<any, {
+        count: number;
+    }, number>;
     toSet<T>(): Collector<T, Set<T>, Set<T>>;
     toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Collector<T, Map<K, V>, Map<K, V>>;
     group<T, K>(classifier: Function<T, K>): Collector<T, Map<K, T[]>, Map<K, T[]>>;

@@ -1,14 +1,14 @@
 import { natural, Comparator } from "comparators";
 
 import { Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { collect, collectWith, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap } from "./Methods";
+import { collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap } from "./Methods";
 
 export abstract class AbstractStream<T> {
 
     protected iterable : Iterable<T>;
     private done = false;
 
-    protected constructor(iterable : Iterable<T>) {
+    public constructor(iterable : Iterable<T>) {
         this.iterable = iterable;
     }
 
@@ -32,6 +32,11 @@ export abstract class AbstractStream<T> {
     collectWith<S,R=S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S,R>): R {
         this.check();
         return collectWith(this.iterable, supplier, accumulator, finisher);
+    }
+
+    end() : void {
+        this.check();
+        end(this.iterable);
     }
 
     every(predicate: Predicate<T>) : boolean {
@@ -89,11 +94,6 @@ export abstract class AbstractStream<T> {
     reduceSame(reducer: BiFunction<T,T,T>) : T {
         this.check();
         return reduceSame(this.iterable, reducer);
-    }
-
-    reduceWith<S>(reducer: BiFunction<S,T,S>, initialValue: S) : S {
-        this.check();
-        return reduce(this.iterable, reducer, initialValue);
     }
 
     size() : number {

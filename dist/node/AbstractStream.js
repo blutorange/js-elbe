@@ -25,6 +25,10 @@ class AbstractStream {
         this.check();
         return Methods_1.collectWith(this.iterable, supplier, accumulator, finisher);
     }
+    end() {
+        this.check();
+        Methods_1.end(this.iterable);
+    }
     every(predicate) {
         this.check();
         return Methods_1.every(this.iterable, predicate);
@@ -70,10 +74,6 @@ class AbstractStream {
     reduceSame(reducer) {
         this.check();
         return Methods_1.reduceSame(this.iterable, reducer);
-    }
-    reduceWith(reducer, initialValue) {
-        this.check();
-        return Methods_1.reduce(this.iterable, reducer, initialValue);
     }
     size() {
         this.check();

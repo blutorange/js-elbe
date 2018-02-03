@@ -1,5 +1,5 @@
-import { IStreamFactory, Stream, Function, Supplier, Try, ITryFactory } from "./Interfaces";
-import { TypesafeStreamFactory } from "./TypesafeStream";
+import { StreamFactory, Stream, Function, Supplier, Try, ITryFactory } from "./Interfaces";
+import { TypesafeStreamFactory } from "./StreamFactory";
 
 function isTry<S>(result: S|Try<S>) : result is Try<S> {
     return result instanceof TryImpl;
@@ -26,6 +26,9 @@ class TryImpl<T> implements Try<T> {
         return this as Try<any>;
     }
 
+    public toString() : string {
+        return `Try[${String(this.success ? this.value : this.error)}]`;
+    }
 
     public toJSON() : {success:boolean, error:Error, value:T} {
         return {
@@ -75,8 +78,8 @@ class TryImpl<T> implements Try<T> {
         }
     }
 
-    stream(factory: IStreamFactory = TypesafeStreamFactory) : Stream<T> {
-        return factory.from(this.iterate());
+    stream(factory: StreamFactory = TypesafeStreamFactory) : Stream<T> {
+        return factory.stream(this.iterate());
     }
 
     then<S>(mapper: Function<T, S|Try<S>>) : Try<S> {

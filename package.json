@@ -1,5 +1,5 @@
 {
-  "name": "monado",
+  "name": "streams",
   "version": "1.0.0",
   "description": "Utility methods for working with iterables as streams.",
   "main": "dist/node/main.js",

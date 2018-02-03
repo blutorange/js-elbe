@@ -58,6 +58,12 @@ function () {
       return Methods_1.collectWith(this.iterable, supplier, accumulator, finisher);
     }
   }, {
+    key: "end",
+    value: function end() {
+      this.check();
+      Methods_1.end(this.iterable);
+    }
+  }, {
     key: "every",
     value: function every(predicate) {
       this.check();
@@ -149,12 +155,6 @@ function () {
     value: function reduceSame(reducer) {
       this.check();
       return Methods_1.reduceSame(this.iterable, reducer);
-    }
-  }, {
-    key: "reduceWith",
-    value: function reduceWith(reducer, initialValue) {
-      this.check();
-      return Methods_1.reduce(this.iterable, reducer, initialValue);
     }
   }, {
     key: "size",

@@ -82,10 +82,10 @@
 						<span class="target">AbstractStream</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_typesafestream_.typesafestream.html" class="tsd-signature-type">TypesafeStream</a>
+								<a href="_inplacestream_.inplacestream.html" class="tsd-signature-type">InplaceStream</a>
 							</li>
 							<li>
-								<a href="_inplacestream_.inplacestream.html" class="tsd-signature-type">InplaceStream</a>
+								<a href="_typesafestream_.typesafestream.html" class="tsd-signature-type">TypesafeStream</a>
 							</li>
 						</ul>
 					</li>
@@ -96,11 +96,18 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_abstractstream_.abstractstream.html#collect" class="tsd-kind-icon">collect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_abstractstream_.abstractstream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#end" class="tsd-kind-icon">end</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#every" class="tsd-kind-icon">every</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#find" class="tsd-kind-icon">find</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
@@ -112,7 +119,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#partition" class="tsd-kind-icon">partition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_abstractstream_.abstractstream.html#reduce" class="tsd-kind-icon">reduce</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="_abstractstream_.abstractstream.html#reducewith" class="tsd-kind-icon">reduce<wbr>With</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#size" class="tsd-kind-icon">size</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#some" class="tsd-kind-icon">some</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_abstractstream_.abstractstream.html#sum" class="tsd-kind-icon">sum</a></li>
@@ -127,6 +133,32 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Abstract<wbr>Stream<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_abstractstream_.abstractstream.html" class="tsd-signature-type">AbstractStream</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L9">AbstractStream.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_abstractstream_.abstractstream.html" class="tsd-signature-type">AbstractStream</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="___iterator" class="tsd-anchor"></a>
@@ -138,7 +170,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L22">AbstractStream.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L22">AbstractStream.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -155,7 +187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L27">AbstractStream.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L27">AbstractStream.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -187,7 +219,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L32">AbstractStream.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L32">AbstractStream.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -216,6 +248,23 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="end" class="tsd-anchor"></a>
+					<h3>end</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L37">AbstractStream.ts:37</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="every" class="tsd-anchor"></a>
 					<h3>every</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -225,7 +274,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L37">AbstractStream.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L42">AbstractStream.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -248,7 +297,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L42">AbstractStream.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L47">AbstractStream.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -271,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L47">AbstractStream.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L52">AbstractStream.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -294,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L54">AbstractStream.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L59">AbstractStream.ts:59</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -323,7 +372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L59">AbstractStream.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L64">AbstractStream.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -346,7 +395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L64">AbstractStream.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L69">AbstractStream.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -375,7 +424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L69">AbstractStream.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L74">AbstractStream.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -398,7 +447,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L74">AbstractStream.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -421,7 +470,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -452,7 +501,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -484,7 +533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -494,38 +543,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-					<a name="reducewith" class="tsd-anchor"></a>
-					<h3>reduce<wbr>With</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">reduce<wbr>With&lt;S&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>S</h4>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>reducer: <a href="../interfaces/_interfaces_.bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-								<li>
-									<h5>initialValue: <span class="tsd-signature-type">S</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">S</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -539,7 +556,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -556,7 +573,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -579,7 +596,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -602,7 +619,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L114">AbstractStream.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L114">AbstractStream.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -619,7 +636,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L124">AbstractStream.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L124">AbstractStream.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -636,7 +653,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L132">AbstractStream.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L132">AbstractStream.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -671,7 +688,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -688,7 +705,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/AbstractStream.ts#L128">AbstractStream.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/AbstractStream.ts#L128">AbstractStream.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -719,6 +736,9 @@
 						<a href="../modules/_methods_.html">"<wbr>Methods"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_try_.html">"<wbr>Try"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -739,6 +759,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_abstractstream_.abstractstream.html" class="tsd-kind-icon">Abstract<wbr>Stream</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_abstractstream_.abstractstream.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_abstractstream_.abstractstream.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
@@ -747,6 +770,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="_abstractstream_.abstractstream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_abstractstream_.abstractstream.html#end" class="tsd-kind-icon">end</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_abstractstream_.abstractstream.html#every" class="tsd-kind-icon">every</a>
@@ -780,9 +806,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_abstractstream_.abstractstream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-								<a href="_abstractstream_.abstractstream.html#reducewith" class="tsd-kind-icon">reduce<wbr>With</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_abstractstream_.abstractstream.html#size" class="tsd-kind-icon">size</a>

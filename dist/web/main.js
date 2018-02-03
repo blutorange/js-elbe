@@ -14,8 +14,6 @@ tslib_1.__exportStar(require("./monkeypatch"), exports);
 
 tslib_1.__exportStar(require("./Collectors"), exports);
 
-tslib_1.__exportStar(require("./InplaceStream"), exports);
-
-tslib_1.__exportStar(require("./TypesafeStream"), exports);
+tslib_1.__exportStar(require("./StreamFactory"), exports);
 
 tslib_1.__exportStar(require("./Try"), exports);

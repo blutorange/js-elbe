@@ -8,13 +8,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var TypesafeStream_1 = require("./TypesafeStream");
-
-var InplaceStream_1 = require("./InplaceStream");
+var StreamFactory_1 = require("./StreamFactory");
 
 var Methods_1 = require("./Methods");
 
 function patch(type, getStream, wrapStream) {
+  var name = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "stream";
   Object.defineProperty(type.prototype, "stream", {
     configurable: false,
     enumerable: false,
@@ -29,7 +28,7 @@ function patch(type, getStream, wrapStream) {
 
 function monkeyPatch() {
   var inplace = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-  var stream = inplace ? InplaceStream_1.InplaceStreamFactory.from : TypesafeStream_1.TypesafeStreamFactory.from;
+  var stream = inplace ? StreamFactory_1.InplaceStreamFactory.stream : StreamFactory_1.TypesafeStreamFactory.stream;
   patch(Array, function (array) {
     return array;
   }, stream);
@@ -42,6 +41,12 @@ function monkeyPatch() {
   patch(Object, function (object) {
     return Methods_1.fromObject(object);
   }, stream);
+  patch(Object, function (object) {
+    return Methods_1.fromObjectKeys(object);
+  }, stream, "keys");
+  patch(Object, function (object) {
+    return Methods_1.fromObjectValues(object);
+  }, stream, "values");
   patch(String, function (string) {
     return string;
   }, stream);

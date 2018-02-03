@@ -33,10 +33,10 @@ export interface Collector<S, T, R = T> {
 export interface ITryFactory {
     success<T>(value: T): Try<T>;
     failure<T>(error: Error): Try<T>;
-    of<T>(action: Supplier<T>): Try<T>;
+    of<T>(operation: Supplier<T>): Try<T>;
 }
-export interface IStreamFactory {
-    from<T>(iterable: Iterable<T>): Stream<T>;
+export interface StreamFactory {
+    stream<T>(iterable: Iterable<T>): Stream<T>;
     generate<T>(generator: Function<number, T>, amount?: number): Stream<T>;
     iterate<T>(seed: T, next: Function<T, T>, amount?: number): Stream<T>;
     repeat<T>(item: T, amount?: number): Stream<T>;
@@ -56,7 +56,7 @@ export interface Try<T> {
     map<S>(mapper: Function<T, S>): Try<S>;
     flatMap<S>(mapper: Function<T, Try<S>>): Try<S>;
     recover(backup: Function<Error, T>): Try<T>;
-    stream(factory?: IStreamFactory): Stream<T>;
+    stream(factory?: StreamFactory): Stream<T>;
     iterate(): Iterable<T>;
     orElse(backup: T): T;
     orThrow(): T;
@@ -66,15 +66,18 @@ export interface Try<T> {
 }
 export interface Stream<T> {
     [Symbol.iterator](): Iterator<T>;
+    chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
     collect<S, R = S>(collector: Collector<T, S, R>): R;
     collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
     concat(...iterables: Iterable<T>[]): Stream<T>;
+    cycle(count?: number): Stream<T>;
+    end(): void;
     every(predicate: Predicate<T>): boolean;
     find(predicate: Predicate<T>): T;
     flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
     filter(predicate: Predicate<T>): Stream<T>;
     forEach(consumer: Consumer<T>): void;
-    group<K>(classifier: Function<T, K>): Map<K, T[]>;
+    group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
     index(): Stream<[number, T]>;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
@@ -86,13 +89,12 @@ export interface Stream<T> {
         false: T[];
         true: T[];
     };
-    process(consumer: Consumer<T>): Stream<T>;
     reduce<S>(reducer: BiFunction<S, T, S>, initialValue: S): S;
     reduceSame(reducer: BiFunction<T, T, T>): T;
-    reduceWith<S>(reducer: BiFunction<S, T, S>, initialValue: S): S;
     reverse(): Stream<T>;
     size(): number;
     skip(toSkip: number): Stream<T>;
+    slice(sliceSize: number): Stream<T[]>;
     some(predicate: Predicate<T>): boolean;
     sort(comparator?: Comparator<T>): Stream<T>;
     sum(converter?: Function<T, number>): number;
@@ -100,6 +102,8 @@ export interface Stream<T> {
     toArray(): T[];
     toSet(): Set<any>;
     toMap<K, V>(keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
-    unique(): Stream<T>;
-    uniqueBy(keyExtractor: Function<T, any>): Stream<T>;
+    unique(keyExtractor?: Function<T, any>): Stream<T>;
+    visit(consumer: Consumer<T>): Stream<T>;
+    zip<S>(other: Iterable<S>): Stream<[T, S]>;
+    zipSame(...others: Iterable<T>[]): Stream<T[]>;
 }

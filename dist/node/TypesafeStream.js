@@ -3,17 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Methods_1 = require("./Methods");
 const AbstractStream_1 = require("./AbstractStream");
 class TypesafeStream extends AbstractStream_1.AbstractStream {
+    chunk(classifier) {
+        this.check();
+        return new TypesafeStream(Methods_1.chunk(this.iterable, classifier));
+    }
     concat(...iterables) {
         this.check();
         return new TypesafeStream(Methods_1.concat(this.iterable, ...iterables));
     }
-    unique() {
+    cycle(count) {
         this.check();
-        return new TypesafeStream(Methods_1.unique(this.iterable));
-    }
-    uniqueBy(keyExtractor) {
-        this.check();
-        return new TypesafeStream(Methods_1.uniqueBy(this.iterable, keyExtractor));
+        return new TypesafeStream(Methods_1.cycle(this.iterable, count));
     }
     flatMap(mapper) {
         this.check();
@@ -34,9 +34,9 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.map(this.iterable, mapper));
     }
-    process(consumer) {
+    visit(consumer) {
         this.check();
-        return new TypesafeStream(Methods_1.process(this.iterable, consumer));
+        return new TypesafeStream(Methods_1.visit(this.iterable, consumer));
     }
     reverse() {
         this.check();
@@ -46,6 +46,10 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.skip(this.iterable, toSkip));
     }
+    slice(sliceSize) {
+        this.check();
+        return new TypesafeStream(Methods_1.slice(this.iterable, sliceSize));
+    }
     sort(comparator) {
         this.check();
         return new TypesafeStream(Methods_1.sort(this.iterable, comparator));
@@ -54,39 +58,18 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.doTry(this.iterable, mapper));
     }
-    static from(items) {
-        return new TypesafeStream(items);
+    unique(keyExtractor) {
+        this.check();
+        return new TypesafeStream(Methods_1.unique(this.iterable, keyExtractor));
     }
-    static generate(generator, amount = -1) {
-        return new TypesafeStream(Methods_1.generate(generator, amount));
+    zip(other) {
+        this.check();
+        return new TypesafeStream(Methods_1.zip(this.iterable, other));
     }
-    static iterate(seed, next, amount = -1) {
-        return new TypesafeStream(Methods_1.iterate(seed, next, amount));
-    }
-    static repeat(item, amount = -1) {
-        return new TypesafeStream(Methods_1.repeat(item, amount));
-    }
-    static times(amount, start, end) {
-        return new TypesafeStream(Methods_1.times(amount, start, end));
-    }
-    static fromObject(object) {
-        return new TypesafeStream(Methods_1.fromObject(object));
-    }
-    static fromObjectKeys(object) {
-        return new TypesafeStream(Methods_1.fromObjectKeys(object));
-    }
-    static fromObjectValues(object) {
-        return new TypesafeStream(Methods_1.fromObjectValues(object));
+    zipSame(...others) {
+        this.check();
+        return new TypesafeStream(Methods_1.zipSame(this.iterable, others));
     }
 }
+exports.TypesafeStream = TypesafeStream;
 ;
-exports.TypesafeStreamFactory = {
-    from: TypesafeStream.from,
-    generate: TypesafeStream.generate,
-    iterate: TypesafeStream.iterate,
-    repeat: TypesafeStream.repeat,
-    times: TypesafeStream.times,
-    fromObject: TypesafeStream.fromObject,
-    fromObjectKeys: TypesafeStream.fromObjectKeys,
-    fromObjectValues: TypesafeStream.fromObjectValues,
-};

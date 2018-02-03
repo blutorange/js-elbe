@@ -116,6 +116,21 @@ exports.Collectors = {
       finisher: identity()
     };
   },
+  count: function count() {
+    return {
+      accumulator: function accumulator(collected, item) {
+        collected.count += 1;
+      },
+      supplier: function supplier() {
+        return {
+          count: 0
+        };
+      },
+      finisher: function finisher(result) {
+        return result.count;
+      }
+    };
+  },
   toSet: function toSet() {
     return {
       accumulator: function accumulator(collected, item) {

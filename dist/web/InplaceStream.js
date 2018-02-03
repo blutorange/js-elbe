@@ -4,8 +4,6 @@ require("core-js/modules/es6.symbol");
 
 require("core-js/modules/es6.object.set-prototype-of");
 
-require("core-js/modules/es6.string.repeat");
-
 require("core-js/modules/es6.array.sort");
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -40,6 +38,12 @@ function (_AbstractStream_1$Abs) {
   }
 
   _createClass(InplaceStream, [{
+    key: "chunk",
+    value: function chunk(classifier) {
+      this.iterable = Methods_1.chunk(this.iterable, classifier);
+      return this;
+    }
+  }, {
     key: "concat",
     value: function concat() {
       for (var _len = arguments.length, iterables = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -50,15 +54,9 @@ function (_AbstractStream_1$Abs) {
       return this;
     }
   }, {
-    key: "unique",
-    value: function unique() {
-      this.iterable = Methods_1.unique(this.iterable);
-      return this;
-    }
-  }, {
-    key: "uniqueBy",
-    value: function uniqueBy(keyExtractor) {
-      this.iterable = Methods_1.uniqueBy(this.iterable, keyExtractor);
+    key: "cycle",
+    value: function cycle(count) {
+      this.iterable = Methods_1.cycle(this.iterable, count);
       return this;
     }
   }, {
@@ -92,9 +90,9 @@ function (_AbstractStream_1$Abs) {
       return this;
     }
   }, {
-    key: "process",
-    value: function process(consumer) {
-      this.iterable = Methods_1.process(this.iterable, consumer);
+    key: "visit",
+    value: function visit(consumer) {
+      this.iterable = Methods_1.visit(this.iterable, consumer);
       return this;
     }
   }, {
@@ -110,6 +108,12 @@ function (_AbstractStream_1$Abs) {
       return this;
     }
   }, {
+    key: "slice",
+    value: function slice(sliceSize) {
+      this.iterable = Methods_1.slice(this.iterable, sliceSize);
+      return this;
+    }
+  }, {
     key: "sort",
     value: function sort(comparator) {
       this.iterable = Methods_1.sort(this.iterable, comparator);
@@ -121,62 +125,32 @@ function (_AbstractStream_1$Abs) {
       this.iterable = Methods_1.doTry(this.iterable, mapper);
       return this;
     }
-  }], [{
-    key: "from",
-    value: function from(items) {
-      return new InplaceStream(items);
+  }, {
+    key: "unique",
+    value: function unique(keyExtractor) {
+      this.iterable = Methods_1.unique(this.iterable, keyExtractor);
+      return this;
     }
   }, {
-    key: "times",
-    value: function times(amount, start, end) {
-      return new InplaceStream(Methods_1.times(amount, start, end));
+    key: "zip",
+    value: function zip(other) {
+      this.iterable = Methods_1.zip(this.iterable, other);
+      return this;
     }
   }, {
-    key: "generate",
-    value: function generate(generator) {
-      var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-      return new InplaceStream(Methods_1.generate(generator, amount));
-    }
-  }, {
-    key: "iterate",
-    value: function iterate(seed, next) {
-      var amount = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -1;
-      return new InplaceStream(Methods_1.iterate(seed, next, amount));
-    }
-  }, {
-    key: "repeat",
-    value: function repeat(item) {
-      var amount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-      return new InplaceStream(Methods_1.repeat(item, amount));
-    }
-  }, {
-    key: "fromObject",
-    value: function fromObject(object) {
-      return new InplaceStream(Methods_1.fromObject(object));
-    }
-  }, {
-    key: "fromObjectKeys",
-    value: function fromObjectKeys(object) {
-      return new InplaceStream(Methods_1.fromObjectKeys(object));
-    }
-  }, {
-    key: "fromObjectValues",
-    value: function fromObjectValues(object) {
-      return new InplaceStream(Methods_1.fromObjectValues(object));
+    key: "zipSame",
+    value: function zipSame() {
+      for (var _len2 = arguments.length, others = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        others[_key2] = arguments[_key2];
+      }
+
+      this.iterable = Methods_1.zipSame(this.iterable, others);
+      return this;
     }
   }]);
 
   return InplaceStream;
 }(AbstractStream_1.AbstractStream);
 
+exports.InplaceStream = InplaceStream;
 ;
-exports.InplaceStreamFactory = {
-  from: InplaceStream.from,
-  generate: InplaceStream.generate,
-  iterate: InplaceStream.iterate,
-  repeat: InplaceStream.repeat,
-  times: InplaceStream.times,
-  fromObject: InplaceStream.fromObject,
-  fromObjectKeys: InplaceStream.fromObjectKeys,
-  fromObjectValues: InplaceStream.fromObjectValues
-};

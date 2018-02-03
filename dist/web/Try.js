@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var TypesafeStream_1 = require("./TypesafeStream");
+var StreamFactory_1 = require("./StreamFactory");
 
 function isTry(result) {
   return result instanceof TryImpl;
@@ -40,6 +40,11 @@ function () {
       }
 
       return this;
+    }
+  }, {
+    key: "toString",
+    value: function toString() {
+      return "Try[".concat(String(this.success ? this.value : this.error), "]");
     }
   }, {
     key: "toJSON",
@@ -121,8 +126,8 @@ function () {
   }, {
     key: "stream",
     value: function stream() {
-      var factory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TypesafeStream_1.TypesafeStreamFactory;
-      return factory.from(this.iterate());
+      var factory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : StreamFactory_1.TypesafeStreamFactory;
+      return factory.stream(this.iterate());
     }
   }, {
     key: "then",

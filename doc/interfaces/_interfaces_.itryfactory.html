@@ -67,6 +67,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A factory for producing a <a href="_interfaces_.try.html">Try</a> representing
+						the result of some operation that may fail.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -102,13 +110,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/Interfaces.ts#L44">Interfaces.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L94">Interfaces.ts:94</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from a failed operation.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the value produced by the operation on success.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -118,6 +134,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <a href="_interfaces_.try.html">Try</a> representing the failed operation.</p>
 						</li>
 					</ul>
 				</section>
@@ -125,28 +142,40 @@
 					<a name="of" class="tsd-anchor"></a>
 					<h3>of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">of&lt;T&gt;<span class="tsd-signature-symbol">(</span>action<span class="tsd-signature-symbol">: </span><a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">of&lt;T&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/Interfaces.ts#L45">Interfaces.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L101">Interfaces.ts:101</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from an operation that may succeed or fail.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the value produced by the operation on success.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>action: <a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>operation: <a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An operation that produces a value, but may fail to do so by throwing an error.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <a href="_interfaces_.try.html">Try</a> representing the result of the operation.</p>
 						</li>
 					</ul>
 				</section>
@@ -160,22 +189,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/d2a9cb9/Interfaces.ts#L43">Interfaces.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L87">Interfaces.ts:87</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from a successfully produced value.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the value produced by the operation on success.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>value: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The successful result of some operation.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A <a href="_interfaces_.try.html">Try</a> representing the sucessful operation.</p>
 						</li>
 					</ul>
 				</section>
@@ -201,6 +242,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_methods_.html">"<wbr>Methods"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_try_.html">"<wbr>Try"</a>
@@ -233,9 +277,6 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.function.html" class="tsd-kind-icon">Function</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.istreamfactory.html" class="tsd-kind-icon">IStream<wbr>Factory</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
@@ -262,6 +303,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.stream.html" class="tsd-kind-icon">Stream</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_interfaces_.streamfactory.html" class="tsd-kind-icon">Stream<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.supplier.html" class="tsd-kind-icon">Supplier</a>

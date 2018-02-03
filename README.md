@@ -1,6 +1,7 @@
 Iterators are great, and works well with Sets and Maps, eg. `(new Map()).entries()`.
 Until I realized you can't really do much with iterators, and having to do manual iterations
-all the time is a pain.
+all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
+and ruby's enumerables.
 
 # Docs
 
@@ -39,6 +40,15 @@ times(100, 0, 2).map(x => x*x-2).map(Math.abs).min(); // 1.41
 
 There are three different ways of using the stream methods:
 
+# Shortcut
+
+If you do not like to write much:
+
+```javascript
+const { stream } = require("streams");
+stream([1,2,3]).map(...).filter(...).limit(1).group(...);
+```
+
 ## Standalone methods
 
 All methods are available as stand-alone functions taking an iterable
@@ -61,35 +71,35 @@ The inplace stream comes with less overhead, but is not typesafe. This
 is most likely irrelevant unless you are using TypeScript.
 
 ```javascript
-const from = require("streams").InplaceStreamFactory.from;
-from([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+const { stream } = require("streams");
+stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 ```
 
 The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.
 
 ```javascript
-const from = require("streams").TypesafeStreamFactory.from;
-from([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+const { stream } = require("streams");
+stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 ```
 
 Once a stream is chained, it must not be used anymore, or an error is thrown:
 
 ```javascript
-const from = require("streams").TypesafeStreamFactory.from;
-const stream = from([1,2,3]);
-from.map(x => x * x);
-from.filter(x => x > 2); // => Error: "Stream was already consumed."
+const stream = require("streams").TypesafeStreamFactory.stream;
+const s = stream([1,2,3]);
+s.map(x => x * x);
+s.filter(x => x > 2); // => Error: "Stream was already consumed."
 ```
 
 Similarly for inplace streams: 
 
 ```javascript
-const from = require("streams").InplaceStreamFactory.from;
-const stream = from([1,2,3]);
-from.map(x => x * x); // Iterable[2,4,6]
-from.filter(x => x > 2); // Iterable[4,6]
-from.join() // "46"
-from.join() // Error: "Stream was already consumed."
+const stream = require("streams").InplaceStreamFactory.stream;
+const s = stream([1,2,3]);
+s.map(x => x * x); // Iterable[2,4,6]
+s.filter(x => x > 2); // Iterable[4,6]
+s.join() // "46"
+s.join() // Error: "Stream was already consumed."
 ```
 
 ## Monkey patching
@@ -110,8 +120,8 @@ new Map(["foo", 3], ["bar", 9]).stream(); // Iterable[ ["foo", 3], ["bar", 9] ]
 Use the `try` method to handle errors during stream operations.
 
 ```javascript
-from(json1, json2, json3).try(JSON.parse);
-from(json1, json2, json3).map(x => lib.TryFactory.of(() => JSON.parse(x))) // same as the above
+stream(json1, json2, json3).try(JSON.parse);
+stream(json1, json2, json3).map(x => lib.TryFactory.of(() => JSON.parse(x))) // same as the above
 ```
 
 This returns a stream with `Try` objects encapsulating the error, if one occured.
@@ -119,13 +129,13 @@ This returns a stream with `Try` objects encapsulating the error, if one occured
 To get the values of the successful operations:
 
 ```javascript
-from(json1, json2, json3).try(JSON.parse).flatMap(x => x.stream()).toArray; // Successfully parsed JSON objects.
+stream(json1, json2, json3).try(JSON.parse).flatMap(x => x.stream()).toArray; // Successfully parsed JSON objects.
 ```
 
 To get the values of the successful and failed operations:
 
 ```javascript
-const result = from(json1, json2, json3).try(JSON.parse).partition(x => x.success);
+const result = stream(json1, json2, json3).try(JSON.parse).partition(x => x.success);
 result.false.forEach(error => { ... }) // do something with the errors
 result.true.forEach(value => { ... }) // do something with the succesful values
 ```
@@ -133,5 +143,5 @@ result.true.forEach(value => { ... }) // do something with the succesful values
 To provide a default for failed operations:
 
 ```javascript
-from(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JSON object or undefined.
+stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JSON object or undefined.
 ```

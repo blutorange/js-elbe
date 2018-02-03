@@ -18,6 +18,68 @@ function* flatMap(iterable, mapper) {
     }
 }
 exports.flatMap = flatMap;
+function* chunk(iterable, classifier) {
+    let currentClass = undefined;
+    let first = true;
+    let index = -1;
+    let chunk = [];
+    for (let item of iterable) {
+        const clazz = classifier(item, ++index);
+        if (!first && currentClass !== clazz) {
+            yield chunk;
+            chunk = [];
+        }
+        first = false;
+        currentClass = clazz;
+        chunk.push(item);
+    }
+    if (chunk.length > 0) {
+        yield chunk;
+    }
+}
+exports.chunk = chunk;
+function* slice(iterable, sliceSize) {
+    sliceSize = Math.max(sliceSize, 1);
+    let count = sliceSize;
+    let chunk = [];
+    for (let item of iterable) {
+        --count;
+        chunk.push(item);
+        if (count < 1) {
+            yield chunk;
+            chunk = [];
+            count = sliceSize;
+        }
+    }
+    if (chunk.length > 0) {
+        yield chunk;
+    }
+}
+exports.slice = slice;
+function* zip(iterable, other) {
+    const it1 = iterable[Symbol.iterator]();
+    const it2 = other[Symbol.iterator]();
+    let res1 = it1.next();
+    let res2 = it2.next();
+    while (!res1.done || !res2.done) {
+        yield [res1.done ? undefined : res1.value, res2.done ? undefined : res2.value];
+        res1 = it1.next();
+        res2 = it2.next();
+    }
+}
+exports.zip = zip;
+function* zipSame(iterable, others) {
+    const it = [iterable[Symbol.iterator]()];
+    for (let other of others) {
+        it.push(other[Symbol.iterator]());
+    }
+    let res = it.map(x => x.next());
+    while (!res.every(x => x.done)) {
+        yield res.map(x => x.done ? undefined : x.value);
+        res = it.map(x => x.next());
+    }
+}
+exports.zipSame = zipSame;
 function* filter(iterable, predicate) {
     for (let item of iterable) {
         if (predicate(item)) {
@@ -52,12 +114,10 @@ function sort(iterable, comparator) {
     return arr[Symbol.iterator]();
 }
 exports.sort = sort;
-function unique(iterable) {
-    const set = new Set(iterable);
-    return set.values();
-}
-exports.unique = unique;
-function* uniqueBy(iterable, keyExtractor) {
+function* unique(iterable, keyExtractor) {
+    if (keyExtractor === undefined) {
+        return new Set(iterable).values();
+    }
     const set = new Set();
     for (let item of iterable) {
         const key = keyExtractor(item);
@@ -67,7 +127,7 @@ function* uniqueBy(iterable, keyExtractor) {
         }
     }
 }
-exports.uniqueBy = uniqueBy;
+exports.unique = unique;
 function* index(iterable) {
     let i = 0;
     for (let item of iterable) {
@@ -86,13 +146,23 @@ function* limit(iterable, limit) {
     }
 }
 exports.limit = limit;
-function* process(iterable, consumer) {
+function* cycle(iterable, count = Infinity) {
+    count = Math.max(0, count);
+    const items = Array.from(iterable);
+    for (let i = 0; i < count; ++i) {
+        for (let item of items) {
+            yield item;
+        }
+    }
+}
+exports.cycle = cycle;
+function* visit(iterable, consumer) {
     for (let item of iterable) {
         consumer(item);
         yield item;
     }
 }
-exports.process = process;
+exports.visit = visit;
 function* skip(iterable, skip) {
     const it = iterable[Symbol.iterator]();
     while (skip-- > 0) {
@@ -224,6 +294,12 @@ function sum(iterable, converter) {
 }
 exports.sum = sum;
 ;
+function end(iterable) {
+    const it = iterable[Symbol.iterator]();
+    while (!it.next().done)
+        ;
+}
+exports.end = end;
 function collect(iterable, collector) {
     return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }

@@ -1,24 +1,24 @@
 import { Comparator } from "comparators";
 
-import { Stream, Consumer, IStreamFactory, Function, Predicate, Try } from "./Interfaces";
-import { fromObject, fromObjectKeys, fromObjectValues, process, index, concat, unique, uniqueBy, doTry, flatMap, limit, map, reverse, skip, sort, generate, iterate, repeat, times, filter } from "./Methods";
+import { BiFunction, Stream, Consumer, Function, Predicate, Try } from "./Interfaces";
+import { cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, doTry, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
 import { AbstractStream } from "./AbstractStream";
 
-class InplaceStream extends AbstractStream<any> implements Stream<any> {
+export class InplaceStream extends AbstractStream<any> implements Stream<any> {
+
+    chunk<K=any>(classifier: BiFunction<any, number, K>) : Stream<any[]> {
+        this.iterable = chunk(this.iterable, classifier);
+        return this;
+    }
 
     concat(...iterables: Iterable<any>[]) : Stream<any> {
         this.iterable = concat(this.iterable, ...iterables);
         return this;
     }
 
-    unique() : Stream<any> {
-        this.iterable = unique(this.iterable);
-        return this;
-    }
-
-    uniqueBy(keyExtractor: Function<any,any>) : Stream<any> {
-        this.iterable = uniqueBy(this.iterable, keyExtractor);
-        return this;
+    cycle(count?: number) : Stream<any> {
+        this.iterable = cycle(this.iterable, count);
+        return this;        
     }
 
     flatMap<S>(mapper: Function<any,Iterable<S>>) : Stream<any> {
@@ -46,8 +46,8 @@ class InplaceStream extends AbstractStream<any> implements Stream<any> {
         return this;
     }
 
-    process(consumer: Consumer<any>) : Stream<any> {
-        this.iterable = process(this.iterable, consumer);
+    visit(consumer: Consumer<any>) : Stream<any> {
+        this.iterable = visit(this.iterable, consumer);
         return this;        
     }
 
@@ -61,6 +61,11 @@ class InplaceStream extends AbstractStream<any> implements Stream<any> {
         return this;
     }
 
+    slice(sliceSize: number) : Stream<any[]> {
+        this.iterable = slice(this.iterable, sliceSize);
+        return this;
+    }
+
     sort(comparator?: Comparator<any>) : Stream<any> {
         this.iterable = sort(this.iterable, comparator);
         return this;
@@ -71,46 +76,18 @@ class InplaceStream extends AbstractStream<any> implements Stream<any> {
         return this;
     }
 
-    static from<T>(items: Iterable<T>) : Stream<any> {
-        return new InplaceStream(items);
+    unique(keyExtractor?: Function<any,any>) : Stream<any> {
+        this.iterable = unique(this.iterable, keyExtractor);
+        return this;
     }
 
-    static times(amount: number, start?: number, end?: number) : Stream<any> {
-        return new InplaceStream(times(amount, start, end));
+    zip<S>(other: Iterable<S>) : Stream<[any, any]> {
+        this.iterable = zip(this.iterable, other);
+        return this;
     }
 
-    static generate<T>(generator: Function<number, T>, amount: number = -1) : Stream<any> {
-        return new InplaceStream(generate(generator, amount));
+    zipSame(...others: Iterable<any>[]) : Stream<any[]> {
+        this.iterable = zipSame(this.iterable, others);
+        return this;
     }
-
-    static iterate<T>(seed: T, next: Function<T, T>, amount: number = -1) : Stream<any> {
-        return new InplaceStream(iterate(seed, next, amount));
-    }
-
-    static repeat<T>(item: T, amount: number = -1) : Stream<any> {
-        return new InplaceStream(repeat(item, amount));
-    }
-
-    static fromObject<T>(object: {[s: string] : T}) : Stream<[string,T]> {
-        return new InplaceStream(fromObject(object));
-    }
-
-    static fromObjectKeys(object: {[s: string] : any}) : Stream<string> {
-        return new InplaceStream(fromObjectKeys(object));
-    }
-
-    static fromObjectValues<T>(object: {[s: string] : T}) : Stream<T> {
-        return new InplaceStream(fromObjectValues(object));
-    }
-};
-
-export const InplaceStreamFactory : IStreamFactory = {
-    from: InplaceStream.from,
-    generate: InplaceStream.generate,
-    iterate: InplaceStream.iterate,
-    repeat: InplaceStream.repeat,
-    times: InplaceStream.times,
-    fromObject: InplaceStream.fromObject,
-    fromObjectKeys: InplaceStream.fromObjectKeys,
-    fromObjectValues: InplaceStream.fromObjectValues,
 };

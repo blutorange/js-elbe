@@ -64,7 +64,8 @@
 			<div class="tsd-panel tsd-typography">
 				<p>Iterators are great, and works well with Sets and Maps, eg. <code>(new Map()).entries()</code>.
 					Until I realized you can&#39;t really do much with iterators, and having to do manual iterations
-				all the time is a pain.</p>
+					all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
+				and ruby&#39;s enumerables.</p>
 				<h1 id="docs">Docs</h1>
 				<p>See the directory <code>doc</code> for documentation on all methods.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
@@ -89,6 +90,11 @@
 times(<span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x*x<span class="hljs-number">-2</span>).map(<span class="hljs-built_in">Math</span>.abs).min(); <span class="hljs-comment">// 1.41</span>
 </code></pre>
 				<p>There are three different ways of using the stream methods:</p>
+				<h1 id="shortcut">Shortcut</h1>
+				<p>If you do not like to write much:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(...).filter(...).limit(<span class="hljs-number">1</span>).group(...);
+</code></pre>
 				<h2 id="standalone-methods">Standalone methods</h2>
 				<p>All methods are available as stand-alone functions taking an iterable
 				as their first argument.</p>
@@ -103,26 +109,26 @@ collect(iterable, Collectors.join());
 				the stand-alone functions.</p>
 				<p>The inplace stream comes with less overhead, but is not typesafe. This
 				is most likely irrelevant unless you are using TypeScript.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.from;
-<span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 </code></pre>
 				<p>The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.from;
-<span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 </code></pre>
 				<p>Once a stream is chained, it must not be used anymore, or an error is thrown:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.from;
-<span class="hljs-keyword">const</span> stream = <span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
-<span class="hljs-keyword">from</span>.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x);
-<span class="hljs-keyword">from</span>.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Error: "Stream was already consumed."</span>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.stream;
+<span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x);
+s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Error: "Stream was already consumed."</span>
 </code></pre>
 				<p>Similarly for inplace streams: </p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-keyword">from</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.from;
-<span class="hljs-keyword">const</span> stream = <span class="hljs-keyword">from</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
-<span class="hljs-keyword">from</span>.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// Iterable[2,4,6]</span>
-<span class="hljs-keyword">from</span>.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// Iterable[4,6]</span>
-<span class="hljs-keyword">from</span>.join() <span class="hljs-comment">// "46"</span>
-<span class="hljs-keyword">from</span>.join() <span class="hljs-comment">// Error: "Stream was already consumed."</span>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.stream;
+<span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// Iterable[2,4,6]</span>
+s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// Iterable[4,6]</span>
+s.join() <span class="hljs-comment">// "46"</span>
+s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</span>
 </code></pre>
 				<h2 id="monkey-patching">Monkey patching</h2>
 				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to objects:</p>
@@ -135,20 +141,20 @@ collect(iterable, Collectors.join());
 </code></pre>
 				<h1 id="catching-errors">Catching errors</h1>
 				<p>Use the <code>try</code> method to handle errors during stream operations.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse);
-<span class="hljs-keyword">from</span>(json1, json2, json3).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> lib.TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x))) <span class="hljs-comment">// same as the above</span>
+				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse);
+stream(json1, json2, json3).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> lib.TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x))) <span class="hljs-comment">// same as the above</span>
 </code></pre>
 				<p>This returns a stream with <code>Try</code> objects encapsulating the error, if one occured.</p>
 				<p>To get the values of the successful operations:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.stream()).toArray; <span class="hljs-comment">// Successfully parsed JSON objects.</span>
+				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.stream()).toArray; <span class="hljs-comment">// Successfully parsed JSON objects.</span>
 </code></pre>
 				<p>To get the values of the successful and failed operations:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> result = <span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.success);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> result = stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.success);
 result.false.forEach(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the errors</span>
 result.true.forEach(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the succesful values</span>
 </code></pre>
 				<p>To provide a default for failed operations:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">from</span>(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.orElse(<span class="hljs-literal">undefined</span>)); <span class="hljs-comment">// JSON object or undefined.</span>
+				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.orElse(<span class="hljs-literal">undefined</span>)); <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
 			</div>
 		</div>
@@ -172,6 +178,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_methods_.html">"<wbr>Methods"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_try_.html">"<wbr>Try"</a>
