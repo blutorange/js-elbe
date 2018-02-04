@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const comparators_1 = require("comparators");
 const Methods_1 = require("./Methods");
+const Try_1 = require("./Try");
 class AbstractStream {
     constructor(iterable) {
         this.done = false;
@@ -104,6 +105,13 @@ class AbstractStream {
     toMap(keyMapper, valueMapper) {
         this.check();
         return Methods_1.toMap(this.iterable, keyMapper, valueMapper);
+    }
+    tryCompute(operation) {
+        this.check();
+        return Methods_1.tryCompute(this.iterable, operation);
+    }
+    tryEnd() {
+        return Try_1.TryFactory.of(() => this.end());
     }
 }
 exports.AbstractStream = AbstractStream;

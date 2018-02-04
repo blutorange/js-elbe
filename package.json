@@ -5,11 +5,21 @@
   "main": "dist/node/main.js",
   "types": "dist",
   "scripts": {
+    "build": "npm run clean && npm run doc && npm run transpile && npm run web",
+
+    "clean": "rm -rf dist/* doc/* && rm README.typedoc",
+    "doc": "npm run doc-readme && npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/doc/./g' README.md  > README.typedoc && npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
+    "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
+    
+    "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/doc/./g' README.md  > README.typedoc",
+    "doc-create": "npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
-    "web": "npx babel dist/node/*.js --out-dir dist/web/ && npx browserify dist/web/main.js --standalone Streams -o dist/streams.js && npx minify dist/streams.js --out-file dist/streams.min.js",
-    "build": "npm run doc ; npm run transpile; npm run web"
+    
+    "web-babel": "npx babel dist/node/*.js --out-dir dist/web/",
+    "web-babelfix": "sed -ri 's/import \\\"(..*)\\\"/require(\"\\1\")/g' dist/web/*.js",
+    "web-browserify": "npx browserify dist/web/main.js --standalone Streams -o dist/streams.js",
+    "web-minify": "npx minify dist/streams.js --out-file dist/streams.min.js"
   },
   "repository": {
     "type": "git",

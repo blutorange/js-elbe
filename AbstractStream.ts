@@ -1,10 +1,13 @@
 import { natural, Comparator } from "comparators";
 
-import { Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap } from "./Methods";
+import { Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
+import { collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute } from "./Methods";
+import { TryFactory } from './Try';
 
-export abstract class AbstractStream<T> {
-
+/**
+ * @private
+ */
+export abstract class AbstractStream<T> implements Stream<T> {
     protected iterable : Iterable<T>;
     private done = false;
 
@@ -12,10 +15,29 @@ export abstract class AbstractStream<T> {
         this.iterable = iterable;
     }
 
+    abstract chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
+    abstract concat(...iterables: Iterable<T>[]): this;
+    abstract cycle(count?: number): this;
+    abstract flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
+    abstract filter(predicate: Predicate<T>): this;
+    abstract index(): Stream<[number, T]>;
+    abstract limit(limitTo: number): this;
+    abstract map<S>(mapper: Function<T, S>): Stream<S>;
+    abstract reverse(): this;
+    abstract skip(toSkip: number): this;
+    abstract slice(sliceSize: number): Stream<T[]>;
+    abstract sort(comparator?: Comparator<T>): this;
+    abstract try<S>(operation: Function<T, S>): TryStream<S>;
+    abstract unique(keyExtractor?: Function<T, any>): this;
+    abstract visit(consumer: Consumer<T>): this;
+    abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
+    abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
+
     protected check() {
         if (this.done) {
             throw new Error("Stream was already consumed.");
         }
+
         this.done = true;
     }
 
@@ -132,5 +154,14 @@ export abstract class AbstractStream<T> {
     toMap<K,V>(keyMapper: Function<T,K>, valueMapper: Function<T,V>) : Map<K,V> {
         this.check();
         return toMap(this.iterable, keyMapper, valueMapper);
+    }
+
+    tryCompute<S>(operation: Function<Stream<T>, S>) : Try<S> {
+        this.check();
+        return tryCompute(this.iterable, operation);
+    }
+
+    tryEnd() : Try<void> {
+        return TryFactory.of(() => this.end());
     }
 }

@@ -1,9 +1,26 @@
 import { Comparator } from "comparators";
-import { Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-export declare abstract class AbstractStream<T> {
+import { Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
+export declare abstract class AbstractStream<T> implements Stream<T> {
     protected iterable: Iterable<T>;
     private done;
     constructor(iterable: Iterable<T>);
+    abstract chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
+    abstract concat(...iterables: Iterable<T>[]): this;
+    abstract cycle(count?: number): this;
+    abstract flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
+    abstract filter(predicate: Predicate<T>): this;
+    abstract index(): Stream<[number, T]>;
+    abstract limit(limitTo: number): this;
+    abstract map<S>(mapper: Function<T, S>): Stream<S>;
+    abstract reverse(): this;
+    abstract skip(toSkip: number): this;
+    abstract slice(sliceSize: number): Stream<T[]>;
+    abstract sort(comparator?: Comparator<T>): this;
+    abstract try<S>(operation: Function<T, S>): TryStream<S>;
+    abstract unique(keyExtractor?: Function<T, any>): this;
+    abstract visit(consumer: Consumer<T>): this;
+    abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
+    abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
     protected check(): void;
     [Symbol.iterator](): Iterator<T>;
     collect<S, R = S>(collector: Collector<T, S, R>): R;
@@ -31,4 +48,6 @@ export declare abstract class AbstractStream<T> {
     toJSON(): T[];
     toString(): string;
     toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V>;
+    tryCompute<S>(operation: Function<Stream<T>, S>): Try<S>;
+    tryEnd(): Try<void>;
 }

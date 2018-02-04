@@ -121,9 +121,9 @@ function (_AbstractStream_1$Abs) {
     }
   }, {
     key: "try",
-    value: function _try(mapper) {
-      this.iterable = Methods_1.doTry(this.iterable, mapper);
-      return this;
+    value: function _try(operation) {
+      var x = Methods_1.tryMap(this.iterable, operation);
+      return new TryStreamImpl(x);
     }
   }, {
     key: "unique",
@@ -154,3 +154,95 @@ function (_AbstractStream_1$Abs) {
 
 exports.InplaceStream = InplaceStream;
 ;
+
+var TryStreamImpl =
+/*#__PURE__*/
+function (_InplaceStream) {
+  _inherits(TryStreamImpl, _InplaceStream);
+
+  function TryStreamImpl() {
+    _classCallCheck(this, TryStreamImpl);
+
+    return _possibleConstructorReturn(this, (TryStreamImpl.__proto__ || Object.getPrototypeOf(TryStreamImpl)).apply(this, arguments));
+  }
+
+  _createClass(TryStreamImpl, [{
+    key: "forEachResult",
+    value: function forEachResult(success, error) {
+      return this.forEach(function (x) {
+        return x.ifPresent(success, error);
+      });
+    }
+  }, {
+    key: "include",
+    value: function include(predicate) {
+      return this.visit(function (x) {
+        return x.include(predicate);
+      });
+    }
+  }, {
+    key: "onError",
+    value: function onError(handler) {
+      return this.visit(function (x) {
+        return x.ifAbsent(function (e) {
+          return handler(e);
+        });
+      });
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(success, failure) {
+      return this.visit(function (x) {
+        return x.ifPresent(success, failure);
+      });
+    }
+  }, {
+    key: "orThrow",
+    value: function orThrow() {
+      return this.map(function (x) {
+        return x.orThrow();
+      });
+    }
+  }, {
+    key: "orElse",
+    value: function orElse(backup) {
+      return this.map(function (x) {
+        return x.orElse(backup);
+      });
+    }
+  }, {
+    key: "discardError",
+    value: function discardError() {
+      var handler = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : console.error;
+      return this.onError(handler).filter(function (x) {
+        return x.success;
+      }).orThrow();
+    }
+  }, {
+    key: "flatConvert",
+    value: function flatConvert(operation, backup) {
+      this.iterable = Methods_1.map(this.iterable, function (x) {
+        return x.flatConvert(operation, backup);
+      });
+      return this;
+    }
+  }, {
+    key: "convert",
+    value: function convert(operation, backup) {
+      this.iterable = Methods_1.map(this.iterable, function (x) {
+        return x.convert(operation, backup);
+      });
+      return this;
+    }
+  }, {
+    key: "orTry",
+    value: function orTry(backup) {
+      this.iterable = Methods_1.map(this.iterable, function (y) {
+        return y.orTry(backup);
+      });
+      return this;
+    }
+  }]);
+
+  return TryStreamImpl;
+}(InplaceStream);

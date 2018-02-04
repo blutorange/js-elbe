@@ -75,30 +75,52 @@ export interface Collector<S,T,R=T> {
 
 /**
  * A factory for producing a {@link Try} representing
- * the result of some operation that may fail.
+ * the result of some operation that may errror.
  */
 export interface ITryFactory {
     /**
      * Creates a {@link Try} from a successfully produced value.
+     * ```javascript
+     * TryFactory.success("foobar").orThrow() // => "foobar"
+     * ```
      * @typeparam T Type of the value produced by the operation on success.
      * @param value The successful result of some operation.
      * @return A {@link Try} representing the sucessful operation.
      */
     success<T>(value: T) : Try<T>;
+
     /**
-     * Creates a {@link Try} from a failed operation.
+     * Creates a {@link Try} from a erronous operation.
+     * ```javascript
+     * TryFactory.error("foobar").orThrow() // => throws Error("foobar")
+     * ```
      * @typeparam T Type of the value produced by the operation on success.
-     * @param value The error of some failed operation.
-     * @return A {@link Try} representing the failed operation.
+     * @param value The error of some erronous operation.
+     * @return A {@link Try} representing the erronous operation.
      */
-    failure<T>(error: Error) : Try<T>;
+    error<T>(error: Error|String, cause?: Error) : Try<T>;
+
     /**
-     * Creates a {@link Try} from an operation that may succeed or fail.
+     * Creates a {@link Try} from an operation that may succeed or fail to
+     * return a value.
+     * ```javascript
+     *  // returns JSON object or throws if input is not valid JSON string
+     * TryFactory.of(() => JSON.parse(input)).orThrow()
+     * ```
      * @typeparam T Type of the value produced by the operation on success.
      * @param operation An operation that produces a value, but may fail to do so by throwing an error.
      * @return A {@link Try} representing the result of the operation.
      */
-    of<T>(operation: Supplier<T>) : Try<T>;
+    of<T>(operation: Supplier<T>, cause?: Error) : Try<T>;
+
+    /**
+     * Creates a {@link Try} from an operation that may succeed or fail
+     * to produce a {@link Try}.
+     * @typeparam T Type of the success value of the produced {@link Try}.
+     * @param operation Am operation that produces a {@link Try}, but may fail to do so by throwing an error.
+     * @return The produced {@link Try} or a {@link Try} representing the error.
+     */
+    flatOf<T>(operation: Supplier<Try<T>>, cause?: Error) : Try<T>;
 };
 
 export interface StreamFactory {
@@ -112,17 +134,64 @@ export interface StreamFactory {
     fromObjectValues<T>(object: {[s: string] : T}) : Stream<T>;
 };
 
+/**
+ * A try represents the result of an operation, that may
+ * have succeeded or failed, and contains several methods
+ * for handling success and error cases.
+ * ```javascript
+ * const t = T.of(() => JSON.parse(input)) // => Try[success=true/false]
+ * t.orElse({}); // => The parsed JSON object or an empty object.
+ * ```
+ * Several methods such as {@link Try#map} take an abitrary callback
+ * for manipulating the success or error value. If these methods throw
+ * an error, the returned {@link Try} is not successful and contains an
+ * error with the stacktrace of the original error added.
+ * ```javascript
+ * const t = T.of(() => JSON.parse(input))
+ * t.mapError(() => {throw new Error("Bad handler")})
+ * ``` 
+ * @typeparam T Type of the encapsulated success value.
+ */
 export interface Try<T> {
-    success : boolean;
-    map<S>(mapper: Function<T,S>) : Try<S>;
-    flatMap<S>(mapper: Function<T, Try<S>>) : Try<S>;
-    recover(backup: Function<Error,T>) : Try<T>;
-    stream(factory?: StreamFactory) : Stream<T>;
-    iterate() : Iterable<T>;
+    readonly success : boolean;
+    
+    /**
+     * If operation was succesful and the value matches the
+     * predicate, returns a {@link Try} with that value, otherwise
+     * a {@link Try} with a `No such element` error.
+     * @param predicate Test to perform on the success value.
+     * @return A {@link Try} with the current success value iff it exists and matches the predicate.
+     */
+    include(predicate: Predicate<T>) : Try<T>;
+
+    convert<S>(success: Function<T,S>, backup?: Function<Error,S>) : Try<S>;
+    
+    flatConvert<S>(operation: Function<T, Try<S>>, backup?: Function<Error,Try<S>>) : Try<S>;
+
     orElse(backup: T) : T;
+    
+    /**
+     * ```javascript
+     * parseIntSafe = string => {
+     *   if (isInt(string)) return parseInt(string);
+     *   throw new Error("invalid number format")
+     * }
+     * T.of(() => parseIntSafe(input)).orTry(e => parseIntSafe(e.statusCode)) // => input, status code, or error
+     * ```
+     */
+    orTry(backup: Function<Error,T>) : Try<T>;
+
+    orFlatTry(backup: Function<Error, Try<T>>): Try<T>;
+    
     orThrow() : T;
-    fold<S>(successHandler: Function<T,S>, failureHandler: Function<Error,S>) : Try<S>;
-    then<S>(mapper: Function<T, S|Try<S>>) : Try<S>;
+
+    ifPresent(success: Consumer<T>, error?: Consumer<Error>) : this;
+    ifAbsent(consumer: Consumer<Error>) : this;
+
+    stream(factory?: StreamFactory) : Stream<T|Error>;
+    iterate() : Iterable<T|Error>;
+
+    then<S>(success: Function<T, S|Try<S>>, error: Function<Error, S|Try<S>>) : Try<S>;
     catch(mapper: Function<Error, T|Try<T>>) : Try<T>;
 }
 
@@ -211,7 +280,7 @@ export interface Stream<T> {
      * @param moreIterable Other iteratbles to be concatenated.
      * @return A stream over all the items of this stream and the given iterables.
      */
-    concat(...iterables: Iterable<T>[]) : Stream<T>;
+    concat(...iterables: Iterable<T>[]) : this;
 
     /**
      * Cycles over the elements of the iterable the given number of times.
@@ -222,7 +291,7 @@ export interface Stream<T> {
      * @param count The number of cycle. If not given, cycles an unlimited amount of times.
      * @return A stream with the items of the this stream repeating.
      */
-    cycle(count?: number) : Stream<T>;
+    cycle(count?: number) : this;
 
     /**
      * Applies all pending operations, ending this stream.
@@ -258,8 +327,11 @@ export interface Stream<T> {
      * over all the mapped iterables.
      * This is equivalent to `concat(map(mapper))``.
      * ```javascript
-     * stream(["foo","bar"]).flatMap(x => x) // => Stream["f", "o", "o", "b", "a", "r"]
-     * stream(["[1]","[2,3]","[4,]"]).try(JSON.parse).flatMap(x=>x.stream()) // => Stream[ [1], [2, 3] ]
+     * stream(["foo","bar"]).flatMap(x => x)
+     * // => Stream["f", "o", "o", "b", "a", "r"]
+     * 
+     * stream(["[1]","[2,3]","[4,]"]).try(JSON.parse).flatMap(x=>x.stream())
+     * // => Stream[ [1], [2, 3] ]
      * ```
      * @typeparam S Type of the elements in the produced stream.
      * @param mapper Mapping function taking each item and producing a new stream or iterable.
@@ -276,7 +348,7 @@ export interface Stream<T> {
      * @param predicate Testing function returning `true` iff the item is to be kept, `false` otherwise.
      * @return A stream over all item for which the predicate returned `true`.
      */
-    filter(predicate : Predicate<T>) : Stream<T>;
+    filter(predicate : Predicate<T>) : this;
 
     /**
      * Passes each item of this stream to the given consumer.
@@ -340,7 +412,7 @@ export interface Stream<T> {
      * @param limit The maximum number of items in the resulting iterable.
      * @return A stream with at most the given number of items.
      */
-    limit(limitTo: number) : Stream<T>;
+    limit(limitTo: number) : this;
 
     /**
      * Transform each element to another element of a possibly different type.
@@ -419,7 +491,7 @@ export interface Stream<T> {
      * ```
      * @return A stream with the items in reversed order.
      */
-    reverse() : Stream<T>;
+    reverse() : this;
 
     /**
      * Counts the items.
@@ -435,10 +507,10 @@ export interface Stream<T> {
      * ```javascript
      * stream([1,2,3,4,5,6]).skip(3) // => Stream[4,5,6] 
      * ```
-     * @return An iterable with the given number of items skipped.
+     * @return A stream with the given number of items skipped.
      * @see {@link limit}
      */
-    skip(toSkip: number) : Stream<T>;
+    skip(toSkip: number) : this;
 
     /**
      * Slices the items into chunks of sliceSize.
@@ -449,25 +521,56 @@ export interface Stream<T> {
      * @return A stream over the sliced items.
      */
     slice(sliceSize: number) : Stream<T[]>;
-    some(predicate: Predicate<T>) : boolean;
-    sort(comparator?: Comparator<T>) : Stream<T>;
-    sum(converter?: Function<T, number>) : number;
+
     /**
+     * Determines whether at least one items matches the given predicate.
+     * ```javascript
+     * stream("fooz").some(x => x < "j") // => true
+     * ```
+     * @param predicate Test to be performed on the items.
+     * @return Whether some (at least one) item matches the given predicate. 
+     */
+    some(predicate: Predicate<T>) : boolean;
+
+    sort(comparator?: Comparator<T>) : this;
+    sum(converter?: Function<T, number>) : number;
+
+    /**
+     * Maps each item to the result of the given operation,
+     * wrapped in a {@link Try} for error handling.
      * ```javascript
      * stream(["1","7","7a"])
-     *   .try(JSON.parse)
-     *   .map(x => x.fold(v => "success", e => "error"))
-     *   .flatMap(x => x.stream())
+     *   .try(SON.parse)
+     *   .discardError(console.error)
      *   .toArray();
      * // => ["success", "success", "error"]
      * ```
+     * @typeparam S Type of the result of the operation.
+     * @param operation Takes each item and returns a mapped value, or throws an `Error`.
+     * @return A stream with the mapped values and additional methods for handling errors.
      */
-    try<S>(mapper: Function<T,S>) : Stream<Try<S>>;
+    try<S>(operation: Function<T,S>) : TryStream<S>;
+
+    tryCompute<S>(operation: Function<Stream<T>, S>) : Try<S>;
+    tryEnd() : Try<void>;
     toArray() : T[];
     toSet() : Set<any>;
     toMap<K,V>(keyMapper: Function<any,K>, valueMapper: Function<any,V>) : Map<K,V>;
-    unique(keyExtractor?: Function<T,any>) : Stream<T>;
-    visit(consumer: Consumer<T>) : Stream<T>;
+    unique(keyExtractor?: Function<T,any>) : this;
+    visit(consumer: Consumer<T>) : this;
     zip<S>(other: Iterable<S>) : Stream<[T, S]>;
     zipSame(...others: Iterable<T>[]) : Stream<T[]>;
 };
+
+export interface TryStream<T> extends Stream<Try<T>> {
+    discardError(handler?: Consumer<Error>) : Stream<T>;
+    forEachResult(success: Consumer<T>, error?: Consumer<Error>) : void;
+    include(predicate: Predicate<T>) : this;
+    flatConvert<S>(operation: Function<T, Try<S>>, backup?: Function<Error,Try<S>>) : TryStream<S>;
+    convert<S>(operation: Function<T,S>, backup?: Function<Error,S>) : TryStream<S>;
+    orElse(backup: T) : Stream<T>;
+    onError(handler: Consumer<Error>) : this;
+    onSuccess(success: Consumer<T>, error: Consumer<Error>): this;
+    orThrow() : Stream<T>;
+    orTry(backup: Function<Error,T>) : this;
+}

@@ -3,6 +3,28 @@ Until I realized you can't really do much with iterators, and having to do manua
 all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
 and ruby's enumerables.
 
+Let's try parsing a set of strings as JSON:
+
+```javascript
+const input = new Set(["9","9a"])
+
+// With streams
+stream(input).try(JSON.parse).onError(console.error).orElse(0).toArray()
+
+// With vanilla JS
+Array.from(function*(data) {
+    for (let item of data) {
+        try {
+            yield JSON.parse(item);
+        }
+        catch (e) {
+            console.error(e);
+            yield 0;
+        }
+    }
+}(input))
+```
+
 # Docs
 
 See the directory `doc` for documentation on all methods.
@@ -14,11 +36,10 @@ const lib = require("streams");
 This returns an object with the following entries:
 
 * [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_collectors_.html)
-* [InplaceStreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_inplacestream_.html#inplacestreamfactory)
+* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_streamfactory_.html)
 * [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_methods_.html)
 * [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_monkeypatch_.html)
 * [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_try_.html#tryfactory)
-* [TypesafeStreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_typesafestream_.html#typesafestreamfactory)
 
 # Install
 

@@ -7,7 +7,8 @@ export declare function slice<T>(iterable: Iterable<T>, sliceSize: number): Iter
 export declare function zip<T, S>(iterable: Iterable<T>, other: Iterable<S>): Iterable<[T, S]>;
 export declare function zipSame<T>(iterable: Iterable<T>, others: Iterable<T>[]): Iterable<T[]>;
 export declare function filter<T>(iterable: Iterable<T>, predicate: Predicate<T>): Iterable<T>;
-export declare function doTry<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<Try<S>>;
+export declare function tryMap<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<Try<S>>;
+export declare function tryCompute<T, S>(iterable: Iterable<T>, operation: Function<Iterable<T>, S>): Try<S>;
 export declare function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>): {
     false: T[];
     true: T[];

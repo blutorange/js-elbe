@@ -71,7 +71,7 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>A factory for producing a <a href="_interfaces_.try.html">Try</a> representing
-						the result of some operation that may fail.</p>
+						the result of some operation that may errror.</p>
 					</div>
 				</div>
 			</section>
@@ -90,7 +90,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_interfaces_.itryfactory.html#failure" class="tsd-kind-icon">failure</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_interfaces_.itryfactory.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_interfaces_.itryfactory.html#flatof" class="tsd-kind-icon">flat<wbr>Of</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_interfaces_.itryfactory.html#of" class="tsd-kind-icon">of</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="_interfaces_.itryfactory.html#success" class="tsd-kind-icon">success</a></li>
 							</ul>
@@ -101,21 +102,23 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-					<a name="failure" class="tsd-anchor"></a>
-					<h3>failure</h3>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">failure&lt;T&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">error&lt;T&gt;<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">String</span>, cause<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L94">Interfaces.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L101">Interfaces.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a <a href="_interfaces_.try.html">Try</a> from a failed operation.</p>
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from a erronous operation.</p>
+									<pre><code class="lang-javascript">TryFactory.error(<span class="hljs-string">"foobar"</span>).orThrow() <span class="hljs-comment">// =&gt; throws Error("foobar")</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -130,11 +133,59 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>error: <span class="tsd-signature-type">Error</span></h5>
+									<h5>error: <span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">String</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cause: <span class="tsd-signature-type">Error</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A <a href="_interfaces_.try.html">Try</a> representing the failed operation.</p>
+							<p>A <a href="_interfaces_.try.html">Try</a> representing the erronous operation.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+					<a name="flatof" class="tsd-anchor"></a>
+					<h3>flat<wbr>Of</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">flat<wbr>Of&lt;T&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span>, cause<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L123">Interfaces.ts:123</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from an operation that may succeed or fail
+									to produce a <a href="_interfaces_.try.html">Try</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the success value of the produced <a href="_interfaces_.try.html">Try</a>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>operation: <a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Am operation that produces a <a href="_interfaces_.try.html">Try</a>, but may fail to do so by throwing an error.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cause: <span class="tsd-signature-type">Error</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The produced <a href="_interfaces_.try.html">Try</a> or a <a href="_interfaces_.try.html">Try</a> representing the error.</p>
 						</li>
 					</ul>
 				</section>
@@ -142,18 +193,22 @@
 					<a name="of" class="tsd-anchor"></a>
 					<h3>of</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">of&lt;T&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">of&lt;T&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, cause<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L101">Interfaces.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L114">Interfaces.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a <a href="_interfaces_.try.html">Try</a> from an operation that may succeed or fail.</p>
+									<p>Creates a <a href="_interfaces_.try.html">Try</a> from an operation that may succeed or fail to
+									return a value.</p>
+									<pre><code class="lang-javascript"> <span class="hljs-comment">// returns JSON object or throws if input is not valid JSON string</span>
+TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(input)).orThrow()
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -173,6 +228,9 @@
 										<p>An operation that produces a value, but may fail to do so by throwing an error.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cause: <span class="tsd-signature-type">Error</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A <a href="_interfaces_.try.html">Try</a> representing the result of the operation.</p>
@@ -189,12 +247,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/b66f143/Interfaces.ts#L87">Interfaces.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L90">Interfaces.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a <a href="_interfaces_.try.html">Try</a> from a successfully produced value.</p>
+									<pre><code class="lang-javascript">TryFactory.success(<span class="hljs-string">"foobar"</span>).orThrow() <span class="hljs-comment">// =&gt; "foobar"</span>
+</code></pre>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -283,7 +343,10 @@
 						<a href="_interfaces_.itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="_interfaces_.itryfactory.html#failure" class="tsd-kind-icon">failure</a>
+								<a href="_interfaces_.itryfactory.html#error" class="tsd-kind-icon">error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+								<a href="_interfaces_.itryfactory.html#flatof" class="tsd-kind-icon">flat<wbr>Of</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="_interfaces_.itryfactory.html#of" class="tsd-kind-icon">of</a>
@@ -312,6 +375,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.try.html" class="tsd-kind-icon">Try</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.trystream.html" class="tsd-kind-icon">Try<wbr>Stream</a>
 					</li>
 				</ul>
 			</nav>

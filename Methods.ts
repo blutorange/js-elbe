@@ -186,10 +186,14 @@ export function * filter<T>(iterable : Iterable<T>, predicate : Predicate<T>) : 
  * @param mapper Mapping function that takes an item of the given iterable and produces a mapped item. If it throws an error, the resulting {@link Try} is not successful.
  * @return An iterable over the mapped elements, wrapped in a {@link Try} for encapsulating thrown errors.
  */
-export function * doTry<T,S>(iterable: Iterable<T>, mapper: Function<T,S>) : Iterable<Try<S>> {
+export function * tryMap<T,S>(iterable: Iterable<T>, mapper: Function<T,S>) : Iterable<Try<S>> {
     for (let item of iterable) {
         yield TryFactory.of(() => mapper(item));
     }
+}
+
+export function tryCompute<T,S>(iterable: Iterable<T>, operation: Function<Iterable<T>, S>) : Try<S> {
+    return TryFactory.of(() => operation(iterable));
 }
 
 /**

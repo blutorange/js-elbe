@@ -88,12 +88,16 @@ function* filter(iterable, predicate) {
     }
 }
 exports.filter = filter;
-function* doTry(iterable, mapper) {
+function* tryMap(iterable, mapper) {
     for (let item of iterable) {
         yield Try_1.TryFactory.of(() => mapper(item));
     }
 }
-exports.doTry = doTry;
+exports.tryMap = tryMap;
+function tryCompute(iterable, operation) {
+    return Try_1.TryFactory.of(() => operation(iterable));
+}
+exports.tryCompute = tryCompute;
 function partition(iterable, discriminator) {
     return collect(iterable, Collectors_1.Collectors.partition(discriminator));
 }

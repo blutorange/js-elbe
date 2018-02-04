@@ -1,126 +1,207 @@
-import { StreamFactory, Stream, Function, Supplier, Try, ITryFactory } from "./Interfaces";
+import { Consumer, StreamFactory, Stream, Predicate, Function, Supplier, Try, ITryFactory } from "./Interfaces";
 import { TypesafeStreamFactory } from "./StreamFactory";
 
 function isTry<S>(result: S|Try<S>) : result is Try<S> {
-    return result instanceof TryImpl;
+    return result instanceof BaseTryImpl;
 }
 
-class TryImpl<T> implements Try<T> {
-    private value: T;
-    private error : Error;
+function appendCause(error: Error, cause: Error) {
+    error.stack += "\nCaused by: " + cause.stack;    
+}
 
-    private constructor(value: T, error?: Error) {
-        this.value = value;
+abstract class BaseTryImpl<T> {
+    public abstract get success() : boolean;
+
+    public abstract iterate() : Iterable<T|Error>;
+
+    public abstract convert<S>(success: Function<T, S>, backup?: Function<Error,S>): Try<S>;
+
+    protected abstract get result() : T|Error;
+
+    public stream(factory: StreamFactory = TypesafeStreamFactory) : Stream<T|Error> {
+        return factory.stream(this.iterate());
+    }
+
+    public then<S>(success: Function<T, S|Try<S>>, failure: Function<Error, S|Try<S>>) : Try<S> {
+        return this
+            .convert(success, failure)
+            .flatConvert(v => isTry(v) ? v : TryFactory.success(v));
+    }
+
+    public catch(backup: Function<Error, T|Try<T>>) : Try<T> {
+        return this.then(x => x, backup);
+    }
+
+    public toString() : string {
+        return `Try[success=${this.success},${String(this.result)}]`;
+    }
+
+    public toJSON() : {success:boolean, result:T|Error} {
+        return {
+            success: this.success,
+            result: this.result
+        };
+    }
+}
+
+class FailureImpl<T> extends BaseTryImpl<T> implements Try<T> {
+    private error: Error;
+
+    public constructor(error: Error) {
+        super();
         this.error = error;
     }
 
     get success() : boolean {
-        return this.error === undefined;
+        return true;
     }
 
-    map<S>(mapper: Function<T, S>): Try<S> {
-        if (this.success) {
-            return TryImpl.of(() => mapper(this.value));
+    protected get result() : Error {
+        return this.error;
+    }
+
+    convert<S>(success: Function<T, S>, backup?: Function<Error,S>): Try<S> {
+        if (backup !== undefined) {
+            return TryFactory.of(() => backup(this.error), this.error);
+        }
+        // undefined is both a T and S, so we can reuse this try
+        return this as Try<any>;
+    }
+
+    flatConvert<S>(mapper: Function<T, Try<S>>, backup?: Function<Error,Try<S>>): Try<S> {
+        if (backup !== undefined) {
+            return TryFactory.flatOf(() => backup(this.error), this.error);
         }
         // undefined is both a T and S, so we can reuse this
         return this as Try<any>;
     }
 
-    public toString() : string {
-        return `Try[${String(this.success ? this.value : this.error)}]`;
-    }
-
-    public toJSON() : {success:boolean, error:Error, value:T} {
-        return {
-            success: this.success,
-            error: this.error, 
-            value: this.value
-        };
+    include(predicate: Predicate<T>) : Try<T> {
+        return TryFactory.error(new Error("Value does not match the predicate as it does not exist."), this.error);
     }
     
-    recover(backup: Function<Error, T>): Try<T> {
-        if (this.success) {
-            return this;
-        }
-        return TryImpl.of(() => backup(this.error));
+    orTry(backup: Function<Error, T>): Try<T> {
+        return TryFactory.of(() => backup(this.error), this.error);
+    }
+
+    orFlatTry(backup: Function<Error, Try<T>>): Try<T> {
+        return TryFactory.flatOf(() => backup(this.error), this.error);
     }
 
     orElse(backup: T): T {
-        if (this.success) {
-            return this.value;
-        }
         return backup;
     }
 
     orThrow() : T {
-        if (this.success) {
-            return this.value;
-        }
         throw this.error;
     }
 
-    flatMap<S>(mapper: Function<T, Try<S>>): Try<S> {
-        if (this.success) {
-            try {
-                return mapper(this.value);
-            }
-            catch (e) {
-                return TryImpl.failure(e);
-            }
+    ifPresent(success: Consumer<T>, failure?: Consumer<Error>) : this {
+        if (failure !== undefined) {
+            failure(this.error);
         }
-        // undefined is both a T and S, so we can reuse this
-        return this as Try<any>;
+        return this;
     }
 
-    * iterate() : Iterable<T> {
-        if (this.success) {
-            yield this.value;
-        }
+    ifAbsent(consumer: Consumer<Error>) : this {
+        consumer(this.error);
+        return this;
     }
 
-    stream(factory: StreamFactory = TypesafeStreamFactory) : Stream<T> {
-        return factory.stream(this.iterate());
+    * iterate() : Iterable<T|Error> {
+        yield this.error;
+    }
+}
+
+class SuccessImpl<T> extends BaseTryImpl<T> implements Try<T> {
+    private value: T;
+
+    public constructor(value: T) {
+        super();
+        this.value = value;
     }
 
-    then<S>(mapper: Function<T, S|Try<S>>) : Try<S> {
-        return this.map(mapper).flatMap(v => isTry(v) ? v : TryImpl.success(v));
+    get success() : boolean {
+        return true;
     }
 
-    catch(backup: Function<Error, T|Try<T>>) : Try<T> {
-        if (this.success) {
+    protected get result() : T {
+        return this.value;
+    }
+
+    convert<S>(operation: Function<T, S>, backup?: Function<Error,S>): Try<S> {
+        return TryFactory.of(() => operation(this.value));
+    }
+
+    flatConvert<S>(operation: Function<T, Try<S>>, backup?: Function<Error,Try<S>>): Try<S> {
+        return TryFactory.flatOf(() => operation(this.value));
+    }
+
+    include(predicate: Predicate<T>) : Try<T> {
+        if (predicate(this.value)) {
             return this;
         }
-        return TryImpl.of(() => backup(this.error)).flatMap(v => isTry(v) ? v : TryImpl.success(v));
+        return TryFactory.error(new Error("Value does not match the predicate."));
+    }
+    
+    orTry(backup: Function<Error, T>): Try<T> {
+        return this;
     }
 
-    fold<S>(successHandler: Function<T,S>, failureHandler: Function<Error,S>) : Try<S> {
-        if (this.success) {
-            return TryImpl.of(()=>successHandler(this.value));
-        }
-        return TryImpl.of(()=>failureHandler(this.error));
+    orFlatTry(backup: Function<Error, Try<T>>): Try<T> {
+        return this;
     }
 
-    static success<T>(value: T) : Try<T> {
-        return new TryImpl(value);
+    orElse(backup: T): T {
+        return this.value;
     }
 
-    static failure<T>(error: Error) : Try<T> {
-        return new TryImpl(undefined, error);
+    orThrow() : T {
+        return this.value;
     }
 
-    static of<T>(action: Supplier<T>) : Try<T> {
-        try {
-            const value = action();
-            return new TryImpl(value);
-        }
-        catch (e) {
-            return new TryImpl(undefined, e);
-        }
+    ifPresent(success: Consumer<T>, failure?: Consumer<Error>) : this {
+        success(this.value);
+        return this;
+    }
+
+    ifAbsent(consumer: Consumer<Error>) : this {
+        return this;
+    }
+
+    * iterate() : Iterable<T|Error> {
+        yield this.value;
     }
 }
 
 export const TryFactory : ITryFactory = {
-    of: TryImpl.of,
-    success: TryImpl.success,
-    failure: TryImpl.failure
+    success<T>(value: T) : Try<T> {
+        return new SuccessImpl(value);
+    },
+
+    error<T>(error: Error|string, cause?: Error) : Try<T> {
+        const e = error instanceof Error ? error : new Error(error);
+        if (cause !== undefined) {
+            appendCause(e, cause);
+        }
+        return new FailureImpl(e);
+    },
+
+    of<T>(action: Supplier<T>, cause?: Error) : Try<T> {
+        try {
+            return TryFactory.success(action());
+        }
+        catch (error) {
+            return TryFactory.error(error, cause);
+        }
+    },
+
+    flatOf<T>(action: Supplier<Try<T>>, cause?: Error) : Try<T> {
+        try {
+            return action();
+        }
+        catch (error) {
+            return TryFactory.error(error, cause);
+        }
+    }
 };

@@ -35,7 +35,7 @@ regeneratorRuntime.mark(zipSame),
 regeneratorRuntime.mark(filter),
     _marked8 =
 /*#__PURE__*/
-regeneratorRuntime.mark(doTry),
+regeneratorRuntime.mark(tryMap),
     _marked9 =
 /*#__PURE__*/
 regeneratorRuntime.mark(unique),
@@ -686,10 +686,10 @@ function filter(iterable, predicate) {
 
 exports.filter = filter;
 
-function doTry(iterable, mapper) {
+function tryMap(iterable, mapper) {
   var _loop, _iteratorNormalCompletion8, _didIteratorError8, _iteratorError8, _iterator8, _step8, item;
 
-  return regeneratorRuntime.wrap(function doTry$(_context9) {
+  return regeneratorRuntime.wrap(function tryMap$(_context9) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
@@ -774,7 +774,15 @@ function doTry(iterable, mapper) {
   }, _marked8, this, [[4, 14, 18, 26], [19,, 21, 25]]);
 }
 
-exports.doTry = doTry;
+exports.tryMap = tryMap;
+
+function tryCompute(iterable, operation) {
+  return Try_1.TryFactory.of(function () {
+    return operation(iterable);
+  });
+}
+
+exports.tryCompute = tryCompute;
 
 function partition(iterable, discriminator) {
   return collect(iterable, Collectors_1.Collectors.partition(discriminator));

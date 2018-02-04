@@ -20,6 +20,8 @@ var comparators_1 = require("comparators");
 
 var Methods_1 = require("./Methods");
 
+var Try_1 = require("./Try");
+
 var AbstractStream =
 /*#__PURE__*/
 function () {
@@ -201,6 +203,21 @@ function () {
     value: function toMap(keyMapper, valueMapper) {
       this.check();
       return Methods_1.toMap(this.iterable, keyMapper, valueMapper);
+    }
+  }, {
+    key: "tryCompute",
+    value: function tryCompute(operation) {
+      this.check();
+      return Methods_1.tryCompute(this.iterable, operation);
+    }
+  }, {
+    key: "tryEnd",
+    value: function tryEnd() {
+      var _this = this;
+
+      return Try_1.TryFactory.of(function () {
+        return _this.end();
+      });
     }
   }]);
 

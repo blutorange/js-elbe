@@ -66,6 +66,25 @@
 					Until I realized you can&#39;t really do much with iterators, and having to do manual iterations
 					all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
 				and ruby&#39;s enumerables.</p>
+				<p>Let&#39;s try parsing a set of strings as JSON:</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">"9"</span>,<span class="hljs-string">"9a"</span>])
+
+<span class="hljs-comment">// With streams</span>
+stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.error).orElse(<span class="hljs-number">0</span>).toArray()
+
+<span class="hljs-comment">// With vanilla JS</span>
+<span class="hljs-built_in">Array</span>.from(<span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">data</span>) </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> data) {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">yield</span> <span class="hljs-built_in">JSON</span>.parse(item);
+        }
+        <span class="hljs-keyword">catch</span> (e) {
+            <span class="hljs-built_in">console</span>.error(e);
+            <span class="hljs-keyword">yield</span> <span class="hljs-number">0</span>;
+        }
+    }
+}(input))
+</code></pre>
 				<h1 id="docs">Docs</h1>
 				<p>See the directory <code>doc</code> for documentation on all methods.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
@@ -73,11 +92,10 @@
 				<p>This returns an object with the following entries:</p>
 				<ul>
 					<li><a href="./modules/_collectors_.html">Collectors</a></li>
-					<li><a href="./modules/_inplacestream_.html#inplacestreamfactory">InplaceStreamFactory</a></li>
+					<li><a href="./modules/_streamfactory_.html">StreamFactory</a></li>
 					<li><a href="./modules/_methods_.html">Methods</a></li>
 					<li><a href="./modules/_monkeypatch_.html">monkeyPatch</a></li>
 					<li><a href="./modules/_try_.html#tryfactory">TryFactory</a></li>
-					<li><a href="./modules/_typesafestream_.html#typesafestreamfactory">TypesafeStreamFactory</a></li>
 				</ul>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>

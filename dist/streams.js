@@ -21,6 +21,8 @@ var comparators_1 = require("comparators");
 
 var Methods_1 = require("./Methods");
 
+var Try_1 = require("./Try");
+
 var AbstractStream =
 /*#__PURE__*/
 function () {
@@ -203,13 +205,28 @@ function () {
       this.check();
       return Methods_1.toMap(this.iterable, keyMapper, valueMapper);
     }
+  }, {
+    key: "tryCompute",
+    value: function tryCompute(operation) {
+      this.check();
+      return Methods_1.tryCompute(this.iterable, operation);
+    }
+  }, {
+    key: "tryEnd",
+    value: function tryEnd() {
+      var _this = this;
+
+      return Try_1.TryFactory.of(function () {
+        return _this.end();
+      });
+    }
   }]);
 
   return AbstractStream;
 }();
 
 exports.AbstractStream = AbstractStream;
-},{"./Methods":4,"comparators":10,"core-js/modules/es6.array.find":85,"core-js/modules/es6.symbol":93,"core-js/modules/web.dom.iterable":94}],2:[function(require,module,exports){
+},{"./Methods":4,"./Try":6,"comparators":10,"core-js/modules/es6.array.find":85,"core-js/modules/es6.symbol":93,"core-js/modules/web.dom.iterable":94}],2:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.symbol");
@@ -712,9 +729,9 @@ function (_AbstractStream_1$Abs) {
     }
   }, {
     key: "try",
-    value: function _try(mapper) {
-      this.iterable = Methods_1.doTry(this.iterable, mapper);
-      return this;
+    value: function _try(operation) {
+      var x = Methods_1.tryMap(this.iterable, operation);
+      return new TryStreamImpl(x);
     }
   }, {
     key: "unique",
@@ -745,6 +762,98 @@ function (_AbstractStream_1$Abs) {
 
 exports.InplaceStream = InplaceStream;
 ;
+
+var TryStreamImpl =
+/*#__PURE__*/
+function (_InplaceStream) {
+  _inherits(TryStreamImpl, _InplaceStream);
+
+  function TryStreamImpl() {
+    _classCallCheck(this, TryStreamImpl);
+
+    return _possibleConstructorReturn(this, (TryStreamImpl.__proto__ || Object.getPrototypeOf(TryStreamImpl)).apply(this, arguments));
+  }
+
+  _createClass(TryStreamImpl, [{
+    key: "forEachResult",
+    value: function forEachResult(success, error) {
+      return this.forEach(function (x) {
+        return x.ifPresent(success, error);
+      });
+    }
+  }, {
+    key: "include",
+    value: function include(predicate) {
+      return this.visit(function (x) {
+        return x.include(predicate);
+      });
+    }
+  }, {
+    key: "onError",
+    value: function onError(handler) {
+      return this.visit(function (x) {
+        return x.ifAbsent(function (e) {
+          return handler(e);
+        });
+      });
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(success, failure) {
+      return this.visit(function (x) {
+        return x.ifPresent(success, failure);
+      });
+    }
+  }, {
+    key: "orThrow",
+    value: function orThrow() {
+      return this.map(function (x) {
+        return x.orThrow();
+      });
+    }
+  }, {
+    key: "orElse",
+    value: function orElse(backup) {
+      return this.map(function (x) {
+        return x.orElse(backup);
+      });
+    }
+  }, {
+    key: "discardError",
+    value: function discardError() {
+      var handler = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : console.error;
+      return this.onError(handler).filter(function (x) {
+        return x.success;
+      }).orThrow();
+    }
+  }, {
+    key: "flatConvert",
+    value: function flatConvert(operation, backup) {
+      this.iterable = Methods_1.map(this.iterable, function (x) {
+        return x.flatConvert(operation, backup);
+      });
+      return this;
+    }
+  }, {
+    key: "convert",
+    value: function convert(operation, backup) {
+      this.iterable = Methods_1.map(this.iterable, function (x) {
+        return x.convert(operation, backup);
+      });
+      return this;
+    }
+  }, {
+    key: "orTry",
+    value: function orTry(backup) {
+      this.iterable = Methods_1.map(this.iterable, function (y) {
+        return y.orTry(backup);
+      });
+      return this;
+    }
+  }]);
+
+  return TryStreamImpl;
+}(InplaceStream);
 },{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":88,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93}],4:[function(require,module,exports){
 "use strict";
 
@@ -783,7 +892,7 @@ regeneratorRuntime.mark(zipSame),
 regeneratorRuntime.mark(filter),
     _marked8 =
 /*#__PURE__*/
-regeneratorRuntime.mark(doTry),
+regeneratorRuntime.mark(tryMap),
     _marked9 =
 /*#__PURE__*/
 regeneratorRuntime.mark(unique),
@@ -1434,10 +1543,10 @@ function filter(iterable, predicate) {
 
 exports.filter = filter;
 
-function doTry(iterable, mapper) {
+function tryMap(iterable, mapper) {
   var _loop, _iteratorNormalCompletion8, _didIteratorError8, _iteratorError8, _iterator8, _step8, item;
 
-  return regeneratorRuntime.wrap(function doTry$(_context9) {
+  return regeneratorRuntime.wrap(function tryMap$(_context9) {
     while (1) {
       switch (_context9.prev = _context9.next) {
         case 0:
@@ -1522,7 +1631,15 @@ function doTry(iterable, mapper) {
   }, _marked8, this, [[4, 14, 18, 26], [19,, 21, 25]]);
 }
 
-exports.doTry = doTry;
+exports.tryMap = tryMap;
+
+function tryCompute(iterable, operation) {
+  return Try_1.TryFactory.of(function () {
+    return operation(iterable);
+  });
+}
+
+exports.tryCompute = tryCompute;
 
 function partition(iterable, discriminator) {
   return collect(iterable, Collectors_1.Collectors.partition(discriminator));
@@ -2872,7 +2989,17 @@ exports.stream = exports.InplaceStreamFactory.stream;
 },{"./InplaceStream":3,"./Methods":4,"./TypesafeStream":7,"core-js/modules/es6.string.repeat":92}],6:[function(require,module,exports){
 "use strict";
 
+require("core-js/modules/es6.object.set-prototype-of");
+
+require("core-js/modules/es6.symbol");
+
 require("regenerator-runtime/runtime");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2887,88 +3014,145 @@ Object.defineProperty(exports, "__esModule", {
 var StreamFactory_1 = require("./StreamFactory");
 
 function isTry(result) {
-  return result instanceof TryImpl;
+  return result instanceof BaseTryImpl;
 }
 
-var TryImpl =
+function appendCause(error, cause) {
+  error.stack += "\nCaused by: " + cause.stack;
+}
+
+var BaseTryImpl =
 /*#__PURE__*/
 function () {
-  function TryImpl(value, error) {
-    _classCallCheck(this, TryImpl);
-
-    this.value = value;
-    this.error = error;
+  function BaseTryImpl() {
+    _classCallCheck(this, BaseTryImpl);
   }
 
-  _createClass(TryImpl, [{
-    key: "map",
-    value: function map(mapper) {
-      var _this = this;
-
-      if (this.success) {
-        return TryImpl.of(function () {
-          return mapper(_this.value);
-        });
-      }
-
-      return this;
+  _createClass(BaseTryImpl, [{
+    key: "stream",
+    value: function stream() {
+      var factory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : StreamFactory_1.TypesafeStreamFactory;
+      return factory.stream(this.iterate());
+    }
+  }, {
+    key: "then",
+    value: function then(success, failure) {
+      return this.convert(success, failure).flatConvert(function (v) {
+        return isTry(v) ? v : exports.TryFactory.success(v);
+      });
+    }
+  }, {
+    key: "catch",
+    value: function _catch(backup) {
+      return this.then(function (x) {
+        return x;
+      }, backup);
     }
   }, {
     key: "toString",
     value: function toString() {
-      return "Try[".concat(String(this.success ? this.value : this.error), "]");
+      return "Try[success=".concat(this.success, ",").concat(String(this.result), "]");
     }
   }, {
     key: "toJSON",
     value: function toJSON() {
       return {
         success: this.success,
-        error: this.error,
-        value: this.value
+        result: this.result
       };
     }
-  }, {
-    key: "recover",
-    value: function recover(backup) {
+  }]);
+
+  return BaseTryImpl;
+}();
+
+var FailureImpl =
+/*#__PURE__*/
+function (_BaseTryImpl) {
+  _inherits(FailureImpl, _BaseTryImpl);
+
+  function FailureImpl(error) {
+    var _this;
+
+    _classCallCheck(this, FailureImpl);
+
+    _this = _possibleConstructorReturn(this, (FailureImpl.__proto__ || Object.getPrototypeOf(FailureImpl)).call(this));
+    _this.error = error;
+    return _this;
+  }
+
+  _createClass(FailureImpl, [{
+    key: "convert",
+    value: function convert(success, backup) {
       var _this2 = this;
 
-      if (this.success) {
-        return this;
+      if (backup !== undefined) {
+        return exports.TryFactory.of(function () {
+          return backup(_this2.error);
+        }, this.error);
       }
 
-      return TryImpl.of(function () {
-        return backup(_this2.error);
-      });
+      return this;
+    }
+  }, {
+    key: "flatConvert",
+    value: function flatConvert(mapper, backup) {
+      var _this3 = this;
+
+      if (backup !== undefined) {
+        return exports.TryFactory.flatOf(function () {
+          return backup(_this3.error);
+        }, this.error);
+      }
+
+      return this;
+    }
+  }, {
+    key: "include",
+    value: function include(predicate) {
+      return exports.TryFactory.error(new Error("Value does not match the predicate as it does not exist."), this.error);
+    }
+  }, {
+    key: "orTry",
+    value: function orTry(backup) {
+      var _this4 = this;
+
+      return exports.TryFactory.of(function () {
+        return backup(_this4.error);
+      }, this.error);
+    }
+  }, {
+    key: "orFlatTry",
+    value: function orFlatTry(backup) {
+      var _this5 = this;
+
+      return exports.TryFactory.flatOf(function () {
+        return backup(_this5.error);
+      }, this.error);
     }
   }, {
     key: "orElse",
     value: function orElse(backup) {
-      if (this.success) {
-        return this.value;
-      }
-
       return backup;
     }
   }, {
     key: "orThrow",
     value: function orThrow() {
-      if (this.success) {
-        return this.value;
-      }
-
       throw this.error;
     }
   }, {
-    key: "flatMap",
-    value: function flatMap(mapper) {
-      if (this.success) {
-        try {
-          return mapper(this.value);
-        } catch (e) {
-          return TryImpl.failure(e);
-        }
+    key: "ifPresent",
+    value: function ifPresent(success, failure) {
+      if (failure !== undefined) {
+        failure(this.error);
       }
 
+      return this;
+    }
+  }, {
+    key: "ifAbsent",
+    value: function ifAbsent(consumer) {
+      consumer(this.error);
       return this;
     }
   }, {
@@ -2980,15 +3164,10 @@ function () {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (!this.success) {
-                _context.next = 3;
-                break;
-              }
+              _context.next = 2;
+              return this.error;
 
-              _context.next = 3;
-              return this.value;
-
-            case 3:
+            case 2:
             case "end":
               return _context.stop();
           }
@@ -2996,84 +3175,156 @@ function () {
       }, iterate, this);
     })
   }, {
-    key: "stream",
-    value: function stream() {
-      var factory = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : StreamFactory_1.TypesafeStreamFactory;
-      return factory.stream(this.iterate());
-    }
-  }, {
-    key: "then",
-    value: function then(mapper) {
-      return this.map(mapper).flatMap(function (v) {
-        return isTry(v) ? v : TryImpl.success(v);
-      });
-    }
-  }, {
-    key: "catch",
-    value: function _catch(backup) {
-      var _this3 = this;
-
-      if (this.success) {
-        return this;
-      }
-
-      return TryImpl.of(function () {
-        return backup(_this3.error);
-      }).flatMap(function (v) {
-        return isTry(v) ? v : TryImpl.success(v);
-      });
-    }
-  }, {
-    key: "fold",
-    value: function fold(successHandler, failureHandler) {
-      var _this4 = this;
-
-      if (this.success) {
-        return TryImpl.of(function () {
-          return successHandler(_this4.value);
-        });
-      }
-
-      return TryImpl.of(function () {
-        return failureHandler(_this4.error);
-      });
-    }
-  }, {
     key: "success",
     get: function get() {
-      return this.error === undefined;
-    }
-  }], [{
-    key: "success",
-    value: function success(value) {
-      return new TryImpl(value);
+      return true;
     }
   }, {
-    key: "failure",
-    value: function failure(error) {
-      return new TryImpl(undefined, error);
-    }
-  }, {
-    key: "of",
-    value: function of(action) {
-      try {
-        var value = action();
-        return new TryImpl(value);
-      } catch (e) {
-        return new TryImpl(undefined, e);
-      }
+    key: "result",
+    get: function get() {
+      return this.error;
     }
   }]);
 
-  return TryImpl;
-}();
+  return FailureImpl;
+}(BaseTryImpl);
+
+var SuccessImpl =
+/*#__PURE__*/
+function (_BaseTryImpl2) {
+  _inherits(SuccessImpl, _BaseTryImpl2);
+
+  function SuccessImpl(value) {
+    var _this6;
+
+    _classCallCheck(this, SuccessImpl);
+
+    _this6 = _possibleConstructorReturn(this, (SuccessImpl.__proto__ || Object.getPrototypeOf(SuccessImpl)).call(this));
+    _this6.value = value;
+    return _this6;
+  }
+
+  _createClass(SuccessImpl, [{
+    key: "convert",
+    value: function convert(operation, backup) {
+      var _this7 = this;
+
+      return exports.TryFactory.of(function () {
+        return operation(_this7.value);
+      });
+    }
+  }, {
+    key: "flatConvert",
+    value: function flatConvert(operation, backup) {
+      var _this8 = this;
+
+      return exports.TryFactory.flatOf(function () {
+        return operation(_this8.value);
+      });
+    }
+  }, {
+    key: "include",
+    value: function include(predicate) {
+      if (predicate(this.value)) {
+        return this;
+      }
+
+      return exports.TryFactory.error(new Error("Value does not match the predicate."));
+    }
+  }, {
+    key: "orTry",
+    value: function orTry(backup) {
+      return this;
+    }
+  }, {
+    key: "orFlatTry",
+    value: function orFlatTry(backup) {
+      return this;
+    }
+  }, {
+    key: "orElse",
+    value: function orElse(backup) {
+      return this.value;
+    }
+  }, {
+    key: "orThrow",
+    value: function orThrow() {
+      return this.value;
+    }
+  }, {
+    key: "ifPresent",
+    value: function ifPresent(success, failure) {
+      success(this.value);
+      return this;
+    }
+  }, {
+    key: "ifAbsent",
+    value: function ifAbsent(consumer) {
+      return this;
+    }
+  }, {
+    key: "iterate",
+    value:
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function iterate() {
+      return regeneratorRuntime.wrap(function iterate$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.next = 2;
+              return this.value;
+
+            case 2:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, iterate, this);
+    })
+  }, {
+    key: "success",
+    get: function get() {
+      return true;
+    }
+  }, {
+    key: "result",
+    get: function get() {
+      return this.value;
+    }
+  }]);
+
+  return SuccessImpl;
+}(BaseTryImpl);
 
 exports.TryFactory = {
-  of: TryImpl.of,
-  success: TryImpl.success,
-  failure: TryImpl.failure
+  success: function success(value) {
+    return new SuccessImpl(value);
+  },
+  error: function error(_error, cause) {
+    var e = _error instanceof Error ? _error : new Error(_error);
+
+    if (cause !== undefined) {
+      appendCause(e, cause);
+    }
+
+    return new FailureImpl(e);
+  },
+  of: function of(action, cause) {
+    try {
+      return exports.TryFactory.success(action());
+    } catch (error) {
+      return exports.TryFactory.error(error, cause);
+    }
+  },
+  flatOf: function flatOf(action, cause) {
+    try {
+      return action();
+    } catch (error) {
+      return exports.TryFactory.error(error, cause);
+    }
+  }
 };
-},{"./StreamFactory":5,"regenerator-runtime/runtime":95}],7:[function(require,module,exports){
+},{"./StreamFactory":5,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93,"regenerator-runtime/runtime":95}],7:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.symbol");
@@ -3128,13 +3379,13 @@ function (_AbstractStream_1$Abs) {
         iterables[_key] = arguments[_key];
       }
 
-      return new TypesafeStream(Methods_1.concat.apply(Methods_1, [this.iterable].concat(iterables)));
+      return new this.constructor(Methods_1.concat.apply(Methods_1, [this.iterable].concat(iterables)));
     }
   }, {
     key: "cycle",
     value: function cycle(count) {
       this.check();
-      return new TypesafeStream(Methods_1.cycle(this.iterable, count));
+      return new this.constructor(Methods_1.cycle(this.iterable, count));
     }
   }, {
     key: "flatMap",
@@ -3146,18 +3397,19 @@ function (_AbstractStream_1$Abs) {
     key: "filter",
     value: function filter(predicate) {
       this.check();
-      return new TypesafeStream(Methods_1.filter(this.iterable, predicate));
+      return new this.constructor(Methods_1.filter(this.iterable, predicate));
     }
   }, {
     key: "index",
     value: function index() {
+      this.check();
       return new TypesafeStream(Methods_1.index(this.iterable));
     }
   }, {
     key: "limit",
     value: function limit(limitTo) {
       this.check();
-      return new TypesafeStream(Methods_1.limit(this.iterable, limitTo));
+      return new this.constructor(Methods_1.limit(this.iterable, limitTo));
     }
   }, {
     key: "map",
@@ -3169,19 +3421,19 @@ function (_AbstractStream_1$Abs) {
     key: "visit",
     value: function visit(consumer) {
       this.check();
-      return new TypesafeStream(Methods_1.visit(this.iterable, consumer));
+      return new this.constructor(Methods_1.visit(this.iterable, consumer));
     }
   }, {
     key: "reverse",
     value: function reverse() {
       this.check();
-      return new TypesafeStream(Methods_1.reverse(this.iterable));
+      return new this.constructor(Methods_1.reverse(this.iterable));
     }
   }, {
     key: "skip",
     value: function skip(toSkip) {
       this.check();
-      return new TypesafeStream(Methods_1.skip(this.iterable, toSkip));
+      return new this.constructor(Methods_1.skip(this.iterable, toSkip));
     }
   }, {
     key: "slice",
@@ -3193,19 +3445,19 @@ function (_AbstractStream_1$Abs) {
     key: "sort",
     value: function sort(comparator) {
       this.check();
-      return new TypesafeStream(Methods_1.sort(this.iterable, comparator));
+      return new this.constructor(Methods_1.sort(this.iterable, comparator));
     }
   }, {
     key: "try",
-    value: function _try(mapper) {
+    value: function _try(operation) {
       this.check();
-      return new TypesafeStream(Methods_1.doTry(this.iterable, mapper));
+      return new TryStreamImpl(Methods_1.tryMap(this.iterable, operation));
     }
   }, {
     key: "unique",
     value: function unique(keyExtractor) {
       this.check();
-      return new TypesafeStream(Methods_1.unique(this.iterable, keyExtractor));
+      return new this.constructor(Methods_1.unique(this.iterable, keyExtractor));
     }
   }, {
     key: "zip",
@@ -3231,6 +3483,101 @@ function (_AbstractStream_1$Abs) {
 
 exports.TypesafeStream = TypesafeStream;
 ;
+
+var TryStreamImpl =
+/*#__PURE__*/
+function (_TypesafeStream) {
+  _inherits(TryStreamImpl, _TypesafeStream);
+
+  function TryStreamImpl() {
+    _classCallCheck(this, TryStreamImpl);
+
+    return _possibleConstructorReturn(this, (TryStreamImpl.__proto__ || Object.getPrototypeOf(TryStreamImpl)).apply(this, arguments));
+  }
+
+  _createClass(TryStreamImpl, [{
+    key: "forEachResult",
+    value: function forEachResult(success, error) {
+      return this.forEach(function (x) {
+        return x.ifPresent(success, error);
+      });
+    }
+  }, {
+    key: "include",
+    value: function include(predicate) {
+      return this.visit(function (x) {
+        return x.include(predicate);
+      });
+    }
+  }, {
+    key: "onError",
+    value: function onError(handler) {
+      return this.visit(function (x) {
+        return x.ifAbsent(function (e) {
+          return handler(e);
+        });
+      });
+    }
+  }, {
+    key: "onSuccess",
+    value: function onSuccess(success, failure) {
+      return this.visit(function (x) {
+        return x.ifPresent(success, failure);
+      });
+    }
+  }, {
+    key: "orThrow",
+    value: function orThrow() {
+      return this.map(function (x) {
+        return x.orThrow();
+      });
+    }
+  }, {
+    key: "orElse",
+    value: function orElse(backup) {
+      return this.map(function (x) {
+        return x.orElse(backup);
+      });
+    }
+  }, {
+    key: "discardError",
+    value: function discardError() {
+      var handler = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : console.error;
+      return this.onError(handler).filter(function (x) {
+        return x.success;
+      }).orThrow();
+    }
+  }, {
+    key: "flatConvert",
+    value: function flatConvert(operation, backup) {
+      this.check();
+      var x = Methods_1.map(this.iterable, function (x) {
+        return x.flatConvert(operation, backup);
+      });
+      return new this.constructor(x);
+    }
+  }, {
+    key: "convert",
+    value: function convert(operation, backup) {
+      this.check();
+      var x = Methods_1.map(this.iterable, function (x) {
+        return x.convert(operation, backup);
+      });
+      return new this.constructor(x);
+    }
+  }, {
+    key: "orTry",
+    value: function orTry(backup) {
+      this.check();
+      var x = Methods_1.map(this.iterable, function (y) {
+        return y.orTry(backup);
+      });
+      return new this.constructor(x);
+    }
+  }]);
+
+  return TryStreamImpl;
+}(TypesafeStream);
 },{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":88,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93}],8:[function(require,module,exports){
 "use strict";
 

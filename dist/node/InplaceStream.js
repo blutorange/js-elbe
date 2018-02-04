@@ -55,9 +55,9 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         this.iterable = Methods_1.sort(this.iterable, comparator);
         return this;
     }
-    try(mapper) {
-        this.iterable = Methods_1.doTry(this.iterable, mapper);
-        return this;
+    try(operation) {
+        let x = Methods_1.tryMap(this.iterable, operation);
+        return new TryStreamImpl(x);
     }
     unique(keyExtractor) {
         this.iterable = Methods_1.unique(this.iterable, keyExtractor);
@@ -74,3 +74,38 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
 }
 exports.InplaceStream = InplaceStream;
 ;
+class TryStreamImpl extends InplaceStream {
+    forEachResult(success, error) {
+        return this.forEach(x => x.ifPresent(success, error));
+    }
+    include(predicate) {
+        return this.visit(x => x.include(predicate));
+    }
+    onError(handler) {
+        return this.visit((x) => x.ifAbsent(e => handler(e)));
+    }
+    onSuccess(success, failure) {
+        return this.visit(x => x.ifPresent(success, failure));
+    }
+    orThrow() {
+        return this.map(x => x.orThrow());
+    }
+    orElse(backup) {
+        return this.map(x => x.orElse(backup));
+    }
+    discardError(handler = console.error) {
+        return this.onError(handler).filter(x => x.success).orThrow();
+    }
+    flatConvert(operation, backup) {
+        this.iterable = Methods_1.map(this.iterable, x => x.flatConvert(operation, backup));
+        return this;
+    }
+    convert(operation, backup) {
+        this.iterable = Methods_1.map(this.iterable, x => x.convert(operation, backup));
+        return this;
+    }
+    orTry(backup) {
+        this.iterable = Methods_1.map(this.iterable, y => y.orTry(backup));
+        return this;
+    }
+}
