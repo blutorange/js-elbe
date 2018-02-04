@@ -35,11 +35,11 @@ const lib = require("streams");
 
 This returns an object with the following entries:
 
-* [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_collectors_.html)
-* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_streamfactory_.html)
-* [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_methods_.html)
-* [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_monkeypatch_.html)
-* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/doc/modules/_try_.html#tryfactory)
+* [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_collectors_.html)
+* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_streamfactory_.html)
+* [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_methods_.html)
+* [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_monkeypatch_.html)
+* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_try_.html#tryfactory)
 
 # Install
 

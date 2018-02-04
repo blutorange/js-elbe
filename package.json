@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
     
-    "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/doc/./g' README.md  > README.typedoc",
+    "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/master\\/doc/./g' README.md  > README.typedoc",
     "doc-create": "npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
     
