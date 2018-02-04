@@ -1,8 +1,7 @@
 import { natural, Comparator } from "comparators";
 
-import { Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute } from "./Methods";
-import { TryFactory } from './Try';
+import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
+import { findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
 
 /**
  * @private
@@ -66,9 +65,19 @@ export abstract class AbstractStream<T> implements Stream<T> {
         return every(this.iterable, predicate);
     }
 
-    find(predicate: Predicate<T>) : T {
+    find(predicate: BiPredicate<T, number>) : T|undefined {
         this.check();
         return find(this.iterable, predicate);
+    }
+
+    findIndex(predicate: BiPredicate<T, number>) : number {
+        this.check();
+        return findIndex(this.iterable, predicate);
+    }
+
+    first() : T|undefined {
+        this.check();
+        return first(this.iterable);
     }
 
     forEach(consumer: Consumer<T>) : void {
@@ -91,6 +100,16 @@ export abstract class AbstractStream<T> implements Stream<T> {
     join(delimiter: string = "", prefix? : string, suffix? : string) : string {
         this.check();
         return join(this.iterable, delimiter, prefix, suffix);
+    }
+
+    last() : T|undefined {
+        this.check();
+        return last(this.iterable);
+    }
+
+    nth(n: number) : T|undefined {
+        this.check();
+        return nth(this.iterable, n);
     }
 
     max(comparator : Comparator<T> = natural) : T {
@@ -162,6 +181,7 @@ export abstract class AbstractStream<T> implements Stream<T> {
     }
 
     tryEnd() : Try<void> {
-        return TryFactory.of(() => this.end());
+        this.check();
+        return tryEnd(this.iterable);
     }
 }

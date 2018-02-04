@@ -8,18 +8,18 @@ Let's try parsing a set of strings as JSON:
 ```javascript
 const input = new Set(["9","9a"])
 
-// With streams
+// With streams, returns [9,0]
 stream(input).try(JSON.parse).onError(console.error).orElse(0).toArray()
 
-// With vanilla JS
+// With vanilla JS, returns [9,0]
 Array.from(function*(data) {
     for (let item of data) {
         try {
-            yield JSON.parse(item);
+            yield JSON.parse(item)
         }
         catch (e) {
-            console.error(e);
-            yield 0;
+            console.error(e)
+            yield 0
         }
     }
 }(input))
@@ -45,7 +45,7 @@ This returns an object with the following entries:
 
 You know the drill.
 
-```bash
+```sh
 npm install --save streams@https://github.com/blutorange/js-streams
 ```
 
@@ -77,10 +77,14 @@ as their first argument.
 
 ```javascript
 const { Collectors, Methods: {map, filter, collect} } = require("streams");
+
 const iterable = [1,2,3];
-map(iterable, x => 2*x);
-filter(iterable, x => x > 1);
-collect(iterable, Collectors.join());
+
+map(iterable, x => 2*x); // => Iterable[2,4,6]
+
+filter(iterable, x => x > 2); // => Iterable[4,6]
+
+collect(iterable, Collectors.join()); // => "4,6"
 ```
 
 ## Stream wrapper
@@ -93,33 +97,46 @@ is most likely irrelevant unless you are using TypeScript.
 
 ```javascript
 const { stream } = require("streams");
+
 stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+// => "4,6,7,9"
 ```
 
 The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.
 
 ```javascript
-const { stream } = require("streams");
+const stream = require("streams").TypesafeStreamFactory.stream;
+
 stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+// => "4,6,7,9"
 ```
 
 Once a stream is chained, it must not be used anymore, or an error is thrown:
 
 ```javascript
 const stream = require("streams").TypesafeStreamFactory.stream;
+
 const s = stream([1,2,3]);
-s.map(x => x * x);
-s.filter(x => x > 2); // => Error: "Stream was already consumed."
+
+s.map(x => x * x); // => Stream[1,4,9]
+
+// Error: "Stream was already consumed."
+s.filter(x => x > 2);
 ```
 
 Similarly for inplace streams: 
 
 ```javascript
 const stream = require("streams").InplaceStreamFactory.stream;
+
 const s = stream([1,2,3]);
-s.map(x => x * x); // Iterable[2,4,6]
-s.filter(x => x > 2); // Iterable[4,6]
-s.join() // "46"
+
+s.map(x => x * x); // => Stream[2,4,6]
+
+s.filter(x => x > 2); // => Stream[4,6]
+
+s.join() // => "46"
+
 s.join() // Error: "Stream was already consumed."
 ```
 
@@ -129,11 +146,21 @@ I would not recommend it, but you can monkey-patch a `stream` method to objects:
 
 ```javascript
 require("streams").monkeypatch();
-[1,2,3].stream().map(x => x + 4).toSet(); // Set[2,4,6]
-"foobar".stream().filter(x => x > "d").toArray(); // ["f", "o", "o", "r"]
-new Set([1,2,3]).stream(); // Iterable[1,2,3]
-new Map(["foo", 3], ["bar", 9]).stream(); // Iterable[ ["foo", 3], ["bar", 9] ]
-({foo: 3, bar: 9}).stream(); // Iterable[ ["foo", 3], ["bar", 9] ]
+
+[1,2,3].stream().map(x => x + 4).toSet();
+// => Set[2,4,6]
+
+"foobar".stream().filter(x => x > "d").toArray();
+// => ["f", "o", "o", "r"]
+
+new Set([1,2,3]).stream();
+// => Stream[1,2,3]
+
+new Map(["foo", 3], ["bar", 9]).stream();
+// => Stream[ ["foo", 3], ["bar", 9] ]
+
+({foo: 3, bar: 9}).stream();
+// => Stream[ ["foo", 3], ["bar", 9] ]
 ```
 
 # Catching errors
@@ -142,7 +169,9 @@ Use the `try` method to handle errors during stream operations.
 
 ```javascript
 stream(json1, json2, json3).try(JSON.parse);
-stream(json1, json2, json3).map(x => lib.TryFactory.of(() => JSON.parse(x))) // same as the above
+
+// same as the above
+stream(json1, json2, json3).map(x => lib.TryFactory.of(() => JSON.parse(x)))
 ```
 
 This returns a stream with `Try` objects encapsulating the error, if one occured.
@@ -150,14 +179,18 @@ This returns a stream with `Try` objects encapsulating the error, if one occured
 To get the values of the successful operations:
 
 ```javascript
-stream(json1, json2, json3).try(JSON.parse).flatMap(x => x.stream()).toArray; // Successfully parsed JSON objects.
+// Logs errors to the console, removes them from the stream, and
+// returns successfully parsed JSON objects.
+stream(json1, json2, json3).try(JSON.parse).discardError().toArray()
 ```
 
 To get the values of the successful and failed operations:
 
 ```javascript
 const result = stream(json1, json2, json3).try(JSON.parse).partition(x => x.success);
+
 result.false.forEach(error => { ... }) // do something with the errors
+
 result.true.forEach(value => { ... }) // do something with the succesful values
 ```
 
@@ -166,3 +199,19 @@ To provide a default for failed operations:
 ```javascript
 stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JSON object or undefined.
 ```
+
+# Build
+
+Make sure you fetch all dependencies
+
+```sh
+npm install
+```
+
+Then run
+
+```sh
+npm run build
+```
+
+This may fail on Windows, who but a rabbit knows...

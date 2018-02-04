@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const comparators_1 = require("comparators");
 const Methods_1 = require("./Methods");
-const Try_1 = require("./Try");
 class AbstractStream {
     constructor(iterable) {
         this.done = false;
@@ -38,6 +37,14 @@ class AbstractStream {
         this.check();
         return Methods_1.find(this.iterable, predicate);
     }
+    findIndex(predicate) {
+        this.check();
+        return Methods_1.findIndex(this.iterable, predicate);
+    }
+    first() {
+        this.check();
+        return Methods_1.first(this.iterable);
+    }
     forEach(consumer) {
         this.check();
         for (let item of this.iterable) {
@@ -55,6 +62,14 @@ class AbstractStream {
     join(delimiter = "", prefix, suffix) {
         this.check();
         return Methods_1.join(this.iterable, delimiter, prefix, suffix);
+    }
+    last() {
+        this.check();
+        return Methods_1.last(this.iterable);
+    }
+    nth(n) {
+        this.check();
+        return Methods_1.nth(this.iterable, n);
     }
     max(comparator = comparators_1.natural) {
         this.check();
@@ -111,7 +126,8 @@ class AbstractStream {
         return Methods_1.tryCompute(this.iterable, operation);
     }
     tryEnd() {
-        return Try_1.TryFactory.of(() => this.end());
+        this.check();
+        return Methods_1.tryEnd(this.iterable);
     }
 }
 exports.AbstractStream = AbstractStream;

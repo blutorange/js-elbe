@@ -107,19 +107,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L132">Interfaces.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L228">Interfaces.ts:228</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an stream for iterating over an object&#39;s key-value-pairs.
+									Only the object&#39;s own property are included.</p>
+									<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+<span class="hljs-comment">// =&gt; Stream[ ["foo", 2], ["bar", 3] ]</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the object&#39;s values.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>object: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object with the key-value-pairs to be iterated.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
 											<h5><span class="tsd-signature-symbol">[</span>s: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">T</span></h5>
@@ -128,6 +143,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A stream with the object&#39;s key-value-pairs.</p>
 						</li>
 					</ul>
 				</section>
@@ -141,13 +157,25 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L133">Interfaces.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L240">Interfaces.ts:240</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream for iterating over an object&#39;s keys.
+									Only the object&#39;s own property are included.</p>
+									<pre><code class="lang-javascript">fromObjectKeys({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-number">42</span>: <span class="hljs-number">9</span>})
+<span class="hljs-comment">// =&gt; Stream["foo", "bar", "42"]</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>object: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object with the keys to be iterated.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
 											<h5><span class="tsd-signature-symbol">[</span>s: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
@@ -156,6 +184,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A stream with the object&#39;s keys.</p>
 						</li>
 					</ul>
 				</section>
@@ -169,19 +198,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L134">Interfaces.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L253">Interfaces.ts:253</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream for iterating over an object&#39;s values.
+									Only the object&#39;s own property are included.</p>
+									<pre><code class="lang-javascript">fromObjectValues({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+<span class="hljs-comment">// =&gt; Stream[2,3]</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the object&#39;s values.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>object: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object with the values to be iterated.</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-index-signature">
 											<h5><span class="tsd-signature-symbol">[</span>s: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">T</span></h5>
@@ -190,6 +234,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A stream with the object&#39;s values.</p>
 						</li>
 					</ul>
 				</section>
@@ -203,25 +248,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L128">Interfaces.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L165">Interfaces.ts:165</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream with the items provided by the given generator.</p>
+									<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
+<span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the items of the produced stream.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>generator: <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Generator for generating the items of the iterable. It is passed the current index as its argument.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How many items to generate, <code>Infinity</code> for an unlimited amount.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Stream for iterating the given amount of times over the items supplied by the supplier.</p>
 						</li>
 					</ul>
 				</section>
@@ -235,28 +298,49 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L129">Interfaces.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L179">Interfaces.ts:179</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream starting with the initial seed.</p>
+									<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
+<span class="hljs-comment">// Random number generator, linear congruential generator from "Numerical Recipes".</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the items of the produced stream.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>seed: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Initial item.</p>
+									</div>
 								</li>
 								<li>
 									<h5>next: <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Function that takes the current item and produces the next item in the sequence.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How many times to iterate, <code>Infinity</code> for an unlimited amount.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Stream for iterating over the provided items the given amount of times.</p>
 						</li>
 					</ul>
 				</section>
@@ -270,25 +354,44 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L130">Interfaces.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L193">Interfaces.ts:193</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an stream with the given item occuring the given
+									number of times.</p>
+									<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
+<span class="hljs-comment">// =&gt; Stream[0,0,0,0,0,0,0,0,0]</span>
+</code></pre>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
 									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the items of the produced iterable.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>item: <span class="tsd-signature-type">T</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Item to repeat.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How many times to repeat, <code>Infinity</code> for an unlimited amount.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Stream contains the given item the given number of times.</p>
 						</li>
 					</ul>
 				</section>
@@ -302,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L127">Interfaces.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L152">Interfaces.ts:152</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -331,22 +434,53 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L131">Interfaces.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L215">Interfaces.ts:215</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates an stream with numbers starting at the given
+									value and ending at the given value.</p>
+									<pre><code class="lang-javascript">times(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2]</span>
+times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; Stream[4,5,6]</span>
+times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>) <span class="hljs-comment">// =&gt; Stream[4,6,8]</span>
+times(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>) <span class="hljs-comment">// =&gt; Stream[10]</span>
+times(<span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+times(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[NaN, NaN, NaN]</span>
+times(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <span class="hljs-number">-2</span>) <span class="hljs-comment">// =&gt; Stream[0, -1, -2]</span>
+times(<span class="hljs-number">-3</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,5,...]</span>
+</code></pre>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>typeparam</dt>
+									<dd><p>Type of the items of the produced iterable.</p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>amount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Number of items to produce. Must not be negative.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Initial number, defaults to 0.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Last number, defaults to <code>start+amount-1</code>. May be smaller than end, in which case numbers of decreasing value are generated.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>Stream with the configured numbers.</p>
 						</li>
 					</ul>
 				</section>
@@ -377,7 +511,7 @@
 						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_try_.html">"<wbr>Try"</a>
+						<a href="../modules/_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
@@ -397,6 +531,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.bipredicate.html" class="tsd-kind-icon">Bi<wbr>Predicate</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.collector.html" class="tsd-kind-icon">Collector</a>

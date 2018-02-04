@@ -5,17 +5,15 @@
   "main": "dist/node/main.js",
   "types": "dist",
   "scripts": {
+    "prepare": "patch-package",
     "build": "npm run clean && npm run doc && npm run transpile && npm run web",
-
     "clean": "rm -rf dist/* doc/* && rm README.typedoc",
     "doc": "npm run doc-readme && npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
-    
     "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/master\\/doc/./g' README.md  > README.typedoc",
     "doc-create": "npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
-    
     "web-babel": "npx babel dist/node/*.js --out-dir dist/web/",
     "web-babelfix": "sed -ri 's/import \\\"(..*)\\\"/require(\"\\1\")/g' dist/web/*.js",
     "web-browserify": "npx browserify dist/web/main.js --standalone Streams -o dist/streams.js",
@@ -35,7 +33,8 @@
     "url": "https://github.com/blutorange/js-iterables/issues"
   },
   "dependencies": {
-    "comparators": "https://github.com/blutorange/js-comparators"
+    "comparators": "https://github.com/blutorange/js-comparators",
+    "typedoc": "^0.10.0"
   },
   "homepage": "https://github.com/blutorange/js-iterables#readme",
   "devDependencies": {
@@ -45,9 +44,9 @@
     "babel-minify": "^0.3.0",
     "browserify": "^15.2.0",
     "core-js": "^2.5.3",
+    "patch-package": "^5.0.0",
     "regenerator-runtime": "^0.11.1",
     "tslib": "^1.9.0",
-    "typedoc": "^0.10.0",
     "typescript": "^2.8.0-dev.20180202"
   }
 }

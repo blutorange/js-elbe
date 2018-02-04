@@ -95,6 +95,9 @@ export class TypesafeStream<T> extends AbstractStream<T> {
 
 class TryStreamImpl<T> extends TypesafeStream<Try<T>> implements TryStream<T> {
     forEachResult(success: Consumer<T>, error?: Consumer<Error>): void {
+        if (error === undefined) {
+            error = console.error;
+        }
         return this.forEach(x => x.ifPresent(success, error));
     }
 

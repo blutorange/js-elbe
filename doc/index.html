@@ -69,18 +69,18 @@
 				<p>Let&#39;s try parsing a set of strings as JSON:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">"9"</span>,<span class="hljs-string">"9a"</span>])
 
-<span class="hljs-comment">// With streams</span>
+<span class="hljs-comment">// With streams, returns [9,0]</span>
 stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.error).orElse(<span class="hljs-number">0</span>).toArray()
 
-<span class="hljs-comment">// With vanilla JS</span>
+<span class="hljs-comment">// With vanilla JS, returns [9,0]</span>
 <span class="hljs-built_in">Array</span>.from(<span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">data</span>) </span>{
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> data) {
         <span class="hljs-keyword">try</span> {
-            <span class="hljs-keyword">yield</span> <span class="hljs-built_in">JSON</span>.parse(item);
+            <span class="hljs-keyword">yield</span> <span class="hljs-built_in">JSON</span>.parse(item)
         }
         <span class="hljs-keyword">catch</span> (e) {
-            <span class="hljs-built_in">console</span>.error(e);
-            <span class="hljs-keyword">yield</span> <span class="hljs-number">0</span>;
+            <span class="hljs-built_in">console</span>.error(e)
+            <span class="hljs-keyword">yield</span> <span class="hljs-number">0</span>
         }
     }
 }(input))
@@ -99,7 +99,7 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span c
 				</ul>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
-				<pre><code class="lang-bash">npm install --save streams@https://github.com/blutorange/js-streams
+				<pre><code class="lang-sh">npm install --save streams@https://github.com/blutorange/js-streams
 </code></pre>
 				<p>Or use the standalone in <code>dist/streams.js</code>. With node it simply exports itself, within a browser it registers globally as <code>window.Streams</code>.</p>
 				<h1 id="usage">Usage</h1>
@@ -117,10 +117,14 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 				<p>All methods are available as stand-alone functions taking an iterable
 				as their first argument.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { Collectors, <span class="hljs-attr">Methods</span>: {map, filter, collect} } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+
 <span class="hljs-keyword">const</span> iterable = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
-map(iterable, x =&gt; <span class="hljs-number">2</span>*x);
-filter(iterable, x =&gt; x &gt; <span class="hljs-number">1</span>);
-collect(iterable, Collectors.join());
+
+map(iterable, x =&gt; <span class="hljs-number">2</span>*x); <span class="hljs-comment">// =&gt; Iterable[2,4,6]</span>
+
+filter(iterable, x =&gt; x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Iterable[4,6]</span>
+
+collect(iterable, Collectors.join()); <span class="hljs-comment">// =&gt; "4,6"</span>
 </code></pre>
 				<h2 id="stream-wrapper">Stream wrapper</h2>
 				<p>For easier chaining, there are also two wrapper classes for
@@ -128,52 +132,89 @@ collect(iterable, Collectors.join());
 				<p>The inplace stream comes with less overhead, but is not typesafe. This
 				is most likely irrelevant unless you are using TypeScript.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+<span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
 				<p>The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.stream;
+
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
+<span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
 				<p>Once a stream is chained, it must not be used anymore, or an error is thrown:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.stream;
+
 <span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
-s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x);
-s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Error: "Stream was already consumed."</span>
+
+s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// =&gt; Stream[1,4,9]</span>
+
+<span class="hljs-comment">// Error: "Stream was already consumed."</span>
+s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>);
 </code></pre>
 				<p>Similarly for inplace streams: </p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.stream;
+
 <span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
-s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// Iterable[2,4,6]</span>
-s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// Iterable[4,6]</span>
-s.join() <span class="hljs-comment">// "46"</span>
+
+s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x); <span class="hljs-comment">// =&gt; Stream[2,4,6]</span>
+
+s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; Stream[4,6]</span>
+
+s.join() <span class="hljs-comment">// =&gt; "46"</span>
+
 s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</span>
 </code></pre>
 				<h2 id="monkey-patching">Monkey patching</h2>
 				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to objects:</p>
 				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).monkeypatch();
-[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet(); <span class="hljs-comment">// Set[2,4,6]</span>
-<span class="hljs-string">"foobar"</span>.stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-string">"d"</span>).toArray(); <span class="hljs-comment">// ["f", "o", "o", "r"]</span>
-<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).stream(); <span class="hljs-comment">// Iterable[1,2,3]</span>
-<span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>], [<span class="hljs-string">"bar"</span>, <span class="hljs-number">9</span>]).stream(); <span class="hljs-comment">// Iterable[ ["foo", 3], ["bar", 9] ]</span>
-({<span class="hljs-attr">foo</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">9</span>}).stream(); <span class="hljs-comment">// Iterable[ ["foo", 3], ["bar", 9] ]</span>
+
+[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet();
+<span class="hljs-comment">// =&gt; Set[2,4,6]</span>
+
+<span class="hljs-string">"foobar"</span>.stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-string">"d"</span>).toArray();
+<span class="hljs-comment">// =&gt; ["f", "o", "o", "r"]</span>
+
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).stream();
+<span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
+
+<span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>], [<span class="hljs-string">"bar"</span>, <span class="hljs-number">9</span>]).stream();
+<span class="hljs-comment">// =&gt; Stream[ ["foo", 3], ["bar", 9] ]</span>
+
+({<span class="hljs-attr">foo</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">9</span>}).stream();
+<span class="hljs-comment">// =&gt; Stream[ ["foo", 3], ["bar", 9] ]</span>
 </code></pre>
 				<h1 id="catching-errors">Catching errors</h1>
 				<p>Use the <code>try</code> method to handle errors during stream operations.</p>
 				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse);
-stream(json1, json2, json3).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> lib.TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x))) <span class="hljs-comment">// same as the above</span>
+
+<span class="hljs-comment">// same as the above</span>
+stream(json1, json2, json3).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> lib.TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x)))
 </code></pre>
 				<p>This returns a stream with <code>Try</code> objects encapsulating the error, if one occured.</p>
 				<p>To get the values of the successful operations:</p>
-				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.stream()).toArray; <span class="hljs-comment">// Successfully parsed JSON objects.</span>
+				<pre><code class="lang-javascript"><span class="hljs-comment">// Logs errors to the console, removes them from the stream, and</span>
+<span class="hljs-comment">// returns successfully parsed JSON objects.</span>
+stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).discardError().toArray()
 </code></pre>
 				<p>To get the values of the successful and failed operations:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> result = stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.success);
+
 result.false.forEach(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the errors</span>
+
 result.true.forEach(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> { ... }) <span class="hljs-comment">// do something with the succesful values</span>
 </code></pre>
 				<p>To provide a default for failed operations:</p>
 				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.orElse(<span class="hljs-literal">undefined</span>)); <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
+				<h1 id="build">Build</h1>
+				<p>Make sure you fetch all dependencies</p>
+				<pre><code class="lang-sh">npm install
+</code></pre>
+				<p>Then run</p>
+				<pre><code class="lang-sh">npm run build
+</code></pre>
+				<p>This may fail on Windows, who but a rabbit knows...</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -201,7 +242,7 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 						<a href="modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_try_.html">"<wbr>Try"</a>
+						<a href="modules/_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const comparators_1 = require("comparators");
 const Collectors_1 = require("./Collectors");
-const Try_1 = require("./Try");
+const TryFactory_1 = require("./TryFactory");
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 function* map(iterable, mapper) {
     for (let item of iterable) {
@@ -90,14 +90,18 @@ function* filter(iterable, predicate) {
 exports.filter = filter;
 function* tryMap(iterable, mapper) {
     for (let item of iterable) {
-        yield Try_1.TryFactory.of(() => mapper(item));
+        yield TryFactory_1.TryFactory.of(() => mapper(item));
     }
 }
 exports.tryMap = tryMap;
 function tryCompute(iterable, operation) {
-    return Try_1.TryFactory.of(() => operation(iterable));
+    return TryFactory_1.TryFactory.of(() => operation(iterable));
 }
 exports.tryCompute = tryCompute;
+function tryEnd(iterable) {
+    return TryFactory_1.TryFactory.of(() => end(iterable));
+}
+exports.tryEnd = tryEnd;
 function partition(iterable, discriminator) {
     return collect(iterable, Collectors_1.Collectors.partition(discriminator));
 }
@@ -205,14 +209,26 @@ function size(iterable) {
 }
 exports.size = size;
 function find(iterable, predicate) {
+    let index = -1;
     for (let item of iterable) {
-        if (predicate(item)) {
+        if (predicate(item, ++index)) {
             return item;
         }
     }
     return undefined;
 }
 exports.find = find;
+function findIndex(iterable, predicate) {
+    let index = 0;
+    for (let item of iterable) {
+        if (predicate(item, index)) {
+            return index;
+        }
+        index += 1;
+    }
+    return -1;
+}
+exports.findIndex = findIndex;
 function every(iterable, predicate) {
     for (let item of iterable) {
         if (!predicate(item)) {
@@ -304,6 +320,32 @@ function end(iterable) {
         ;
 }
 exports.end = end;
+function nth(iterable, n) {
+    let index = 0;
+    for (let item of iterable) {
+        if (index === n) {
+            return item;
+        }
+        index += 1;
+    }
+    return undefined;
+}
+exports.nth = nth;
+function first(iterable) {
+    for (let item of iterable) {
+        return item;
+    }
+    return undefined;
+}
+exports.first = first;
+function last(iterable) {
+    let last;
+    for (let item of iterable) {
+        last = item;
+    }
+    return last;
+}
+exports.last = last;
 function collect(iterable, collector) {
     return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }

@@ -16,4 +16,4 @@ tslib_1.__exportStar(require("./Collectors"), exports);
 
 tslib_1.__exportStar(require("./StreamFactory"), exports);
 
-tslib_1.__exportStar(require("./Try"), exports);
+tslib_1.__exportStar(require("./TryFactory"), exports);

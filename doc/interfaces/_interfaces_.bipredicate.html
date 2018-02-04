@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Function | js-streams</title>
+	<title>BiPredicate | js-streams</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_interfaces_.html">&quot;Interfaces&quot;</a>
 				</li>
 				<li>
-					<a href="_interfaces_.function.html">Function</a>
+					<a href="_interfaces_.bipredicate.html">BiPredicate</a>
 				</li>
 			</ul>
-			<h1>Interface Function&lt;T, R&gt;</h1>
+			<h1>Interface BiPredicate&lt;T, S&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A function with a single argument.</p>
+						<p>A predicate assign a boolean value to a pair of objects.</p>
 					</div>
 				</div>
 			</section>
@@ -81,15 +81,15 @@
 						<h4>T</h4>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Type of the function&#39;s argument.</p>
+								<p>Type of the first object.</p>
 							</div>
 						</div>
 					</li>
 					<li>
-						<h4>R</h4>
+						<h4>S</h4>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Type of the function&#39;s return value.</p>
+								<p>Type of the second object.</p>
 							</div>
 						</div>
 					</li>
@@ -99,25 +99,25 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Function</span>
+						<span class="target">BiPredicate</span>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3 class="tsd-before-signature">Callable</h3>
 				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, arg2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L23">Interfaces.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L66">Interfaces.ts:66</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>A function with a single argument.</p>
+								<p>A predicate assign a boolean value to a pair of objects.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -125,8 +125,11 @@
 							<li>
 								<h5>arg1: <span class="tsd-signature-type">T</span></h5>
 							</li>
+							<li>
+								<h5>arg2: <span class="tsd-signature-type">S</span></h5>
+							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -177,22 +180,22 @@
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.bipredicate.html" class="tsd-kind-icon">Bi<wbr>Predicate</a>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.collector.html" class="tsd-kind-icon">Collector</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.consumer.html" class="tsd-kind-icon">Consumer</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.function.html" class="tsd-kind-icon">Function</a>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_interfaces_.itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
 					</li>

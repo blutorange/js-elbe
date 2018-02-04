@@ -1,6 +1,8 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.Streams = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 
+require("core-js/modules/es6.array.find-index");
+
 require("core-js/modules/es6.array.find");
 
 require("core-js/modules/web.dom.iterable");
@@ -20,8 +22,6 @@ Object.defineProperty(exports, "__esModule", {
 var comparators_1 = require("comparators");
 
 var Methods_1 = require("./Methods");
-
-var Try_1 = require("./Try");
 
 var AbstractStream =
 /*#__PURE__*/
@@ -79,6 +79,18 @@ function () {
       return Methods_1.find(this.iterable, predicate);
     }
   }, {
+    key: "findIndex",
+    value: function findIndex(predicate) {
+      this.check();
+      return Methods_1.findIndex(this.iterable, predicate);
+    }
+  }, {
+    key: "first",
+    value: function first() {
+      this.check();
+      return Methods_1.first(this.iterable);
+    }
+  }, {
     key: "forEach",
     value: function forEach(consumer) {
       this.check();
@@ -126,6 +138,18 @@ function () {
       var suffix = arguments.length > 2 ? arguments[2] : undefined;
       this.check();
       return Methods_1.join(this.iterable, delimiter, prefix, suffix);
+    }
+  }, {
+    key: "last",
+    value: function last() {
+      this.check();
+      return Methods_1.last(this.iterable);
+    }
+  }, {
+    key: "nth",
+    value: function nth(n) {
+      this.check();
+      return Methods_1.nth(this.iterable, n);
     }
   }, {
     key: "max",
@@ -214,11 +238,8 @@ function () {
   }, {
     key: "tryEnd",
     value: function tryEnd() {
-      var _this = this;
-
-      return Try_1.TryFactory.of(function () {
-        return _this.end();
-      });
+      this.check();
+      return Methods_1.tryEnd(this.iterable);
     }
   }]);
 
@@ -226,7 +247,7 @@ function () {
 }();
 
 exports.AbstractStream = AbstractStream;
-},{"./Methods":4,"./Try":6,"comparators":10,"core-js/modules/es6.array.find":85,"core-js/modules/es6.symbol":93,"core-js/modules/web.dom.iterable":94}],2:[function(require,module,exports){
+},{"./Methods":4,"comparators":10,"core-js/modules/es6.array.find":86,"core-js/modules/es6.array.find-index":85,"core-js/modules/es6.symbol":94,"core-js/modules/web.dom.iterable":95}],2:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.symbol");
@@ -605,7 +626,7 @@ exports.Collectors = {
     };
   }
 };
-},{"./Methods":4,"core-js/modules/es6.map":89,"core-js/modules/es6.set":91,"core-js/modules/es6.symbol":93,"core-js/modules/web.dom.iterable":94}],3:[function(require,module,exports){
+},{"./Methods":4,"core-js/modules/es6.map":90,"core-js/modules/es6.set":92,"core-js/modules/es6.symbol":94,"core-js/modules/web.dom.iterable":95}],3:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.symbol");
@@ -777,6 +798,10 @@ function (_InplaceStream) {
   _createClass(TryStreamImpl, [{
     key: "forEachResult",
     value: function forEachResult(success, error) {
+      if (error === undefined) {
+        error = console.error;
+      }
+
       return this.forEach(function (x) {
         return x.ifPresent(success, error);
       });
@@ -854,7 +879,7 @@ function (_InplaceStream) {
 
   return TryStreamImpl;
 }(InplaceStream);
-},{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":88,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93}],4:[function(require,module,exports){
+},{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":89,"core-js/modules/es6.object.set-prototype-of":91,"core-js/modules/es6.symbol":94}],4:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.set");
@@ -947,7 +972,7 @@ var comparators_1 = require("comparators");
 
 var Collectors_1 = require("./Collectors");
 
-var Try_1 = require("./Try");
+var TryFactory_1 = require("./TryFactory");
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -1558,7 +1583,7 @@ function tryMap(iterable, mapper) {
                 switch (_context8.prev = _context8.next) {
                   case 0:
                     _context8.next = 2;
-                    return Try_1.TryFactory.of(function () {
+                    return TryFactory_1.TryFactory.of(function () {
                       return mapper(item);
                     });
 
@@ -1634,12 +1659,20 @@ function tryMap(iterable, mapper) {
 exports.tryMap = tryMap;
 
 function tryCompute(iterable, operation) {
-  return Try_1.TryFactory.of(function () {
+  return TryFactory_1.TryFactory.of(function () {
     return operation(iterable);
   });
 }
 
 exports.tryCompute = tryCompute;
+
+function tryEnd(iterable) {
+  return TryFactory_1.TryFactory.of(function () {
+    return end(iterable);
+  });
+}
+
+exports.tryEnd = tryEnd;
 
 function partition(iterable, discriminator) {
   return collect(iterable, Collectors_1.Collectors.partition(discriminator));
@@ -2308,6 +2341,7 @@ function size(iterable) {
 exports.size = size;
 
 function find(iterable, predicate) {
+  var index = -1;
   var _iteratorNormalCompletion15 = true;
   var _didIteratorError15 = false;
   var _iteratorError15 = undefined;
@@ -2316,7 +2350,7 @@ function find(iterable, predicate) {
     for (var _iterator15 = iterable[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
       var _item13 = _step15.value;
 
-      if (predicate(_item13)) {
+      if (predicate(_item13, ++index)) {
         return _item13;
       }
     }
@@ -2340,7 +2374,8 @@ function find(iterable, predicate) {
 
 exports.find = find;
 
-function every(iterable, predicate) {
+function findIndex(iterable, predicate) {
+  var index = 0;
   var _iteratorNormalCompletion16 = true;
   var _didIteratorError16 = false;
   var _iteratorError16 = undefined;
@@ -2349,9 +2384,11 @@ function every(iterable, predicate) {
     for (var _iterator16 = iterable[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
       var _item14 = _step16.value;
 
-      if (!predicate(_item14)) {
-        return false;
+      if (predicate(_item14, index)) {
+        return index;
       }
+
+      index += 1;
     }
   } catch (err) {
     _didIteratorError16 = true;
@@ -2368,12 +2405,12 @@ function every(iterable, predicate) {
     }
   }
 
-  return true;
+  return -1;
 }
 
-exports.every = every;
+exports.findIndex = findIndex;
 
-function some(iterable, predicate) {
+function every(iterable, predicate) {
   var _iteratorNormalCompletion17 = true;
   var _didIteratorError17 = false;
   var _iteratorError17 = undefined;
@@ -2382,8 +2419,8 @@ function some(iterable, predicate) {
     for (var _iterator17 = iterable[Symbol.iterator](), _step17; !(_iteratorNormalCompletion17 = (_step17 = _iterator17.next()).done); _iteratorNormalCompletion17 = true) {
       var _item15 = _step17.value;
 
-      if (predicate(_item15)) {
-        return true;
+      if (!predicate(_item15)) {
+        return false;
       }
     }
   } catch (err) {
@@ -2397,6 +2434,39 @@ function some(iterable, predicate) {
     } finally {
       if (_didIteratorError17) {
         throw _iteratorError17;
+      }
+    }
+  }
+
+  return true;
+}
+
+exports.every = every;
+
+function some(iterable, predicate) {
+  var _iteratorNormalCompletion18 = true;
+  var _didIteratorError18 = false;
+  var _iteratorError18 = undefined;
+
+  try {
+    for (var _iterator18 = iterable[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
+      var _item16 = _step18.value;
+
+      if (predicate(_item16)) {
+        return true;
+      }
+    }
+  } catch (err) {
+    _didIteratorError18 = true;
+    _iteratorError18 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
+        _iterator18.return();
+      }
+    } finally {
+      if (_didIteratorError18) {
+        throw _iteratorError18;
       }
     }
   }
@@ -2424,46 +2494,6 @@ function min(iterable) {
   var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : comparators_1.natural;
   var first = true;
   var min;
-  var _iteratorNormalCompletion18 = true;
-  var _didIteratorError18 = false;
-  var _iteratorError18 = undefined;
-
-  try {
-    for (var _iterator18 = iterable[Symbol.iterator](), _step18; !(_iteratorNormalCompletion18 = (_step18 = _iterator18.next()).done); _iteratorNormalCompletion18 = true) {
-      var _item16 = _step18.value;
-
-      if (first) {
-        min = _item16;
-      } else {
-        if (comparator(_item16, min) < 0) {
-          min = _item16;
-        }
-      }
-    }
-  } catch (err) {
-    _didIteratorError18 = true;
-    _iteratorError18 = err;
-  } finally {
-    try {
-      if (!_iteratorNormalCompletion18 && _iterator18.return != null) {
-        _iterator18.return();
-      }
-    } finally {
-      if (_didIteratorError18) {
-        throw _iteratorError18;
-      }
-    }
-  }
-
-  return min;
-}
-
-exports.min = min;
-
-function max(iterable) {
-  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : comparators_1.natural;
-  var first = true;
-  var min;
   var _iteratorNormalCompletion19 = true;
   var _didIteratorError19 = false;
   var _iteratorError19 = undefined;
@@ -2475,7 +2505,7 @@ function max(iterable) {
       if (first) {
         min = _item17;
       } else {
-        if (comparator(_item17, min) > 0) {
+        if (comparator(_item17, min) < 0) {
           min = _item17;
         }
       }
@@ -2498,9 +2528,12 @@ function max(iterable) {
   return min;
 }
 
-exports.max = max;
+exports.min = min;
 
-function reduce(iterable, reducer, initialValue) {
+function max(iterable) {
+  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : comparators_1.natural;
+  var first = true;
+  var min;
   var _iteratorNormalCompletion20 = true;
   var _didIteratorError20 = false;
   var _iteratorError20 = undefined;
@@ -2508,7 +2541,14 @@ function reduce(iterable, reducer, initialValue) {
   try {
     for (var _iterator20 = iterable[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
       var _item18 = _step20.value;
-      initialValue = reducer(initialValue, _item18);
+
+      if (first) {
+        min = _item18;
+      } else {
+        if (comparator(_item18, min) > 0) {
+          min = _item18;
+        }
+      }
     }
   } catch (err) {
     _didIteratorError20 = true;
@@ -2525,14 +2565,12 @@ function reduce(iterable, reducer, initialValue) {
     }
   }
 
-  return initialValue;
+  return min;
 }
 
-exports.reduce = reduce;
+exports.max = max;
 
-function reduceSame(iterable, reducer) {
-  var reduced;
-  var first = true;
+function reduce(iterable, reducer, initialValue) {
   var _iteratorNormalCompletion21 = true;
   var _didIteratorError21 = false;
   var _iteratorError21 = undefined;
@@ -2540,13 +2578,7 @@ function reduceSame(iterable, reducer) {
   try {
     for (var _iterator21 = iterable[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
       var _item19 = _step21.value;
-
-      if (first) {
-        reduced = _item19;
-        first = false;
-      } else {
-        reduced = reducer(reduced, _item19);
-      }
+      initialValue = reducer(initialValue, _item19);
     }
   } catch (err) {
     _didIteratorError21 = true;
@@ -2559,6 +2591,44 @@ function reduceSame(iterable, reducer) {
     } finally {
       if (_didIteratorError21) {
         throw _iteratorError21;
+      }
+    }
+  }
+
+  return initialValue;
+}
+
+exports.reduce = reduce;
+
+function reduceSame(iterable, reducer) {
+  var reduced;
+  var first = true;
+  var _iteratorNormalCompletion22 = true;
+  var _didIteratorError22 = false;
+  var _iteratorError22 = undefined;
+
+  try {
+    for (var _iterator22 = iterable[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
+      var _item20 = _step22.value;
+
+      if (first) {
+        reduced = _item20;
+        first = false;
+      } else {
+        reduced = reducer(reduced, _item20);
+      }
+    }
+  } catch (err) {
+    _didIteratorError22 = true;
+    _iteratorError22 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion22 && _iterator22.return != null) {
+        _iterator22.return();
+      }
+    } finally {
+      if (_didIteratorError22) {
+        throw _iteratorError22;
       }
     }
   }
@@ -2585,6 +2655,103 @@ function end(iterable) {
 
 exports.end = end;
 
+function nth(iterable, n) {
+  var index = 0;
+  var _iteratorNormalCompletion23 = true;
+  var _didIteratorError23 = false;
+  var _iteratorError23 = undefined;
+
+  try {
+    for (var _iterator23 = iterable[Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
+      var _item21 = _step23.value;
+
+      if (index === n) {
+        return _item21;
+      }
+
+      index += 1;
+    }
+  } catch (err) {
+    _didIteratorError23 = true;
+    _iteratorError23 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion23 && _iterator23.return != null) {
+        _iterator23.return();
+      }
+    } finally {
+      if (_didIteratorError23) {
+        throw _iteratorError23;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+exports.nth = nth;
+
+function first(iterable) {
+  var _iteratorNormalCompletion24 = true;
+  var _didIteratorError24 = false;
+  var _iteratorError24 = undefined;
+
+  try {
+    for (var _iterator24 = iterable[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
+      var _item22 = _step24.value;
+      return _item22;
+    }
+  } catch (err) {
+    _didIteratorError24 = true;
+    _iteratorError24 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion24 && _iterator24.return != null) {
+        _iterator24.return();
+      }
+    } finally {
+      if (_didIteratorError24) {
+        throw _iteratorError24;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+exports.first = first;
+
+function last(iterable) {
+  var last;
+  var _iteratorNormalCompletion25 = true;
+  var _didIteratorError25 = false;
+  var _iteratorError25 = undefined;
+
+  try {
+    for (var _iterator25 = iterable[Symbol.iterator](), _step25; !(_iteratorNormalCompletion25 = (_step25 = _iterator25.next()).done); _iteratorNormalCompletion25 = true) {
+      var _item23 = _step25.value;
+      last = _item23;
+    }
+  } catch (err) {
+    _didIteratorError25 = true;
+    _iteratorError25 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion25 && _iterator25.return != null) {
+        _iterator25.return();
+      }
+    } finally {
+      if (_didIteratorError25) {
+        throw _iteratorError25;
+      }
+    }
+  }
+
+  return last;
+}
+
+exports.last = last;
+
 function collect(iterable, collector) {
   return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }
@@ -2594,26 +2761,26 @@ exports.collect = collect;
 
 function collectWith(iterable, supplier, accumulator, finisher) {
   var collected = supplier();
-  var _iteratorNormalCompletion22 = true;
-  var _didIteratorError22 = false;
-  var _iteratorError22 = undefined;
+  var _iteratorNormalCompletion26 = true;
+  var _didIteratorError26 = false;
+  var _iteratorError26 = undefined;
 
   try {
-    for (var _iterator22 = iterable[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
-      var _item20 = _step22.value;
-      accumulator(collected, _item20);
+    for (var _iterator26 = iterable[Symbol.iterator](), _step26; !(_iteratorNormalCompletion26 = (_step26 = _iterator26.next()).done); _iteratorNormalCompletion26 = true) {
+      var _item24 = _step26.value;
+      accumulator(collected, _item24);
     }
   } catch (err) {
-    _didIteratorError22 = true;
-    _iteratorError22 = err;
+    _didIteratorError26 = true;
+    _iteratorError26 = err;
   } finally {
     try {
-      if (!_iteratorNormalCompletion22 && _iterator22.return != null) {
-        _iterator22.return();
+      if (!_iteratorNormalCompletion26 && _iterator26.return != null) {
+        _iterator26.return();
       }
     } finally {
-      if (_didIteratorError22) {
-        throw _iteratorError22;
+      if (_didIteratorError26) {
+        throw _iteratorError26;
       }
     }
   }
@@ -2933,7 +3100,7 @@ function iterate(seed, next) {
 }
 
 exports.iterate = iterate;
-},{"./Collectors":2,"./Try":6,"comparators":10,"core-js/modules/es6.array.from":86,"core-js/modules/es6.array.sort":88,"core-js/modules/es6.set":91,"core-js/modules/es6.symbol":93,"core-js/modules/web.dom.iterable":94,"regenerator-runtime/runtime":95}],5:[function(require,module,exports){
+},{"./Collectors":2,"./TryFactory":6,"comparators":10,"core-js/modules/es6.array.from":87,"core-js/modules/es6.array.sort":89,"core-js/modules/es6.set":92,"core-js/modules/es6.symbol":94,"core-js/modules/web.dom.iterable":95,"regenerator-runtime/runtime":96}],5:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.string.repeat");
@@ -2986,7 +3153,7 @@ function createFactory() {
 exports.TypesafeStreamFactory = createFactory(false);
 exports.InplaceStreamFactory = createFactory(true);
 exports.stream = exports.InplaceStreamFactory.stream;
-},{"./InplaceStream":3,"./Methods":4,"./TypesafeStream":7,"core-js/modules/es6.string.repeat":92}],6:[function(require,module,exports){
+},{"./InplaceStream":3,"./Methods":4,"./TypesafeStream":7,"core-js/modules/es6.string.repeat":93}],6:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.object.set-prototype-of");
@@ -3324,7 +3491,7 @@ exports.TryFactory = {
     }
   }
 };
-},{"./StreamFactory":5,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93,"regenerator-runtime/runtime":95}],7:[function(require,module,exports){
+},{"./StreamFactory":5,"core-js/modules/es6.object.set-prototype-of":91,"core-js/modules/es6.symbol":94,"regenerator-runtime/runtime":96}],7:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.symbol");
@@ -3498,6 +3665,10 @@ function (_TypesafeStream) {
   _createClass(TryStreamImpl, [{
     key: "forEachResult",
     value: function forEachResult(success, error) {
+      if (error === undefined) {
+        error = console.error;
+      }
+
       return this.forEach(function (x) {
         return x.ifPresent(success, error);
       });
@@ -3578,7 +3749,7 @@ function (_TypesafeStream) {
 
   return TryStreamImpl;
 }(TypesafeStream);
-},{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":88,"core-js/modules/es6.object.set-prototype-of":90,"core-js/modules/es6.symbol":93}],8:[function(require,module,exports){
+},{"./AbstractStream":1,"./Methods":4,"core-js/modules/es6.array.sort":89,"core-js/modules/es6.object.set-prototype-of":91,"core-js/modules/es6.symbol":94}],8:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3597,8 +3768,8 @@ tslib_1.__exportStar(require("./Collectors"), exports);
 
 tslib_1.__exportStar(require("./StreamFactory"), exports);
 
-tslib_1.__exportStar(require("./Try"), exports);
-},{"./Collectors":2,"./Methods":4,"./StreamFactory":5,"./Try":6,"./monkeypatch":9,"tslib":96}],9:[function(require,module,exports){
+tslib_1.__exportStar(require("./TryFactory"), exports);
+},{"./Collectors":2,"./Methods":4,"./StreamFactory":5,"./TryFactory":6,"./monkeypatch":9,"tslib":97}],9:[function(require,module,exports){
 "use strict";
 
 require("core-js/modules/es6.map");
@@ -3615,7 +3786,12 @@ var Methods_1 = require("./Methods");
 
 function patch(type, getStream, wrapStream) {
   var name = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "stream";
-  Object.defineProperty(type.prototype, "stream", {
+
+  if (Object.hasOwnProperty.call(type.prototype, name)) {
+    return;
+  }
+
+  Object.defineProperty(type.prototype, name, {
     configurable: false,
     enumerable: false,
     writable: false,
@@ -3655,7 +3831,7 @@ function monkeyPatch() {
 
 exports.monkeyPatch = monkeyPatch;
 ;
-},{"./Methods":4,"./StreamFactory":5,"core-js/modules/es6.map":89,"core-js/modules/es6.set":91}],10:[function(require,module,exports){
+},{"./Methods":4,"./StreamFactory":5,"core-js/modules/es6.map":90,"core-js/modules/es6.set":92}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function natural(lhs, rhs) {
@@ -4942,6 +5118,22 @@ module.exports = require('./_core').getIteratorMethod = function (it) {
 
 },{"./_classof":19,"./_core":23,"./_iterators":49,"./_wks":83}],85:[function(require,module,exports){
 'use strict';
+// 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
+var $export = require('./_export');
+var $find = require('./_array-methods')(6);
+var KEY = 'findIndex';
+var forced = true;
+// Shouldn't skip holes
+if (KEY in []) Array(1)[KEY](function () { forced = false; });
+$export($export.P + $export.F * forced, 'Array', {
+  findIndex: function findIndex(callbackfn /* , that = undefined */) {
+    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+require('./_add-to-unscopables')(KEY);
+
+},{"./_add-to-unscopables":12,"./_array-methods":16,"./_export":31}],86:[function(require,module,exports){
+'use strict';
 // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 var $export = require('./_export');
 var $find = require('./_array-methods')(5);
@@ -4956,7 +5148,7 @@ $export($export.P + $export.F * forced, 'Array', {
 });
 require('./_add-to-unscopables')(KEY);
 
-},{"./_add-to-unscopables":12,"./_array-methods":16,"./_export":31}],86:[function(require,module,exports){
+},{"./_add-to-unscopables":12,"./_array-methods":16,"./_export":31}],87:[function(require,module,exports){
 'use strict';
 var ctx = require('./_ctx');
 var $export = require('./_export');
@@ -4995,7 +5187,7 @@ $export($export.S + $export.F * !require('./_iter-detect')(function (iter) { Arr
   }
 });
 
-},{"./_create-property":24,"./_ctx":25,"./_export":31,"./_is-array-iter":41,"./_iter-call":44,"./_iter-detect":47,"./_to-length":76,"./_to-object":77,"./core.get-iterator-method":84}],87:[function(require,module,exports){
+},{"./_create-property":24,"./_ctx":25,"./_export":31,"./_is-array-iter":41,"./_iter-call":44,"./_iter-detect":47,"./_to-length":76,"./_to-object":77,"./core.get-iterator-method":84}],88:[function(require,module,exports){
 'use strict';
 var addToUnscopables = require('./_add-to-unscopables');
 var step = require('./_iter-step');
@@ -5031,7 +5223,7 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
-},{"./_add-to-unscopables":12,"./_iter-define":46,"./_iter-step":48,"./_iterators":49,"./_to-iobject":75}],88:[function(require,module,exports){
+},{"./_add-to-unscopables":12,"./_iter-define":46,"./_iter-step":48,"./_iterators":49,"./_to-iobject":75}],89:[function(require,module,exports){
 'use strict';
 var $export = require('./_export');
 var aFunction = require('./_a-function');
@@ -5056,7 +5248,7 @@ $export($export.P + $export.F * (fails(function () {
   }
 });
 
-},{"./_a-function":11,"./_export":31,"./_fails":32,"./_strict-method":71,"./_to-object":77}],89:[function(require,module,exports){
+},{"./_a-function":11,"./_export":31,"./_fails":32,"./_strict-method":71,"./_to-object":77}],90:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 var validate = require('./_validate-collection');
@@ -5077,12 +5269,12 @@ module.exports = require('./_collection')(MAP, function (get) {
   }
 }, strong, true);
 
-},{"./_collection":22,"./_collection-strong":21,"./_validate-collection":80}],90:[function(require,module,exports){
+},{"./_collection":22,"./_collection-strong":21,"./_validate-collection":80}],91:[function(require,module,exports){
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = require('./_export');
 $export($export.S, 'Object', { setPrototypeOf: require('./_set-proto').set });
 
-},{"./_export":31,"./_set-proto":66}],91:[function(require,module,exports){
+},{"./_export":31,"./_set-proto":66}],92:[function(require,module,exports){
 'use strict';
 var strong = require('./_collection-strong');
 var validate = require('./_validate-collection');
@@ -5098,7 +5290,7 @@ module.exports = require('./_collection')(SET, function (get) {
   }
 }, strong);
 
-},{"./_collection":22,"./_collection-strong":21,"./_validate-collection":80}],92:[function(require,module,exports){
+},{"./_collection":22,"./_collection-strong":21,"./_validate-collection":80}],93:[function(require,module,exports){
 var $export = require('./_export');
 
 $export($export.P, 'String', {
@@ -5106,7 +5298,7 @@ $export($export.P, 'String', {
   repeat: require('./_string-repeat')
 });
 
-},{"./_export":31,"./_string-repeat":72}],93:[function(require,module,exports){
+},{"./_export":31,"./_string-repeat":72}],94:[function(require,module,exports){
 'use strict';
 // ECMAScript 6 symbols shim
 var global = require('./_global');
@@ -5342,7 +5534,7 @@ setToStringTag(Math, 'Math', true);
 // 24.3.3 JSON[@@toStringTag]
 setToStringTag(global.JSON, 'JSON', true);
 
-},{"./_an-object":14,"./_descriptors":27,"./_enum-keys":30,"./_export":31,"./_fails":32,"./_global":34,"./_has":35,"./_hide":36,"./_is-array":42,"./_is-object":43,"./_library":50,"./_meta":51,"./_object-create":52,"./_object-dp":53,"./_object-gopd":55,"./_object-gopn":57,"./_object-gopn-ext":56,"./_object-gops":58,"./_object-keys":61,"./_object-pie":62,"./_property-desc":63,"./_redefine":65,"./_set-to-string-tag":68,"./_shared":70,"./_to-iobject":75,"./_to-primitive":78,"./_uid":79,"./_wks":83,"./_wks-define":81,"./_wks-ext":82}],94:[function(require,module,exports){
+},{"./_an-object":14,"./_descriptors":27,"./_enum-keys":30,"./_export":31,"./_fails":32,"./_global":34,"./_has":35,"./_hide":36,"./_is-array":42,"./_is-object":43,"./_library":50,"./_meta":51,"./_object-create":52,"./_object-dp":53,"./_object-gopd":55,"./_object-gopn":57,"./_object-gopn-ext":56,"./_object-gops":58,"./_object-keys":61,"./_object-pie":62,"./_property-desc":63,"./_redefine":65,"./_set-to-string-tag":68,"./_shared":70,"./_to-iobject":75,"./_to-primitive":78,"./_uid":79,"./_wks":83,"./_wks-define":81,"./_wks-ext":82}],95:[function(require,module,exports){
 var $iterators = require('./es6.array.iterator');
 var getKeys = require('./_object-keys');
 var redefine = require('./_redefine');
@@ -5402,7 +5594,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
   }
 }
 
-},{"./_global":34,"./_hide":36,"./_iterators":49,"./_object-keys":61,"./_redefine":65,"./_wks":83,"./es6.array.iterator":87}],95:[function(require,module,exports){
+},{"./_global":34,"./_hide":36,"./_iterators":49,"./_object-keys":61,"./_redefine":65,"./_wks":83,"./es6.array.iterator":88}],96:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -6131,7 +6323,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
   (function() { return this })() || Function("return this")()
 );
 
-},{}],96:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 (function (global){
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.

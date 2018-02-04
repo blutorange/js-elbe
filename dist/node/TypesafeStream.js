@@ -76,6 +76,9 @@ exports.TypesafeStream = TypesafeStream;
 ;
 class TryStreamImpl extends TypesafeStream {
     forEachResult(success, error) {
+        if (error === undefined) {
+            error = console.error;
+        }
         return this.forEach(x => x.ifPresent(success, error));
     }
     include(predicate) {

@@ -1,5 +1,5 @@
 import { Comparator } from "comparators";
-import { Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
+import { BiPredicate, Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
 export declare function map<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<S>;
 export declare function flatMap<T, S>(iterable: Iterable<T>, mapper: Function<T, Iterable<S>>): Iterable<S>;
 export declare function chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction<T, number, K>): Iterable<T[]>;
@@ -9,6 +9,7 @@ export declare function zipSame<T>(iterable: Iterable<T>, others: Iterable<T>[])
 export declare function filter<T>(iterable: Iterable<T>, predicate: Predicate<T>): Iterable<T>;
 export declare function tryMap<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<Try<S>>;
 export declare function tryCompute<T, S>(iterable: Iterable<T>, operation: Function<Iterable<T>, S>): Try<S>;
+export declare function tryEnd<T>(iterable: Iterable<T>): Try<void>;
 export declare function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>): {
     false: T[];
     true: T[];
@@ -25,7 +26,8 @@ export declare function skip<T>(iterable: Iterable<T>, skip: number): Iterable<T
 export declare function reverse<T>(iterable: Iterable<T>): Iterable<T>;
 export declare function concat<T>(iterable: Iterable<T>, ...moreIterables: Iterable<T>[]): Iterable<T>;
 export declare function size(iterable: Iterable<any>): number;
-export declare function find<T>(iterable: Iterable<T>, predicate: Predicate<T>): T;
+export declare function find<T>(iterable: Iterable<T>, predicate: BiPredicate<T, number>): T;
+export declare function findIndex<T>(iterable: Iterable<T>, predicate: BiPredicate<T, number>): number;
 export declare function every<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
 export declare function some<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
 export declare function none<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
@@ -36,6 +38,9 @@ export declare function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<
 export declare function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): T;
 export declare function sum<T>(iterable: Iterable<T>, converter?: Function<T, number>): number;
 export declare function end<T>(iterable: Iterable<T>): void;
+export declare function nth<T>(iterable: Iterable<T>, n: number): T | undefined;
+export declare function first<T>(iterable: Iterable<T>): T | undefined;
+export declare function last<T>(iterable: Iterable<T>): T | undefined;
 export declare function collect<T, S, R = S>(iterable: Iterable<T>, collector: Collector<T, S, R>): R;
 export declare function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
 export declare function toArray<T>(iterable: Iterable<T>): T[];

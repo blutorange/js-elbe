@@ -95,6 +95,9 @@ export class InplaceStream extends AbstractStream<any> {
 
 class TryStreamImpl extends InplaceStream implements TryStream<any> {
     forEachResult(success: Consumer<any>, error?: Consumer<Error>): void {
+        if (error === undefined) {
+            error = console.error;
+        }
         return this.forEach(x => x.ifPresent(success, error));
     }
 

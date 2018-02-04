@@ -76,6 +76,9 @@ exports.InplaceStream = InplaceStream;
 ;
 class TryStreamImpl extends InplaceStream {
     forEachResult(success, error) {
+        if (error === undefined) {
+            error = console.error;
+        }
         return this.forEach(x => x.ifPresent(success, error));
     }
     include(predicate) {

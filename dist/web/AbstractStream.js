@@ -1,5 +1,7 @@
 "use strict";
 
+require("core-js/modules/es6.array.find-index");
+
 require("core-js/modules/es6.array.find");
 
 require("core-js/modules/web.dom.iterable");
@@ -19,8 +21,6 @@ Object.defineProperty(exports, "__esModule", {
 var comparators_1 = require("comparators");
 
 var Methods_1 = require("./Methods");
-
-var Try_1 = require("./Try");
 
 var AbstractStream =
 /*#__PURE__*/
@@ -78,6 +78,18 @@ function () {
       return Methods_1.find(this.iterable, predicate);
     }
   }, {
+    key: "findIndex",
+    value: function findIndex(predicate) {
+      this.check();
+      return Methods_1.findIndex(this.iterable, predicate);
+    }
+  }, {
+    key: "first",
+    value: function first() {
+      this.check();
+      return Methods_1.first(this.iterable);
+    }
+  }, {
     key: "forEach",
     value: function forEach(consumer) {
       this.check();
@@ -125,6 +137,18 @@ function () {
       var suffix = arguments.length > 2 ? arguments[2] : undefined;
       this.check();
       return Methods_1.join(this.iterable, delimiter, prefix, suffix);
+    }
+  }, {
+    key: "last",
+    value: function last() {
+      this.check();
+      return Methods_1.last(this.iterable);
+    }
+  }, {
+    key: "nth",
+    value: function nth(n) {
+      this.check();
+      return Methods_1.nth(this.iterable, n);
     }
   }, {
     key: "max",
@@ -213,11 +237,8 @@ function () {
   }, {
     key: "tryEnd",
     value: function tryEnd() {
-      var _this = this;
-
-      return Try_1.TryFactory.of(function () {
-        return _this.end();
-      });
+      this.check();
+      return Methods_1.tryEnd(this.iterable);
     }
   }]);
 

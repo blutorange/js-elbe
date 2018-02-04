@@ -169,6 +169,10 @@ function (_InplaceStream) {
   _createClass(TryStreamImpl, [{
     key: "forEachResult",
     value: function forEachResult(success, error) {
+      if (error === undefined) {
+        error = console.error;
+      }
+
       return this.forEach(function (x) {
         return x.ifPresent(success, error);
       });

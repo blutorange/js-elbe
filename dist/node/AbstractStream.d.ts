@@ -1,5 +1,5 @@
 import { Comparator } from "comparators";
-import { Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
+import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
 export declare abstract class AbstractStream<T> implements Stream<T> {
     protected iterable: Iterable<T>;
     private done;
@@ -27,11 +27,15 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
     end(): void;
     every(predicate: Predicate<T>): boolean;
-    find(predicate: Predicate<T>): T;
+    find(predicate: BiPredicate<T, number>): T | undefined;
+    findIndex(predicate: BiPredicate<T, number>): number;
+    first(): T | undefined;
     forEach(consumer: Consumer<T>): void;
     group<K>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
+    last(): T | undefined;
+    nth(n: number): T | undefined;
     max(comparator?: Comparator<T>): T;
     min(comparator?: Comparator<T>): T;
     partition(predicate: Predicate<T>): {

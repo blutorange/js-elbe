@@ -3,7 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const StreamFactory_1 = require("./StreamFactory");
 const Methods_1 = require("./Methods");
 function patch(type, getStream, wrapStream, name = "stream") {
-    Object.defineProperty(type.prototype, "stream", {
+    if (Object.hasOwnProperty.call(type.prototype, name)) {
+        return;
+    }
+    Object.defineProperty(type.prototype, name, {
         configurable: false,
         enumerable: false,
         writable: false,

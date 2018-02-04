@@ -67,6 +67,17 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A collector takes all items of a stream and incorporates them
+							into a single object. It does this by first creating an intermediate
+							container (eg. a Set), then processing all items (eg. adding them
+							to the Set), and finally converting the intermediate value to the
+						resulting value (eg. the size of the set).</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -112,9 +123,14 @@
 					<div class="tsd-signature tsd-kind-icon">accumulator<span class="tsd-signature-symbol">:</span> <a href="_interfaces_.biconsumer.html" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L71">Interfaces.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L90">Interfaces.ts:90</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Incorporates each item into the intermediate container.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="finisher" class="tsd-anchor"></a>
@@ -122,9 +138,14 @@
 					<div class="tsd-signature tsd-kind-icon">finisher<span class="tsd-signature-symbol">:</span> <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L73">Interfaces.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L98">Interfaces.ts:98</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Transform the intermediate container into the final result.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="supplier" class="tsd-anchor"></a>
@@ -132,9 +153,14 @@
 					<div class="tsd-signature tsd-kind-icon">supplier<span class="tsd-signature-symbol">:</span> <a href="_interfaces_.supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/Interfaces.ts#L72">Interfaces.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L94">Interfaces.ts:94</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Creates a new intermediate container.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -163,7 +189,7 @@
 						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_try_.html">"<wbr>Try"</a>
+						<a href="../modules/_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
@@ -183,6 +209,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_interfaces_.bipredicate.html" class="tsd-kind-icon">Bi<wbr>Predicate</a>
 					</li>
 				</ul>
 				<ul class="current">

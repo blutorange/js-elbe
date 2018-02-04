@@ -90,13 +90,30 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/monkeypatch.ts#L16">monkeypatch.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/monkeypatch.ts#L31">monkeypatch.ts:31</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Patches a few stream convenience methods to the prototype of objects:</p>
+									<ul>
+										<li>String.stream() Stream<string> Creates a stream over all characters.</li>
+										<li>Array.stream() Stream<T> Creates a stream over all items.</li>
+										<li>Set.stream() Stream<T> Creates a stream over all items.</li>
+										<li>Map.stream() Stream<K,V> Creates a stream over all key-value pairs.</li>
+										<li>Object.stream() Stream&lt;[string,T]&gt; Creates a stream over all key-value pairs.</li>
+										<li>Object.keys() Stream<string> Creates a stream over all keys.</li>
+										<li>Object.values() Stream<T> Creates a stream over all values.</li>
+									</ul>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> inplace: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Iff <code>true</code>, uses <a href="_streamfactory_.html#inplacestreamfactory">InplaceStreamFactory</a> or <a href="_streamfactory_.html#typesafestreamfactory">TypesafeStreamFactory</a> otherwise.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -113,9 +130,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/15aa791/monkeypatch.ts#L5">monkeypatch.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/monkeypatch.ts#L6">monkeypatch.ts:6</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>internal</dt>
+									<dd></dd>
+								</dl>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -215,7 +238,7 @@
 						<a href="_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_try_.html">"<wbr>Try"</a>
+						<a href="_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>

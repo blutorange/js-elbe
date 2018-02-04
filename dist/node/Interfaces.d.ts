@@ -22,6 +22,9 @@ export interface BiFunction<S, T, R> {
 export interface Predicate<T> {
     (object: T): boolean;
 }
+export interface BiPredicate<T, S> {
+    (arg1: T, arg2: S): boolean;
+}
 export interface BiConsumer<S, T> {
     (arg1: S, arg2: T): void;
 }
@@ -77,7 +80,9 @@ export interface Stream<T> {
     cycle(count?: number): this;
     end(): void;
     every(predicate: Predicate<T>): boolean;
-    find(predicate: Predicate<T>): T;
+    find(predicate: BiPredicate<T, number>): T | undefined;
+    findIndex(predicate: BiPredicate<T, number>): number;
+    first(): T | undefined;
     flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
     filter(predicate: Predicate<T>): this;
     forEach(consumer: Consumer<T>): void;
@@ -85,10 +90,12 @@ export interface Stream<T> {
     has(object: T): boolean;
     index(): Stream<[number, T]>;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
+    last(): T | undefined;
     limit(limitTo: number): this;
     map<S>(mapper: Function<T, S>): Stream<S>;
     max(comparator: Comparator<T>): T;
     min(comparator: Comparator<T>): T;
+    nth(n: number): T | undefined;
     partition(predicate: Predicate<T>): {
         false: T[];
         true: T[];
@@ -121,7 +128,7 @@ export interface TryStream<T> extends Stream<Try<T>> {
     convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): TryStream<S>;
     orElse(backup: T): Stream<T>;
     onError(handler: Consumer<Error>): this;
-    onSuccess(success: Consumer<T>, error: Consumer<Error>): this;
+    onSuccess(success: Consumer<T>, error?: Consumer<Error>): this;
     orThrow(): Stream<T>;
     orTry(backup: Function<Error, T>): this;
 }
