@@ -90,6 +90,14 @@ function (_AbstractStream_1$Abs) {
       return this;
     }
   }, {
+    key: "promise",
+    value: function promise(promiseConverter) {
+      this.check();
+      return Methods_1.promise(this.iterable, promiseConverter).then(function (iterable) {
+        return new InplaceStream(iterable);
+      });
+    }
+  }, {
     key: "visit",
     value: function visit(consumer) {
       this.iterable = Methods_1.visit(this.iterable, consumer);
@@ -127,8 +135,14 @@ function (_AbstractStream_1$Abs) {
     }
   }, {
     key: "unique",
-    value: function unique(keyExtractor) {
-      this.iterable = Methods_1.unique(this.iterable, keyExtractor);
+    value: function unique(comparator) {
+      this.iterable = Methods_1.unique(this.iterable, comparator);
+      return this;
+    }
+  }, {
+    key: "uniqueBy",
+    value: function uniqueBy(keyExtractor) {
+      this.iterable = Methods_1.uniqueBy(this.iterable, keyExtractor);
       return this;
     }
   }, {

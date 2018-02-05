@@ -148,7 +148,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#limit" class="tsd-kind-icon">limit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_interfaces_.trystream.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#maxby" class="tsd-kind-icon">max<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#minby" class="tsd-kind-icon">min<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#nth" class="tsd-kind-icon">nth</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_interfaces_.trystream.html#onerror" class="tsd-kind-icon">on<wbr>Error</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_interfaces_.trystream.html#onsuccess" class="tsd-kind-icon">on<wbr>Success</a></li>
@@ -156,6 +158,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_interfaces_.trystream.html#orthrow" class="tsd-kind-icon">or<wbr>Throw</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_interfaces_.trystream.html#ortry" class="tsd-kind-icon">or<wbr>Try</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#partition" class="tsd-kind-icon">partition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_interfaces_.trystream.html#promise" class="tsd-kind-icon">promise</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_interfaces_.trystream.html#reduce" class="tsd-kind-icon">reduce</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#reverse" class="tsd-kind-icon">reverse</a></li>
@@ -172,6 +175,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_interfaces_.trystream.html#trycompute" class="tsd-kind-icon">try<wbr>Compute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#tryend" class="tsd-kind-icon">try<wbr>End</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#unique" class="tsd-kind-icon">unique</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#visit" class="tsd-kind-icon">visit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited"><a href="_interfaces_.trystream.html#zip" class="tsd-kind-icon">zip</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="_interfaces_.trystream.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a></li>
@@ -193,7 +197,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L502">Interfaces.ts:502</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L550">Interfaces.ts:550</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -211,16 +215,16 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#chunk">chunk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L514">Interfaces.ts:514</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L564">Interfaces.ts:564</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Chunks together consecutive items for which the classifier
 									returns the same value. Equality is checked with <code>===</code>.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]).chunk(<span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> <span class="hljs-built_in">Math</span>.floor((i<span class="hljs-number">-1</span>) / <span class="hljs-number">3</span>)) <span class="hljs-comment">// =&gt; Stream[ [1,2,3], [4,5,6], [1,2] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]).chunk(<span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> <span class="hljs-built_in">Math</span>.floor((i<span class="hljs-number">-1</span>) / <span class="hljs-number">3</span>)) <span class="hljs-comment">// =&gt; Stream[ [1,2,3], [4,5,6], [1,2] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -256,15 +260,15 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#collect">collect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L526">Interfaces.ts:526</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L578">Interfaces.ts:578</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an object and incorporates all items into that object.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(Collectors.summarize) <span class="hljs-comment">// =&gt; Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(Collectors.summarize) <span class="hljs-comment">// =&gt; Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -306,16 +310,16 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#collectwith">collectWith</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L541">Interfaces.ts:541</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L595">Interfaces.ts:595</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Same as {@link #collect}, but allows specifying the parts of
 									the collector individually.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> [], (array, x) =&gt; array.push(x), x =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(x)) <span class="hljs-comment">// =&gt; Set[1,2,3]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> [], (array, x) =&gt; array.push(x), x =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(x)) <span class="hljs-comment">// =&gt; Set[1,2,3]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -366,15 +370,15 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#concat">concat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L551">Interfaces.ts:551</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L607">Interfaces.ts:607</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Concatenates given all iterables into one iterable of all the items.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).concat(<span class="hljs-string">"bar"</span>, <span class="hljs-string">"baz"</span>) <span class="hljs-comment">// =&gt; Stream["f", "o", "o", "b", "a", "r", "b", "a", "z"]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).concat(<span class="hljs-string">"bar"</span>, <span class="hljs-string">"baz"</span>) <span class="hljs-comment">// =&gt; Stream["f", "o", "o", "b", "a", "r", "b", "a", "z"]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -397,7 +401,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1093">Interfaces.ts:1093</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1310">Interfaces.ts:1310</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -405,10 +409,10 @@
 									<p>Computes a new value from each successful value or error.
 										If the operation or backup function throws an error, or if
 									no backup is provided, the <a href="_interfaces_.try.html">Try</a> is not successful.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span>*x)
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span>*x)
 <span class="hljs-comment">// Stream[ Try[value=1], Try[value=2], Try[error="invalidJSON"] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -450,16 +454,16 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#cycle">cycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L562">Interfaces.ts:562</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L620">Interfaces.ts:620</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Cycles over the elements of the iterable the given number of times.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).cycle(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,1,2,3,1,2,3]</span>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).cycle(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,1,2,3,1,2,3]</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).cycle().limit(<span class="hljs-number">5</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,1,2]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -485,18 +489,18 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1036">Interfaces.ts:1036</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1245">Interfaces.ts:1245</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Passes all errors to the given handler and removes
 									them from the stream.</p>
-									<pre><code class="lang-javascript">stream(...).try(<span class="hljs-built_in">JSON</span>.parse).discardError().toArray()
+								</div>
+								<pre><code class="lang-javascript">stream(...).try(<span class="hljs-built_in">JSON</span>.parse).discardError().toArray()
 <span class="hljs-comment">// =&gt; [json1, json2, ...]</span>
 <span class="hljs-comment">// prints all errors encountered during parsing</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -523,16 +527,16 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#end">end</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L571">Interfaces.ts:571</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L631">Interfaces.ts:631</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Applies all pending operations, ending this stream.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log) <span class="hljs-comment">// Stream[1,2,3]; prints nothing</span>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log) <span class="hljs-comment">// Stream[1,2,3]; prints nothing</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log).end() <span class="hljs-comment">// prints 1,2,3</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -549,15 +553,15 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#every">every</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L581">Interfaces.ts:581</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L643">Interfaces.ts:643</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Determines whether every items matches the given predicate.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).every(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; false</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).every(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; false</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -584,16 +588,16 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#filter">filter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L640">Interfaces.ts:640</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L712">Interfaces.ts:712</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Removes all elements from the iterable for which the
 									predicate does not return <code>true</code>.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">-4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">-9</span>]).filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[4,2]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">-4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">-9</span>]).filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[4,2]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -620,15 +624,15 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L591">Interfaces.ts:591</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L655">Interfaces.ts:655</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Searches for the first occurence of an item matching the predicate.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar,"</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; "</span>foo1<span class="hljs-string">"</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar,"</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; "</span>foo1<span class="hljs-string">"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -658,16 +662,16 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#findindex">findIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L602">Interfaces.ts:602</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L668">Interfaces.ts:668</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Searches for the first occurence of an item matching the predicate,
 									and returns the index, or <code>-1</code> otherwise.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar, "</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; 0</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar, "</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; 0</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -694,16 +698,16 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L612">Interfaces.ts:612</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L680">Interfaces.ts:680</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the first item.</p>
-									<pre><code class="lang-javascript">first(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "f"</span>
+								</div>
+								<pre><code class="lang-javascript">first(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "f"</span>
 first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
 								<span class="tsd-signature-symbol"> | </span>
@@ -723,7 +727,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1078">Interfaces.ts:1078</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1293">Interfaces.ts:1293</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -733,10 +737,10 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 										no backup is provided, the <a href="_interfaces_.try.html">Try</a> is not successful.
 										Similar to {@link #flatConvert}, but the operation and
 									backup handlers return a <a href="_interfaces_.try.html">Try</a> directly.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"\"1\""</span>, <span class="hljs-string">"\"1.5\""</span>]).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(x)))
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"\"1\""</span>, <span class="hljs-string">"\"1.5\""</span>]).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(x)))
 <span class="hljs-comment">// Stream[ Try[value=1], Try[error="not an int" ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -778,21 +782,21 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L629">Interfaces.ts:629</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L699">Interfaces.ts:699</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Applies the mapping function to each item and return a stream
 										over all the mapped iterables.
-										This is equivalent to `concat(map(mapper))``.
-										```javascript
-										stream([&quot;foo&quot;,&quot;bar&quot;]).flatMap(x =&gt; x)
-									// =&gt; Stream[&quot;f&quot;, &quot;o&quot;, &quot;o&quot;, &quot;b&quot;, &quot;a&quot;, &quot;r&quot;]</p>
+									This is equivalent to `concat(map(mapper))``.</p>
 								</div>
-								<p>stream([&quot;[1]&quot;,&quot;[2,3]&quot;,&quot;[4,]&quot;]).try(JSON.parse).flatMap(x=&gt;x.stream())
-									// =&gt; Stream[ [1], [2, 3] ]
-								```</p>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"bar"</span>]).flatMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x)
+<span class="hljs-comment">// =&gt; Stream["f", "o", "o", "b", "a", "r"]</span>
+
+stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"</span>,<span class="hljs-string">"[4,]"</span>]).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x.stream())
+<span class="hljs-comment">// =&gt; Stream[ [1], [2, 3] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -828,15 +832,15 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L649">Interfaces.ts:649</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L723">Interfaces.ts:723</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Passes each item of this stream to the given consumer.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).forEach(<span class="hljs-built_in">console</span>.log); <span class="hljs-comment">// prints 1,2,3</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).forEach(<span class="hljs-built_in">console</span>.log); <span class="hljs-comment">// prints 1,2,3</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -861,18 +865,18 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1049">Interfaces.ts:1049</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1260">Interfaces.ts:1260</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Passes each successful value or error to the given handler.</p>
-									<pre><code class="lang-javascript">stream(...).try(<span class="hljs-built_in">JSON</span>.parse).forEachResult(
+								</div>
+								<pre><code class="lang-javascript">stream(...).try(<span class="hljs-built_in">JSON</span>.parse).forEachResult(
   <span class="hljs-function"><span class="hljs-params">json</span> =&gt;</span> { process(...) },
   error =&gt; <span class="hljs-built_in">console</span>.error(error)
 )
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -904,16 +908,16 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#group">group</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L661">Interfaces.ts:661</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L737">Interfaces.ts:737</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Splits the items into several groups, according to the given
 									classifier.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>]).group(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length) <span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>]).group(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length) <span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
+</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>typearam</dt>
 									<dd><p>K Type of the group key.</p>
@@ -951,7 +955,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L672">Interfaces.ts:672</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L750">Interfaces.ts:750</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -959,9 +963,9 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 									<p>Determines whether thsi stream contains the given item.
 										Equivalence is checked with <code>===</code>. This is
 									equivalent to <code>``stream(...).some(x =&gt; x === object)</code>.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).has(<span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; true</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).has(<span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -984,17 +988,17 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1061">Interfaces.ts:1061</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1274">Interfaces.ts:1274</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Applies the given test to the successful values and
 									produces an error for those that do not match.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).include(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-number">2</span>)
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).include(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-number">2</span>)
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[error="does not match"], Try[error="invalid JSON"] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1021,15 +1025,15 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#index">index</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L681">Interfaces.ts:681</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L761">Interfaces.ts:761</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds the index to each element of this stream. The index starts at 0.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).index() <span class="hljs-comment">// =&gt; Stream&lt;[ [0, "foo"], [1, "bar"] ]&gt;</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).index() <span class="hljs-comment">// =&gt; Stream&lt;[ [0, "foo"], [1, "bar"] ]&gt;</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with each item being an array consisting of the item&#39;s index and the item itself. The index starts at 0.</p>
@@ -1047,16 +1051,16 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L694">Interfaces.ts:694</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L776">Interfaces.ts:776</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Joins every time with the given delimiter, optionally prepending a
 									prefix and appending a suffix to the output.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).join(<span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>) <span class="hljs-comment">// =&gt; "[1,2,3]"</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).join(<span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>) <span class="hljs-comment">// =&gt; "[1,2,3]"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1095,16 +1099,16 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L704">Interfaces.ts:704</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L788">Interfaces.ts:788</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the last item.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).last() <span class="hljs-comment">// =&gt; "o"</span>
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).last() <span class="hljs-comment">// =&gt; "o"</span>
 stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
 								<span class="tsd-signature-symbol"> | </span>
@@ -1125,15 +1129,15 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#limit">limit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L714">Interfaces.ts:714</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L800">Interfaces.ts:800</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Limits the stream to at most the given number of elements.</p>
-									<pre><code class="lang-javascript"> stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).limit(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript"> stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).limit(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1157,15 +1161,15 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L725">Interfaces.ts:725</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L813">Interfaces.ts:813</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Transform each element to another element of a possibly different type.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span> * x) <span class="hljs-comment">// =&gt; Stream[0,2,4,6]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span> * x) <span class="hljs-comment">// =&gt; Stream[0,2,4,6]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1194,24 +1198,24 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 					<a name="max" class="tsd-anchor"></a>
 					<h3>max</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#max">max</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L737">Interfaces.ts:737</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L827">Interfaces.ts:827</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes the maxmimum of the items.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]).max() <span class="hljs-comment">// =&gt; 9</span>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">6</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]).max() <span class="hljs-comment">// =&gt; 9</span>
 stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>]).max(Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "foo"</span>
 stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1222,8 +1226,50 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 							<p>The largest item. If there are multiple largest items, returns the first. <code>undefined</code> iff this stream is empty.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="maxby" class="tsd-anchor"></a>
+					<h3>max<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">max<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#maxby">maxBy</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L840">Interfaces.ts:840</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Computes the maximum of the items, as determined by the given sort key.</p>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>]).maxBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length)
+<span class="hljs-comment">// =&gt; "gg"</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sortKey: <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes an item and produces the key by which the maximum is determined.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
 				</section>
@@ -1231,24 +1277,24 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="min" class="tsd-anchor"></a>
 					<h3>min</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#min">min</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L749">Interfaces.ts:749</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L854">Interfaces.ts:854</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes the minimum of the items.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]).min() <span class="hljs-comment">// =&gt; 9</span>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]).min() <span class="hljs-comment">// =&gt; 9</span>
 stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>].min(Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "I"</span>
 stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1259,8 +1305,50 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 							<p>The smallest item. If there are multiple smallest items, returns the first.  <code>undefined</code> iff this stream is empty.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="minby" class="tsd-anchor"></a>
+					<h3>min<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">min<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#minby">minBy</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L867">Interfaces.ts:867</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Computes the minimum of the items, as determined by the given sort key.</p>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>]).minBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length)
+<span class="hljs-comment">// =&gt; "gg"</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sortKey: <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes an item and produces the key by which the minimum is determined.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
 				</section>
@@ -1275,17 +1363,17 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#nth">nth</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L761">Interfaces.ts:761</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L881">Interfaces.ts:881</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the items at the n-th position.
-										```javascript
-									stream(&quot;foo&quot;).nth(1) // =&gt; &quot;f&quot;</p>
+									<p>Returns the items at the n-th position.</p>
 								</div>
-								<p>stream(&quot;foo&quot;).nth(3) // =&gt; undefined
-								```</p>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">1</span>) <span class="hljs-comment">// =&gt; "f"</span>
+
+stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; undefined</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1314,17 +1402,17 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1118">Interfaces.ts:1118</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1339">Interfaces.ts:1339</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the given error handler for all errors.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.warn).end()
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.warn).end()
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[value=2], Try[error="invalid JSON"] ]</span>
 <span class="hljs-comment">// Warns about errors once the stream is consumed.</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1347,18 +1435,18 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1132">Interfaces.ts:1132</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1355">Interfaces.ts:1355</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the given success handler for all successful
 									values and the given error handler, if present, for all errors.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).onSuccess(<span class="hljs-built_in">console</span>.info, <span class="hljs-built_in">console</span>.warn)
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).onSuccess(<span class="hljs-built_in">console</span>.info, <span class="hljs-built_in">console</span>.warn)
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[value=2], Try[error="invalid JSON"] ]</span>
 <span class="hljs-comment">// Informs about success and warns about errors once the stream is consumed.</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1390,17 +1478,17 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1105">Interfaces.ts:1105</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1324">Interfaces.ts:1324</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns a stream with each items being either the successful value
 									of the <a href="_interfaces_.try.html">Try</a> or the given backup value.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orElse(<span class="hljs-literal">undefined</span>)
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orElse(<span class="hljs-literal">undefined</span>)
 <span class="hljs-comment">// Stream[1,2,undefined]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1426,7 +1514,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1144">Interfaces.ts:1144</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1369">Interfaces.ts:1369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1434,10 +1522,10 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 									<p>Throws iff any <a href="_interfaces_.try.html">Try</a> is not successful. Otherwise
 										unwraps all tries and returns a stream with the contained
 									successful values.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orThrow().toArray()
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orThrow().toArray()
 <span class="hljs-comment">// throws Error("invalid JSON")</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with the successful values.</p>
@@ -1454,7 +1542,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1158">Interfaces.ts:1158</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1385">Interfaces.ts:1385</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1463,10 +1551,10 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 										a value of the same type as the succesful value of this
 										try-stream. If the handler throws, the resulting <a href="_interfaces_.try.html">Try</a>
 									is not successful.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"https://..."</span>, <span class="hljs-string">"https://..."</span>]).try(GetSync).orTry(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.status)
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"https://..."</span>, <span class="hljs-string">"https://..."</span>]).try(GetSync).orTry(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.status)
 <span class="hljs-comment">// Stream[ Try[value="response"], Try[value="Not found"] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1493,16 +1581,16 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#partition">partition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L772">Interfaces.ts:772</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L894">Interfaces.ts:894</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Splits the items into two groups according to the given
 									discriminator.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>]).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>]).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1524,6 +1612,62 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
+					<a name="promise" class="tsd-anchor"></a>
+					<h3>promise</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">promise&lt;S&gt;<span class="tsd-signature-symbol">(</span>promiseConverter<span class="tsd-signature-symbol">: </span><a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#promise">promise</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L916">Interfaces.ts:916</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts each item to a promise and returns a promise
+										that is resolved with a stream of results when all
+										of the created Promises resolve, or rejected when any
+									Promise is rejected.</p>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])
+  .promise(<span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> fetch(<span class="hljs-string">`/user/<span class="hljs-subst">${id}</span>`</span>))
+  .then(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.forEach(renderUser))
+  .catch(<span class="hljs-built_in">console</span>.error)
+<span class="hljs-comment">// Calls the renderUser method with the Response for each user request.</span>
+</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>typeparam</dt>
+									<dd><p>Type of the elements in the given iterable.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>S</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the item of the promises.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>promiseConverter: <a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes each item and creates a promise.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves when all promises resolve; or is rejected when any promise is rejected.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
 					<a name="reduce" class="tsd-anchor"></a>
 					<h3>reduce</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
@@ -1534,15 +1678,15 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#reduce">reduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L784">Interfaces.ts:784</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L930">Interfaces.ts:930</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Coalesces all items into one value.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduce(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x, <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; 16</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduce(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x, <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; 16</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1584,16 +1728,16 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#reducesame">reduceSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L795">Interfaces.ts:795</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L943">Interfaces.ts:943</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Similar to <a href="_interfaces_.trystream.html#reducesame">reduceSame</a>, but reduces to items of the same type
 									as the items and thus does not require an explicit initial value.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduceSame(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x) <span class="hljs-comment">// =&gt; 6</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduceSame(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x) <span class="hljs-comment">// =&gt; 6</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1620,16 +1764,16 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#reverse">reverse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L805">Interfaces.ts:805</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L955">Interfaces.ts:955</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Reverses the order of the items. Note that the items
 									need to be saved temporarily.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reverse() <span class="hljs-comment">// =&gt; Stream[3,2,1]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reverse() <span class="hljs-comment">// =&gt; Stream[3,2,1]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 							<p>A stream with the items in reversed order.</p>
@@ -1647,15 +1791,15 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L814">Interfaces.ts:814</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L966">Interfaces.ts:966</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Counts the items.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).count() <span class="hljs-comment">// =&gt; 3</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).count() <span class="hljs-comment">// =&gt; 3</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>The number of items in this stream.</p>
@@ -1673,15 +1817,15 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#skip">skip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L824">Interfaces.ts:824</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L978">Interfaces.ts:978</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Discards the given number of items from this stream.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).skip(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[4,5,6]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).skip(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[4,5,6]</span>
+</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
 									<dd><p><a href="_interfaces_.trystream.html#limit">limit</a></p>
@@ -1710,15 +1854,15 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#slice">slice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L834">Interfaces.ts:834</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L990">Interfaces.ts:990</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Slices the items into chunks of sliceSize.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]).slice(<span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; Stream[ [1,2], [3,4], [5] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]).slice(<span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; Stream[ [1,2], [3,4], [5] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1745,15 +1889,15 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#some">some</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L844">Interfaces.ts:844</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1002">Interfaces.ts:1002</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Determines whether at least one items matches the given predicate.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; true</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1780,17 +1924,17 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#sort">sort</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L856">Interfaces.ts:856</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1016">Interfaces.ts:1016</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sorts the items. Consider converting the stream to an array and sorting
 									this array if you do not need a stream for further operations.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"bar"</span>).sor(Comparators.byField(<span class="hljs-string">"length"</span>)]
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"bar"</span>).sor(Comparators.byField(<span class="hljs-string">"length"</span>)]
 <span class="hljs-comment">// =&gt; Stream["a", "bar", "foobar"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1817,16 +1961,16 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#sum">sum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L867">Interfaces.ts:867</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1029">Interfaces.ts:1029</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sums all items arithmetically.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).sum() <span class="hljs-comment">// =&gt; 6</span>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).sum() <span class="hljs-comment">// =&gt; 6</span>
 stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>, <span class="hljs-string">"Borg"</span>]).sum(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length) <span class="hljs-comment">// =&gt; 7</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1843,24 +1987,35 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="toarray" class="tsd-anchor"></a>
 					<h3>to<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L919">Interfaces.ts:919</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1092">Interfaces.ts:1092</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an array with the items of this stream.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toArray()
+									<p>Creates an array with the items of this stream.
+										If the underlying iterable is an array, returns that
+									array instead of creating a new array.</p>
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toArray()
 <span class="hljs-comment">// =&gt; ["f", "o", "o", "b", "a", "r"]</span>
 </code></pre>
-								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Iff true, always creates a new array. Otherise, reuses existing array when possible.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 							<p>An array with the items.</p>
 						</li>
@@ -1877,16 +2032,16 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#tomap">toMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L943">Interfaces.ts:943</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1123">Interfaces.ts:1123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a map from the items of this stream.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).toMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x, x =&gt; x.length)
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).toMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x, x =&gt; x.length)
 <span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 3 ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1927,24 +2082,35 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="toset" class="tsd-anchor"></a>
 					<h3>to<wbr>Set</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Set<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#toset">toSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L929">Interfaces.ts:929</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1107">Interfaces.ts:1107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a set with the items of this stream.</p>
-									<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toSet()
+									<p>Creates a set with the items of this stream.
+										If the underlying iterable is a set, returns that
+									set instead of creating a new set.</p>
+								</div>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toSet()
 <span class="hljs-comment">// =&gt; Set["f", "o", "b", "a", "r"]</span>
 </code></pre>
-								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Iff true, always creates a new set. Otherwise, reuses existing set when possible.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A set with the items.</p>
 						</li>
@@ -1961,20 +2127,20 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#try">try</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L883">Interfaces.ts:883</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1047">Interfaces.ts:1047</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Maps each item to the result of the given operation,
 									wrapped in a <a href="_interfaces_.try.html">Try</a> for error handling.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-string">"1"</span>,<span class="hljs-string">"7"</span>,<span class="hljs-string">"7a"</span>])
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"1"</span>,<span class="hljs-string">"7"</span>,<span class="hljs-string">"7a"</span>])
   .try(SON.parse)
   .discardError(<span class="hljs-built_in">console</span>.error)
   .toArray();
 <span class="hljs-comment">// =&gt; ["success", "success", "error"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2010,7 +2176,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#trycompute">tryCompute</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L898">Interfaces.ts:898</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1064">Interfaces.ts:1064</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2019,10 +2185,10 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 										wrapped in a <a href="_interfaces_.try.html">Try</a> in case the operation throws an error.
 										Usually used for performing a terminal operation with error handling
 									on the stream.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).tryCompute(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.sum(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()}))
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).tryCompute(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.sum(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()}))
 <span class="hljs-comment">// =&gt; Try[success=false]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2058,17 +2224,17 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#tryend">tryEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L909">Interfaces.ts:909</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1077">Interfaces.ts:1077</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Same as {@link #end}, but encapsulates any errors thrown. Applies
 									all pending operation to the pipeline.</p>
-									<pre><code class="lang-javascript"><span class="hljs-comment">// prints 1,2,3</span>
+								</div>
+								<pre><code class="lang-javascript"><span class="hljs-comment">// prints 1,2,3</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log).tryEnd()
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The encapsulated error, if any was thrown.</p>
@@ -2079,27 +2245,69 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 					<a name="unique" class="tsd-anchor"></a>
 					<h3>unique</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">unique<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">?: </span><a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">unique<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#unique">unique</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L958">Interfaces.ts:958</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1142">Interfaces.ts:1142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Similar to {@link #distinct}, but allows for a custom key to
-										be specified, according to which uniqueness is determined.
-										```javascript
-										stream([4,1,3,4,1,3,1,9]).distinct()
-									// =&gt; Stream[4,1,3,9]</p>
+									<p>Filters all elements that are considered equal according to
+										the given comparator. If two items are equal, the first one
+										is included in the resulting stream. Consider using
+									{@link #uniqueBy} if possible for better performance.</p>
 								</div>
-								<p>stream({id:4},{id:2},{id:4]}, customer =&gt; customer.id).distinct()
-									// =&gt; Stream[ {id:4}, {id:2} ]
-								```</p>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>]).unique()
+<span class="hljs-comment">// =&gt; Stream[4,1,3,9]</span>
+
+stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}).unique(<span class="hljs-function">(<span class="hljs-params">x,y</span>) =&gt;</span> x.id - y.id)
+<span class="hljs-comment">// =&gt; Stream[ {id:4}, {id:2} ]</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes two items and returns 0 if they are equal. Defaults to taking determining equality by <code>===</code>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>A stream with all duplicates removed.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="uniqueby" class="tsd-anchor"></a>
+					<h3>unique<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">unique<wbr>By<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">?: </span><a href="_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="_interfaces_.try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#uniqueby">uniqueBy</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1159">Interfaces.ts:1159</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Similar to {@link #unique}, but allows for a custom key to
+									be specified, according to which uniqueness is determined.</p>
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>]).distinct()
+<span class="hljs-comment">// =&gt; Stream[4,1,3,9]</span>
+
+stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}, customer =&gt; customer.id).distinct()
+<span class="hljs-comment">// =&gt; Stream[ {id:4}, {id:2} ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2126,18 +2334,18 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#visit">visit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L971">Interfaces.ts:971</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1174">Interfaces.ts:1174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the given consumer once for each item. Note that the consumer is
 									not called before the stream is consumed by some terminal operation.</p>
-									<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log)
+								</div>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log)
 <span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
 <span class="hljs-comment">// prints `1,2,3` once the stream is consumed.</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2164,7 +2372,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#zip">zip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L988">Interfaces.ts:988</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1193">Interfaces.ts:1193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2172,14 +2380,14 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 									<p>Produces a stream over tuples of consisting of an item of the given iterable;
 										and the corresponding item of the other iterable.
 										If one of the iterables is longer, the shorter one is
-										appended with <code>undefined</code>.
-										```javascript
-										stream([&quot;foo&quot;, &quot;bar&quot;].zip([3, 4])
-									// =&gt; Stream[ [&quot;foo&quot;,3], [&quot;bar&quot;, 4] ]</p>
+									appended with <code>undefined</code>.</p>
 								</div>
-								<p>stream([&quot;foo&quot;, &quot;bar&quot;]).zip([3, 4]).toMap(x=&gt;x[0], x=&gt;x[1])
-									// =&gt; Map[ &quot;foo&quot; =&gt; 3, &quot;bar&quot; =&gt; 4] ]
-								```</p>
+								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>].zip([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// =&gt; Stream[ ["foo",3], ["bar", 4] ]</span>
+
+stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).zip([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]).toMap(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x[<span class="hljs-number">0</span>], x=&gt;x[<span class="hljs-number">1</span>])
+<span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 4] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2212,7 +2420,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_interfaces_.stream.html">Stream</a>.<a href="_interfaces_.stream.html#zipsame">zipSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L1008">Interfaces.ts:1008</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L1215">Interfaces.ts:1215</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2220,16 +2428,17 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 									<p>Produces a stream over tuples of consisting of an item of this stream and
 										the corresponding items of the other iterables.
 										If any of the iterables has a different length than the others,
-										the shorter ones appended with <code>undefined</code> to the length of the longest.
-										```javascript
-										stream(&quot;ab&quot;).zipSame([&quot;cd&quot;, &quot;ef&quot;])
-									// =&gt; Iterable[ [&quot;a&quot;,&quot;c&quot;, &quot;d&quot;], [&quot;b&quot;, &quot;d&quot;, &quot;f&quot;] ]</p>
+									the shorter ones appended with <code>undefined</code> to the length of the longest.</p>
 								</div>
-								<p>stream(&quot;abc&quot;).zipSame([&quot;d&quot;, &quot;ef&quot;])
-								// =&gt; Iterable[ [&quot;a&quot;,&quot;d&quot;, &quot;e&quot;], [&quot;b&quot;, undefined, &quot;f&quot;], [&quot;c&quot;, undefined, undefined] ]</p>
-								<p>stream(&quot;fb&quot;).zipSame([&quot;oa&quot;,&quot;or&quot;]).map(x=&gt;x.map(String).join(&quot;&quot;)).join(&quot;&quot;).toArray()
-									// =&gt; &quot;foobar&quot;
-								```</p>
+								<pre><code class="lang-javascript">stream(<span class="hljs-string">"ab"</span>).zipSame([<span class="hljs-string">"cd"</span>, <span class="hljs-string">"ef"</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["a","c", "d"], ["b", "d", "f"] ]</span>
+
+stream(<span class="hljs-string">"abc"</span>).zipSame([<span class="hljs-string">"d"</span>, <span class="hljs-string">"ef"</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["a","d", "e"], ["b", undefined, "f"], ["c", undefined, undefined] ]</span>
+
+stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string">"oa"</span>,<span class="hljs-string">"or"</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x.map(<span class="hljs-built_in">String</span>).join(<span class="hljs-string">""</span>)).join(<span class="hljs-string">""</span>).toArray()
+<span class="hljs-comment">// =&gt; "foobar"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2413,7 +2622,13 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								<a href="_interfaces_.trystream.html#max" class="tsd-kind-icon">max</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_interfaces_.trystream.html#maxby" class="tsd-kind-icon">max<wbr>By</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#min" class="tsd-kind-icon">min</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_interfaces_.trystream.html#minby" class="tsd-kind-icon">min<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#nth" class="tsd-kind-icon">nth</a>
@@ -2435,6 +2650,9 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#partition" class="tsd-kind-icon">partition</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
+								<a href="_interfaces_.trystream.html#promise" class="tsd-kind-icon">promise</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#reduce" class="tsd-kind-icon">reduce</a>
@@ -2483,6 +2701,9 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#unique" class="tsd-kind-icon">unique</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="_interfaces_.trystream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="_interfaces_.trystream.html#visit" class="tsd-kind-icon">visit</a>

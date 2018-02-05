@@ -35,9 +35,10 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.map(this.iterable, mapper));
     }
-    visit(consumer) {
+    promise(promiseConverter) {
         this.check();
-        return new this.constructor(Methods_1.visit(this.iterable, consumer));
+        return Methods_1.promise(this.iterable, promiseConverter)
+            .then(iterable => new TypesafeStream(iterable));
     }
     reverse() {
         this.check();
@@ -59,9 +60,17 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TryStreamImpl(Methods_1.tryMap(this.iterable, operation));
     }
-    unique(keyExtractor) {
+    unique(comparator) {
         this.check();
-        return new this.constructor(Methods_1.unique(this.iterable, keyExtractor));
+        return new this.constructor(Methods_1.unique(this.iterable, comparator));
+    }
+    uniqueBy(keyExtractor) {
+        this.check();
+        return new this.constructor(Methods_1.uniqueBy(this.iterable, keyExtractor));
+    }
+    visit(consumer) {
+        this.check();
+        return new this.constructor(Methods_1.visit(this.iterable, consumer));
     }
     zip(other) {
         this.check();

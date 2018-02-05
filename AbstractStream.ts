@@ -1,7 +1,7 @@
 import { natural, Comparator } from "comparators";
 
 import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
+import { minBy, maxBy, findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
 
 /**
  * @private
@@ -22,12 +22,14 @@ export abstract class AbstractStream<T> implements Stream<T> {
     abstract index(): Stream<[number, T]>;
     abstract limit(limitTo: number): this;
     abstract map<S>(mapper: Function<T, S>): Stream<S>;
+    abstract promise<S>(promiseConverter: Function<T, Promise<S>>) : Promise<Stream<S>>;
     abstract reverse(): this;
     abstract skip(toSkip: number): this;
     abstract slice(sliceSize: number): Stream<T[]>;
     abstract sort(comparator?: Comparator<T>): this;
     abstract try<S>(operation: Function<T, S>): TryStream<S>;
-    abstract unique(keyExtractor?: Function<T, any>): this;
+    abstract unique(comparator?: Comparator<T>): this;
+    abstract uniqueBy(keyExtractor?: Function<T, any>): this;
     abstract visit(consumer: Consumer<T>): this;
     abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
     abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
@@ -112,14 +114,24 @@ export abstract class AbstractStream<T> implements Stream<T> {
         return nth(this.iterable, n);
     }
 
-    max(comparator : Comparator<T> = natural) : T {
+    max(comparator : Comparator<T> = natural) : T|undefined {
         this.check();
         return max(this.iterable, comparator);
     }
 
-    min(comparator : Comparator<T> = natural) : T {
+    maxBy<K=any>(sortKey: Function<T,K>) : T|undefined {
+        this.check();
+        return maxBy(this.iterable, sortKey);
+    }
+
+    min(comparator : Comparator<T> = natural) : T|undefined {
         this.check();
         return min(this.iterable, comparator);
+    }
+
+    minBy<K=any>(sortKey: Function<T,K>) : T|undefined {
+        this.check();
+        return minBy(this.iterable, sortKey);
     }
 
     partition(predicate: Predicate<T>) : {false:T[],true:T[]} {
@@ -152,14 +164,14 @@ export abstract class AbstractStream<T> implements Stream<T> {
         return sum(this.iterable, converter);
     }
         
-    toArray() : T[] {
+    toArray(fresh?: boolean) : T[] {
         this.check();
-        return toArray(this.iterable);
+        return toArray(this.iterable, fresh);
     }
 
-    toSet() : Set<T> {
+    toSet(fresh?: boolean) : Set<T> {
         this.check();
-        return toSet(this.iterable);
+        return toSet(this.iterable, fresh);
     }
 
     toJSON() : T[] {

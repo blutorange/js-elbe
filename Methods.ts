@@ -1,4 +1,4 @@
-import { natural, Comparator } from "comparators";
+import { natural, Comparator, byKey } from "comparators";
 import { BiPredicate, Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
 import { Collectors } from "./Collectors";
 import { TryFactory } from "./TryFactory";
@@ -7,9 +7,11 @@ const hasOwnProperty = Object.prototype.hasOwnProperty;
 
 /**
  * Transform each element to another element of a different type.
+ *
  * ```javascript
  * map([0,1,2,3], x => 2 * x) // => Iterable[0,2,4,6]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @typeparam S Type of the elements in the produced iterable.
  * @param iterable The iterable to be mapped.
@@ -26,10 +28,12 @@ export function * map<T,S>(iterable : Iterable<T>, mapper: Function<T,S>) : Iter
  * Applies the mapping function to each item and return an iterable
  * over all the mapped iterables. 
  * This is equivalent to `concat(map(mapper))`.
+ *
  * ```javascript
  * flatMap(["foo","bar"], x => fromString(x)) // => Iterable["f", "o", "o", "b", "a", "r"]
  * flatMap(doTry(["[1]","[2,3]","[4,]"], JSON.parse), x=>x.iterate()) // => Iterable[ [1], [2, 3] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @typeparam S Type of the elements in the produced iterable.
  * @param iterable The iterable to be flat-mapped.
@@ -47,9 +51,11 @@ export function * flatMap<T,S>(iterable : Iterable<T>, mapper: Function<T,Iterab
 /**
  * Chunks together consecutive items for which the classifier
  * returns the same value. Equality is checked with `===`.
+ *
  * ```javascript
  * chunk([1,2,3,4,5,6,1,2], i => Math.floor((i-1) / 3)) // => Stream[ [1,2,3], [4,5,6], [1,2] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.
  * @typeparam K Type of the returned value of the chunker,
  * @param iterable The iterable to be chunked.
@@ -79,9 +85,11 @@ export function * chunk<T, K=any>(iterable: Iterable<T>, classifier: BiFunction<
 /**
  * Slices the items into chunks of sliceSize. This is equivalent
  * to `chunk(iterable, (_, i) => Math.floor(i/sliceSize))`.
+ *
  * ```javascript
  * slice([1,2,3,4,5], 2) // => Iterable[ [1,2], [3,4], [5] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable to be sliced.
  * @param sliceSize Size of the produced chunks.
@@ -109,6 +117,7 @@ export function * slice<T>(iterable: Iterable<T>, sliceSize: number) : Iterable<
  * Produces an iterable over pairs of consisting of an item of the given iterable and
  * the corresponding item of the other iterable.
  * If one of the given iterable is longer, the shorter one is appended with `undefined`.
+ *
  * ```javascript
  * zip(["foo", "bar"], [3, 4])
  * // => Iterable[ ["foo",3], ["bar", 4] ]
@@ -119,6 +128,7 @@ export function * slice<T>(iterable: Iterable<T>, sliceSize: number) : Iterable<
  * toMap(zip(["foo", "bar"], [3, 4]), x=>x[0], x=>x[1])
  * // => Map[ "foo" => 3, "bar" => 4] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable..
  * @param iterable The iterable to be zipped with the other.
  * @param other Other iterable to be zipped to the given iterable.
@@ -141,6 +151,7 @@ export function * zip<T,S>(iterable: Iterable<T>, other: Iterable<S>) : Iterable
  * the corresponding items of the other iterables.
  * If any of the iterables has a different length than the others,
  * the shorter ones appended with `undefined` to the length of the longest.
+ *
  * ```javascript
  * zipSame("ab", ["cd", "ef"])
  * // => Iterable[ ["a","c", "d"], ["b", "d", "f"] ]
@@ -148,9 +159,10 @@ export function * zip<T,S>(iterable: Iterable<T>, other: Iterable<S>) : Iterable
  * zipSame("abc", ["d", "ef"])
  * // => Iterable[ ["a","d", "e"], ["b", undefined, "f"], ["c", undefined, undefined] ]
  * 
- * Array.from(zipSame("fb",["oa","or"])).map(x=>x.map(String).join("")).join("")
+ * toArray(zipSame("fb",["oa","or"])).map(x=>x.map(String).join("")).join("")
  * // => "foobar"
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterables to be zipped with the others.
  * @param others Other iterable to be zipped to the given iterable.
@@ -171,9 +183,11 @@ export function * zipSame<T>(iterable: Iterable<T>, others: Iterable<T>[]) : Ite
 /**
  * Removes all elements from the iterable for which the
  * predicate does not return `true`.
+ *
  * ```javascript
  * filter([4,-4,2,-9], x => x > 0) // => Iterable[4,2]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be filtered.
  * @param predicate Testing function returning `true` iff the item is to be kept, `false` otherwise.
@@ -191,10 +205,12 @@ export function * filter<T>(iterable : Iterable<T>, predicate : Predicate<T>) : 
  * Similar to {@link map}, but handles any error that may be thrown by
  * the mapper by wrapping them in a {@link Try}. This is equivalen to
  * `map(x => Try.of(() => mapper(x)))`
+ *
  * ```javascript
  * doTry(["[1]","[2,3]","[4,]"], JSON.parse)
  * // => Iterable[ Try[1], Try[2,3], Try[ParseError] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @typeparam S Type of the elements wrapped in a {@link Try} in the produced iterable.
  * @param iterable The iterable to to be processed.
@@ -212,10 +228,12 @@ export function * tryMap<T,S>(iterable: Iterable<T>, mapper: Function<T,S>) : It
  * wrapped in a {@link Try} in case the operation throws an error.
  * Usually used for performing a terminal operation with error handling
  * on the iterable.
+ *
  * ```javascript
  * tryCompute([1,2,3], it => reduce(it, item => {throw new Error()}, 0))
  * // => Try[success=false]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @typeparam S Type of the value produced by the operation.
  * @param iterable The iterable to to be processed.
@@ -229,9 +247,11 @@ export function tryCompute<T,S>(iterable: Iterable<T>, operation: Function<Itera
 /**
  * Same as {@link end}, but encapsulates any errors thrown. Applies
  * all pending operation to the pipeline.
+ *
  * ```javascript
  * tryEnd(visit([1,2,3], console.log)) // prints 1,2,3
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to to be processed.
  * @return The encapsulated error, if any was thrown.
@@ -243,9 +263,11 @@ export function tryEnd<T>(iterable: Iterable<T>) : Try<void> {
 /**
  * Splits the items into two groups according to the given
  * discriminator.
+ *
  * ```javascript
  * partition([-3,2,9,-4], x => x > 0) // => { false: [-3,-4], true: [2,9]}
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be partitioned.
  * @param discriminator Partitions each item into one of two groups by returning `true` of `false`.
@@ -258,9 +280,11 @@ export function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>)
 /**
  * Splits the items into several groups, according to the given
  * classifier.
+ *
  * ```javascript
  * group(["a", "foo", "is", "some", "buzz"], x => x.length) // => Map [ 1 => ["a"], 2 => ["is"], 3 => "is", 4 => ["some", "buzz"] ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @typearam K Type of the group key.
  * @param iterable The iterable to be grouped.
@@ -274,9 +298,11 @@ export function group<T,K>(iterable: Iterable<T>, classifier: Function<T,K>) : M
 /**
  * Joins every time with the given delimiter, optionally prepending a
  * prefix and appending a suffix to the output.
+ *
  * ```javascript
  * join([1,2,3], ",", "[", "]") // => "[1,2,3]"
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be joined.
  * @param delimiter String inserted between the items.
@@ -291,23 +317,26 @@ export function join<T>(iterable: Iterable<T>, delimiter: string = "", prefix? :
 /**
  * Sorts the items. Consider converting the iterable to an array and sorting
  * this array if you do not need an iterable for further operations. 
+ *
  * ```javascript
  * sort(["foobar", "a", "bar", Comparators.byField("length")] // => Iterable["a", "bar", "foobar"]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable with to be sorted.
  * @param comparator How to sort the items. Default to the natural order.
  * @return An iterable with the items in sorted order.
  */
 export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>) : Iterable<T> {
-    const arr = Array.from(iterable);
+    const arr = toArray(iterable, true);
     arr.sort(comparator);
-    return arr[Symbol.iterator]();
+    return arr;
 }
 
 /**
- * Similar to {@link distinct}, but allows for a custom key to
+ * Similar to {@link unique}, but allows for a custom key to
  * be specified, according to which uniqueness is determined.
+ *
  * ```javascript
    distinct([4,1,3,4,1,3,1,9])
  * // => Iterable[4,1,3,9]
@@ -315,31 +344,116 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>) : Ite
  * distinct({id:4},{id:2},{id:4]}, customer => customer.id)
  * // => Iterable[ {id:4}, {id:2} ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be made unique
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function * unique<T>(iterable: Iterable<T>, keyExtractor?: Function<T,any>) : Iterable<T> {
-    // Set guarantees insertion order.
+export function uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T,any>) : Iterable<T> {
+    // Set/Map guarantees iteration in insertion order.
     if (keyExtractor === undefined) {
-        return new Set(iterable).values();
+        return new Set(iterable);
     }
-    const set = new Set();
+    const map = new Map();
     for (let item of iterable) {
         const key = keyExtractor(item);
-        if (!set.has(key)) {
+        if (!map.has(key)) {
+            map.set(key, item);
+        }
+    }
+    return map.values();
+}
+
+interface UniqueEntry<T> {
+    i: number,
+    v: T,
+    u: boolean
+}
+
+/**
+ * Filters all elements that are considered equal according to
+ * the given comparator. If two items are equal, the first one
+ * is included in the resulting iterable. Consider using
+ * {@link uniqueBy} if possible for better performance.
+ *
+ * ```javascript
+ * unique([4,1,3,4,1,3,1,9])
+ * // => Iterable[4,1,3,9]
+ * 
+ * unique({id:4},{id:2},{id:4]}, (x,y) => x.id - y.id)
+ * // => Iterable[ {id:4}, {id:2} ]
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.. 
+ * @param iterable The iterable to be made unique
+ * @param comparator Takes two items and returns 0 if they are equal. Defaults to taking determining equality by `===`.
+ * @return An iterable with all duplicates removed.
+ */
+export function * unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>) : Iterable<T> {
+    // If no comparator was given, we can use a set as it uses === for comparison.
+    // Set guarantees iteration in insertion order.
+    if (comparator === undefined) {
+        for (let item of new Set(iterable)) {
             yield item;
-            set.add(key);
+        }
+        return;
+    }
+    // Sort the items, then check which are identical,
+    // then output in original order.
+    // 
+    const items : UniqueEntry<T>[] = [];
+    let i = 0;
+    // Safe original index and a flags whether the
+    // item appears in the output.
+    for (let item of iterable) {
+        items.push({
+            i: i++,
+            v: item,
+            u: false
+        });
+    }
+    // Sort by the given comparator, now duplicates
+    // are next to each other.
+    // The iterations run in O(n) (I hope in JavaScript...),
+    // the sort in O(n*log(n)) (I hope in JavaScript).
+    const sorted = Array.from(items).sort((x,y) => comparator(x.v, y.v));
+    let first = true;
+    let previous : UniqueEntry<T>;
+    for (let item of sorted) {
+        // If first item, always yield.
+        if (first) {
+            item.u = true;
+            previous = item;
+            first = false;
+        }
+        // Check if current item is equal to previous item.
+        else if (comparator(item.v, previous.v) !== 0) {
+            item.u = true;
+            previous = item;
+        }
+        // If equal, take the item with the lowest index.
+        else if (item.i < previous.i) {
+            previous.u = false;
+            item.u = true;
+            previous = item;
+        }
+    }
+    // Iterate in original order and yield if unique.
+    for (let item of items) {
+        if (item.u) {
+            yield item.v;
         }
     }
 }
 
 /**
  * Adds the index to each element of the given iterable. The index starts at 0
+ *
  * ```javascript
  * index(["foo", "bar"]) // => Iterable<[ [0, "foo"], [1, "bar"] ]>
  * ```
+ *
  * @typeparam T Type of the element in the iterable. 
  * @param iterable The iterable to be indexed.
  * @return An iterable with each item being an array consisting of the item's index and the item itself. The index starts at 0.
@@ -354,9 +468,11 @@ export function * index<T>(iterable: Iterable<T>) : Iterable<[number, T]> {
 
 /**
  * Limits the iterable to at most the given number of elements.
+ *
  * ```javascript
  *  limit([1,2,3,4,5,6], 3) // => Iterable[1,2,3]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be limited.
  * @param limit The maximum number of items in the resulting iterable.
@@ -373,10 +489,12 @@ export function * limit<T>(iterable: Iterable<T>, limit: number) : Iterable<T> {
 
 /**
  * Cycles over the elements of the iterable the given number of times.
+ *
  * ```javascript
  * cycle([1,2,3], 3) // => Iterable[1,2,3,1,2,3,1,2,3]
  * limit(cycle([1,2,3]), 5) // => Iterable[1,2,3,1,2]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable to be cycled.
  * @param count The number of cycle. If not given, cycles an unlimited amount of times.
@@ -384,7 +502,7 @@ export function * limit<T>(iterable: Iterable<T>, limit: number) : Iterable<T> {
  */
 export function * cycle<T>(iterable: Iterable<T>, count: number = Infinity) : Iterable<T> {
     count = Math.max(0, count);
-    const items = Array.from(iterable);
+    const items = toArray(iterable, true);
     for (let i = 0; i < count; ++i) {
         for (let item of items) {
             yield item;
@@ -395,11 +513,13 @@ export function * cycle<T>(iterable: Iterable<T>, count: number = Infinity) : It
 /**
  * Calls the given consumer once for each item. The consumer is
  * not called before the stream is consumed by some terminal operation.
+ *
  * ```javascript
  * visit([1,2,3], console.log)
  * // => Iterable[1,2,3]
  * // prints `1,2,3` once the stream is consumed.
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be limited.
  * @param consumer Callback taking each item.
@@ -414,9 +534,11 @@ export function * visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
 
 /**
  * Discards the given number of items from the iterable.
+ *
  * ```javascript
  * skip([1,2,3,4,5,6], 3) // => Iterable[4,5,6] 
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be skipped.
  * @return An iterable with the given number of items skipped.
@@ -437,15 +559,17 @@ export function * skip<T>(iterable: Iterable<T>, skip: number) : Iterable<T> {
 /**
  * Reverses the order of the items. Note that the items
  * need to be saved temporarily.
+ *
  * ```javascript
  * reverse([1,2,3]) // => Iterable[3,2,1]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be reversed.
  * @return An iterable with the items in reversed order.
  */
 export function * reverse<T>(iterable: Iterable<T>) : Iterable<T> {
-    const arr = Array.from(iterable);
+    const arr = toArray(iterable, true);
     for (let i = arr.length; i-->0;) {
         yield arr[i];
     }
@@ -453,9 +577,11 @@ export function * reverse<T>(iterable: Iterable<T>) : Iterable<T> {
 
 /**
  * Concatenates all iterables into one iterable of all the items.
+ *
  * ```javascript
  * concat("foo", "bar", "baz") // => Iterable["f", "o", "o", "b", "a", "r", "b", "a", "z"]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.. 
  * @param iterable The iterable to be concatenated to the others.
  * @param moreIterable Other iteratbles to be concatenated.
@@ -474,9 +600,11 @@ export function * concat<T>(iterable: Iterable<T>, ...moreIterables: Iterable<T>
 
 /**
  * Counts the items.
+ *
  * ```javascript
  * count([1,2,3]) // => 3 
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be counted.
  * @return The number of items in the iterable.
@@ -489,9 +617,11 @@ export function size(iterable : Iterable<any>) : number {
 
 /**
  * Searches for the first occurence of an item matching the predicate.
+ *
  * ```javascript
  * find(["foo1", "bar,"foo2"], x => x.startsWith("foo")) // => "foo1"
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param predicate Test to be performed on the items. It is passed the current item and the current index.
@@ -510,9 +640,11 @@ export function find<T>(iterable: Iterable<T>, predicate: BiPredicate<T, number>
 /**
  * Searches for the first occurence of an item matching the predicate,
  * and returns the index; or `-1` otherwise.
+ *
  * ```javascript
  * findIndex(["foo1", "bar, "foo2"], x => x.startsWith("foo")) // => 0
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param predicate Test to be performed on the items. It is passed the current item and the current index.
@@ -531,9 +663,11 @@ export function findIndex<T>(iterable: Iterable<T>, predicate: BiPredicate<T, nu
 
 /**
  * Determines whether every items matches the given predicate.
+ *
  * ```javascript
  * every("fooz", x => x < "j") // => false
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param predicate Test to be performed on the items.
@@ -550,9 +684,11 @@ export function every<T>(iterable: Iterable<T>, predicate: Predicate<T>) : boole
 
 /**
  * Determines whether at least one items matches the given predicate.
+ *
  * ```javascript
  * some("fooz", x => x < "j") // => true
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param predicate Test to be performed on the items.
@@ -570,9 +706,11 @@ export function some<T>(iterable: Iterable<T>, predicate: Predicate<T>) : boolea
 /**
  * Determines whether no item matches the given predicate. This
  * is equivalent to `!some(iterable, predicate)`.
+ *
  * ```javascript
  * none("fooz", "x => x < "j") // => false
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param predicate Test to be performed on each items.
@@ -586,9 +724,11 @@ export function none<T>(iterable: Iterable<T>, predicate: Predicate<T>) : boolea
  * Determines whether the iterable contains the given item.
  * Equivalence is checked with `===`. This is
  * equivalent to `some(iterable, x => x === object)`.
+ *
  * ```javascript
  * has("foobar", "o") // => true
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @return Whether the given object is contained in the iterable.
@@ -598,23 +738,84 @@ export function has<T>(iterable: Iterable<T>, object: T) : boolean {
 }
 
 /**
+ * Converts each item to a promise and returns a promise
+ * that is resolved with an iterable of results when all
+ * of the created Promises resolve, or rejected when any
+ * Promise is rejected.
+ * 
+ * ```javascript
+ * promise([1,2,3], id => fetch(`/user/${id}`))
+ *     .then(s => s.forEach(renderUser))
+ *     .catch(console.error)
+ * // Calls the renderUser method with the Response for each user request.
+ * ```
+ * 
+ * @typeparam T Type of the elements in the given iterable. 
+ * @typeparam S Type of the item of the promises.
+ * @param iterable The iterable to be scanned.
+ * @param promiseConverter Takes each item and creates a promise.
+ * @return A promise that resolves when all promises resolve; or is rejected when any promise is rejected. 
+ */
+export function promise<T,S>(iterable: Iterable<T>, promiseConverter: Function<T, Promise<S>>) : Promise<Iterable<S>> {
+    return Promise.all(map(iterable, promiseConverter));
+}
+
+/**
+ * Computes the minimum of the items, as determined by the given sort key.
+ *
+ * ```javascript
+ * minBy(["foo","foobar", "gg"], x => x.length)
+ * // => "gg"
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable. 
+ * @param iterable The iterable to be minimized.
+ * @param sortKey Takes an item and produces the key by which the minimum is determined.
+ * @return The smallest item, or `undefined` iff there are no items. 
+ */
+export function minBy<T>(iterable: Iterable<T>, sortKey : Function<T,any>) : T|undefined {
+    return min(iterable, byKey(sortKey));
+}
+
+/**
+ * Computes the minimum of the items, as determined by the given sort key.
+ *
+ * ```javascript
+ * maxBy(["foo","foobar", "gg"], x => x.length)
+ * // => "foobar"
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable. 
+ * @param iterable The iterable to be maximized.
+ * @param sortKey Takes an item and produces the key by which the maximum is determined.
+ * @return The smallest item, or `undefined` iff there are no items. 
+ */
+export function maxBy<T>(iterable: Iterable<T>, sortKey : Function<T,any>) : T|undefined {
+    return max(iterable, byKey(sortKey));
+}
+
+/**
  * Computes the minimum of the items.
+ *
  * ```javascript
  * min([3,2,9,4]) // => 9
  * min(["foo", "bar", "I"], Comparators.byField("length")) // => "I"
  * min([]) // => undefined
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be minimized.
  * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
  * @return The smallest item. If there are multiple smallest items, returns the first.  `undefined` iff the iterable is empty.
  */
-export function min<T>(iterable: Iterable<T>, comparator : Comparator<T> = natural) : T {
+export function min<T>(iterable: Iterable<T>, comparator : Comparator<T> = natural) : T|undefined {
+    console.log(comparator);
     let first = true;
     let min : T;
     for (let item of iterable) {
         if (first) {
             min = item;
+            first = false;
         }
         else {
             if (comparator(item, min) < 0) {
@@ -627,22 +828,25 @@ export function min<T>(iterable: Iterable<T>, comparator : Comparator<T> = natur
 
 /**
  * Computes the maxmimum of the items.
+ *
  * ```javascript
  * max([3,2,9,4]) // => 9
  * max(["foo", "bar", "I"], Comparators.byField("length")) // => "foo"
  * max([]) // => undefined
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be maximized.
  * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
  * @return The largest item. If there are multiple largest items, returns the first. `undefined` iff the iterable is empty.
  */
-export function max<T>(iterable: Iterable<T>, comparator : Comparator<T> = natural) : T {
+export function max<T>(iterable: Iterable<T>, comparator : Comparator<T> = natural) : T|undefined {
     let first = true;
     let min : T;
     for (let item of iterable) {
         if (first) {
             min = item;
+            first = false;
         }
         else {
             if (comparator(item, min) > 0) {
@@ -655,9 +859,11 @@ export function max<T>(iterable: Iterable<T>, comparator : Comparator<T> = natur
 
 /**
  * Coalesces all items into one value.
+ *
  * ```javascript
  * reduce([1,2,3], (sum,x) => sum + x, 10) // => 16
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @typeparam S Type of the reduced value.
  * @param iterable The iterable to be reduced.
@@ -675,9 +881,11 @@ export function reduce<T,S>(iterable: Iterable<T>, reducer: BiFunction<S,T,S>, i
 /**
  * Similar to {@link reduce}, but reduces to items of the same type
  * as the items and thus does not require an initial value.
+ *
  * ```javascript
  * reduceSame([1,2,3], (sum,x) => sum + x) // => 6
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be reduced.
  * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
@@ -700,10 +908,12 @@ export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T,T,T>)
 
 /**
  * Sums all items arithmetically.
+ *
  * ```javascript
  * sum([1,2,3]) // => 6
  * sum(["I", "of", "Borg"], x => x.length) // => 7
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be summed.
  * @param converted Converts an item into a number. Defaults to `Number(...)`.
@@ -715,10 +925,12 @@ export function sum<T>(iterable: Iterable<T>, converter?: Function<T, number>) :
 
 /**
  * Applies all pending operations, ending the given iterable.
+ *
  * ```javascript
  * visit([1,2,3], console.log) // Iterable[1,2,3]; prints nothing
  * end(visit([1,2,3], console.log)) // prints 1,2,3
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be terminated.
  */
@@ -729,11 +941,13 @@ export function end<T>(iterable: Iterable<T>) : void {
 
 /**
  * Returns the item at the n-th position.
+ *
  * ```javascript
  * nth("foo", 1) // => "f"
  * 
  * nth("foo", 3) // => undefined
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @param n The position of the item to get.
@@ -752,10 +966,12 @@ export function nth<T>(iterable: Iterable<T>, n: number) : T|undefined {
 
 /**
  * Returns the first item.
+ *
  * ```javascript
  * first("foo") // => "f"
  * first("") // => undefined
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @return The item at the first position, or undefined if empty.
@@ -769,10 +985,12 @@ export function first<T>(iterable: Iterable<T>) : T|undefined {
 
 /**
  * Returns the last item.
+ *
  * ```javascript
  * last("foo") // => "o"
  * last("") // => undefined
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to be scanned.
  * @return The item at the last position, or undefined if empty.
@@ -787,9 +1005,11 @@ export function last<T>(iterable: Iterable<T>) : T|undefined {
 
 /**
  * Creates and object an incorporates all items into that object.
+ *
  * ```javascript
  * collect([1,2,3], Collectors.summarize) // => Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @typeparam S Type of the intermediate value that incorporates each item in order.
  * @typeparam R Type of the final collected value.
@@ -804,9 +1024,11 @@ export function collect<T,S,R=S>(iterable: Iterable<T>, collector: Collector<T,S
 /**
  * Same as {@link collect}, but allows specifying the parts of
  * the collector individually.
+ *
  * ```javascript
  * collect([1,2,3], () => [], (array, x) => array.push(x), x => new Set(x)) // => Set[1,2,3]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @typeparam S Type of the intermediate value that incorporates each item in order.
  * @typeparam R Type of the final collected value.
@@ -826,38 +1048,56 @@ export function collectWith<T,S,R=S>(iterable: Iterable<T>, supplier: Supplier<S
 
 /**
  * Creates an array with the items of the given iterable.
+ * If the underlying iterable is an array, returns that
+ * array instead of creating a new array.
+ *
  * ```javascript
  * toArray("foobar")
  * // => ["f", "o", "o", "b", "a", "r"]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to to be converted.
+ * @param fresh Iff true, always creates a new array. Otherise, reuses existing array when possible. 
  * @return An array with the items.
  */
-export function toArray<T>(iterable: Iterable<T>) : T[] {
+export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false) : T[] {
+    if (Array.isArray(iterable) && !fresh) {
+        return iterable;
+    }
     return Array.from(iterable);
 }
 
 /**
  * Creates a set with the items of the given iterable.
+ * If the underlying iterable is a set, returns that
+ * set instead of creating a new set.
+ *
  * ```javascript
  * toSet("foobar")
  * // => Set["f", "o", "b", "a", "r"]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable. 
  * @param iterable The iterable to to be converted.
+ * @param fresh Iff true, always creates a new set. Otherise, reuses existing set when possible. 
  * @return A set with the items.
  */
-export function toSet<T>(iterable: Iterable<T>) : Set<T> {
+export function toSet<T>(iterable: Iterable<T>, fresh: boolean = false) : Set<T> {
+    if ((iterable instanceof Set) && !fresh) {
+        return iterable;
+    }
     return new Set(iterable);
 }
 
 /**
  * Creates a map from the items of the given iterable.
+ *
  * ```javascript
  * toMap(["foo", "bar"], x => x, x => x.length)
  * // => Map[ "foo" => 3, "bar" => 3 ]
  * ```
+ *
  * @typeparam T Type of the elements in the given iterable.
  * @typeparam K Type of the map's keys.
  * @typeparam V Type of the map's values.
@@ -873,10 +1113,12 @@ export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any,K>
 /**
  * Creates an iterable for iterating over an object's key-value-pairs.
  * Only the object's own property are included.
+ *
  * ```javascript
  * fromObject({foo:2, bar: 3})
  * // => Iterable[ ["foo", 2], ["bar", 3] ]
  * ```
+ *
  * @typeparam T Type of the object's values.
  * @param object The object with the key-value-pairs to be iterated.
  * @return An iterable with the object's key-value-pairs.
@@ -892,10 +1134,12 @@ export function * fromObject<T>(object: {[s: string] : T}) : Iterable<[string,T]
 /**
  * Creates an iterable for iterating over an object's keys.
  * Only the object's own property are included.
+ *
  * ```javascript
  * fromObjectKeys({foo:2, bar: 3, 42: 9})
  * // => Iterable["foo", "bar", "42"]
  * ```
+ *
  * @param object The object with the keys to be iterated.
  * @return An iterable with the object's keys.
  */
@@ -910,10 +1154,12 @@ export function * fromObjectKeys(object: {[s: string] : any}) : Iterable<string>
 /**
  * Creates an iterable for iterating over an object's values.
  * Only the object's own property are included.
+ *
  * ```javascript
  * fromObjectValues({foo:2, bar: 3})
  * // => Iterable[2,3]
  * ```
+ *
  * @typeparam T Type of the object's values.
  * @param object The object with the values to be iterated.
  * @return An iterable with the object's values.
@@ -928,10 +1174,12 @@ export function * fromObjectValues<T>(object: {[s: string] : T}) : Iterable<T> {
 
 /**
  * Creates an iterable with the items provided by the given generator.
+ *
  * ```javascript
  * generate(index => index)
  * // => Iterable(0,1,2,3,4,...)
  * ```
+ *
  * @typeparam T Type of the generated items.
  * @param generator Generator for generating the items of the iterable. It is passed the current index as its argument.
  * @param amount How many items to generate, `Infinity` for an unlimited amount.
@@ -947,6 +1195,7 @@ export function * generate<T>(generator: Function<number, T>, amount: number = I
 /**
  * Creates an iterable with numbers starting at the given
  * value and ending at the given value.
+ *
  * ```javascript
  * times(3) // => Iterable(0,1,2)
  * times(3, 4) // => Iterable(4,5,6)
@@ -958,6 +1207,7 @@ export function * generate<T>(generator: Function<number, T>, amount: number = I
  * times(-3) // => Iterable()
  * times(Infinity) // => Iterable(0,1,2,3,4,5,...)
  * ```
+ *
  * @typeparam T Type of the items of the produced iterable.
  * @param amount Number of items to produce. Must not be negative.
  * @param start Initial number, defaults to 0.
@@ -984,10 +1234,12 @@ export function * times(amount: number, start: number = 0, end: number = start+a
 /**
  * Creates an iterable with the given item occuring the given
  * number of times.
+ *
  * ```javascript
  * repeat(0, 9)
  * // => Iterable[0,0,0,0,0,0,0,0,0]
  * ```
+ *
  * @typeparam T Type of the items of the produced iterable.
  * @param item Item to repeat.
  * @param amount How many times to repeat, `Infinity` for an unlimited amount.
@@ -1002,10 +1254,12 @@ export function * repeat<T>(item: T, amount: number = Infinity) : Iterable<T> {
 
 /**
  * Creates an iterable starting with the initial seed.
+ *
  * ```javascript
  * iterate(42, x => (0x19660D * x + 0x3C6EF35F) % 0x100000000)
  * // Random number generator, linear congruential generator from "Numerical Recipes".
  * ```
+ *
  * @typeparam T Type of the items of the produced iterable.
  * @param seed Initial item.
  * @param next Function that takes the current item and produces the next item in the sequence.

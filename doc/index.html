@@ -92,10 +92,10 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span c
 				<p>This returns an object with the following entries:</p>
 				<ul>
 					<li><a href="./modules/_collectors_.html">Collectors</a></li>
-					<li><a href="./modules/_streamfactory_.html">StreamFactory</a></li>
+					<li><a href="./interfaces/_interfaces_.streamfactory.html">StreamFactory</a></li>
 					<li><a href="./modules/_methods_.html">Methods</a></li>
 					<li><a href="./modules/_monkeypatch_.html">monkeyPatch</a></li>
-					<li><a href="./modules/_try_.html#tryfactory">TryFactory</a></li>
+					<li><a href="./modules/_tryfactory_.html#tryfactory">TryFactory</a></li>
 				</ul>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
@@ -103,16 +103,44 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span c
 </code></pre>
 				<p>Or use the standalone in <code>dist/streams.js</code>. With node it simply exports itself, within a browser it registers globally as <code>window.Streams</code>.</p>
 				<h1 id="usage">Usage</h1>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
-<span class="hljs-keyword">const</span> times = lib.InplaceStreamFactory.times;
-times(<span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x*x<span class="hljs-number">-2</span>).map(<span class="hljs-built_in">Math</span>.abs).min(); <span class="hljs-comment">// 1.41</span>
+				<p>Generates a stream of 100 numbers between 0 and 2.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory;
+factory.times(<span class="hljs-number">1000</span>,<span class="hljs-number">1.4</span>,<span class="hljs-number">1.5</span>).minBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(x * x - <span class="hljs-number">2</span>))
+<span class="hljs-comment">// =&gt; 1.41421...</span>
 </code></pre>
-				<p>There are three different ways of using the stream methods:</p>
-				<h1 id="shortcut">Shortcut</h1>
-				<p>If you do not like to write much:</p>
+				<p>Generates a stream from an array.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(...).filter(...).limit(<span class="hljs-number">1</span>).group(...);
 </code></pre>
+				<p>The following entries exist on the <code>lib</code> object when requiring the library:</p>
+				<pre><code class="lang-javascript">lib = {
+    stream, <span class="hljs-comment">// shortcut for InplaceStream.from</span>
+    monkeyPatch, <span class="hljs-comment">// function that patches some Object prototypes</span>
+    InplaceStreamFactory: { <span class="hljs-comment">// see interface 'StreamFactory'</span>
+      <span class="hljs-keyword">from</span>,
+      times,
+      ...
+    }
+    TypesafeStreamFactory: { <span class="hljs-comment">// see interface 'StreamFactory'</span>
+      <span class="hljs-keyword">from</span>,
+      times,
+      ...
+    },
+    TryFactory, <span class="hljs-comment">// see interface 'ITryFactory'</span>
+    Collectors: { <span class="hljs-comment">// all methods documented in 'Collectors'</span>
+        join,
+        group,
+        ...
+    },
+    <span class="hljs-attr">Methods</span>: { <span class="hljs-comment">// contains all methods documented in 'Methods'</span>
+        filter, 
+        group,
+        map,
+        ...
+    }
+}
+</code></pre>
+				<p>There are three different ways of using the stream methods:</p>
 				<h2 id="standalone-methods">Standalone methods</h2>
 				<p>All methods are available as stand-alone functions taking an iterable
 				as their first argument.</p>

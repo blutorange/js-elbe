@@ -93,13 +93,16 @@ export interface Stream<T> {
     last(): T | undefined;
     limit(limitTo: number): this;
     map<S>(mapper: Function<T, S>): Stream<S>;
-    max(comparator: Comparator<T>): T;
-    min(comparator: Comparator<T>): T;
+    max(comparator: Comparator<T>): T | undefined;
+    maxBy(sortKey: Function<T, any>): T | undefined;
+    min(comparator: Comparator<T>): T | undefined;
+    minBy(sortKey: Function<T, any>): T | undefined;
     nth(n: number): T | undefined;
     partition(predicate: Predicate<T>): {
         false: T[];
         true: T[];
     };
+    promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<Stream<S>>;
     reduce<S>(reducer: BiFunction<S, T, S>, initialValue: S): S;
     reduceSame(reducer: BiFunction<T, T, T>): T;
     reverse(): this;
@@ -112,10 +115,11 @@ export interface Stream<T> {
     try<S>(operation: Function<T, S>): TryStream<S>;
     tryCompute<S>(operation: Function<Stream<T>, S>): Try<S>;
     tryEnd(): Try<void>;
-    toArray(): T[];
-    toSet(): Set<any>;
+    toArray(fresh?: boolean): T[];
+    toSet(fresh?: boolean): Set<any>;
     toMap<K, V>(keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
-    unique(keyExtractor?: Function<T, any>): this;
+    unique(comparator?: Comparator<T>): this;
+    uniqueBy(keyExtractor?: Function<T, any>): this;
     visit(consumer: Consumer<T>): this;
     zip<S>(other: Iterable<S>): Stream<[T, S]>;
     zipSame(...others: Iterable<T>[]): Stream<T[]>;

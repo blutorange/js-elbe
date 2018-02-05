@@ -69,6 +69,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="../interfaces/_methods_.uniqueentry.html" class="tsd-kind-icon">Unique<wbr>Entry</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported"><a href="_methods_.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a></li>
@@ -102,10 +108,13 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#limit" class="tsd-kind-icon">limit</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#map" class="tsd-kind-icon">map</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#maxby" class="tsd-kind-icon">max<wbr>By</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#minby" class="tsd-kind-icon">min<wbr>By</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#none" class="tsd-kind-icon">none</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#nth" class="tsd-kind-icon">nth</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#partition" class="tsd-kind-icon">partition</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#promise" class="tsd-kind-icon">promise</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#reduce" class="tsd-kind-icon">reduce</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#repeat" class="tsd-kind-icon">repeat</a></li>
@@ -124,6 +133,7 @@
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#tryend" class="tsd-kind-icon">try<wbr>End</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#trymap" class="tsd-kind-icon">try<wbr>Map</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#unique" class="tsd-kind-icon">unique</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#visit" class="tsd-kind-icon">visit</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#zip" class="tsd-kind-icon">zip</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_methods_.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a></li>
@@ -140,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">hasOwnProperty</span><span class="tsd-signature-symbol"> =&nbsp;Object.prototype.hasOwnProperty</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L6">Methods.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L6">Methods.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -157,16 +167,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L59">Methods.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L65">Methods.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Chunks together consecutive items for which the classifier
 									returns the same value. Equality is checked with <code>===</code>.</p>
-									<pre><code class="lang-javascript">chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], i =&gt; <span class="hljs-built_in">Math</span>.floor((i<span class="hljs-number">-1</span>) / <span class="hljs-number">3</span>)) <span class="hljs-comment">// =&gt; Stream[ [1,2,3], [4,5,6], [1,2] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], i =&gt; <span class="hljs-built_in">Math</span>.floor((i<span class="hljs-number">-1</span>) / <span class="hljs-number">3</span>)) <span class="hljs-comment">// =&gt; Stream[ [1,2,3], [4,5,6], [1,2] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -213,15 +223,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L800">Methods.ts:800</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1020">Methods.ts:1020</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates and object an incorporates all items into that object.</p>
-									<pre><code class="lang-javascript">collect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], Collectors.summarize) <span class="hljs-comment">// =&gt; Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">collect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], Collectors.summarize) <span class="hljs-comment">// =&gt; Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -274,16 +284,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L819">Methods.ts:819</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1041">Methods.ts:1041</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Same as <a href="_methods_.html#collect">collect</a>, but allows specifying the parts of
 									the collector individually.</p>
-									<pre><code class="lang-javascript">collect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], () =&gt; [], (array, x) =&gt; array.push(x), x =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(x)) <span class="hljs-comment">// =&gt; Set[1,2,3]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">collect([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], () =&gt; [], (array, x) =&gt; array.push(x), x =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(x)) <span class="hljs-comment">// =&gt; Set[1,2,3]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -345,15 +355,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L464">Methods.ts:464</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L590">Methods.ts:590</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Concatenates all iterables into one iterable of all the items.</p>
-									<pre><code class="lang-javascript">concat(<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"baz"</span>) <span class="hljs-comment">// =&gt; Iterable["f", "o", "o", "b", "a", "r", "b", "a", "z"]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">concat(<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"baz"</span>) <span class="hljs-comment">// =&gt; Iterable["f", "o", "o", "b", "a", "r", "b", "a", "z"]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -391,16 +401,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L385">Methods.ts:385</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L503">Methods.ts:503</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Cycles over the elements of the iterable the given number of times.</p>
-									<pre><code class="lang-javascript">cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[1,2,3,1,2,3,1,2,3]</span>
+								</div>
+								<pre><code class="lang-javascript">cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[1,2,3,1,2,3,1,2,3]</span>
 limit(cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]), <span class="hljs-number">5</span>) <span class="hljs-comment">// =&gt; Iterable[1,2,3,1,2]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -441,16 +451,16 @@ limit(cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L725">Methods.ts:725</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L937">Methods.ts:937</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Applies all pending operations, ending the given iterable.</p>
-									<pre><code class="lang-javascript">visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log) <span class="hljs-comment">// Iterable[1,2,3]; prints nothing</span>
+								</div>
+								<pre><code class="lang-javascript">visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log) <span class="hljs-comment">// Iterable[1,2,3]; prints nothing</span>
 end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log)) <span class="hljs-comment">// prints 1,2,3</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -484,15 +494,15 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L542">Methods.ts:542</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L676">Methods.ts:676</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Determines whether every items matches the given predicate.</p>
-									<pre><code class="lang-javascript">every(<span class="hljs-string">"fooz"</span>, x =&gt; x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; false</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">every(<span class="hljs-string">"fooz"</span>, x =&gt; x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; false</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -533,16 +543,16 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L182">Methods.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L196">Methods.ts:196</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Removes all elements from the iterable for which the
 									predicate does not return <code>true</code>.</p>
-									<pre><code class="lang-javascript">filter([<span class="hljs-number">4</span>,<span class="hljs-number">-4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">-9</span>], x =&gt; x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Iterable[4,2]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">filter([<span class="hljs-number">4</span>,<span class="hljs-number">-4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">-9</span>], x =&gt; x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Iterable[4,2]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -583,15 +593,15 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L500">Methods.ts:500</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L630">Methods.ts:630</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Searches for the first occurence of an item matching the predicate.</p>
-									<pre><code class="lang-javascript">find([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar,"</span>foo2<span class="hljs-string">"], x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; "</span>foo1<span class="hljs-string">"</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">find([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar,"</span>foo2<span class="hljs-string">"], x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; "</span>foo1<span class="hljs-string">"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -632,16 +642,16 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L521">Methods.ts:521</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L653">Methods.ts:653</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Searches for the first occurence of an item matching the predicate,
 									and returns the index; or <code>-1</code> otherwise.</p>
-									<pre><code class="lang-javascript">findIndex([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar, "</span>foo2<span class="hljs-string">"], x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; 0</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">findIndex([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar, "</span>foo2<span class="hljs-string">"], x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; 0</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -682,16 +692,16 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L763">Methods.ts:763</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L979">Methods.ts:979</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the first item.</p>
-									<pre><code class="lang-javascript">first(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "f"</span>
+								</div>
+								<pre><code class="lang-javascript">first(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "f"</span>
 first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -729,7 +739,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L39">Methods.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L43">Methods.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -737,10 +747,10 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 									<p>Applies the mapping function to each item and return an iterable
 										over all the mapped iterables.
 									This is equivalent to <code>concat(map(mapper))</code>.</p>
-									<pre><code class="lang-javascript">flatMap([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"bar"</span>], x =&gt; fromString(x)) <span class="hljs-comment">// =&gt; Iterable["f", "o", "o", "b", "a", "r"]</span>
+								</div>
+								<pre><code class="lang-javascript">flatMap([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"bar"</span>], x =&gt; fromString(x)) <span class="hljs-comment">// =&gt; Iterable["f", "o", "o", "b", "a", "r"]</span>
 flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"</span>,<span class="hljs-string">"[4,]"</span>], <span class="hljs-built_in">JSON</span>.parse), x=&gt;x.iterate()) <span class="hljs-comment">// =&gt; Iterable[ [1], [2, 3] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -787,17 +797,17 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L884">Methods.ts:884</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1126">Methods.ts:1126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable for iterating over an object&#39;s key-value-pairs.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
 <span class="hljs-comment">// =&gt; Iterable[ ["foo", 2], ["bar", 3] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -837,17 +847,17 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L902">Methods.ts:902</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1146">Methods.ts:1146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable for iterating over an object&#39;s keys.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObjectKeys({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-number">42</span>: <span class="hljs-number">9</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObjectKeys({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-number">42</span>: <span class="hljs-number">9</span>})
 <span class="hljs-comment">// =&gt; Iterable["foo", "bar", "42"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -878,17 +888,17 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L921">Methods.ts:921</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1167">Methods.ts:1167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable for iterating over an object&#39;s values.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObjectValues({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObjectValues({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
 <span class="hljs-comment">// =&gt; Iterable[2,3]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -928,16 +938,16 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L940">Methods.ts:940</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1188">Methods.ts:1188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable with the items provided by the given generator.</p>
-									<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
+								</div>
+								<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
 <span class="hljs-comment">// =&gt; Iterable(0,1,2,3,4,...)</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -978,16 +988,16 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L270">Methods.ts:270</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L294">Methods.ts:294</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Splits the items into several groups, according to the given
 									classifier.</p>
-									<pre><code class="lang-javascript">group([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>], x =&gt; x.length) <span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">group([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>], x =&gt; x.length) <span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
+</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>typearam</dt>
 									<dd><p>K Type of the group key.</p>
@@ -1036,7 +1046,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L596">Methods.ts:596</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L736">Methods.ts:736</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1044,9 +1054,9 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 									<p>Determines whether the iterable contains the given item.
 										Equivalence is checked with <code>===</code>. This is
 									equivalent to <code>some(iterable, x =&gt; x === object)</code>.</p>
-									<pre><code class="lang-javascript">has(<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; true</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">has(<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1084,15 +1094,15 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L347">Methods.ts:347</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L461">Methods.ts:461</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds the index to each element of the given iterable. The index starts at 0</p>
-									<pre><code class="lang-javascript">index([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]) <span class="hljs-comment">// =&gt; Iterable&lt;[ [0, "foo"], [1, "bar"] ]&gt;</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">index([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]) <span class="hljs-comment">// =&gt; Iterable&lt;[ [0, "foo"], [1, "bar"] ]&gt;</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1127,16 +1137,16 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L1015">Methods.ts:1015</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1269">Methods.ts:1269</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable starting with the initial seed.</p>
-									<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
+								</div>
+								<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
 <span class="hljs-comment">// Random number generator, linear congruential generator from "Numerical Recipes".</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1183,16 +1193,16 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L287">Methods.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L313">Methods.ts:313</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Joins every time with the given delimiter, optionally prepending a
 									prefix and appending a suffix to the output.</p>
-									<pre><code class="lang-javascript">join([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>) <span class="hljs-comment">// =&gt; "[1,2,3]"</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">join([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>) <span class="hljs-comment">// =&gt; "[1,2,3]"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1245,16 +1255,16 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L780">Methods.ts:780</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L998">Methods.ts:998</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the last item.</p>
-									<pre><code class="lang-javascript">last(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "o"</span>
+								</div>
+								<pre><code class="lang-javascript">last(<span class="hljs-string">"foo"</span>) <span class="hljs-comment">// =&gt; "o"</span>
 last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1292,15 +1302,15 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L365">Methods.ts:365</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L481">Methods.ts:481</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Limits the iterable to at most the given number of elements.</p>
-									<pre><code class="lang-javascript"> limit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[1,2,3]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript"> limit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[1,2,3]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1341,15 +1351,15 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L19">Methods.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L21">Methods.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Transform each element to another element of a different type.</p>
-									<pre><code class="lang-javascript">map([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], x =&gt; <span class="hljs-number">2</span> * x) <span class="hljs-comment">// =&gt; Iterable[0,2,4,6]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">map([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], x =&gt; <span class="hljs-number">2</span> * x) <span class="hljs-comment">// =&gt; Iterable[0,2,4,6]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1390,23 +1400,23 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 					<a name="max" class="tsd-anchor"></a>
 					<h3>max</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">max&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">max&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L640">Methods.ts:640</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L843">Methods.ts:843</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes the maxmimum of the items.</p>
-									<pre><code class="lang-javascript">max([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]) <span class="hljs-comment">// =&gt; 9</span>
+								</div>
+								<pre><code class="lang-javascript">max([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]) <span class="hljs-comment">// =&gt; 9</span>
 max([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>], Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "foo"</span>
 max([]) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1432,8 +1442,64 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 							<p>The largest item. If there are multiple largest items, returns the first. <code>undefined</code> iff the iterable is empty.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="maxby" class="tsd-anchor"></a>
+					<h3>max<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">max<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L793">Methods.ts:793</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Computes the minimum of the items, as determined by the given sort key.</p>
+								</div>
+								<pre><code class="lang-javascript">maxBy([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>], x =&gt; x.length)
+<span class="hljs-comment">// =&gt; "foobar"</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the elements in the given iterable.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to be maximized.</p>
+									</div>
+								</li>
+								<li>
+									<h5>sortKey: <a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes an item and produces the key by which the maximum is determined.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
 				</section>
@@ -1441,23 +1507,23 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="min" class="tsd-anchor"></a>
 					<h3>min</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">min&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">min&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L612">Methods.ts:612</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L811">Methods.ts:811</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes the minimum of the items.</p>
-									<pre><code class="lang-javascript">min([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]) <span class="hljs-comment">// =&gt; 9</span>
+								</div>
+								<pre><code class="lang-javascript">min([<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">4</span>]) <span class="hljs-comment">// =&gt; 9</span>
 min([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>], Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "I"</span>
 min([]) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1483,8 +1549,64 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 							<p>The smallest item. If there are multiple smallest items, returns the first.  <code>undefined</code> iff the iterable is empty.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="minby" class="tsd-anchor"></a>
+					<h3>min<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">min<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L776">Methods.ts:776</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Computes the minimum of the items, as determined by the given sort key.</p>
+								</div>
+								<pre><code class="lang-javascript">minBy([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>], x =&gt; x.length)
+<span class="hljs-comment">// =&gt; "gg"</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the elements in the given iterable.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to be minimized.</p>
+									</div>
+								</li>
+								<li>
+									<h5>sortKey: <a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes an item and produces the key by which the minimum is determined.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
+							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
 				</section>
@@ -1498,16 +1620,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L581">Methods.ts:581</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L719">Methods.ts:719</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Determines whether no item matches the given predicate. This
 									is equivalent to <code>!some(iterable, predicate)</code>.</p>
-									<pre><code class="lang-javascript">none(<span class="hljs-string">"fooz"</span>, <span class="hljs-string">"x =&gt; x &lt; "</span>j<span class="hljs-string">") // =&gt; false</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">none(<span class="hljs-string">"fooz"</span>, <span class="hljs-string">"x =&gt; x &lt; "</span>j<span class="hljs-string">") // =&gt; false</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1548,17 +1670,17 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L742">Methods.ts:742</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L956">Methods.ts:956</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the item at the n-th position.
-										```javascript
-									nth(&quot;foo&quot;, 1) // =&gt; &quot;f&quot;</p>
+									<p>Returns the item at the n-th position.</p>
 								</div>
-								<p>nth(&quot;foo&quot;, 3) // =&gt; undefined
-								```</p>
+								<pre><code class="lang-javascript">nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">1</span>) <span class="hljs-comment">// =&gt; "f"</span>
+
+nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; undefined</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1602,16 +1724,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L254">Methods.ts:254</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L276">Methods.ts:276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Splits the items into two groups according to the given
 									discriminator.</p>
-									<pre><code class="lang-javascript">partition([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>], x =&gt; x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">partition([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>], x =&gt; x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1651,6 +1773,67 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="promise" class="tsd-anchor"></a>
+					<h3>promise</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">promise&lt;T, S&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, promiseConverter<span class="tsd-signature-symbol">: </span><a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L759">Methods.ts:759</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts each item to a promise and returns a promise
+										that is resolved with an iterable of results when all
+										of the created Promises resolve, or rejected when any
+									Promise is rejected.</p>
+								</div>
+								<pre><code class="lang-javascript">promise([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], id =&gt; fetch(<span class="hljs-string">`/user/<span class="hljs-subst">${id}</span>`</span>))
+    .then(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.forEach(renderUser))
+    .catch(<span class="hljs-built_in">console</span>.error)
+<span class="hljs-comment">// Calls the renderUser method with the Response for each user request.</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the elements in the given iterable.</p>
+									</div>
+								</li>
+								<li>
+									<h4>S</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the item of the promises.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to be scanned.</p>
+									</div>
+								</li>
+								<li>
+									<h5>promiseConverter: <a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes each item and creates a promise.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves when all promises resolve; or is rejected when any promise is rejected.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="reduce" class="tsd-anchor"></a>
 					<h3>reduce</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
@@ -1660,15 +1843,15 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L668">Methods.ts:668</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L874">Methods.ts:874</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Coalesces all items into one value.</p>
-									<pre><code class="lang-javascript">reduce([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], (sum,x) =&gt; sum + x, <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; 16</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">reduce([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], (sum,x) =&gt; sum + x, <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; 16</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1721,16 +1904,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L686">Methods.ts:686</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L894">Methods.ts:894</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Similar to <a href="_methods_.html#reduce">reduce</a>, but reduces to items of the same type
 									as the items and thus does not require an initial value.</p>
-									<pre><code class="lang-javascript">reduceSame([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], (sum,x) =&gt; sum + x) <span class="hljs-comment">// =&gt; 6</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">reduceSame([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], (sum,x) =&gt; sum + x) <span class="hljs-comment">// =&gt; 6</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1771,17 +1954,17 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L996">Methods.ts:996</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1248">Methods.ts:1248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable with the given item occuring the given
 									number of times.</p>
-									<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
+								</div>
+								<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
 <span class="hljs-comment">// =&gt; Iterable[0,0,0,0,0,0,0,0,0]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1822,16 +2005,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L447">Methods.ts:447</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L571">Methods.ts:571</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Reverses the order of the items. Note that the items
 									need to be saved temporarily.</p>
-									<pre><code class="lang-javascript">reverse([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; Iterable[3,2,1]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">reverse([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; Iterable[3,2,1]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1866,15 +2049,15 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L484">Methods.ts:484</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L612">Methods.ts:612</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Counts the items.</p>
-									<pre><code class="lang-javascript">count([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; 3</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">count([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; 3</span>
+</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>typeparam</dt>
 									<dd><p>Type of the elements in the given iterable.</p>
@@ -1905,15 +2088,15 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L425">Methods.ts:425</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L547">Methods.ts:547</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Discards the given number of items from the iterable.</p>
-									<pre><code class="lang-javascript">skip([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[4,5,6]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">skip([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>], <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable[4,5,6]</span>
+</code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
 									<dd><p><a href="_methods_.html#limit">limit</a></p>
@@ -1956,16 +2139,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L90">Methods.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L98">Methods.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Slices the items into chunks of sliceSize. This is equivalent
 									to <code>chunk(iterable, (_, i) =&gt; Math.floor(i/sliceSize))</code>.</p>
-									<pre><code class="lang-javascript">slice([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; Iterable[ [1,2], [3,4], [5] ]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">slice([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>], <span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; Iterable[ [1,2], [3,4], [5] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2006,15 +2189,15 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L561">Methods.ts:561</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L697">Methods.ts:697</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Determines whether at least one items matches the given predicate.</p>
-									<pre><code class="lang-javascript">some(<span class="hljs-string">"fooz"</span>, x =&gt; x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; true</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">some(<span class="hljs-string">"fooz"</span>, x =&gt; x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2055,16 +2238,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L302">Methods.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L330">Methods.ts:330</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sorts the items. Consider converting the iterable to an array and sorting
 									this array if you do not need an iterable for further operations.</p>
-									<pre><code class="lang-javascript">sort([<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"bar"</span>, Comparators.byField(<span class="hljs-string">"length"</span>)] <span class="hljs-comment">// =&gt; Iterable["a", "bar", "foobar"]</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">sort([<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"bar"</span>, Comparators.byField(<span class="hljs-string">"length"</span>)] <span class="hljs-comment">// =&gt; Iterable["a", "bar", "foobar"]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2105,16 +2288,16 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L712">Methods.ts:712</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L922">Methods.ts:922</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Sums all items arithmetically.</p>
-									<pre><code class="lang-javascript">sum([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; 6</span>
+								</div>
+								<pre><code class="lang-javascript">sum([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]) <span class="hljs-comment">// =&gt; 6</span>
 sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>, <span class="hljs-string">"Borg"</span>], x =&gt; x.length) <span class="hljs-comment">// =&gt; 7</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2152,14 +2335,15 @@ sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L967">Methods.ts:967</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1217">Methods.ts:1217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable with numbers starting at the given
 									value and ending at the given value.</p>
-									<pre><code class="lang-javascript">times(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable(0,1,2)</span>
+								</div>
+								<pre><code class="lang-javascript">times(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Iterable(0,1,2)</span>
 times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; Iterable(4,5,6)</span>
 times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>) <span class="hljs-comment">// =&gt; Iterable(4,6,8)</span>
 times(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>) <span class="hljs-comment">// =&gt; Iterable(10)</span>
@@ -2169,7 +2353,6 @@ times(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <s
 times(<span class="hljs-number">-3</span>) <span class="hljs-comment">// =&gt; Iterable()</span>
 times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Iterable(0,1,2,3,4,5,...)</span>
 </code></pre>
-								</div>
 								<dl class="tsd-comment-tags">
 									<dt>typeparam</dt>
 									<dd><p>Type of the items of the produced iterable.</p>
@@ -2206,22 +2389,24 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 					<a name="toarray" class="tsd-anchor"></a>
 					<h3>to<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Array&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Array&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L837">Methods.ts:837</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1064">Methods.ts:1064</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an array with the items of the given iterable.</p>
-									<pre><code class="lang-javascript">toArray(<span class="hljs-string">"foobar"</span>)
+									<p>Creates an array with the items of the given iterable.
+										If the underlying iterable is an array, returns that
+									array instead of creating a new array.</p>
+								</div>
+								<pre><code class="lang-javascript">toArray(<span class="hljs-string">"foobar"</span>)
 <span class="hljs-comment">// =&gt; ["f", "o", "o", "b", "a", "r"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2240,6 +2425,12 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 										<p>The iterable to to be converted.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> fresh: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Iff true, always creates a new array. Otherise, reuses existing array when possible.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
 							<p>An array with the items.</p>
@@ -2256,16 +2447,16 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L869">Methods.ts:869</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1109">Methods.ts:1109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a map from the items of the given iterable.</p>
-									<pre><code class="lang-javascript">toMap([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], x =&gt; x, x =&gt; x.length)
+								</div>
+								<pre><code class="lang-javascript">toMap([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], x =&gt; x, x =&gt; x.length)
 <span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 3 ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2318,22 +2509,24 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 					<a name="toset" class="tsd-anchor"></a>
 					<h3>to<wbr>Set</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Set&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Set&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L851">Methods.ts:851</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L1086">Methods.ts:1086</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a set with the items of the given iterable.</p>
-									<pre><code class="lang-javascript">toSet(<span class="hljs-string">"foobar"</span>)
+									<p>Creates a set with the items of the given iterable.
+										If the underlying iterable is a set, returns that
+									set instead of creating a new set.</p>
+								</div>
+								<pre><code class="lang-javascript">toSet(<span class="hljs-string">"foobar"</span>)
 <span class="hljs-comment">// =&gt; Set["f", "o", "b", "a", "r"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2352,6 +2545,12 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 										<p>The iterable to to be converted.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> fresh: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Iff true, always creates a new set. Otherise, reuses existing set when possible.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A set with the items.</p>
@@ -2368,7 +2567,7 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L225">Methods.ts:225</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L243">Methods.ts:243</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2377,10 +2576,10 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 										wrapped in a <a href="../interfaces/_interfaces_.try.html">Try</a> in case the operation throws an error.
 										Usually used for performing a terminal operation with error handling
 									on the iterable.</p>
-									<pre><code class="lang-javascript">tryCompute([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], it =&gt; reduce(it, item =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()}, <span class="hljs-number">0</span>))
+								</div>
+								<pre><code class="lang-javascript">tryCompute([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], it =&gt; reduce(it, item =&gt; {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()}, <span class="hljs-number">0</span>))
 <span class="hljs-comment">// =&gt; Try[success=false]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2427,16 +2626,16 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L239">Methods.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L259">Methods.ts:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Same as <a href="_methods_.html#end">end</a>, but encapsulates any errors thrown. Applies
 									all pending operation to the pipeline.</p>
-									<pre><code class="lang-javascript">tryEnd(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log)) <span class="hljs-comment">// prints 1,2,3</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">tryEnd(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log)) <span class="hljs-comment">// prints 1,2,3</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2471,7 +2670,7 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L204">Methods.ts:204</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L220">Methods.ts:220</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2479,10 +2678,10 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 									<p>Similar to <a href="_methods_.html#map">map</a>, but handles any error that may be thrown by
 										the mapper by wrapping them in a <a href="../interfaces/_interfaces_.try.html">Try</a>. This is equivalen to
 									<code>map(x =&gt; Try.of(() =&gt; mapper(x)))</code></p>
-									<pre><code class="lang-javascript">doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"</span>,<span class="hljs-string">"[4,]"</span>], <span class="hljs-built_in">JSON</span>.parse)
+								</div>
+								<pre><code class="lang-javascript">doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"</span>,<span class="hljs-string">"[4,]"</span>], <span class="hljs-built_in">JSON</span>.parse)
 <span class="hljs-comment">// =&gt; Iterable[ Try[1], Try[2,3], Try[ParseError] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2523,26 +2722,82 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 					<a name="unique" class="tsd-anchor"></a>
 					<h3>unique</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">unique&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, keyExtractor<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">unique&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L323">Methods.ts:323</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L393">Methods.ts:393</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Similar to {@link distinct}, but allows for a custom key to
-										be specified, according to which uniqueness is determined.
-										```javascript
-										distinct([4,1,3,4,1,3,1,9])
-									// =&gt; Iterable[4,1,3,9]</p>
+									<p>Filters all elements that are considered equal according to
+										the given comparator. If two items are equal, the first one
+										is included in the resulting iterable. Consider using
+									<a href="_methods_.html#uniqueby">uniqueBy</a> if possible for better performance.</p>
 								</div>
-								<p>distinct({id:4},{id:2},{id:4]}, customer =&gt; customer.id)
-									// =&gt; Iterable[ {id:4}, {id:2} ]
-								```</p>
+								<pre><code class="lang-javascript">unique([<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>])
+<span class="hljs-comment">// =&gt; Iterable[4,1,3,9]</span>
+
+unique({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}, (x,y) =&gt; x.id - y.id)
+<span class="hljs-comment">// =&gt; Iterable[ {id:4}, {id:2} ]</span>
+</code></pre>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>Type of the elements in the given iterable..</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The iterable to be made unique</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Takes two items and returns 0 if they are equal. Defaults to taking determining equality by <code>===</code>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An iterable with all duplicates removed.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="uniqueby" class="tsd-anchor"></a>
+					<h3>unique<wbr>By</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">unique<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, keyExtractor<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_interfaces_.function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L353">Methods.ts:353</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Similar to <a href="_methods_.html#unique">unique</a>, but allows for a custom key to
+									be specified, according to which uniqueness is determined.</p>
+								</div>
+								<pre><code class="lang-javascript">distinct([<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>])
+<span class="hljs-comment">// =&gt; Iterable[4,1,3,9]</span>
+
+distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}, customer =&gt; customer.id)
+<span class="hljs-comment">// =&gt; Iterable[ {id:4}, {id:2} ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2583,18 +2838,18 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L408">Methods.ts:408</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L528">Methods.ts:528</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the given consumer once for each item. The consumer is
 									not called before the stream is consumed by some terminal operation.</p>
-									<pre><code class="lang-javascript">visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log)
+								</div>
+								<pre><code class="lang-javascript">visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], <span class="hljs-built_in">console</span>.log)
 <span class="hljs-comment">// =&gt; Iterable[1,2,3]</span>
 <span class="hljs-comment">// prints `1,2,3` once the stream is consumed.</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2635,23 +2890,24 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L127">Methods.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L137">Methods.ts:137</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Produces an iterable over pairs of consisting of an item of the given iterable and
 										the corresponding item of the other iterable.
-										If one of the given iterable is longer, the shorter one is appended with <code>undefined</code>.
-										```javascript
-										zip([&quot;foo&quot;, &quot;bar&quot;], [3, 4])
-									// =&gt; Iterable[ [&quot;foo&quot;,3], [&quot;bar&quot;, 4] ]</p>
+									If one of the given iterable is longer, the shorter one is appended with <code>undefined</code>.</p>
 								</div>
-								<p>zip([&quot;foo&quot;, &quot;bar&quot;], [3])
-								// =&gt; Iterable[ [&quot;foo&quot;,3], [&quot;bar&quot;, undefined] ]</p>
-								<p>toMap(zip([&quot;foo&quot;, &quot;bar&quot;], [3, 4]), x=&gt;x[0], x=&gt;x[1])
-									// =&gt; Map[ &quot;foo&quot; =&gt; 3, &quot;bar&quot; =&gt; 4] ]
-								```</p>
+								<pre><code class="lang-javascript">zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["foo",3], ["bar", 4] ]</span>
+
+zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], [<span class="hljs-number">3</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["foo",3], ["bar", undefined] ]</span>
+
+toMap(zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]), x=&gt;x[<span class="hljs-number">0</span>], x=&gt;x[<span class="hljs-number">1</span>])
+<span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 4] ]</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2695,7 +2951,7 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Methods.ts#L159">Methods.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Methods.ts#L171">Methods.ts:171</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2703,16 +2959,17 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 									<p>Produces an iterable over tuples of consisting of an item of the given iterable and
 										the corresponding items of the other iterables.
 										If any of the iterables has a different length than the others,
-										the shorter ones appended with <code>undefined</code> to the length of the longest.
-										```javascript
-										zipSame(&quot;ab&quot;, [&quot;cd&quot;, &quot;ef&quot;])
-									// =&gt; Iterable[ [&quot;a&quot;,&quot;c&quot;, &quot;d&quot;], [&quot;b&quot;, &quot;d&quot;, &quot;f&quot;] ]</p>
+									the shorter ones appended with <code>undefined</code> to the length of the longest.</p>
 								</div>
-								<p>zipSame(&quot;abc&quot;, [&quot;d&quot;, &quot;ef&quot;])
-								// =&gt; Iterable[ [&quot;a&quot;,&quot;d&quot;, &quot;e&quot;], [&quot;b&quot;, undefined, &quot;f&quot;], [&quot;c&quot;, undefined, undefined] ]</p>
-								<p>Array.from(zipSame(&quot;fb&quot;,[&quot;oa&quot;,&quot;or&quot;])).map(x=&gt;x.map(String).join(&quot;&quot;)).join(&quot;&quot;)
-									// =&gt; &quot;foobar&quot;
-								```</p>
+								<pre><code class="lang-javascript">zipSame(<span class="hljs-string">"ab"</span>, [<span class="hljs-string">"cd"</span>, <span class="hljs-string">"ef"</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["a","c", "d"], ["b", "d", "f"] ]</span>
+
+zipSame(<span class="hljs-string">"abc"</span>, [<span class="hljs-string">"d"</span>, <span class="hljs-string">"ef"</span>])
+<span class="hljs-comment">// =&gt; Iterable[ ["a","d", "e"], ["b", undefined, "f"], ["c", undefined, undefined] ]</span>
+
+toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string">"oa"</span>,<span class="hljs-string">"or"</span>])).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x.map(<span class="hljs-built_in">String</span>).join(<span class="hljs-string">""</span>)).join(<span class="hljs-string">""</span>)
+<span class="hljs-comment">// =&gt; "foobar"</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2785,6 +3042,9 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="../interfaces/_methods_.uniqueentry.html" class="tsd-kind-icon">Unique<wbr>Entry</a>
+					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_methods_.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a>
 					</li>
@@ -2864,7 +3124,13 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 						<a href="_methods_.html#max" class="tsd-kind-icon">max</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_methods_.html#maxby" class="tsd-kind-icon">max<wbr>By</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#min" class="tsd-kind-icon">min</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_methods_.html#minby" class="tsd-kind-icon">min<wbr>By</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#none" class="tsd-kind-icon">none</a>
@@ -2874,6 +3140,9 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#partition" class="tsd-kind-icon">partition</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_methods_.html#promise" class="tsd-kind-icon">promise</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#reduce" class="tsd-kind-icon">reduce</a>
@@ -2928,6 +3197,9 @@ times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// 
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#unique" class="tsd-kind-icon">unique</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_methods_.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_methods_.html#visit" class="tsd-kind-icon">visit</a>

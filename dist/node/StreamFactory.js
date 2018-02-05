@@ -6,8 +6,11 @@ const TypesafeStream_1 = require("./TypesafeStream");
 function createFactory(inplace = true) {
     const clazz = inplace ? InplaceStream_1.InplaceStream : TypesafeStream_1.TypesafeStream;
     return {
-        stream(items) {
-            return new clazz(items);
+        stream(iterable) {
+            if (typeof iterable[Symbol.iterator] !== "function") {
+                throw new Error("Passed value is not iterable: " + typeof iterable);
+            }
+            return new clazz(iterable);
         },
         times(amount, start, end) {
             return new clazz(Methods_1.times(amount, start, end));

@@ -1,7 +1,7 @@
 import { Comparator } from "comparators";
 
 import { BiFunction, Stream, TryStream, Consumer, Function, Predicate, Try } from "./Interfaces";
-import { cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
+import { uniqueBy, promise, cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
 import { AbstractStream } from "./AbstractStream";
 
 export class InplaceStream extends AbstractStream<any> {
@@ -46,6 +46,12 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
+    promise<S>(promiseConverter: Function<any, Promise<S>>) : Promise<Stream<any>> {
+        this.check();
+        return promise(this.iterable, promiseConverter)
+            .then(iterable => new InplaceStream(iterable));
+    }
+
     visit(consumer: Consumer<any>) : this {
         this.iterable = visit(this.iterable, consumer);
         return this;        
@@ -76,11 +82,16 @@ export class InplaceStream extends AbstractStream<any> {
         return new TryStreamImpl(x);
     }
 
-    unique(keyExtractor?: Function<any,any>) : this {
-        this.iterable = unique(this.iterable, keyExtractor);
+    unique(comparator?: Comparator<any>) : this {
+        this.iterable = unique(this.iterable, comparator);
         return this;
     }
 
+    uniqueBy(keyExtractor?: Function<any,any>) : this {
+        this.iterable = uniqueBy(this.iterable, keyExtractor);
+        return this;
+    }
+    
     zip<S>(other: Iterable<S>) : Stream<[any, any]> {
         this.iterable = zip(this.iterable, other);
         return this;

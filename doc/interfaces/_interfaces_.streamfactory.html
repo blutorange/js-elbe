@@ -107,17 +107,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L228">Interfaces.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L247">Interfaces.ts:247</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an stream for iterating over an object&#39;s key-value-pairs.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
 <span class="hljs-comment">// =&gt; Stream[ ["foo", 2], ["bar", 3] ]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -157,17 +157,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L240">Interfaces.ts:240</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L261">Interfaces.ts:261</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a stream for iterating over an object&#39;s keys.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObjectKeys({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-number">42</span>: <span class="hljs-number">9</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObjectKeys({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>, <span class="hljs-number">42</span>: <span class="hljs-number">9</span>})
 <span class="hljs-comment">// =&gt; Stream["foo", "bar", "42"]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -198,17 +198,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L253">Interfaces.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L276">Interfaces.ts:276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a stream for iterating over an object&#39;s values.
 									Only the object&#39;s own property are included.</p>
-									<pre><code class="lang-javascript">fromObjectValues({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
+								</div>
+								<pre><code class="lang-javascript">fromObjectValues({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
 <span class="hljs-comment">// =&gt; Stream[2,3]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -248,16 +248,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L165">Interfaces.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L176">Interfaces.ts:176</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a stream with the items provided by the given generator.</p>
-									<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
+								</div>
+								<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
 <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -298,16 +298,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L179">Interfaces.ts:179</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L192">Interfaces.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a stream starting with the initial seed.</p>
-									<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
+								</div>
+								<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
 <span class="hljs-comment">// Random number generator, linear congruential generator from "Numerical Recipes".</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -354,17 +354,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L193">Interfaces.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L208">Interfaces.ts:208</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an stream with the given item occuring the given
 									number of times.</p>
-									<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
+								</div>
+								<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
 <span class="hljs-comment">// =&gt; Stream[0,0,0,0,0,0,0,0,0]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -405,7 +405,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L152">Interfaces.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L161">Interfaces.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -434,14 +434,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L215">Interfaces.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L232">Interfaces.ts:232</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an stream with numbers starting at the given
 									value and ending at the given value.</p>
-									<pre><code class="lang-javascript">times(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2]</span>
+								</div>
+								<pre><code class="lang-javascript">times(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2]</span>
 times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; Stream[4,5,6]</span>
 times(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>) <span class="hljs-comment">// =&gt; Stream[4,6,8]</span>
 times(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">12</span>) <span class="hljs-comment">// =&gt; Stream[10]</span>
@@ -451,7 +452,6 @@ times(<span class="hljs-number">3</span>, <span class="hljs-number">0</span>, <s
 times(<span class="hljs-number">-3</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
 times(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,5,...]</span>
 </code></pre>
-								</div>
 								<dl class="tsd-comment-tags">
 									<dt>typeparam</dt>
 									<dd><p>Type of the items of the produced iterable.</p>

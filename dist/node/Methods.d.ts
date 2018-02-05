@@ -17,7 +17,8 @@ export declare function partition<T>(iterable: Iterable<T>, discriminator: Predi
 export declare function group<T, K>(iterable: Iterable<T>, classifier: Function<T, K>): Map<K, T[]>;
 export declare function join<T>(iterable: Iterable<T>, delimiter?: string, prefix?: string, suffix?: string): string;
 export declare function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T>;
-export declare function unique<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T>;
+export declare function uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T>;
+export declare function unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T>;
 export declare function index<T>(iterable: Iterable<T>): Iterable<[number, T]>;
 export declare function limit<T>(iterable: Iterable<T>, limit: number): Iterable<T>;
 export declare function cycle<T>(iterable: Iterable<T>, count?: number): Iterable<T>;
@@ -32,8 +33,11 @@ export declare function every<T>(iterable: Iterable<T>, predicate: Predicate<T>)
 export declare function some<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
 export declare function none<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean;
 export declare function has<T>(iterable: Iterable<T>, object: T): boolean;
-export declare function min<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T;
-export declare function max<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T;
+export declare function promise<T, S>(iterable: Iterable<T>, promiseConverter: Function<T, Promise<S>>): Promise<Iterable<S>>;
+export declare function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | undefined;
+export declare function maxBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | undefined;
+export declare function min<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T | undefined;
+export declare function max<T>(iterable: Iterable<T>, comparator?: Comparator<T>): T | undefined;
 export declare function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<S, T, S>, initialValue: S): S;
 export declare function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): T;
 export declare function sum<T>(iterable: Iterable<T>, converter?: Function<T, number>): number;
@@ -43,8 +47,8 @@ export declare function first<T>(iterable: Iterable<T>): T | undefined;
 export declare function last<T>(iterable: Iterable<T>): T | undefined;
 export declare function collect<T, S, R = S>(iterable: Iterable<T>, collector: Collector<T, S, R>): R;
 export declare function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
-export declare function toArray<T>(iterable: Iterable<T>): T[];
-export declare function toSet<T>(iterable: Iterable<T>): Set<T>;
+export declare function toArray<T>(iterable: Iterable<T>, fresh?: boolean): T[];
+export declare function toSet<T>(iterable: Iterable<T>, fresh?: boolean): Set<T>;
 export declare function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
 export declare function fromObject<T>(object: {
     [s: string]: T;

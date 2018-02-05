@@ -12,12 +12,14 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     abstract index(): Stream<[number, T]>;
     abstract limit(limitTo: number): this;
     abstract map<S>(mapper: Function<T, S>): Stream<S>;
+    abstract promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<Stream<S>>;
     abstract reverse(): this;
     abstract skip(toSkip: number): this;
     abstract slice(sliceSize: number): Stream<T[]>;
     abstract sort(comparator?: Comparator<T>): this;
     abstract try<S>(operation: Function<T, S>): TryStream<S>;
-    abstract unique(keyExtractor?: Function<T, any>): this;
+    abstract unique(comparator?: Comparator<T>): this;
+    abstract uniqueBy(keyExtractor?: Function<T, any>): this;
     abstract visit(consumer: Consumer<T>): this;
     abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
     abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
@@ -36,8 +38,10 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     join(delimiter?: string, prefix?: string, suffix?: string): string;
     last(): T | undefined;
     nth(n: number): T | undefined;
-    max(comparator?: Comparator<T>): T;
-    min(comparator?: Comparator<T>): T;
+    max(comparator?: Comparator<T>): T | undefined;
+    maxBy<K = any>(sortKey: Function<T, K>): T | undefined;
+    min(comparator?: Comparator<T>): T | undefined;
+    minBy<K = any>(sortKey: Function<T, K>): T | undefined;
     partition(predicate: Predicate<T>): {
         false: T[];
         true: T[];
@@ -47,8 +51,8 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     size(): number;
     some(predicate: Predicate<T>): boolean;
     sum(converter?: Function<T, number>): number;
-    toArray(): T[];
-    toSet(): Set<T>;
+    toArray(fresh?: boolean): T[];
+    toSet(fresh?: boolean): Set<T>;
     toJSON(): T[];
     toString(): string;
     toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V>;

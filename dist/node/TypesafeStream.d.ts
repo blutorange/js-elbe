@@ -11,13 +11,15 @@ export declare class TypesafeStream<T> extends AbstractStream<T> {
     index(): Stream<[number, T]>;
     limit(limitTo: number): this;
     map<S>(mapper: Function<T, S>): Stream<S>;
-    visit(consumer: Consumer<T>): this;
+    promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<Stream<any>>;
     reverse(): this;
     skip(toSkip: number): this;
     slice(sliceSize: number): Stream<T[]>;
     sort(comparator?: Comparator<T>): this;
     try<S>(operation: Function<T, S>): TryStream<S>;
-    unique(keyExtractor?: Function<T, any>): this;
+    unique(comparator?: Comparator<any>): this;
+    uniqueBy(keyExtractor?: Function<T, any>): this;
+    visit(consumer: Consumer<T>): this;
     zip<S>(other: Iterable<S>): Stream<[T, S]>;
     zipSame(...others: Iterable<T>[]): Stream<T[]>;
 }

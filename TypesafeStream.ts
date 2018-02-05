@@ -1,7 +1,7 @@
 import { Comparator } from "comparators";
 
 import { BiFunction, Stream, TryStream, Consumer, Function, Predicate, Try } from "./Interfaces";
-import { cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
+import { promise, cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, uniqueBy, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
 import { AbstractStream } from "./AbstractStream";
 
 export class TypesafeStream<T> extends AbstractStream<T> {
@@ -47,9 +47,10 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new TypesafeStream(map(this.iterable, mapper));
     }
 
-    visit(consumer: Consumer<T>) : this {
+    promise<S>(promiseConverter: Function<any, Promise<S>>) : Promise<Stream<any>> {
         this.check();
-        return new this.constructor(visit(this.iterable, consumer)) as this;
+        return promise(this.iterable, promiseConverter)
+            .then(iterable => new TypesafeStream(iterable));
     }
 
     reverse() : this {
@@ -77,9 +78,19 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new TryStreamImpl(tryMap(this.iterable, operation));
     }
 
-    unique(keyExtractor?: Function<T,any>) : this {
+    unique(comparator?: Comparator<any>) : this {
         this.check();
-        return new this.constructor(unique(this.iterable, keyExtractor)) as this;
+        return new this.constructor(unique(this.iterable, comparator)) as this;
+    }
+
+    uniqueBy(keyExtractor?: Function<T,any>) : this {
+        this.check();
+        return new this.constructor(uniqueBy(this.iterable, keyExtractor)) as this;
+    }
+
+    visit(consumer: Consumer<T>) : this {
+        this.check();
+        return new this.constructor(visit(this.iterable, consumer)) as this;
     }
 
     zip<S>(other: Iterable<S>) : Stream<[T, S]> {

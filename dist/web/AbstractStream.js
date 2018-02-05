@@ -158,11 +158,23 @@ function () {
       return Methods_1.max(this.iterable, comparator);
     }
   }, {
+    key: "maxBy",
+    value: function maxBy(sortKey) {
+      this.check();
+      return Methods_1.maxBy(this.iterable, sortKey);
+    }
+  }, {
     key: "min",
     value: function min() {
       var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : comparators_1.natural;
       this.check();
       return Methods_1.min(this.iterable, comparator);
+    }
+  }, {
+    key: "minBy",
+    value: function minBy(sortKey) {
+      this.check();
+      return Methods_1.minBy(this.iterable, sortKey);
     }
   }, {
     key: "partition",
@@ -202,15 +214,15 @@ function () {
     }
   }, {
     key: "toArray",
-    value: function toArray() {
+    value: function toArray(fresh) {
       this.check();
-      return Methods_1.toArray(this.iterable);
+      return Methods_1.toArray(this.iterable, fresh);
     }
   }, {
     key: "toSet",
-    value: function toSet() {
+    value: function toSet(fresh) {
       this.check();
-      return Methods_1.toSet(this.iterable);
+      return Methods_1.toSet(this.iterable, fresh);
     }
   }, {
     key: "toJSON",

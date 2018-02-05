@@ -73,17 +73,17 @@
 						<p>A try represents the result of an operation, that may
 							have succeeded or failed, and contains several methods
 						for handling success and error cases.</p>
-						<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> t = T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(input)) <span class="hljs-comment">// =&gt; Try[success=true/false]</span>
+					</div>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> t = T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(input)) <span class="hljs-comment">// =&gt; Try[success=true/false]</span>
 t.orElse({}); <span class="hljs-comment">// =&gt; The parsed JSON object or an empty object.</span>
 </code></pre>
-						<p>Several methods such as {@link Try.map} take an abitrary callback
-							for manipulating the success or error value. If these methods throw
-							an error, the returned <a href="_interfaces_.try.html">Try</a> is not successful and contains an
-						error with the stacktrace of the original error added.</p>
-						<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> t = T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(input))
+					<p>Several methods such as {@link Try.map} take an abitrary callback
+						for manipulating the success or error value. If these methods throw
+						an error, the returned <a href="_interfaces_.try.html">Try</a> is not successful and contains an
+					error with the stacktrace of the original error added.</p>
+					<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> t = T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(input))
 t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Bad handler"</span>)})
 </code></pre>
-					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-type-parameters">
@@ -153,7 +153,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L279">Interfaces.ts:279</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L306">Interfaces.ts:306</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -176,24 +176,19 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L463">Interfaces.ts:463</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L511">Interfaces.ts:511</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Similar to {@link #orTry}, but works like a <code>thenable</code>-object.
 										The handler is allowed to return either the new value directly,
-										or a <a href="_interfaces_.try.html">Try</a> with the new value.
-										```javascript
-									TryFactory.error(&quot;bad&quot;).catch(e =&gt; 0)</p>
+									or a <a href="_interfaces_.try.html">Try</a> with the new value.</p>
 								</div>
-								<p>TryFactory.error(&quot;bad&quot;).catch(e =&gt; Try.success(0))
-								```</p>
-								<dl class="tsd-comment-tags">
-									<dt>typeparam</dt>
-									<dd><p>Type of the new value.</p>
-									</dd>
-								</dl>
+								<pre><code class="lang-javascript">TryFactory.error(<span class="hljs-string">"bad"</span>).catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> <span class="hljs-number">0</span>)
+
+TryFactory.error(<span class="hljs-string">"bad"</span>).catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> Try.success(<span class="hljs-number">0</span>))
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -216,7 +211,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L307">Interfaces.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L336">Interfaces.ts:336</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,14 +219,14 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 									<p>Computes a new value by using either the success handler,
 										or the backup handler. If a handler throws, the returned <a href="_interfaces_.try.html">Try</a>
 										is not successful. If the backup handler is not given and this try
-										is unsuccessful, return a try with the same error.
-										```javascript
-										TryFactor.success(9).convert(x =&gt; x * 2);
-									// =&gt; 18</p>
+									is unsuccessful, return a try with the same error.</p>
 								</div>
-								<p>TryFactor.error(&quot;bad&quot;).convert(x =&gt; x * x, e =&gt; e.message.length);
-									// =&gt; 3
-								```</p>
+								<pre><code class="lang-javascript">TryFactor.success(<span class="hljs-number">9</span>).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * <span class="hljs-number">2</span>);
+<span class="hljs-comment">// =&gt; 18</span>
+
+TryFactor.error(<span class="hljs-string">"bad"</span>).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x, e =&gt; e.message.length);
+<span class="hljs-comment">// =&gt; 3</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -272,7 +267,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L325">Interfaces.ts:325</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L356">Interfaces.ts:356</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,10 +278,10 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 										is unsuccessful, return a try with the same error.
 										Similar to {@link #convert}, but the handlers return a <a href="_interfaces_.try.html">Try</a>
 									directly.</p>
-									<pre><code class="lang-javascript">TryFactor.success(<span class="hljs-string">"9"</span>).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x)));
+								</div>
+								<pre><code class="lang-javascript">TryFactor.success(<span class="hljs-string">"9"</span>).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x)));
 <span class="hljs-comment">// =&gt; Try[value=9]</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -324,20 +319,20 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L416">Interfaces.ts:416</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L459">Interfaces.ts:459</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the error handler iff this try is not successful,
-										or does nothing otherwise.
-										```javascript
-										TryFactory.success(9).ifAbsent(console.log)
-									// prints nothing</p>
+									or does nothing otherwise.</p>
 								</div>
-								<p>TryFactory.error(new Error).ifAbsent(console.info)
-									// Informs about error
-								```</p>
+								<pre><code class="lang-javascript">TryFactory.success(<span class="hljs-number">9</span>).ifAbsent(<span class="hljs-built_in">console</span>.log)
+<span class="hljs-comment">// prints nothing</span>
+
+TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>).ifAbsent(<span class="hljs-built_in">console</span>.info)
+<span class="hljs-comment">// Informs about error</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -346,7 +341,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-							<p>This {@link Try.}.</p>
+							<p>This <a href="_interfaces_.try.html">Try</a>..</p>
 						</li>
 					</ul>
 				</section>
@@ -360,20 +355,20 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L402">Interfaces.ts:402</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L443">Interfaces.ts:443</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Calls the success handler with the successful value,
-										or the error handler with the error.
-										```javascript
-										TryFactory.success(9).ifPresent(console.info, console.warn)
-									// informs about 9</p>
+									or the error handler with the error.</p>
 								</div>
-								<p>TryFactory.error(new Error).ifPresent(console.info, console.warn)
-									// warns about error
-								```</p>
+								<pre><code class="lang-javascript">TryFactory.success(<span class="hljs-number">9</span>).ifPresent(<span class="hljs-built_in">console</span>.info, <span class="hljs-built_in">console</span>.warn)
+<span class="hljs-comment">// informs about 9</span>
+
+TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>).ifPresent(<span class="hljs-built_in">console</span>.info, <span class="hljs-built_in">console</span>.warn)
+<span class="hljs-comment">// warns about error</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -399,7 +394,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L288">Interfaces.ts:288</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L315">Interfaces.ts:315</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -433,7 +428,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L432">Interfaces.ts:432</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L477">Interfaces.ts:477</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,16 +451,16 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L336">Interfaces.ts:336</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L369">Interfaces.ts:369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns the successful value or the backup value in case
 									this try represents an error.</p>
-									<pre><code class="lang-javascript">TryFactory.error(<span class="hljs-string">"bad"</span>).erElse(<span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; 0</span>
-</code></pre>
 								</div>
+								<pre><code class="lang-javascript">TryFactory.error(<span class="hljs-string">"bad"</span>).erElse(<span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; 0</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -491,24 +486,25 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L375">Interfaces.ts:375</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L412">Interfaces.ts:412</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>If not successful, attempts to compute a value from the error
 										with the given backup handler. Similar to <a href="_interfaces_.try.html#ortry">orTry</a>, but
-										the backup handler returns a <a href="_interfaces_.try.html">Try</a> directly.
-										```javascript
-										parseIntSafe = string =&gt; {
-										if (isInt(string)) return parseInt(string);
-										throw new Error(&quot;invalid number format&quot;)
-									}</p>
+									the backup handler returns a <a href="_interfaces_.try.html">Try</a> directly.</p>
 								</div>
-								<p>T.of(() =&gt; parseIntSafe(input))
-								.orTryFlat(e =&gt; Try.of(() =&gt; parseIntSafe(e.statusCode)))</p>
-								<p>// =&gt; input, status code, or error
-								```</p>
+								<pre><code class="lang-javascript">parseIntSafe = <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (isInt(string)) <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(string);
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"invalid number format"</span>)
+}
+
+T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(input))
+  .orTryFlat(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(e.statusCode)))
+
+<span class="hljs-comment">// =&gt; input, status code, or error</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -534,19 +530,19 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L388">Interfaces.ts:388</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L427">Interfaces.ts:427</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>On success, returns the value; otherwise throws the error.
-										```javascript
-										TryFactory.success(9).orThrow()
-									// =&gt; 9</p>
+									<p>On success, returns the value; otherwise throws the error.</p>
 								</div>
-								<p>TryFactory.error(new Error()).orThrow()
-									// =&gt; throws
-								```</p>
+								<pre><code class="lang-javascript">TryFactory.success(<span class="hljs-number">9</span>).orThrow()
+<span class="hljs-comment">// =&gt; 9</span>
+
+TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()).orThrow()
+<span class="hljs-comment">// =&gt; throws</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 							<p>The successful value.</p>
@@ -563,23 +559,24 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L355">Interfaces.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L390">Interfaces.ts:390</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>If not successful, attempts to compute a value from the error
-										with the given backup handler.
-										```javascript
-										parseIntSafe = string =&gt; {
-										if (isInt(string)) return parseInt(string);
-										throw new Error(&quot;invalid number format&quot;)
-									}</p>
+									with the given backup handler.</p>
 								</div>
-								<p>T.of(() =&gt; parseIntSafe(input))
-								.orTry(e =&gt; parseIntSafe(e.statusCode))</p>
-								<p>// =&gt; input, status code, or error
-								```</p>
+								<pre><code class="lang-javascript">parseIntSafe = <span class="hljs-function"><span class="hljs-params">string</span> =&gt;</span> {
+  <span class="hljs-keyword">if</span> (isInt(string)) <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(string);
+  <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"invalid number format"</span>)
+}
+
+T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(input))
+  .orTry(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> parseIntSafe(e.statusCode))
+
+<span class="hljs-comment">// =&gt; input, status code, or error</span>
+</code></pre>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -605,16 +602,16 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L426">Interfaces.ts:426</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L471">Interfaces.ts:471</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates an iterable from either the successful value or the error.</p>
-									<pre><code class="lang-javascript">TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(<span class="hljs-string">"2.5"</span>)).stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>).first()
+								</div>
+								<pre><code class="lang-javascript">TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(<span class="hljs-string">"2.5"</span>)).stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>).first()
 <span class="hljs-comment">// Error("invalid integer format")</span>
 </code></pre>
-								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -637,19 +634,19 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/5fb0677/Interfaces.ts#L448">Interfaces.ts:448</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-streams/blob/3ae06e0/Interfaces.ts#L495">Interfaces.ts:495</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Similar to {@link #convert}, but works like a <code>thenable</code>-object.
+									<p>Similar to <a href="_interfaces_.try.html#convert">Try.convert</a>, but works like a <code>thenable</code>-object.
 										The handlers are allowed to return either the new value directly,
-										or a <a href="_interfaces_.try.html">Try</a> with the new value.
-										```javascript
-									TryFactory.of(...).then(x =&gt; JSON.parse(x))</p>
+									or a <a href="_interfaces_.try.html">Try</a> with the new value.</p>
 								</div>
-								<p>TryFactory.of(...).then(x =&gt; Try.of(() =&gt; JSON.parse(x)))
-								```</p>
+								<pre><code class="lang-javascript">TryFactory.of(...).then(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x))
+
+TryFactory.of(...).then(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x)))
+</code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">

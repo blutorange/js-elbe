@@ -10,13 +10,15 @@ export declare class InplaceStream extends AbstractStream<any> {
     index(): Stream<[number, any]>;
     limit(limitTo: number): this;
     map<S>(mapper: Function<any, S>): Stream<any>;
+    promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<Stream<any>>;
     visit(consumer: Consumer<any>): this;
     reverse(): this;
     skip(toSkip: number): this;
     slice(sliceSize: number): Stream<any[]>;
     sort(comparator?: Comparator<any>): this;
     try<S>(operation: Function<any, S>): TryStream<S>;
-    unique(keyExtractor?: Function<any, any>): this;
+    unique(comparator?: Comparator<any>): this;
+    uniqueBy(keyExtractor?: Function<any, any>): this;
     zip<S>(other: Iterable<S>): Stream<[any, any]>;
     zipSame(...others: Iterable<any>[]): Stream<any[]>;
 }

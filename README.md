@@ -36,10 +36,10 @@ const lib = require("streams");
 This returns an object with the following entries:
 
 * [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_collectors_.html)
-* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_streamfactory_.html)
+* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/interfaces/_interfaces_.streamfactory.html)
 * [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_methods_.html)
 * [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_monkeypatch_.html)
-* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_try_.html#tryfactory)
+* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_tryfactory_.html#tryfactory)
 
 # Install
 
@@ -53,22 +53,53 @@ Or use the standalone in `dist/streams.js`. With node it simply exports itself, 
 
 # Usage
 
+Generates a stream of 100 numbers between 0 and 2.
+
 ```javascript
-const lib = require("streams");
-const times = lib.InplaceStreamFactory.times;
-times(100, 0, 2).map(x => x*x-2).map(Math.abs).min(); // 1.41
+const factory = require("streams").InplaceStreamFactory;
+factory.times(1000,1.4,1.5).minBy(x => Math.abs(x * x - 2))
+// => 1.41421...
 ```
 
-There are three different ways of using the stream methods:
-
-# Shortcut
-
-If you do not like to write much:
+Generates a stream from an array.
 
 ```javascript
 const { stream } = require("streams");
 stream([1,2,3]).map(...).filter(...).limit(1).group(...);
 ```
+
+The following entries exist on the `lib` object when requiring the library:
+
+```javascript
+lib = {
+    stream, // shortcut for InplaceStream.from
+    monkeyPatch, // function that patches some Object prototypes
+    InplaceStreamFactory: { // see interface 'StreamFactory'
+      from,
+      times,
+      ...
+    }
+    TypesafeStreamFactory: { // see interface 'StreamFactory'
+      from,
+      times,
+      ...
+    },
+    TryFactory, // see interface 'ITryFactory'
+    Collectors: { // all methods documented in 'Collectors'
+        join,
+        group,
+        ...
+    },
+    Methods: { // contains all methods documented in 'Methods'
+        filter, 
+        group,
+        map,
+        ...
+    }
+}
+```
+
+There are three different ways of using the stream methods:
 
 ## Standalone methods
 

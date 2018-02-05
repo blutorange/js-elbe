@@ -35,6 +35,11 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         this.iterable = Methods_1.map(this.iterable, mapper);
         return this;
     }
+    promise(promiseConverter) {
+        this.check();
+        return Methods_1.promise(this.iterable, promiseConverter)
+            .then(iterable => new InplaceStream(iterable));
+    }
     visit(consumer) {
         this.iterable = Methods_1.visit(this.iterable, consumer);
         return this;
@@ -59,8 +64,12 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         let x = Methods_1.tryMap(this.iterable, operation);
         return new TryStreamImpl(x);
     }
-    unique(keyExtractor) {
-        this.iterable = Methods_1.unique(this.iterable, keyExtractor);
+    unique(comparator) {
+        this.iterable = Methods_1.unique(this.iterable, comparator);
+        return this;
+    }
+    uniqueBy(keyExtractor) {
+        this.iterable = Methods_1.uniqueBy(this.iterable, keyExtractor);
         return this;
     }
     zip(other) {

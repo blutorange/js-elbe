@@ -91,10 +91,12 @@ function (_AbstractStream_1$Abs) {
       return new TypesafeStream(Methods_1.map(this.iterable, mapper));
     }
   }, {
-    key: "visit",
-    value: function visit(consumer) {
+    key: "promise",
+    value: function promise(promiseConverter) {
       this.check();
-      return new this.constructor(Methods_1.visit(this.iterable, consumer));
+      return Methods_1.promise(this.iterable, promiseConverter).then(function (iterable) {
+        return new TypesafeStream(iterable);
+      });
     }
   }, {
     key: "reverse",
@@ -128,9 +130,21 @@ function (_AbstractStream_1$Abs) {
     }
   }, {
     key: "unique",
-    value: function unique(keyExtractor) {
+    value: function unique(comparator) {
       this.check();
-      return new this.constructor(Methods_1.unique(this.iterable, keyExtractor));
+      return new this.constructor(Methods_1.unique(this.iterable, comparator));
+    }
+  }, {
+    key: "uniqueBy",
+    value: function uniqueBy(keyExtractor) {
+      this.check();
+      return new this.constructor(Methods_1.uniqueBy(this.iterable, keyExtractor));
+    }
+  }, {
+    key: "visit",
+    value: function visit(consumer) {
+      this.check();
+      return new this.constructor(Methods_1.visit(this.iterable, consumer));
     }
   }, {
     key: "zip",

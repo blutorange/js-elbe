@@ -6,8 +6,11 @@ import { TypesafeStream } from "./TypesafeStream";
 function createFactory(inplace: boolean = true) : StreamFactory {
     const clazz = inplace ? InplaceStream : TypesafeStream;
     return {
-        stream<T>(items: Iterable<T>) : Stream<T> {
-            return new clazz(items);
+        stream<T>(iterable: Iterable<T>) : Stream<T> {
+            if (typeof iterable[Symbol.iterator] !== "function") {
+                throw new Error("Passed value is not iterable: " + typeof iterable);
+            }
+            return new clazz(iterable);
         },
 
         times<T>(amount: number, start?: number, end?: number) : Stream<T> {

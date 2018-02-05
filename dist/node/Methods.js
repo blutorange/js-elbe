@@ -117,21 +117,63 @@ function join(iterable, delimiter = "", prefix, suffix) {
 }
 exports.join = join;
 function sort(iterable, comparator) {
-    const arr = Array.from(iterable);
+    const arr = toArray(iterable, true);
     arr.sort(comparator);
-    return arr[Symbol.iterator]();
+    return arr;
 }
 exports.sort = sort;
-function* unique(iterable, keyExtractor) {
+function uniqueBy(iterable, keyExtractor) {
     if (keyExtractor === undefined) {
-        return new Set(iterable).values();
+        return new Set(iterable);
     }
-    const set = new Set();
+    const map = new Map();
     for (let item of iterable) {
         const key = keyExtractor(item);
-        if (!set.has(key)) {
+        if (!map.has(key)) {
+            map.set(key, item);
+        }
+    }
+    return map.values();
+}
+exports.uniqueBy = uniqueBy;
+function* unique(iterable, comparator) {
+    if (comparator === undefined) {
+        for (let item of new Set(iterable)) {
             yield item;
-            set.add(key);
+        }
+        return;
+    }
+    const items = [];
+    let i = 0;
+    for (let item of iterable) {
+        items.push({
+            i: i++,
+            v: item,
+            u: false
+        });
+    }
+    const sorted = Array.from(items).sort((x, y) => comparator(x.v, y.v));
+    let first = true;
+    let previous;
+    for (let item of sorted) {
+        if (first) {
+            item.u = true;
+            previous = item;
+            first = false;
+        }
+        else if (comparator(item.v, previous.v) !== 0) {
+            item.u = true;
+            previous = item;
+        }
+        else if (item.i < previous.i) {
+            previous.u = false;
+            item.u = true;
+            previous = item;
+        }
+    }
+    for (let item of items) {
+        if (item.u) {
+            yield item.v;
         }
     }
 }
@@ -156,7 +198,7 @@ function* limit(iterable, limit) {
 exports.limit = limit;
 function* cycle(iterable, count = Infinity) {
     count = Math.max(0, count);
-    const items = Array.from(iterable);
+    const items = toArray(iterable, true);
     for (let i = 0; i < count; ++i) {
         for (let item of items) {
             yield item;
@@ -184,7 +226,7 @@ function* skip(iterable, skip) {
 }
 exports.skip = skip;
 function* reverse(iterable) {
-    const arr = Array.from(iterable);
+    const arr = toArray(iterable, true);
     for (let i = arr.length; i-- > 0;) {
         yield arr[i];
     }
@@ -255,12 +297,26 @@ function has(iterable, object) {
     return some(iterable, item => item === object);
 }
 exports.has = has;
+function promise(iterable, promiseConverter) {
+    return Promise.all(map(iterable, promiseConverter));
+}
+exports.promise = promise;
+function minBy(iterable, sortKey) {
+    return min(iterable, comparators_1.byKey(sortKey));
+}
+exports.minBy = minBy;
+function maxBy(iterable, sortKey) {
+    return max(iterable, comparators_1.byKey(sortKey));
+}
+exports.maxBy = maxBy;
 function min(iterable, comparator = comparators_1.natural) {
+    console.log(comparator);
     let first = true;
     let min;
     for (let item of iterable) {
         if (first) {
             min = item;
+            first = false;
         }
         else {
             if (comparator(item, min) < 0) {
@@ -277,6 +333,7 @@ function max(iterable, comparator = comparators_1.natural) {
     for (let item of iterable) {
         if (first) {
             min = item;
+            first = false;
         }
         else {
             if (comparator(item, min) > 0) {
@@ -360,11 +417,17 @@ function collectWith(iterable, supplier, accumulator, finisher) {
 }
 exports.collectWith = collectWith;
 ;
-function toArray(iterable) {
+function toArray(iterable, fresh = false) {
+    if (Array.isArray(iterable) && !fresh) {
+        return iterable;
+    }
     return Array.from(iterable);
 }
 exports.toArray = toArray;
-function toSet(iterable) {
+function toSet(iterable, fresh = false) {
+    if ((iterable instanceof Set) && !fresh) {
+        return iterable;
+    }
     return new Set(iterable);
 }
 exports.toSet = toSet;

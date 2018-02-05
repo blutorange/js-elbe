@@ -75,9 +75,17 @@ class AbstractStream {
         this.check();
         return Methods_1.max(this.iterable, comparator);
     }
+    maxBy(sortKey) {
+        this.check();
+        return Methods_1.maxBy(this.iterable, sortKey);
+    }
     min(comparator = comparators_1.natural) {
         this.check();
         return Methods_1.min(this.iterable, comparator);
+    }
+    minBy(sortKey) {
+        this.check();
+        return Methods_1.minBy(this.iterable, sortKey);
     }
     partition(predicate) {
         this.check();
@@ -103,13 +111,13 @@ class AbstractStream {
         this.check();
         return Methods_1.sum(this.iterable, converter);
     }
-    toArray() {
+    toArray(fresh) {
         this.check();
-        return Methods_1.toArray(this.iterable);
+        return Methods_1.toArray(this.iterable, fresh);
     }
-    toSet() {
+    toSet(fresh) {
         this.check();
-        return Methods_1.toSet(this.iterable);
+        return Methods_1.toSet(this.iterable, fresh);
     }
     toJSON() {
         return this.toArray();
