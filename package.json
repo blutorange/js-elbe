@@ -2,8 +2,8 @@
   "name": "streams",
   "version": "1.0.0",
   "description": "Utility methods for working with iterables as streams.",
-  "main": "dist/node/main.js",
-  "types": "dist",
+  "main": "dist/node/main",
+  "types": "dist/node",
   "scripts": {
     "prepare": "patch-package",
     "build": "npm run clean && npm run doc && npm run transpile && npm run web",
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blutorange/js-iterables.git"
+    "url": "git+https://github.com/blutorange/js-streams.git"
   },
   "keywords": [
     "iterable",
@@ -34,9 +34,9 @@
   },
   "dependencies": {
     "comparators": "https://github.com/blutorange/js-comparators",
-    "typedoc": "^0.10.0"
+    "tslib": "^1.9.0"
   },
-  "homepage": "https://github.com/blutorange/js-iterables#readme",
+  "homepage": "https://github.com/blutorange/js-streams#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.39",
     "@babel/core": "^7.0.0-beta.39",
@@ -46,7 +46,7 @@
     "core-js": "^2.5.3",
     "patch-package": "^5.0.0",
     "regenerator-runtime": "^0.11.1",
-    "tslib": "^1.9.0",
-    "typescript": "^2.8.0-dev.20180202"
+    "typescript": "^2.8.0-dev.20180202",
+    "typedoc": "^0.10.0"
   }
 }
