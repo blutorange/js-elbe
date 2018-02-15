@@ -1,27 +1,26 @@
 {
-  "name": "streams",
+  "name": "elbe",
   "version": "1.0.0",
   "description": "Utility methods for working with iterables as streams.",
   "main": "dist/node/main",
-  "types": "dist/node",
+  "types": "dist/node/main",
   "scripts": {
-    "prepare": "patch-package",
     "build": "npm run clean && npm run doc && npm run transpile && npm run web",
     "clean": "rm -rf dist/* doc/* && rm README.typedoc",
     "doc": "npm run doc-readme && npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
-    "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-streams\\/blob\\/master\\/doc/./g' README.md  > README.typedoc",
-    "doc-create": "npx typedoc --mode modules --name js-streams --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
+    "doc-readme": "sed 's/http:\\/\\/htmlpreview\\.github\\.io\\/?https:\\/\\/github.com\\/blutorange\\/js-elbe\\/blob\\/master\\/doc/./g' README.md  > README.typedoc",
+    "doc-create": "npx typedoc --mode modules --name elbe --readme README.typedoc --out doc --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
     "web-babel": "npx babel dist/node/*.js --out-dir dist/web/",
     "web-babelfix": "sed -ri 's/import \\\"(..*)\\\"/require(\"\\1\")/g' dist/web/*.js",
-    "web-browserify": "npx browserify dist/web/main.js --standalone Streams -o dist/streams.js",
-    "web-minify": "npx minify dist/streams.js --out-file dist/streams.min.js"
+    "web-browserify": "npx browserify dist/web/main.js --standalone Elbe -o dist/elbe.js",
+    "web-minify": "npx minify dist/elbe.js --out-file dist/elbe.min.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blutorange/js-streams.git"
+    "url": "git+https://github.com/blutorange/js-elbe.git"
   },
   "keywords": [
     "iterable",
@@ -36,7 +35,7 @@
     "comparators": "https://github.com/blutorange/js-comparators",
     "tslib": "^1.9.0"
   },
-  "homepage": "https://github.com/blutorange/js-streams#readme",
+  "homepage": "https://github.com/blutorange/js-elbe#readme",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.39",
     "@babel/core": "^7.0.0-beta.39",
@@ -44,9 +43,8 @@
     "babel-minify": "^0.3.0",
     "browserify": "^15.2.0",
     "core-js": "^2.5.3",
-    "patch-package": "^5.0.0",
     "regenerator-runtime": "^0.11.1",
-    "typescript": "^2.8.0-dev.20180202",
-    "typedoc": "^0.10.0"
+    "typedoc": "^0.10.0",
+    "typescript": "^2.8.0-dev.20180202"
   }
 }

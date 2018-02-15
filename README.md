@@ -1,7 +1,7 @@
 Iterators are great, and works well with Sets and Maps, eg. `(new Map()).entries()`.
 Until I realized you can't really do much with iterators, and having to do manual iterations
 all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
-and ruby's enumerables.
+and ruby's enumerables. Minified, transpiled code without browser polyfills etc. is 20 KB.
 
 Let's try parsing a set of strings as JSON:
 
