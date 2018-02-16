@@ -90,7 +90,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var comparators_1 = require("comparators");
+var kagura_1 = require("kagura");
 
 var Collectors_1 = require("./Collectors");
 
@@ -1823,19 +1823,19 @@ function promise(iterable, promiseConverter) {
 exports.promise = promise;
 
 function minBy(iterable, sortKey) {
-  return min(iterable, comparators_1.byKey(sortKey));
+  return min(iterable, kagura_1.byKey(sortKey));
 }
 
 exports.minBy = minBy;
 
 function maxBy(iterable, sortKey) {
-  return max(iterable, comparators_1.byKey(sortKey));
+  return max(iterable, kagura_1.byKey(sortKey));
 }
 
 exports.maxBy = maxBy;
 
 function min(iterable) {
-  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : comparators_1.natural;
+  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : kagura_1.natural;
   console.log(comparator);
   var first = true;
   var min;
@@ -1877,7 +1877,7 @@ function min(iterable) {
 exports.min = min;
 
 function max(iterable) {
-  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : comparators_1.natural;
+  var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : kagura_1.natural;
   var first = true;
   var min;
   var _iteratorNormalCompletion24 = true;

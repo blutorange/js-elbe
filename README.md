@@ -30,33 +30,33 @@ Array.from(function*(data) {
 See the directory `doc` for documentation on all methods.
 
 ```javascript
-const lib = require("streams");
+const lib = require("elbe");
 ```
 
 This returns an object with the following entries:
 
-* [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_collectors_.html)
-* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/interfaces/_interfaces_.streamfactory.html)
-* [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_methods_.html)
-* [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_monkeypatch_.html)
-* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_tryfactory_.html#tryfactory)
+* [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_collectors_.html)
+* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/interfaces/_interfaces_.streamfactory.html)
+* [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_methods_.html)
+* [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_monkeypatch_.html)
+* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_tryfactory_.html#tryfactory)
 
 # Install
 
 You know the drill.
 
 ```sh
-npm install --save streams@https://github.com/blutorange/js-streams
+npm install --save elbe
 ```
 
-Or use the standalone in `dist/streams.js`. With node it simply exports itself, within a browser it registers globally as `window.Streams`.
+Or use the standalone in `dist/elbe.js`. With node it simply exports itself, within a browser it registers globally as `window.Elbe`.
 
 # Usage
 
 Generates a stream of 100 numbers between 0 and 2.
 
 ```javascript
-const factory = require("streams").InplaceStreamFactory;
+const factory = require("elbe").InplaceStreamFactory;
 factory.times(1000,1.4,1.5).minBy(x => Math.abs(x * x - 2))
 // => 1.41421...
 ```
@@ -64,7 +64,7 @@ factory.times(1000,1.4,1.5).minBy(x => Math.abs(x * x - 2))
 Generates a stream from an array.
 
 ```javascript
-const { stream } = require("streams");
+const { stream } = require("elbe");
 stream([1,2,3]).map(...).filter(...).limit(1).group(...);
 ```
 
@@ -107,7 +107,7 @@ All methods are available as stand-alone functions taking an iterable
 as their first argument.
 
 ```javascript
-const { Collectors, Methods: {map, filter, collect} } = require("streams");
+const { Collectors, Methods: {map, filter, collect} } = require("elbe");
 
 const iterable = [1,2,3];
 
@@ -127,7 +127,7 @@ The inplace stream comes with less overhead, but is not typesafe. This
 is most likely irrelevant unless you are using TypeScript.
 
 ```javascript
-const { stream } = require("streams");
+const { stream } = require("elbe");
 
 stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 // => "4,6,7,9"
@@ -136,7 +136,7 @@ stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.
 
 ```javascript
-const stream = require("streams").TypesafeStreamFactory.stream;
+const stream = require("elbe").TypesafeStreamFactory.stream;
 
 stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 // => "4,6,7,9"
@@ -145,7 +145,7 @@ stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 Once a stream is chained, it must not be used anymore, or an error is thrown:
 
 ```javascript
-const stream = require("streams").TypesafeStreamFactory.stream;
+const stream = require("elbe").TypesafeStreamFactory.stream;
 
 const s = stream([1,2,3]);
 
@@ -158,7 +158,7 @@ s.filter(x => x > 2);
 Similarly for inplace streams: 
 
 ```javascript
-const stream = require("streams").InplaceStreamFactory.stream;
+const stream = require("elbe").InplaceStreamFactory.stream;
 
 const s = stream([1,2,3]);
 
@@ -176,7 +176,7 @@ s.join() // Error: "Stream was already consumed."
 I would not recommend it, but you can monkey-patch a `stream` method to objects:
 
 ```javascript
-require("streams").monkeypatch();
+require("elbe").monkeypatch();
 
 [1,2,3].stream().map(x => x + 4).toSet();
 // => Set[2,4,6]
@@ -246,3 +246,7 @@ npm run build
 ```
 
 This may fail on Windows, who but a rabbit knows...
+
+# Teh name
+
+The [Elbe river](https://en.wikipedia.org/wiki/Elbe) is a stream of water.

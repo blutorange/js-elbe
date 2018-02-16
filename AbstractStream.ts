@@ -1,4 +1,4 @@
-import { natural, Comparator } from "comparators";
+import { natural, Comparator } from "kagura";
 
 import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
 import { minBy, maxBy, findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";

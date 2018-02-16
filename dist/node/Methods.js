@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const comparators_1 = require("comparators");
+const kagura_1 = require("kagura");
 const Collectors_1 = require("./Collectors");
 const TryFactory_1 = require("./TryFactory");
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -302,14 +302,14 @@ function promise(iterable, promiseConverter) {
 }
 exports.promise = promise;
 function minBy(iterable, sortKey) {
-    return min(iterable, comparators_1.byKey(sortKey));
+    return min(iterable, kagura_1.byKey(sortKey));
 }
 exports.minBy = minBy;
 function maxBy(iterable, sortKey) {
-    return max(iterable, comparators_1.byKey(sortKey));
+    return max(iterable, kagura_1.byKey(sortKey));
 }
 exports.maxBy = maxBy;
-function min(iterable, comparator = comparators_1.natural) {
+function min(iterable, comparator = kagura_1.natural) {
     console.log(comparator);
     let first = true;
     let min;
@@ -327,7 +327,7 @@ function min(iterable, comparator = comparators_1.natural) {
     return min;
 }
 exports.min = min;
-function max(iterable, comparator = comparators_1.natural) {
+function max(iterable, comparator = kagura_1.natural) {
     let first = true;
     let min;
     for (let item of iterable) {

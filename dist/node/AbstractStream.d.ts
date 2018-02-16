@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
 export declare abstract class AbstractStream<T> implements Stream<T> {
     protected iterable: Iterable<T>;

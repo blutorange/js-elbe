@@ -1,4 +1,4 @@
-import { natural, Comparator, byKey } from "comparators";
+import { natural, Comparator, byKey } from "kagura";
 import { BiPredicate, Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
 import { Collectors } from "./Collectors";
 import { TryFactory } from "./TryFactory";

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const comparators_1 = require("comparators");
+const kagura_1 = require("kagura");
 const Methods_1 = require("./Methods");
 class AbstractStream {
     constructor(iterable) {
@@ -71,7 +71,7 @@ class AbstractStream {
         this.check();
         return Methods_1.nth(this.iterable, n);
     }
-    max(comparator = comparators_1.natural) {
+    max(comparator = kagura_1.natural) {
         this.check();
         return Methods_1.max(this.iterable, comparator);
     }
@@ -79,7 +79,7 @@ class AbstractStream {
         this.check();
         return Methods_1.maxBy(this.iterable, sortKey);
     }
-    min(comparator = comparators_1.natural) {
+    min(comparator = kagura_1.natural) {
         this.check();
         return Methods_1.min(this.iterable, comparator);
     }

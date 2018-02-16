@@ -87,29 +87,29 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span c
 </code></pre>
 				<h1 id="docs">Docs</h1>
 				<p>See the directory <code>doc</code> for documentation on all methods.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 </code></pre>
 				<p>This returns an object with the following entries:</p>
 				<ul>
-					<li><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_collectors_.html">Collectors</a></li>
-					<li><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/interfaces/_interfaces_.streamfactory.html">StreamFactory</a></li>
-					<li><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_methods_.html">Methods</a></li>
-					<li><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_monkeypatch_.html">monkeyPatch</a></li>
-					<li><a href="http://htmlpreview.github.io/?https://github.com/blutorange/js-streams/blob/master/doc/modules/_tryfactory_.html#tryfactory">TryFactory</a></li>
+					<li><a href="./modules/_collectors_.html">Collectors</a></li>
+					<li><a href="./interfaces/_interfaces_.streamfactory.html">StreamFactory</a></li>
+					<li><a href="./modules/_methods_.html">Methods</a></li>
+					<li><a href="./modules/_monkeypatch_.html">monkeyPatch</a></li>
+					<li><a href="./modules/_tryfactory_.html#tryfactory">TryFactory</a></li>
 				</ul>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
-				<pre><code class="lang-sh">npm install --save streams@https://github.com/blutorange/js-streams
+				<pre><code class="lang-sh">npm install --save elbe
 </code></pre>
-				<p>Or use the standalone in <code>dist/streams.js</code>. With node it simply exports itself, within a browser it registers globally as <code>window.Streams</code>.</p>
+				<p>Or use the standalone in <code>dist/elbe.js</code>. With node it simply exports itself, within a browser it registers globally as <code>window.Elbe</code>.</p>
 				<h1 id="usage">Usage</h1>
 				<p>Generates a stream of 100 numbers between 0 and 2.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).InplaceStreamFactory;
 factory.times(<span class="hljs-number">1000</span>,<span class="hljs-number">1.4</span>,<span class="hljs-number">1.5</span>).minBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(x * x - <span class="hljs-number">2</span>))
 <span class="hljs-comment">// =&gt; 1.41421...</span>
 </code></pre>
 				<p>Generates a stream from an array.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(...).filter(...).limit(<span class="hljs-number">1</span>).group(...);
 </code></pre>
 				<p>The following entries exist on the <code>lib</code> object when requiring the library:</p>
@@ -144,7 +144,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 				<h2 id="standalone-methods">Standalone methods</h2>
 				<p>All methods are available as stand-alone functions taking an iterable
 				as their first argument.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { Collectors, <span class="hljs-attr">Methods</span>: {map, filter, collect} } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { Collectors, <span class="hljs-attr">Methods</span>: {map, filter, collect} } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 
 <span class="hljs-keyword">const</span> iterable = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
 
@@ -159,19 +159,19 @@ collect(iterable, Collectors.join()); <span class="hljs-comment">// =&gt; "4,6"<
 				the stand-alone functions.</p>
 				<p>The inplace stream comes with less overhead, but is not typesafe. This
 				is most likely irrelevant unless you are using TypeScript.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 <span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
 				<p>The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.stream;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).TypesafeStreamFactory.stream;
 
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 <span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
 				<p>Once a stream is chained, it must not be used anymore, or an error is thrown:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).TypesafeStreamFactory.stream;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).TypesafeStreamFactory.stream;
 
 <span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
 
@@ -181,7 +181,7 @@ s.map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span
 s.filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">2</span>);
 </code></pre>
 				<p>Similarly for inplace streams: </p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).InplaceStreamFactory.stream;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).InplaceStreamFactory.stream;
 
 <span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
 
@@ -195,7 +195,7 @@ s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</sp
 </code></pre>
 				<h2 id="monkey-patching">Monkey patching</h2>
 				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to objects:</p>
-				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"streams"</span>).monkeypatch();
+				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).monkeypatch();
 
 [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet();
 <span class="hljs-comment">// =&gt; Set[2,4,6]</span>
@@ -243,6 +243,8 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 				<pre><code class="lang-sh">npm run build
 </code></pre>
 				<p>This may fail on Windows, who but a rabbit knows...</p>
+				<h1 id="teh-name">Teh name</h1>
+				<p>The <a href="https://en.wikipedia.org/wiki/Elbe">Elbe river</a> is a stream of water.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

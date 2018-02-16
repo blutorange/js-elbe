@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 import { BiPredicate, Collector, Supplier, Consumer, BiConsumer, Function, Predicate, BiFunction, Try } from "./Interfaces";
 export declare function map<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<S>;
 export declare function flatMap<T, S>(iterable: Iterable<T>, mapper: Function<T, Iterable<S>>): Iterable<S>;

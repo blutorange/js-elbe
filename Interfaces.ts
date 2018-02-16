@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 
 /**
  * Represents various statistics of a set of numbers.

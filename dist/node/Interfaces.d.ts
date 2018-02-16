@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 export interface Statistics {
     average: number;
     count: number;

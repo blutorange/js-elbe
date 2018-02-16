@@ -18,7 +18,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var comparators_1 = require("comparators");
+var kagura_1 = require("kagura");
 
 var Methods_1 = require("./Methods");
 
@@ -153,7 +153,7 @@ function () {
   }, {
     key: "max",
     value: function max() {
-      var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : comparators_1.natural;
+      var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : kagura_1.natural;
       this.check();
       return Methods_1.max(this.iterable, comparator);
     }
@@ -166,7 +166,7 @@ function () {
   }, {
     key: "min",
     value: function min() {
-      var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : comparators_1.natural;
+      var comparator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : kagura_1.natural;
       this.check();
       return Methods_1.min(this.iterable, comparator);
     }

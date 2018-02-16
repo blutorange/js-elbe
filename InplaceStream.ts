@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 
 import { BiFunction, Stream, TryStream, Consumer, Function, Predicate, Try } from "./Interfaces";
 import { uniqueBy, promise, cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";

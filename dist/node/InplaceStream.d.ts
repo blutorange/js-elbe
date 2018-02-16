@@ -1,4 +1,4 @@
-import { Comparator } from "comparators";
+import { Comparator } from "kagura";
 import { BiFunction, Stream, TryStream, Consumer, Function, Predicate } from "./Interfaces";
 import { AbstractStream } from "./AbstractStream";
 export declare class InplaceStream extends AbstractStream<any> {
