@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;AbstractStream&quot; | elbe</title>
+	<title>Statistics | elbe</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,26 +54,145 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_abstractstream_.html">&quot;AbstractStream&quot;</a>
+					<a href="statistics.html">Statistics</a>
 				</li>
 			</ul>
-			<h1>External module &quot;AbstractStream&quot;</h1>
+			<h1>Interface Statistics</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents various statistics of a set of numbers.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Statistics</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implemented by</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../classes/statisticsimpl.html" class="tsd-signature-type">StatisticsImpl</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
-							<h3>Classes</h3>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-private"><a href="../classes/_abstractstream_.abstractstream.html" class="tsd-kind-icon">Abstract<wbr>Stream</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#average" class="tsd-kind-icon">average</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#sum" class="tsd-kind-icon">sum</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="statistics.html#variance" class="tsd-kind-icon">variance</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="average" class="tsd-anchor"></a>
+					<h3>average</h3>
+					<div class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L8">Interfaces.ts:8</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The arithmetic average of the incorporated items.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
+					<div class="tsd-signature tsd-kind-icon">count<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L10">Interfaces.ts:10</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The number of incorporated items.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="max" class="tsd-anchor"></a>
+					<h3>max</h3>
+					<div class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L12">Interfaces.ts:12</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The largest of the incorporated items.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="min" class="tsd-anchor"></a>
+					<h3>min</h3>
+					<div class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L14">Interfaces.ts:14</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The smallest of the incorporated items.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sum" class="tsd-anchor"></a>
+					<h3>sum</h3>
+					<div class="tsd-signature tsd-kind-icon">sum<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L16">Interfaces.ts:16</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The arithmetic sum of the incorporated items.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="variance" class="tsd-anchor"></a>
+					<h3>variance</h3>
+					<div class="tsd-signature tsd-kind-icon">variance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L18">Interfaces.ts:18</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The variance of the incorporated items. This is the uncorrected (not sampled) variance.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -84,43 +203,37 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_collectors_.html">"<wbr>Collectors"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_interfaces_.html">"<wbr>Interfaces"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_methods_.html">"<wbr>Methods"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_main_.html">"main"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_monkeypatch_.html">"monkeypatch"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-private">
-						<a href="../classes/_abstractstream_.abstractstream.html" class="tsd-kind-icon">Abstract<wbr>Stream</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="statistics.html" class="tsd-kind-icon">Statistics</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#average" class="tsd-kind-icon">average</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#count" class="tsd-kind-icon">count</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#max" class="tsd-kind-icon">max</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#min" class="tsd-kind-icon">min</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#sum" class="tsd-kind-icon">sum</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="statistics.html#variance" class="tsd-kind-icon">variance</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>

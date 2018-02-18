@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Function | elbe</title>
+	<title>Collector | elbe</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_interfaces_.html">&quot;Interfaces&quot;</a>
-				</li>
-				<li>
-					<a href="_interfaces_.function.html">Function</a>
+					<a href="collector.html">Collector</a>
 				</li>
 			</ul>
-			<h1>Interface Function&lt;T, R&gt;</h1>
+			<h1>Interface Collector&lt;S, T, R&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +67,11 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A function with a single argument.</p>
+						<p>A collector takes all items of a stream and incorporates them
+							into a single object. It does this by first creating an intermediate
+							container (eg. a Set), then processing all items (eg. adding them
+							to the Set), and finally converting the intermediate value to the
+						resulting value (eg. the size of the set).</p>
 					</div>
 				</div>
 			</section>
@@ -78,20 +79,13 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
+						<h4>S</h4>
+					</li>
+					<li>
 						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Type of the function&#39;s argument.</p>
-							</div>
-						</div>
 					</li>
 					<li>
 						<h4>R</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Type of the function&#39;s return value.</p>
-							</div>
-						</div>
 					</li>
 				</ul>
 			</section>
@@ -99,36 +93,72 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Function</span>
+						<span class="target">Collector</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/fab7b23/Interfaces.ts#L26">Interfaces.ts:26</a></li>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="collector.html#accumulator" class="tsd-kind-icon">accumulator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="collector.html#finisher" class="tsd-kind-icon">finisher</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="collector.html#supplier" class="tsd-kind-icon">supplier</a></li>
 							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A function with a single argument.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>arg1: <span class="tsd-signature-type">T</span></h5>
-							</li>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="accumulator" class="tsd-anchor"></a>
+					<h3>accumulator</h3>
+					<div class="tsd-signature tsd-kind-icon">accumulator<span class="tsd-signature-symbol">:</span> <a href="biconsumer.html" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L93">Interfaces.ts:93</a></li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">R</span></h4>
-					</li>
-				</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Incorporates each item into the intermediate container.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="finisher" class="tsd-anchor"></a>
+					<h3>finisher</h3>
+					<div class="tsd-signature tsd-kind-icon">finisher<span class="tsd-signature-symbol">:</span> <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L101">Interfaces.ts:101</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Transform the intermediate container into the final result.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="supplier" class="tsd-anchor"></a>
+					<h3>supplier</h3>
+					<div class="tsd-signature tsd-kind-icon">supplier<span class="tsd-signature-symbol">:</span> <a href="supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L97">Interfaces.ts:97</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Creates a new intermediate container.</p>
+						</div>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -137,86 +167,28 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_abstractstream_.html">"<wbr>Abstract<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_collectors_.html">"<wbr>Collectors"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_inplacestream_.html">"<wbr>Inplace<wbr>Stream"</a>
-					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_interfaces_.html">"<wbr>Interfaces"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_methods_.html">"<wbr>Methods"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_streamfactory_.html">"<wbr>Stream<wbr>Factory"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_tryfactory_.html">"<wbr>Try<wbr>Factory"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_typesafestream_.html">"<wbr>Typesafe<wbr>Stream"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_main_.html">"main"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_monkeypatch_.html">"monkeypatch"</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.biconsumer.html" class="tsd-kind-icon">Bi<wbr>Consumer</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.bipredicate.html" class="tsd-kind-icon">Bi<wbr>Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.collector.html" class="tsd-kind-icon">Collector</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.consumer.html" class="tsd-kind-icon">Consumer</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.function.html" class="tsd-kind-icon">Function</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="collector.html" class="tsd-kind-icon">Collector</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="collector.html#accumulator" class="tsd-kind-icon">accumulator</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="collector.html#finisher" class="tsd-kind-icon">finisher</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="collector.html#supplier" class="tsd-kind-icon">supplier</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.predicate.html" class="tsd-kind-icon">Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.statistics.html" class="tsd-kind-icon">Statistics</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.stream.html" class="tsd-kind-icon">Stream</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_interfaces_.streamfactory.html" class="tsd-kind-icon">Stream<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.supplier.html" class="tsd-kind-icon">Supplier</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.try.html" class="tsd-kind-icon">Try</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_interfaces_.trystream.html" class="tsd-kind-icon">Try<wbr>Stream</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

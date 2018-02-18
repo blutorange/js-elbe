@@ -10,7 +10,7 @@
     "doc": "npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
-    "doc-create": "npx typedoc --mode modules --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
+    "doc-create": "npx typedoc --mode file --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
     "web-babel": "npx babel dist/node/*.js --out-dir dist/web/",
     "web-babelfix": "sed -ri 's/import \\\"(..*)\\\"/require(\"\\1\")/g' dist/web/*.js",
