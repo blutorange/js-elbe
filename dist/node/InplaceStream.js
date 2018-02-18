@@ -3,6 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Methods_1 = require("./Methods");
 const AbstractStream_1 = require("./AbstractStream");
 class InplaceStream extends AbstractStream_1.AbstractStream {
+    clone(iterable) {
+        return new this.constructor(iterable);
+    }
     chunk(classifier) {
         this.iterable = Methods_1.chunk(this.iterable, classifier);
         return this;

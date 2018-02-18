@@ -5,6 +5,7 @@ export declare class TypesafeStream<T> extends AbstractStream<T> {
     ['constructor']: (typeof TypesafeStream);
     chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
     concat(...iterables: Iterable<T>[]): this;
+    protected clone(iterable: Iterable<T>): this;
     cycle(count?: number): this;
     flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
     filter(predicate: Predicate<T>): this;

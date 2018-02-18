@@ -55,6 +55,11 @@ function (_AbstractStream_1$Abs) {
       return new this.constructor(Methods_1.concat.apply(Methods_1, [this.iterable].concat(iterables)));
     }
   }, {
+    key: "clone",
+    value: function clone(iterable) {
+      return new this.constructor(iterable);
+    }
+  }, {
     key: "cycle",
     value: function cycle(count) {
       this.check();

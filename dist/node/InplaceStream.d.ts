@@ -2,6 +2,8 @@ import { Comparator } from "kagura";
 import { BiFunction, Stream, TryStream, Consumer, Function, Predicate } from "./Interfaces";
 import { AbstractStream } from "./AbstractStream";
 export declare class InplaceStream extends AbstractStream<any> {
+    ['constructor']: (typeof InplaceStream);
+    protected clone(iterable: Iterable<any>): this;
     chunk<K = any>(classifier: BiFunction<any, number, K>): Stream<any[]>;
     concat(...iterables: Iterable<any>[]): this;
     cycle(count?: number): this;

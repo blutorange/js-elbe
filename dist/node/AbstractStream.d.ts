@@ -23,6 +23,7 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     abstract visit(consumer: Consumer<T>): this;
     abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
     abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
+    protected abstract clone(iterable: Iterable<T>): this;
     protected check(): void;
     [Symbol.iterator](): Iterator<T>;
     collect<S, R = S>(collector: Collector<T, S, R>): R;
@@ -33,6 +34,7 @@ export declare abstract class AbstractStream<T> implements Stream<T> {
     findIndex(predicate: BiPredicate<T, number>): number;
     first(): T | undefined;
     forEach(consumer: Consumer<T>): void;
+    fork(): this;
     group<K>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
     join(delimiter?: string, prefix?: string, suffix?: string): string;

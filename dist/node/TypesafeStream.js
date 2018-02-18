@@ -11,6 +11,9 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new this.constructor(Methods_1.concat(this.iterable, ...iterables));
     }
+    clone(iterable) {
+        return new this.constructor(iterable);
+    }
     cycle(count) {
         this.check();
         return new this.constructor(Methods_1.cycle(this.iterable, count));

@@ -118,6 +118,15 @@ function () {
       }
     }
   }, {
+    key: "fork",
+    value: function fork() {
+      this.check();
+      this.done = false;
+      var iterable = Methods_1.fork(this.iterable);
+      this.iterable = iterable;
+      return this.clone(iterable);
+    }
+  }, {
     key: "group",
     value: function group(classifier) {
       this.check();

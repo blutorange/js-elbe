@@ -5,6 +5,11 @@ import { uniqueBy, promise, cycle, chunk, slice, zip, zipSame, visit, index, con
 import { AbstractStream } from "./AbstractStream";
 
 export class InplaceStream extends AbstractStream<any> {
+    ['constructor'] : (typeof InplaceStream);
+
+    protected clone(iterable: Iterable<any>): this {
+        return new this.constructor(iterable) as this;
+    }
 
     chunk<K=any>(classifier: BiFunction<any, number, K>) : Stream<any[]> {
         this.iterable = chunk(this.iterable, classifier);

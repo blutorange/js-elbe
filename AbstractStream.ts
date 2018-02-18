@@ -1,7 +1,7 @@
 import { natural, Comparator } from "kagura";
 
 import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { minBy, maxBy, findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
+import { fork, minBy, maxBy, findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
 
 /**
  * @private
@@ -33,6 +33,8 @@ export abstract class AbstractStream<T> implements Stream<T> {
     abstract visit(consumer: Consumer<T>): this;
     abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
     abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
+    
+    protected abstract clone(iterable: Iterable<T>) : this;
 
     protected check() {
         if (this.done) {
@@ -87,6 +89,14 @@ export abstract class AbstractStream<T> implements Stream<T> {
         for (let item of this.iterable) {
             consumer(item);
         }
+    }
+
+    fork() : this {
+        this.check();
+        this.done = false;
+        const iterable = fork(this.iterable);
+        this.iterable = iterable;
+        return this.clone(iterable);
     }
 
     group<K>(classifier: Function<T,K>) : Map<K, T[]> {

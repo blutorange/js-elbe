@@ -38,6 +38,11 @@ function (_AbstractStream_1$Abs) {
   }
 
   _createClass(InplaceStream, [{
+    key: "clone",
+    value: function clone(iterable) {
+      return new this.constructor(iterable);
+    }
+  }, {
     key: "chunk",
     value: function chunk(classifier) {
       this.iterable = Methods_1.chunk(this.iterable, classifier);

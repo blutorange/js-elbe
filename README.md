@@ -27,7 +27,7 @@ Array.from(function*(data) {
 
 # Docs
 
-See the directory `doc` for documentation on all methods.
+[All methods with documentation](https://blutorange.github.io/js-elbe/), see also the directory `docs`.
 
 ```javascript
 const lib = require("elbe");
@@ -35,11 +35,11 @@ const lib = require("elbe");
 
 This returns an object with the following entries:
 
-* [Collectors](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_collectors_.html)
-* [StreamFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/interfaces/_interfaces_.streamfactory.html)
-* [Methods](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_methods_.html)
-* [monkeyPatch](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_monkeypatch_.html)
-* [TryFactory](http://htmlpreview.github.io/?https://github.com/blutorange/js-elbe/blob/master/doc/modules/_tryfactory_.html#tryfactory)
+* Collectors
+* StreamFactory
+* Methods
+* monkeyPatch
+* TryFactory
 
 # Install
 
@@ -249,4 +249,4 @@ This may fail on Windows, who but a rabbit knows...
 
 # Teh name
 
-The [Elbe river](https://en.wikipedia.org/wiki/Elbe) is a stream of water.
+Many a barrel of water streams, but never rolls, down the [Elbe river](https://en.wikipedia.org/wiki/Elbe).

@@ -17,6 +17,10 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(concat(this.iterable, ...iterables)) as this;
     }
 
+    protected clone(iterable: Iterable<T>) : this {
+        return new this.constructor(iterable) as this;
+    }
+
     cycle(count?: number) : this {
         this.check();
         return new this.constructor(cycle(this.iterable, count)) as this;

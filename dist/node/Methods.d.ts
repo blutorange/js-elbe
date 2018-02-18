@@ -48,6 +48,7 @@ export declare function last<T>(iterable: Iterable<T>): T | undefined;
 export declare function collect<T, S, R = S>(iterable: Iterable<T>, collector: Collector<T, S, R>): R;
 export declare function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
 export declare function toArray<T>(iterable: Iterable<T>, fresh?: boolean): T[];
+export declare function fork<T>(iterable: Iterable<T>): Iterable<T>;
 export declare function toSet<T>(iterable: Iterable<T>, fresh?: boolean): Set<T>;
 export declare function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
 export declare function fromObject<T>(object: {

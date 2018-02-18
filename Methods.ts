@@ -1069,6 +1069,38 @@ export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false) : T[] 
 }
 
 /**
+ * This returns an iterable that can be iterated over any number of times.
+ * If the iterable is an array, set, map or string etc, it simpy return the
+ * iterable, otherwise it stores the items temporarily (eg in an array).
+ * 
+ * ```javascript
+ * function * foo() {
+ *   return 1;
+ *   return 2;
+ *   return 3;
+ * }
+ * 
+ * const transientIterable = foo();
+ * Array.from(transientIterable) // => [1,2,3]
+ * Array.from(transientIterable) // => []
+ * 
+ * const persistentIterable = fork(foo());
+ * Array.from(persistentIterable) // => [1,2,3]
+ * Array.from(persistentIterable) // => [1,2,3]
+ * ```
+ * 
+ * @typeparam T Type of the elements in the given iterable. 
+ * @param iterable The iterable to to be persisted.
+ * @return A persistent iterable.
+ */
+export function fork<T>(iterable: Iterable<T>) : Iterable<T> {
+    if (Array.isArray(iterable) || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
+        return iterable;
+    }
+    return Array.from(iterable);
+}
+
+/**
  * Creates a set with the items of the given iterable.
  * If the underlying iterable is a set, returns that
  * set instead of creating a new set.

@@ -86,6 +86,7 @@ export interface Stream<T> {
     flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
     filter(predicate: Predicate<T>): this;
     forEach(consumer: Consumer<T>): void;
+    fork(): this;
     group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
     index(): Stream<[number, T]>;

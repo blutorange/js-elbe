@@ -2150,6 +2150,16 @@ function toArray(iterable) {
 
 exports.toArray = toArray;
 
+function fork(iterable) {
+  if (Array.isArray(iterable) || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
+    return iterable;
+  }
+
+  return Array.from(iterable);
+}
+
+exports.fork = fork;
+
 function toSet(iterable) {
   var fresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 

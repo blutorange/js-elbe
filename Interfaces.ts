@@ -549,6 +549,7 @@ export interface Try<T> {
 export interface Stream<T> {
     [Symbol.iterator]() : Iterator<T>;
 
+
     /**
      * Chunks together consecutive items for which the classifier
      * returns the same value. Equality is checked with `===`.
@@ -721,6 +722,34 @@ export interface Stream<T> {
      * @param consumer A callback that receives each item of this stream in order.
      */
     forEach(consumer: Consumer<T>) : void;
+
+    /**
+     * This returns a stream that leaves the original stream open and iterable.
+     * If the underlying iterable is an array, set, map or string etc, it simpy
+     * reuses that iterable, otherwise it stores the items temporarily (eg in an
+     * array).
+     * 
+     * ```javascript
+     * function * foo() {
+     *   return 1;
+     *   return 2;
+     *   return 3;
+     * }
+     * 
+     * const transientStream = stream(foo());
+     * transientStream.toArray() // => [1,2,3]
+     * transientStream.toArray() // => Error: Stream was consumed already.
+     * 
+     * const persistentStream = stream(foo())
+     * persistentStream.fork().toArray() // => [1,2,3]
+     * persistentStream.fork().toArray() // => [1,2,3]
+     * persistentStream.toArray()        // => [1,2,3]
+     * persistentStream.fork()           // => Error: Stream was consumed already.
+     * ```
+     * 
+     * @return A forked stream that leaves the original stream usable.
+     */
+    fork() : this;
 
     /**
      * Splits the items into several groups, according to the given

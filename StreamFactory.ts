@@ -3,42 +3,45 @@ import { fromObject, fromObjectKeys, fromObjectValues, times, generate, repeat, 
 import { InplaceStream } from "./InplaceStream";
 import { TypesafeStream } from "./TypesafeStream";
 
+function make<T>(inplace: boolean, iterable: Iterable<T>) : Stream<T> {
+    return inplace ? new InplaceStream(iterable) : new TypesafeStream(iterable);
+}
+
 function createFactory(inplace: boolean = true) : StreamFactory {
-    const clazz = inplace ? InplaceStream : TypesafeStream;
     return {
         stream<T>(iterable: Iterable<T>) : Stream<T> {
             if (typeof iterable[Symbol.iterator] !== "function") {
                 throw new Error("Passed value is not iterable: " + typeof iterable);
             }
-            return new clazz(iterable);
+            return make(inplace, iterable);
         },
 
-        times<T>(amount: number, start?: number, end?: number) : Stream<T> {
-            return new clazz(times(amount, start, end));
+        times(amount: number, start?: number, end?: number) : Stream<number> {
+            return make(inplace, times(amount, start, end));
         },
 
         generate<T>(generator: Function<number, T>, amount: number = -1) : Stream<T> {
-            return new clazz(generate(generator, amount));
+            return make(inplace, generate(generator, amount));
         },
 
         iterate<T>(seed: T, next: Function<T, T>, amount: number = -1) : Stream<T> {
-            return new clazz(iterate(seed, next, amount));
+            return make(inplace, iterate(seed, next, amount));
         },
 
         repeat<T>(item: T, amount: number = -1) : Stream<T> {
-            return new clazz(repeat(item, amount));
+            return make(inplace, repeat(item, amount));
         },
 
         fromObject<T>(object: {[s: string] : T}) : Stream<[string,T]> {
-            return new clazz(fromObject(object));
+            return make(inplace, fromObject(object));
         },
 
         fromObjectKeys(object: {[s: string] : any}) : Stream<string> {
-            return new clazz(fromObjectKeys(object));
+            return make(inplace, fromObjectKeys(object));
         },
 
         fromObjectValues<T>(object: {[s: string] : T}) : Stream<T> {
-            return new clazz(fromObjectValues(object));
+            return make(inplace, fromObjectValues(object));
         },
     };
 };

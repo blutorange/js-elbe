@@ -424,6 +424,13 @@ function toArray(iterable, fresh = false) {
     return Array.from(iterable);
 }
 exports.toArray = toArray;
+function fork(iterable) {
+    if (Array.isArray(iterable) || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
+        return iterable;
+    }
+    return Array.from(iterable);
+}
+exports.fork = fork;
 function toSet(iterable, fresh = false) {
     if ((iterable instanceof Set) && !fresh) {
         return iterable;

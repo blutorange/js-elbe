@@ -51,6 +51,13 @@ class AbstractStream {
             consumer(item);
         }
     }
+    fork() {
+        this.check();
+        this.done = false;
+        const iterable = Methods_1.fork(this.iterable);
+        this.iterable = iterable;
+        return this.clone(iterable);
+    }
     group(classifier) {
         this.check();
         return Methods_1.group(this.iterable, classifier);
