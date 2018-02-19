@@ -1,97 +1,67 @@
-import { natural, Comparator } from "kagura";
+import { Comparator, natural } from "kagura";
 
-import { BiPredicate, Try, TryStream, Stream, Collector, Supplier, BiConsumer, Function, Predicate, Consumer, BiFunction } from "./Interfaces";
-import { fork, minBy, maxBy, findIndex, first, last, nth, collect, collectWith, end, every, find, group, has, join, max, min, partition, reduce, reduceSame, size, some, sum, toArray, toSet, toMap, tryCompute, tryEnd } from "./Methods";
+import { BiConsumer, BiFunction, BiPredicate, Consumer, Function, ICollector, IStream, ITry, ITryStream, Predicate, Supplier } from "./Interfaces";
+import { collect, collectWith, end, every, find, findIndex, first, fork, group, has, join, last, max, maxBy, min, minBy, nth, partition, reduce, reduceSame, size, some, sum, toArray, toMap, toSet, tryCompute, tryEnd } from "./Methods";
 
 /**
  * @private
  */
-export abstract class AbstractStream<T> implements Stream<T> {
-    protected iterable : Iterable<T>;
+export abstract class AbstractStream<T> implements IStream<T> {
+    protected iterable: Iterable<T>;
     private done = false;
 
-    public constructor(iterable : Iterable<T>) {
+    public constructor(iterable: Iterable<T>) {
         this.iterable = iterable;
     }
 
-    abstract chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
-    abstract concat(...iterables: Iterable<T>[]): this;
-    abstract cycle(count?: number): this;
-    abstract flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
-    abstract filter(predicate: Predicate<T>): this;
-    abstract index(): Stream<[number, T]>;
-    abstract limit(limitTo: number): this;
-    abstract map<S>(mapper: Function<T, S>): Stream<S>;
-    abstract promise<S>(promiseConverter: Function<T, Promise<S>>) : Promise<Stream<S>>;
-    abstract reverse(): this;
-    abstract skip(toSkip: number): this;
-    abstract slice(sliceSize: number): Stream<T[]>;
-    abstract sort(comparator?: Comparator<T>): this;
-    abstract try<S>(operation: Function<T, S>): TryStream<S>;
-    abstract unique(comparator?: Comparator<T>): this;
-    abstract uniqueBy(keyExtractor?: Function<T, any>): this;
-    abstract visit(consumer: Consumer<T>): this;
-    abstract zip<S>(other: Iterable<S>): Stream<[T, S]>;
-    abstract zipSame(...others: Iterable<T>[]): Stream<T[]>;
-    
-    protected abstract clone(iterable: Iterable<T>) : this;
-
-    protected check() {
-        if (this.done) {
-            throw new Error("Stream was already consumed.");
-        }
-
-        this.done = true;
-    }
-
-    [Symbol.iterator]() {
+    public [Symbol.iterator]() {
         this.check();
         return this.iterable[Symbol.iterator]();
     }
 
-    collect<S,R=S>(collector: Collector<T, S, R>): R {
+    public collect<S, R = S>(collector: ICollector<T, S, R>): R {
         this.check();
         return collect(this.iterable, collector);
     }
 
-    collectWith<S,R=S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S,R>): R {
+    public collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R {
         this.check();
         return collectWith(this.iterable, supplier, accumulator, finisher);
     }
 
-    end() : void {
+    public end(): void {
         this.check();
         end(this.iterable);
     }
 
-    every(predicate: Predicate<T>) : boolean {
+    public every(predicate: Predicate<T>): boolean {
         this.check();
         return every(this.iterable, predicate);
     }
 
-    find(predicate: BiPredicate<T, number>) : T|undefined {
+    public find(predicate: BiPredicate<T, number>): T | undefined {
         this.check();
         return find(this.iterable, predicate);
     }
 
-    findIndex(predicate: BiPredicate<T, number>) : number {
+    public findIndex(predicate: BiPredicate<T, number>): number {
         this.check();
         return findIndex(this.iterable, predicate);
     }
 
-    first() : T|undefined {
+    public first(): T | undefined {
         this.check();
         return first(this.iterable);
     }
 
-    forEach(consumer: Consumer<T>) : void {
+    public forEach(consumer: Consumer<T>): void {
         this.check();
-        for (let item of this.iterable) {
+        for (const item of this.iterable) {
             consumer(item);
         }
     }
 
-    fork() : this {
+    public fork(): this {
         this.check();
         this.done = false;
         const iterable = fork(this.iterable);
@@ -99,111 +69,141 @@ export abstract class AbstractStream<T> implements Stream<T> {
         return this.clone(iterable);
     }
 
-    group<K>(classifier: Function<T,K>) : Map<K, T[]> {
+    public group<K>(classifier: Function<T, K>): Map<K, T[]> {
         this.check();
         return group(this.iterable, classifier);
     }
 
-    has(object: T) : boolean {
+    public has(object: T): boolean {
         this.check();
         return has(this.iterable, object);
     }
 
-    join(delimiter: string = "", prefix? : string, suffix? : string) : string {
+    public join(delimiter: string = "", prefix?: string, suffix?: string): string {
         this.check();
         return join(this.iterable, delimiter, prefix, suffix);
     }
 
-    last() : T|undefined {
+    public last(): T | undefined {
         this.check();
         return last(this.iterable);
     }
 
-    nth(n: number) : T|undefined {
+    public nth(n: number): T | undefined {
         this.check();
         return nth(this.iterable, n);
     }
 
-    max(comparator : Comparator<T> = natural) : T|undefined {
+    public max(comparator: Comparator<T> = natural): T | undefined {
         this.check();
         return max(this.iterable, comparator);
     }
 
-    maxBy<K=any>(sortKey: Function<T,K>) : T|undefined {
+    public maxBy<K = any>(sortKey: Function<T, K>): T | undefined {
         this.check();
         return maxBy(this.iterable, sortKey);
     }
 
-    min(comparator : Comparator<T> = natural) : T|undefined {
+    public min(comparator: Comparator<T> = natural): T | undefined {
         this.check();
         return min(this.iterable, comparator);
     }
 
-    minBy<K=any>(sortKey: Function<T,K>) : T|undefined {
+    public minBy<K = any>(sortKey: Function<T, K>): T | undefined {
         this.check();
         return minBy(this.iterable, sortKey);
     }
 
-    partition(predicate: Predicate<T>) : {false:T[],true:T[]} {
+    public partition(predicate: Predicate<T>): { false: T[], true: T[] } {
         this.check();
         return partition(this.iterable, predicate);
     }
 
-    reduce<S>(reducer: BiFunction<S,T,S>, initialValue: S) : S {
+    public reduce<S>(reducer: BiFunction<S, T, S>, initialValue: S): S {
         this.check();
         return reduce(this.iterable, reducer, initialValue);
     }
 
-    reduceSame(reducer: BiFunction<T,T,T>) : T {
+    public reduceSame(reducer: BiFunction<T, T, T>): T {
         this.check();
         return reduceSame(this.iterable, reducer);
     }
 
-    size() : number {
+    public size(): number {
         this.check();
         return size(this.iterable);
     }
 
-    some(predicate: Predicate<T>) : boolean {
+    public some(predicate: Predicate<T>): boolean {
         this.check();
         return some(this.iterable, predicate);
     }
 
-    sum(converter?: Function<T, number>) : number {
+    public sum(converter?: Function<T, number>): number {
         this.check();
         return sum(this.iterable, converter);
     }
-        
-    toArray(fresh?: boolean) : T[] {
+
+    public toArray(fresh?: boolean): T[] {
         this.check();
         return toArray(this.iterable, fresh);
     }
 
-    toSet(fresh?: boolean) : Set<T> {
+    public toSet(fresh?: boolean): Set<T> {
         this.check();
         return toSet(this.iterable, fresh);
     }
 
-    toJSON() : T[] {
+    public toJSON(): T[] {
         return this.toArray();
     }
 
-    toString() {
+    public toString() {
         return `Stream[done=${this.done}]`;
     }
 
-    toMap<K,V>(keyMapper: Function<T,K>, valueMapper: Function<T,V>) : Map<K,V> {
+    public toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V> {
         this.check();
         return toMap(this.iterable, keyMapper, valueMapper);
     }
 
-    tryCompute<S>(operation: Function<Stream<T>, S>) : Try<S> {
+    public tryCompute<S>(operation: Function<IStream<T>, S>): ITry<S> {
         this.check();
         return tryCompute(this.iterable, operation);
     }
 
-    tryEnd() : Try<void> {
+    public tryEnd(): ITry<void> {
         this.check();
         return tryEnd(this.iterable);
+    }
+
+    public abstract chunk<K = any>(classifier: BiFunction<T, number, K>): IStream<T[]>;
+    public abstract concat(...iterables: Iterable<T>[]): this;
+    public abstract cycle(count?: number): this;
+    public abstract flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
+    public abstract filter(predicate: Predicate<T>): this;
+    public abstract index(): IStream<[number, T]>;
+    public abstract limit(limitTo: number): this;
+    public abstract map<S>(mapper: Function<T, S>): IStream<S>;
+    public abstract promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<IStream<S>>;
+    public abstract reverse(): this;
+    public abstract skip(toSkip: number): this;
+    public abstract slice(sliceSize: number): IStream<T[]>;
+    public abstract sort(comparator?: Comparator<T>): this;
+    public abstract try<S>(operation: Function<T, S>): ITryStream<S>;
+    public abstract unique(comparator?: Comparator<T>): this;
+    public abstract uniqueBy(keyExtractor?: Function<T, any>): this;
+    public abstract visit(consumer: Consumer<T>): this;
+    public abstract zip<S>(other: Iterable<S>): IStream<[T, S]>;
+    public abstract zipSame(...others: Iterable<T>[]): IStream<T[]>;
+
+    protected abstract clone(iterable: Iterable<T>): this;
+
+    protected check() {
+        if (this.done) {
+            throw new Error("Stream was already consumed.");
+        }
+
+        this.done = true;
     }
 }

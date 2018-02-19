@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Stream | elbe</title>
+	<title>IStream | elbe</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="stream.html">Stream</a>
+					<a href="istream.html">IStream</a>
 				</li>
 			</ul>
-			<h1>Interface Stream&lt;T&gt;</h1>
+			<h1>Interface IStream&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -75,8 +75,8 @@
 </code></pre>
 					</div>
 					<p>Streams may be transformed into other stream via
-						non-terminal methods such as <a href="stream.html#map">Stream.map</a>
-					or <a href="stream.html#filter">Stream.filter</a>:</p>
+						non-terminal methods such as {@link Stream.map}
+					or {@link Stream.filter}:</p>
 					<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x * x) <span class="hljs-comment">// =&gt; Stream[2,4,6]</span>
 stream(<span class="hljs-string">"foobar"</span>).filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-string">"c"</span>) <span class="hljs-comment">// =&gt; Stream["f", "o", "o", "r"]</span>
 </code></pre>
@@ -112,10 +112,10 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Stream</span>
+						<span class="target">IStream</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="trystream.html" class="tsd-signature-type">TryStream</a>
+								<a href="itrystream.html" class="tsd-signature-type">ITryStream</a>
 							</li>
 						</ul>
 					</li>
@@ -138,55 +138,55 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#chunk" class="tsd-kind-icon">chunk</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#collect" class="tsd-kind-icon">collect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#concat" class="tsd-kind-icon">concat</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#cycle" class="tsd-kind-icon">cycle</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#end" class="tsd-kind-icon">end</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#every" class="tsd-kind-icon">every</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#filter" class="tsd-kind-icon">filter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#find" class="tsd-kind-icon">find</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#findindex" class="tsd-kind-icon">find<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#first" class="tsd-kind-icon">first</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#fork" class="tsd-kind-icon">fork</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#group" class="tsd-kind-icon">group</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#has" class="tsd-kind-icon">has</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#index" class="tsd-kind-icon">index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#join" class="tsd-kind-icon">join</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#last" class="tsd-kind-icon">last</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#limit" class="tsd-kind-icon">limit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#map" class="tsd-kind-icon">map</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#max" class="tsd-kind-icon">max</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#maxby" class="tsd-kind-icon">max<wbr>By</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#min" class="tsd-kind-icon">min</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#minby" class="tsd-kind-icon">min<wbr>By</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#nth" class="tsd-kind-icon">nth</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#partition" class="tsd-kind-icon">partition</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#promise" class="tsd-kind-icon">promise</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#reduce" class="tsd-kind-icon">reduce</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#reverse" class="tsd-kind-icon">reverse</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#size" class="tsd-kind-icon">size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#skip" class="tsd-kind-icon">skip</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#slice" class="tsd-kind-icon">slice</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#some" class="tsd-kind-icon">some</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#sort" class="tsd-kind-icon">sort</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#sum" class="tsd-kind-icon">sum</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#toarray" class="tsd-kind-icon">to<wbr>Array</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#tomap" class="tsd-kind-icon">to<wbr>Map</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#toset" class="tsd-kind-icon">to<wbr>Set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#try" class="tsd-kind-icon">try</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#trycompute" class="tsd-kind-icon">try<wbr>Compute</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#tryend" class="tsd-kind-icon">try<wbr>End</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#unique" class="tsd-kind-icon">unique</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#visit" class="tsd-kind-icon">visit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="stream.html#zip" class="tsd-kind-icon">zip</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="stream.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#chunk" class="tsd-kind-icon">chunk</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#collect" class="tsd-kind-icon">collect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#concat" class="tsd-kind-icon">concat</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#cycle" class="tsd-kind-icon">cycle</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#end" class="tsd-kind-icon">end</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#every" class="tsd-kind-icon">every</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#filter" class="tsd-kind-icon">filter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#find" class="tsd-kind-icon">find</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#findindex" class="tsd-kind-icon">find<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#first" class="tsd-kind-icon">first</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#foreach" class="tsd-kind-icon">for<wbr>Each</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#fork" class="tsd-kind-icon">fork</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#group" class="tsd-kind-icon">group</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#has" class="tsd-kind-icon">has</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#index" class="tsd-kind-icon">index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#join" class="tsd-kind-icon">join</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#last" class="tsd-kind-icon">last</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#map" class="tsd-kind-icon">map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#max" class="tsd-kind-icon">max</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#maxby" class="tsd-kind-icon">max<wbr>By</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#min" class="tsd-kind-icon">min</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#minby" class="tsd-kind-icon">min<wbr>By</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#nth" class="tsd-kind-icon">nth</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#partition" class="tsd-kind-icon">partition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#promise" class="tsd-kind-icon">promise</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#reduce" class="tsd-kind-icon">reduce</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#reverse" class="tsd-kind-icon">reverse</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#size" class="tsd-kind-icon">size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#skip" class="tsd-kind-icon">skip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#slice" class="tsd-kind-icon">slice</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#some" class="tsd-kind-icon">some</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#sort" class="tsd-kind-icon">sort</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#sum" class="tsd-kind-icon">sum</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#toarray" class="tsd-kind-icon">to<wbr>Array</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#tomap" class="tsd-kind-icon">to<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#toset" class="tsd-kind-icon">to<wbr>Set</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#try" class="tsd-kind-icon">try</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#trycompute" class="tsd-kind-icon">try<wbr>Compute</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#tryend" class="tsd-kind-icon">try<wbr>End</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#unique" class="tsd-kind-icon">unique</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#visit" class="tsd-kind-icon">visit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#zip" class="tsd-kind-icon">zip</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a></li>
 							</ul>
 						</section>
 					</div>
@@ -204,7 +204,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L550">Interfaces.ts:550</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L536">Interfaces.ts:536</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -215,13 +215,13 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 					<a name="chunk" class="tsd-anchor"></a>
 					<h3>chunk</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">chunk&lt;K&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;K&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L565">Interfaces.ts:565</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L550">Interfaces.ts:550</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,13 +244,13 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>classifier: <a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>classifier: <a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream over the chunked items.</p>
 						</li>
 					</ul>
@@ -259,13 +259,13 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 					<a name="collect" class="tsd-anchor"></a>
 					<h3>collect</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">collect&lt;S, R&gt;<span class="tsd-signature-symbol">(</span>collector<span class="tsd-signature-symbol">: </span><a href="collector.html" class="tsd-signature-type">Collector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+						<li class="tsd-signature tsd-kind-icon">collect&lt;S, R&gt;<span class="tsd-signature-symbol">(</span>collector<span class="tsd-signature-symbol">: </span><a href="icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L579">Interfaces.ts:579</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L564">Interfaces.ts:564</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +293,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>collector: <a href="collector.html" class="tsd-signature-type">Collector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>collector: <a href="icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>How to collect the items.</p>
 									</div>
@@ -308,13 +308,13 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 					<a name="collectwith" class="tsd-anchor"></a>
 					<h3>collect<wbr>With</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">collect<wbr>With&lt;S, R&gt;<span class="tsd-signature-symbol">(</span>supplier<span class="tsd-signature-symbol">: </span><a href="supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, accumulator<span class="tsd-signature-symbol">: </span><a href="biconsumer.html" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, finisher<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
+						<li class="tsd-signature tsd-kind-icon">collect<wbr>With&lt;S, R&gt;<span class="tsd-signature-symbol">(</span>supplier<span class="tsd-signature-symbol">: </span><a href="../globals.html#supplier" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, accumulator<span class="tsd-signature-symbol">: </span><a href="../globals.html#biconsumer" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, finisher<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L596">Interfaces.ts:596</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L581">Interfaces.ts:581</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,16 +343,16 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>supplier: <a href="supplier.html" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>supplier: <a href="../globals.html#supplier" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5>accumulator: <a href="biconsumer.html" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>accumulator: <a href="../globals.html#biconsumer" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes the intermediate objects as its first argument and the current items as its seconds, and incorporates the item into the intermediate value.</p>
 									</div>
 								</li>
 								<li>
-									<h5>finisher: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>finisher: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes the intermediate object with all the items incoporated, and transforms it into the final value.</p>
 									</div>
@@ -373,7 +373,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L608">Interfaces.ts:608</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L593">Interfaces.ts:593</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,7 +404,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L621">Interfaces.ts:621</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L606">Interfaces.ts:606</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -439,7 +439,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L632">Interfaces.ts:632</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L617">Interfaces.ts:617</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -458,13 +458,13 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 					<a name="every" class="tsd-anchor"></a>
 					<h3>every</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">every<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">every<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L644">Interfaces.ts:644</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L629">Interfaces.ts:629</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -477,7 +477,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>predicate: <a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Test to be performed on the items.</p>
 									</div>
@@ -492,13 +492,13 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 					<a name="filter" class="tsd-anchor"></a>
 					<h3>filter</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L713">Interfaces.ts:713</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L698">Interfaces.ts:698</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -512,7 +512,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>predicate: <a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Testing function returning <code>true</code> iff the item is to be kept, <code>false</code> otherwise.</p>
 									</div>
@@ -527,13 +527,13 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="bipredicate.html" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L656">Interfaces.ts:656</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L641">Interfaces.ts:641</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,7 +546,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="bipredicate.html" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>predicate: <a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Test to be performed on the items. It is passed the current item and the current index.</p>
 									</div>
@@ -564,13 +564,13 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 					<a name="findindex" class="tsd-anchor"></a>
 					<h3>find<wbr>Index</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Index<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="bipredicate.html" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Index<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L669">Interfaces.ts:669</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L654">Interfaces.ts:654</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -584,7 +584,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="bipredicate.html" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>predicate: <a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Test to be performed on the items. It is passed the current item and the current index.</p>
 									</div>
@@ -605,7 +605,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L681">Interfaces.ts:681</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L666">Interfaces.ts:666</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -628,13 +628,13 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 					<a name="flatmap" class="tsd-anchor"></a>
 					<h3>flat<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;S&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">flat<wbr>Map&lt;S&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L700">Interfaces.ts:700</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L685">Interfaces.ts:685</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -662,13 +662,13 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>mapper: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>mapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Mapping function taking each item and producing a new stream or iterable.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream over all the items of the iterables produced by the mapper.</p>
 						</li>
 					</ul>
@@ -677,13 +677,13 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 					<a name="foreach" class="tsd-anchor"></a>
 					<h3>for<wbr>Each</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">for<wbr>Each<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L724">Interfaces.ts:724</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L709">Interfaces.ts:709</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -696,7 +696,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>consumer: <a href="consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>consumer: <a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A callback that receives each item of this stream in order.</p>
 									</div>
@@ -716,7 +716,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L752">Interfaces.ts:752</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L737">Interfaces.ts:737</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -752,13 +752,13 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 					<a name="group" class="tsd-anchor"></a>
 					<h3>group</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">group&lt;K&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">group&lt;K&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L766">Interfaces.ts:766</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L751">Interfaces.ts:751</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -783,7 +783,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>classifier: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>classifier: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Returns the group for each item.</p>
 									</div>
@@ -804,7 +804,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L779">Interfaces.ts:779</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L764">Interfaces.ts:764</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -831,13 +831,13 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 					<a name="index" class="tsd-anchor"></a>
 					<h3>index</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L790">Interfaces.ts:790</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L775">Interfaces.ts:775</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -847,7 +847,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).index() <span class="hljs-comment">// =&gt; Stream&lt;[ [0, "foo"], [1, "bar"] ]&gt;</span>
 </code></pre>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with each item being an array consisting of the item&#39;s index and the item itself. The index starts at 0.</p>
 						</li>
 					</ul>
@@ -862,7 +862,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L805">Interfaces.ts:805</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L790">Interfaces.ts:790</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -909,7 +909,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L817">Interfaces.ts:817</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L802">Interfaces.ts:802</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -938,7 +938,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L829">Interfaces.ts:829</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L814">Interfaces.ts:814</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -963,13 +963,13 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 					<a name="map" class="tsd-anchor"></a>
 					<h3>map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">map&lt;S&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">map&lt;S&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L842">Interfaces.ts:842</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L827">Interfaces.ts:827</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -991,13 +991,13 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>mapper: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>mapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A function taking each item of this stream and transforms it into another item.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>An iterable over the mapped elements.</p>
 						</li>
 					</ul>
@@ -1012,7 +1012,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L856">Interfaces.ts:856</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L841">Interfaces.ts:841</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1045,13 +1045,13 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="maxby" class="tsd-anchor"></a>
 					<h3>max<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">max<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">max<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L869">Interfaces.ts:869</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L854">Interfaces.ts:854</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1065,7 +1065,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>sortKey: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>sortKey: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes an item and produces the key by which the maximum is determined.</p>
 									</div>
@@ -1089,7 +1089,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L883">Interfaces.ts:883</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L868">Interfaces.ts:868</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1122,13 +1122,13 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="minby" class="tsd-anchor"></a>
 					<h3>min<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">min<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">min<wbr>By<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L896">Interfaces.ts:896</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L881">Interfaces.ts:881</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1142,7 +1142,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>sortKey: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>sortKey: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes an item and produces the key by which the minimum is determined.</p>
 									</div>
@@ -1166,7 +1166,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L910">Interfaces.ts:910</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L895">Interfaces.ts:895</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1199,13 +1199,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="partition" class="tsd-anchor"></a>
 					<h3>partition</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">partition<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">partition<span class="tsd-signature-symbol">(</span>discriminator<span class="tsd-signature-symbol">: </span><a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L923">Interfaces.ts:923</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L908">Interfaces.ts:908</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1219,7 +1219,10 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>discriminator: <a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Partitions each item into one of two groups by returning <code>true</code> of <code>false</code>.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -1239,13 +1242,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="promise" class="tsd-anchor"></a>
 					<h3>promise</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">promise&lt;S&gt;<span class="tsd-signature-symbol">(</span>promiseConverter<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">promise&lt;S&gt;<span class="tsd-signature-symbol">(</span>promiseConverter<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L945">Interfaces.ts:945</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L929">Interfaces.ts:929</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1279,13 +1282,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>promiseConverter: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>promiseConverter: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes each item and creates a promise.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that resolves when all promises resolve; or is rejected when any promise is rejected.</p>
 						</li>
 					</ul>
@@ -1294,13 +1297,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="reduce" class="tsd-anchor"></a>
 					<h3>reduce</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">reduce&lt;S&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce&lt;S&gt;<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L959">Interfaces.ts:959</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L943">Interfaces.ts:943</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1322,7 +1325,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>reducer: <a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>reducer: <a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.</p>
 									</div>
@@ -1343,18 +1346,18 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="reducesame" class="tsd-anchor"></a>
 					<h3>reduce<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L972">Interfaces.ts:972</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L956">Interfaces.ts:956</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Similar to <a href="stream.html#reducesame">reduceSame</a>, but reduces to items of the same type
+									<p>Similar to <a href="istream.html#reducesame">reduceSame</a>, but reduces to items of the same type
 									as the items and thus does not require an explicit initial value.</p>
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduceSame(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x) <span class="hljs-comment">// =&gt; 6</span>
@@ -1363,7 +1366,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>reducer: <a href="bifunction.html" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>reducer: <a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.</p>
 									</div>
@@ -1384,7 +1387,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L984">Interfaces.ts:984</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L968">Interfaces.ts:968</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1410,7 +1413,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L995">Interfaces.ts:995</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L979">Interfaces.ts:979</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1435,7 +1438,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1007">Interfaces.ts:1007</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L991">Interfaces.ts:991</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1446,7 +1449,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 </code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
-									<dd><p><a href="stream.html#limit">limit</a></p>
+									<dd><p><a href="istream.html#limit">limit</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -1465,13 +1468,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="slice" class="tsd-anchor"></a>
 					<h3>slice</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">slice<span class="tsd-signature-symbol">(</span>sliceSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">slice<span class="tsd-signature-symbol">(</span>sliceSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1019">Interfaces.ts:1019</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1003">Interfaces.ts:1003</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1490,7 +1493,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream over the sliced items.</p>
 						</li>
 					</ul>
@@ -1499,13 +1502,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="some" class="tsd-anchor"></a>
 					<h3>some</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">some<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">some<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1031">Interfaces.ts:1031</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1015">Interfaces.ts:1015</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1518,7 +1521,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>predicate: <a href="predicate.html" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>predicate: <a href="../globals.html#predicate" class="tsd-signature-type">Predicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Test to be performed on the items.</p>
 									</div>
@@ -1539,7 +1542,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1045">Interfaces.ts:1045</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1029">Interfaces.ts:1029</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1569,13 +1572,13 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 					<a name="sum" class="tsd-anchor"></a>
 					<h3>sum</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">sum<span class="tsd-signature-symbol">(</span>converter<span class="tsd-signature-symbol">?: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">sum<span class="tsd-signature-symbol">(</span>converter<span class="tsd-signature-symbol">?: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1058">Interfaces.ts:1058</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1042">Interfaces.ts:1042</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1589,7 +1592,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> converter: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> converter: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1607,7 +1610,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1121">Interfaces.ts:1121</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1105">Interfaces.ts:1105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1638,13 +1641,13 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="tomap" class="tsd-anchor"></a>
 					<h3>to<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1152">Interfaces.ts:1152</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1136">Interfaces.ts:1136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1673,13 +1676,13 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>keyMapper: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>keyMapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Transforms an item into the map key to be used.</p>
 									</div>
 								</li>
 								<li>
-									<h5>valueMapper: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>valueMapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Transforms an item into the value used for the corresponding key.</p>
 									</div>
@@ -1700,7 +1703,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1136">Interfaces.ts:1136</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1120">Interfaces.ts:1120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1731,19 +1734,19 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="try" class="tsd-anchor"></a>
 					<h3>try</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">try&lt;S&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="trystream.html" class="tsd-signature-type">TryStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">try&lt;S&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="itrystream.html" class="tsd-signature-type">ITryStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1076">Interfaces.ts:1076</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1060">Interfaces.ts:1060</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Maps each item to the result of the given operation,
-									wrapped in a <a href="try.html">Try</a> for error handling.</p>
+									wrapped in a {@link Try} for error handling.</p>
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"1"</span>,<span class="hljs-string">"7"</span>,<span class="hljs-string">"7a"</span>])
   .try(SON.parse)
@@ -1764,13 +1767,13 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>operation: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>operation: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Takes each item and returns a mapped value, or throws an <code>Error</code>.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="trystream.html" class="tsd-signature-type">TryStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="itrystream.html" class="tsd-signature-type">ITryStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with the mapped values and additional methods for handling errors.</p>
 						</li>
 					</ul>
@@ -1779,19 +1782,19 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="trycompute" class="tsd-anchor"></a>
 					<h3>try<wbr>Compute</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">try<wbr>Compute&lt;S&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">try<wbr>Compute&lt;S&gt;<span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1093">Interfaces.ts:1093</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1077">Interfaces.ts:1077</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Passes this stream to the the operation and returns its result,
-										wrapped in a <a href="try.html">Try</a> in case the operation throws an error.
+										wrapped in a {@link Try} in case the operation throws an error.
 										Usually used for performing a terminal operation with error handling
 									on the stream.</p>
 								</div>
@@ -1811,14 +1814,14 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>operation: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>operation: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Takes this stream and returns value. If it throws an error, the resulting <a href="try.html">Try</a> is not successful.</p>
+										<p>Takes this stream and returns value. If it throws an error, the resulting {@link Try} is not successful.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The result of the operation, wrapped in a <a href="try.html">Try</a> for encapsulating thrown errors.</p>
+							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>The result of the operation, wrapped in a {@link Try} for encapsulating thrown errors.</p>
 						</li>
 					</ul>
 				</section>
@@ -1826,13 +1829,13 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 					<a name="tryend" class="tsd-anchor"></a>
 					<h3>try<wbr>End</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">try<wbr>End<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">try<wbr>End<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1106">Interfaces.ts:1106</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1090">Interfaces.ts:1090</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1844,7 +1847,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log).tryEnd()
 </code></pre>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="try.html" class="tsd-signature-type">Try</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The encapsulated error, if any was thrown.</p>
 						</li>
 					</ul>
@@ -1859,7 +1862,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1171">Interfaces.ts:1171</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1155">Interfaces.ts:1155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1894,13 +1897,13 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 					<a name="uniqueby" class="tsd-anchor"></a>
 					<h3>unique<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">unique<wbr>By<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">?: </span><a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">unique<wbr>By<span class="tsd-signature-symbol">(</span>keyExtractor<span class="tsd-signature-symbol">?: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1188">Interfaces.ts:1188</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1172">Interfaces.ts:1172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1918,7 +1921,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> keyExtractor: <a href="function.html" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> keyExtractor: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.</p>
 									</div>
@@ -1933,13 +1936,13 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 					<a name="visit" class="tsd-anchor"></a>
 					<h3>visit</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">visit<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">visit<span class="tsd-signature-symbol">(</span>consumer<span class="tsd-signature-symbol">: </span><a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1203">Interfaces.ts:1203</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1187">Interfaces.ts:1187</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1955,7 +1958,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>consumer: <a href="consumer.html" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>consumer: <a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Callback taking each item.</p>
 									</div>
@@ -1970,13 +1973,13 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 					<a name="zip" class="tsd-anchor"></a>
 					<h3>zip</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">zip&lt;S&gt;<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip&lt;S&gt;<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1222">Interfaces.ts:1222</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1206">Interfaces.ts:1206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2008,7 +2011,7 @@ stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"<
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream over all the produced tuples.</p>
 						</li>
 					</ul>
@@ -2017,13 +2020,13 @@ stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"<
 					<a name="zipsame" class="tsd-anchor"></a>
 					<h3>zip<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L1244">Interfaces.ts:1244</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L1228">Interfaces.ts:1228</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2052,7 +2055,7 @@ stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string"
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="stream.html" class="tsd-signature-type">Stream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream over al the produced tuples.</p>
 						</li>
 					</ul>
@@ -2072,154 +2075,154 @@ stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string"
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="stream.html" class="tsd-kind-icon">Stream</a>
+						<a href="istream.html" class="tsd-kind-icon">IStream</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#___iterator" class="tsd-kind-icon">__@iterator</a>
+								<a href="istream.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#chunk" class="tsd-kind-icon">chunk</a>
+								<a href="istream.html#chunk" class="tsd-kind-icon">chunk</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#collect" class="tsd-kind-icon">collect</a>
+								<a href="istream.html#collect" class="tsd-kind-icon">collect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a>
+								<a href="istream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#concat" class="tsd-kind-icon">concat</a>
+								<a href="istream.html#concat" class="tsd-kind-icon">concat</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#cycle" class="tsd-kind-icon">cycle</a>
+								<a href="istream.html#cycle" class="tsd-kind-icon">cycle</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#end" class="tsd-kind-icon">end</a>
+								<a href="istream.html#end" class="tsd-kind-icon">end</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#every" class="tsd-kind-icon">every</a>
+								<a href="istream.html#every" class="tsd-kind-icon">every</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#filter" class="tsd-kind-icon">filter</a>
+								<a href="istream.html#filter" class="tsd-kind-icon">filter</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#find" class="tsd-kind-icon">find</a>
+								<a href="istream.html#find" class="tsd-kind-icon">find</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#findindex" class="tsd-kind-icon">find<wbr>Index</a>
+								<a href="istream.html#findindex" class="tsd-kind-icon">find<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#first" class="tsd-kind-icon">first</a>
+								<a href="istream.html#first" class="tsd-kind-icon">first</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
+								<a href="istream.html#flatmap" class="tsd-kind-icon">flat<wbr>Map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
+								<a href="istream.html#foreach" class="tsd-kind-icon">for<wbr>Each</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#fork" class="tsd-kind-icon">fork</a>
+								<a href="istream.html#fork" class="tsd-kind-icon">fork</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#group" class="tsd-kind-icon">group</a>
+								<a href="istream.html#group" class="tsd-kind-icon">group</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#has" class="tsd-kind-icon">has</a>
+								<a href="istream.html#has" class="tsd-kind-icon">has</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#index" class="tsd-kind-icon">index</a>
+								<a href="istream.html#index" class="tsd-kind-icon">index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#join" class="tsd-kind-icon">join</a>
+								<a href="istream.html#join" class="tsd-kind-icon">join</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#last" class="tsd-kind-icon">last</a>
+								<a href="istream.html#last" class="tsd-kind-icon">last</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#limit" class="tsd-kind-icon">limit</a>
+								<a href="istream.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#map" class="tsd-kind-icon">map</a>
+								<a href="istream.html#map" class="tsd-kind-icon">map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#max" class="tsd-kind-icon">max</a>
+								<a href="istream.html#max" class="tsd-kind-icon">max</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#maxby" class="tsd-kind-icon">max<wbr>By</a>
+								<a href="istream.html#maxby" class="tsd-kind-icon">max<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#min" class="tsd-kind-icon">min</a>
+								<a href="istream.html#min" class="tsd-kind-icon">min</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#minby" class="tsd-kind-icon">min<wbr>By</a>
+								<a href="istream.html#minby" class="tsd-kind-icon">min<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#nth" class="tsd-kind-icon">nth</a>
+								<a href="istream.html#nth" class="tsd-kind-icon">nth</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#partition" class="tsd-kind-icon">partition</a>
+								<a href="istream.html#partition" class="tsd-kind-icon">partition</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#promise" class="tsd-kind-icon">promise</a>
+								<a href="istream.html#promise" class="tsd-kind-icon">promise</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#reduce" class="tsd-kind-icon">reduce</a>
+								<a href="istream.html#reduce" class="tsd-kind-icon">reduce</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a>
+								<a href="istream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#reverse" class="tsd-kind-icon">reverse</a>
+								<a href="istream.html#reverse" class="tsd-kind-icon">reverse</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#size" class="tsd-kind-icon">size</a>
+								<a href="istream.html#size" class="tsd-kind-icon">size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#skip" class="tsd-kind-icon">skip</a>
+								<a href="istream.html#skip" class="tsd-kind-icon">skip</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#slice" class="tsd-kind-icon">slice</a>
+								<a href="istream.html#slice" class="tsd-kind-icon">slice</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#some" class="tsd-kind-icon">some</a>
+								<a href="istream.html#some" class="tsd-kind-icon">some</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#sort" class="tsd-kind-icon">sort</a>
+								<a href="istream.html#sort" class="tsd-kind-icon">sort</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#sum" class="tsd-kind-icon">sum</a>
+								<a href="istream.html#sum" class="tsd-kind-icon">sum</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#toarray" class="tsd-kind-icon">to<wbr>Array</a>
+								<a href="istream.html#toarray" class="tsd-kind-icon">to<wbr>Array</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#tomap" class="tsd-kind-icon">to<wbr>Map</a>
+								<a href="istream.html#tomap" class="tsd-kind-icon">to<wbr>Map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#toset" class="tsd-kind-icon">to<wbr>Set</a>
+								<a href="istream.html#toset" class="tsd-kind-icon">to<wbr>Set</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#try" class="tsd-kind-icon">try</a>
+								<a href="istream.html#try" class="tsd-kind-icon">try</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#trycompute" class="tsd-kind-icon">try<wbr>Compute</a>
+								<a href="istream.html#trycompute" class="tsd-kind-icon">try<wbr>Compute</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#tryend" class="tsd-kind-icon">try<wbr>End</a>
+								<a href="istream.html#tryend" class="tsd-kind-icon">try<wbr>End</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#unique" class="tsd-kind-icon">unique</a>
+								<a href="istream.html#unique" class="tsd-kind-icon">unique</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a>
+								<a href="istream.html#uniqueby" class="tsd-kind-icon">unique<wbr>By</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#visit" class="tsd-kind-icon">visit</a>
+								<a href="istream.html#visit" class="tsd-kind-icon">visit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="stream.html#zip" class="tsd-kind-icon">zip</a>
+								<a href="istream.html#zip" class="tsd-kind-icon">zip</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="stream.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a>
+								<a href="istream.html#zipsame" class="tsd-kind-icon">zip<wbr>Same</a>
 							</li>
 						</ul>
 					</li>

@@ -10,9 +10,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Methods_1 = require("./Methods");
-
 var InplaceStream_1 = require("./InplaceStream");
+
+var Methods_1 = require("./Methods");
 
 var TypesafeStream_1 = require("./TypesafeStream");
 
@@ -57,7 +57,6 @@ function createFactory() {
   };
 }
 
-;
 exports.TypesafeStreamFactory = createFactory(false);
 exports.InplaceStreamFactory = createFactory(true);
 exports.stream = exports.InplaceStreamFactory.stream;

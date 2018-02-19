@@ -7,12 +7,6 @@ class AbstractStream {
         this.done = false;
         this.iterable = iterable;
     }
-    check() {
-        if (this.done) {
-            throw new Error("Stream was already consumed.");
-        }
-        this.done = true;
-    }
     [Symbol.iterator]() {
         this.check();
         return this.iterable[Symbol.iterator]();
@@ -47,7 +41,7 @@ class AbstractStream {
     }
     forEach(consumer) {
         this.check();
-        for (let item of this.iterable) {
+        for (const item of this.iterable) {
             consumer(item);
         }
     }
@@ -143,6 +137,12 @@ class AbstractStream {
     tryEnd() {
         this.check();
         return Methods_1.tryEnd(this.iterable);
+    }
+    check() {
+        if (this.done) {
+            throw new Error("Stream was already consumed.");
+        }
+        this.done = true;
     }
 }
 exports.AbstractStream = AbstractStream;

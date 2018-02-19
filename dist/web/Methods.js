@@ -171,7 +171,7 @@ function map(iterable, mapper) {
 exports.map = map;
 
 function flatMap(iterable, mapper) {
-  var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _item2, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _i;
+  var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _items, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _item2;
 
   return regeneratorRuntime.wrap(function flatMap$(_context2) {
     while (1) {
@@ -189,12 +189,12 @@ function flatMap(iterable, mapper) {
             break;
           }
 
-          _item2 = _step2.value;
+          _items = _step2.value;
           _iteratorNormalCompletion3 = true;
           _didIteratorError3 = false;
           _iteratorError3 = undefined;
           _context2.prev = 10;
-          _iterator3 = mapper(_item2)[Symbol.iterator]();
+          _iterator3 = mapper(_items)[Symbol.iterator]();
 
         case 12:
           if (_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done) {
@@ -202,9 +202,9 @@ function flatMap(iterable, mapper) {
             break;
           }
 
-          _i = _step3.value;
+          _item2 = _step3.value;
           _context2.next = 16;
-          return _i;
+          return _item2;
 
         case 16:
           _iteratorNormalCompletion3 = true;
@@ -301,19 +301,18 @@ function chunk(iterable, classifier) {
     while (1) {
       switch (_context3.prev = _context3.next) {
         case 0:
-          currentClass = undefined;
           first = true;
           index = -1;
           chunk = [];
           _iteratorNormalCompletion4 = true;
           _didIteratorError4 = false;
           _iteratorError4 = undefined;
-          _context3.prev = 7;
+          _context3.prev = 6;
           _iterator4 = iterable[Symbol.iterator]();
 
-        case 9:
+        case 8:
           if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
-            _context3.next = 22;
+            _context3.next = 21;
             break;
           }
 
@@ -321,75 +320,75 @@ function chunk(iterable, classifier) {
           clazz = classifier(_item3, ++index);
 
           if (!(!first && currentClass !== clazz)) {
-            _context3.next = 16;
+            _context3.next = 15;
             break;
           }
 
-          _context3.next = 15;
+          _context3.next = 14;
           return chunk;
 
-        case 15:
+        case 14:
           chunk = [];
 
-        case 16:
+        case 15:
           first = false;
           currentClass = clazz;
           chunk.push(_item3);
 
-        case 19:
+        case 18:
           _iteratorNormalCompletion4 = true;
-          _context3.next = 9;
+          _context3.next = 8;
           break;
 
-        case 22:
-          _context3.next = 28;
+        case 21:
+          _context3.next = 27;
           break;
 
-        case 24:
-          _context3.prev = 24;
-          _context3.t0 = _context3["catch"](7);
+        case 23:
+          _context3.prev = 23;
+          _context3.t0 = _context3["catch"](6);
           _didIteratorError4 = true;
           _iteratorError4 = _context3.t0;
 
-        case 28:
+        case 27:
+          _context3.prev = 27;
           _context3.prev = 28;
-          _context3.prev = 29;
 
           if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
             _iterator4.return();
           }
 
-        case 31:
-          _context3.prev = 31;
+        case 30:
+          _context3.prev = 30;
 
           if (!_didIteratorError4) {
-            _context3.next = 34;
+            _context3.next = 33;
             break;
           }
 
           throw _iteratorError4;
 
+        case 33:
+          return _context3.finish(30);
+
         case 34:
-          return _context3.finish(31);
+          return _context3.finish(27);
 
         case 35:
-          return _context3.finish(28);
-
-        case 36:
           if (!(chunk.length > 0)) {
-            _context3.next = 39;
+            _context3.next = 38;
             break;
           }
 
-          _context3.next = 39;
+          _context3.next = 38;
           return chunk;
 
-        case 39:
+        case 38:
         case "end":
           return _context3.stop();
       }
     }
-  }, _marked3, this, [[7, 24, 28, 36], [29,, 31, 35]]);
+  }, _marked3, this, [[6, 23, 27, 35], [28,, 30, 34]]);
 }
 
 exports.chunk = chunk;
@@ -801,14 +800,12 @@ function partition(iterable, discriminator) {
 }
 
 exports.partition = partition;
-;
 
 function group(iterable, classifier) {
   return collect(iterable, Collectors_1.Collectors.group(classifier));
 }
 
 exports.group = group;
-;
 
 function join(iterable) {
   var delimiter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
@@ -867,7 +864,7 @@ function uniqueBy(iterable, keyExtractor) {
 exports.uniqueBy = uniqueBy;
 
 function unique(iterable, comparator) {
-  var _iteratorNormalCompletion10, _didIteratorError10, _iteratorError10, _iterator10, _step10, _item7, items, i, _iteratorNormalCompletion11, _didIteratorError11, _iteratorError11, _iterator11, _step11, _item11, sorted, first, previous, _iteratorNormalCompletion12, _didIteratorError12, _iteratorError12, _iterator12, _step12, _item12, _i2, _item10;
+  var _iteratorNormalCompletion10, _didIteratorError10, _iteratorError10, _iterator10, _step10, _item7, items, i, _iteratorNormalCompletion11, _didIteratorError11, _iteratorError11, _iterator11, _step11, _item11, sorted, first, previous, _iteratorNormalCompletion12, _didIteratorError12, _iteratorError12, _iterator12, _step12, _item12, _i, _item10;
 
   return regeneratorRuntime.wrap(function unique$(_context10) {
     while (1) {
@@ -948,8 +945,8 @@ function unique(iterable, comparator) {
             _item11 = _step11.value;
             items.push({
               i: i++,
-              v: _item11,
-              u: false
+              u: false,
+              v: _item11
             });
           }
 
@@ -1047,15 +1044,15 @@ function unique(iterable, comparator) {
           return _context10.finish(62);
 
         case 70:
-          _i2 = 0;
+          _i = 0;
 
         case 71:
-          if (!(_i2 < items.length)) {
+          if (!(_i < items.length)) {
             _context10.next = 79;
             break;
           }
 
-          _item10 = items[_i2];
+          _item10 = items[_i];
 
           if (!_item10.u) {
             _context10.next = 76;
@@ -1066,7 +1063,7 @@ function unique(iterable, comparator) {
           return _item10.v;
 
         case 76:
-          _i2++;
+          _i++;
           _context10.next = 71;
           break;
 
@@ -1155,7 +1152,6 @@ function index(iterable) {
 }
 
 exports.index = index;
-;
 
 function limit(iterable, limit) {
   var _iteratorNormalCompletion14, _didIteratorError14, _iteratorError14, _iterator14, _step14, _item14;
@@ -1501,7 +1497,7 @@ function concat(iterable) {
       _len,
       moreIterables,
       _key,
-      _i3,
+      _i2,
       _iterable,
       _iteratorNormalCompletion18,
       _didIteratorError18,
@@ -1575,15 +1571,15 @@ function concat(iterable) {
             moreIterables[_key - 1] = _args17[_key];
           }
 
-          _i3 = 0;
+          _i2 = 0;
 
         case 28:
-          if (!(_i3 < moreIterables.length)) {
+          if (!(_i2 < moreIterables.length)) {
             _context17.next = 59;
             break;
           }
 
-          _iterable = moreIterables[_i3];
+          _iterable = moreIterables[_i2];
           _iteratorNormalCompletion18 = true;
           _didIteratorError18 = false;
           _iteratorError18 = undefined;
@@ -1640,7 +1636,7 @@ function concat(iterable) {
           return _context17.finish(48);
 
         case 56:
-          _i3++;
+          _i2++;
           _context17.next = 28;
           break;
 
@@ -1836,7 +1832,6 @@ exports.maxBy = maxBy;
 
 function min(iterable) {
   var comparator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : kagura_1.natural;
-  console.log(comparator);
   var first = true;
   var min;
   var _iteratorNormalCompletion23 = true;
@@ -1990,7 +1985,6 @@ function sum(iterable, converter) {
 }
 
 exports.sum = sum;
-;
 
 function end(iterable) {
   var it = iterable[Symbol.iterator]();
@@ -2104,7 +2098,6 @@ function collect(iterable, collector) {
 }
 
 exports.collect = collect;
-;
 
 function collectWith(iterable, supplier, accumulator, finisher) {
   var collected = supplier();
@@ -2136,7 +2129,6 @@ function collectWith(iterable, supplier, accumulator, finisher) {
 }
 
 exports.collectWith = collectWith;
-;
 
 function toArray(iterable) {
   var fresh = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -2334,7 +2326,7 @@ function times(amount) {
       step,
       half,
       i,
-      _i4,
+      _i3,
       _args22 = arguments;
 
   return regeneratorRuntime.wrap(function times$(_context22) {
@@ -2368,19 +2360,19 @@ function times(amount) {
           break;
 
         case 13:
-          _i4 = amount - half - 1;
+          _i3 = amount - half - 1;
 
         case 14:
-          if (!(_i4 >= 0)) {
+          if (!(_i3 >= 0)) {
             _context22.next = 20;
             break;
           }
 
           _context22.next = 17;
-          return end - _i4 * step;
+          return end - _i3 * step;
 
         case 17:
-          --_i4;
+          --_i3;
           _context22.next = 14;
           break;
 
@@ -2429,7 +2421,6 @@ function repeat(item) {
 }
 
 exports.repeat = repeat;
-;
 
 function iterate(seed, next) {
   var amount,

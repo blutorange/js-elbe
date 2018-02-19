@@ -22,9 +22,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var Methods_1 = require("./Methods");
-
 var AbstractStream_1 = require("./AbstractStream");
+
+var Methods_1 = require("./Methods");
 
 var TypesafeStream =
 /*#__PURE__*/
@@ -53,11 +53,6 @@ function (_AbstractStream_1$Abs) {
       }
 
       return new this.constructor(Methods_1.concat.apply(Methods_1, [this.iterable].concat(iterables)));
-    }
-  }, {
-    key: "clone",
-    value: function clone(iterable) {
-      return new this.constructor(iterable);
     }
   }, {
     key: "cycle",
@@ -168,13 +163,17 @@ function (_AbstractStream_1$Abs) {
 
       return new TypesafeStream(Methods_1.zipSame(this.iterable, others));
     }
+  }, {
+    key: "clone",
+    value: function clone(iterable) {
+      return new this.constructor(iterable);
+    }
   }]);
 
   return TypesafeStream;
 }(AbstractStream_1.AbstractStream);
 
 exports.TypesafeStream = TypesafeStream;
-;
 
 var TryStreamImpl =
 /*#__PURE__*/

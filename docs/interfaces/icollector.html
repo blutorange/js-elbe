@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Supplier | elbe</title>
+	<title>ICollector | elbe</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="supplier.html">Supplier</a>
+					<a href="icollector.html">ICollector</a>
 				</li>
 			</ul>
-			<h1>Interface Supplier&lt;T&gt;</h1>
+			<h1>Interface ICollector&lt;S, T, R&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -67,7 +67,11 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A supplier produces a value without explicit input.</p>
+						<p>A collector takes all items of a stream and incorporates them
+							into a single object. It does this by first creating an intermediate
+							container (eg. a Set), then processing all items (eg. adding them
+							to the Set), and finally converting the intermediate value to the
+						resulting value (eg. the size of the set).</p>
 					</div>
 				</div>
 			</section>
@@ -75,12 +79,13 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
+						<h4>S</h4>
+					</li>
+					<li>
 						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Type of the produced value.</p>
-							</div>
-						</div>
+					</li>
+					<li>
+						<h4>R</h4>
 					</li>
 				</ul>
 			</section>
@@ -88,30 +93,72 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Supplier</span>
+						<span class="target">ICollector</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel">
-				<h3 class="tsd-before-signature">Callable</h3>
-				<ul class="tsd-signatures tsd-kind-interface tsd-has-type-parameter">
-					<li class="tsd-signature tsd-kind-icon">__call<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/39bcb59/Interfaces.ts#L34">Interfaces.ts:34</a></li>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icollector.html#accumulator" class="tsd-kind-icon">accumulator</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icollector.html#finisher" class="tsd-kind-icon">finisher</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="icollector.html#supplier" class="tsd-kind-icon">supplier</a></li>
 							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A supplier produces a value without explicit input.</p>
-							</div>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="accumulator" class="tsd-anchor"></a>
+					<h3>accumulator</h3>
+					<div class="tsd-signature tsd-kind-icon">accumulator<span class="tsd-signature-symbol">:</span> <a href="../globals.html#biconsumer" class="tsd-signature-type">BiConsumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L79">Interfaces.ts:79</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Incorporates each item into the intermediate container.</p>
 						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-					</li>
-				</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="finisher" class="tsd-anchor"></a>
+					<h3>finisher</h3>
+					<div class="tsd-signature tsd-kind-icon">finisher<span class="tsd-signature-symbol">:</span> <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L87">Interfaces.ts:87</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Transform the intermediate container into the final result.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="supplier" class="tsd-anchor"></a>
+					<h3>supplier</h3>
+					<div class="tsd-signature tsd-kind-icon">supplier<span class="tsd-signature-symbol">:</span> <a href="../globals.html#supplier" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/accb0c6/Interfaces.ts#L83">Interfaces.ts:83</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Creates a new intermediate container.</p>
+						</div>
+					</div>
+				</section>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -127,7 +174,18 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="supplier.html" class="tsd-kind-icon">Supplier</a>
+						<a href="icollector.html" class="tsd-kind-icon">ICollector</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icollector.html#accumulator" class="tsd-kind-icon">accumulator</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icollector.html#finisher" class="tsd-kind-icon">finisher</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="icollector.html#supplier" class="tsd-kind-icon">supplier</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">

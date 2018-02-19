@@ -42,62 +42,62 @@ function () {
   function StatisticsImpl() {
     _classCallCheck(this, StatisticsImpl);
 
-    this._count = 0;
-    this._sum = 0;
-    this._sum2 = 0;
-    this._min = undefined;
-    this._max = undefined;
+    this.Count = 0;
+    this.Sum = 0;
+    this.Sum2 = 0;
+    this.Min = undefined;
+    this.Max = undefined;
   }
 
   _createClass(StatisticsImpl, [{
     key: "accept",
     value: function accept(value) {
-      this._sum += value;
-      this._sum2 += value * value;
+      this.Sum += value;
+      this.Sum2 += value * value;
 
-      if (this._count > 0) {
-        this._max = Math.max(this._max, value);
-        this._min = Math.min(this._min, value);
+      if (this.Count > 0) {
+        this.Max = Math.max(this.Max, value);
+        this.Min = Math.min(this.Min, value);
       } else {
-        this._min = this._max = value;
+        this.Min = this.Max = value;
       }
 
-      this._count += 1;
+      this.Count += 1;
     }
   }, {
     key: "average",
     get: function get() {
-      return this._count > 0 ? this._sum / this._count : 0;
+      return this.Count > 0 ? this.Sum / this.Count : 0;
     }
   }, {
     key: "count",
     get: function get() {
-      return this._count;
+      return this.Count;
     }
   }, {
     key: "max",
     get: function get() {
-      return this._max;
+      return this.Max;
     }
   }, {
     key: "min",
     get: function get() {
-      return this._min;
+      return this.Min;
     }
   }, {
     key: "sum",
     get: function get() {
-      return this._sum;
+      return this.Sum;
     }
   }, {
     key: "variance",
     get: function get() {
-      if (this._count === 0) {
+      if (this.Count === 0) {
         return Infinity;
       }
 
       var average = this.average;
-      return this._sum2 / this._count - average * average;
+      return this.Sum2 / this.Count - average * average;
     }
   }]);
 
@@ -230,7 +230,7 @@ exports.Collectors = {
         collected.push(String(item));
       },
       supplier: function supplier() {
-        return prefix != undefined ? [prefix] : [];
+        return prefix !== undefined ? [prefix] : [];
       },
       finisher: function finisher(result) {
         return result.join(delimiter);

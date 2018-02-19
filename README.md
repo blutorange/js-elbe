@@ -35,11 +35,13 @@ const lib = require("elbe");
 
 This returns an object with the following entries:
 
-* Collectors
-* StreamFactory
-* Methods
-* monkeyPatch
-* TryFactory
+* [Collectors](https://blutorange.github.io/js-elbe/globals.html#collectors)
+* [InplaceStreamFactory](https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory)
+* [Methods](https://blutorange.github.io/js-elbe/globals.html#chunk)
+* [monkeyPatch](https://blutorange.github.io/js-elbe/globals.html#monkeypatch)
+* [stream](https://blutorange.github.io/js-elbe/globals.html#stream)
+* [TryFactory](https://blutorange.github.io/js-elbe/globals.html#tryfactory)
+* [TypesafeStreamFactory](https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory)
 
 # Install
 

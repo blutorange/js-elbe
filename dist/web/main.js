@@ -17,3 +17,5 @@ tslib_1.__exportStar(require("./Collectors"), exports);
 tslib_1.__exportStar(require("./StreamFactory"), exports);
 
 tslib_1.__exportStar(require("./TryFactory"), exports);
+
+(function (x) {})(Methods);

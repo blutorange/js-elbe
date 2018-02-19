@@ -9,6 +9,7 @@
     "clean": "rm -rf dist/* docs/*",
     "doc": "npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx tslint --project tsconfig.json -c tslint.json *.ts",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",
     "doc-create": "npx typedoc --mode file --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "transpile": "npx tsc -p tsconfig.json",
@@ -43,6 +44,7 @@
     "browserify": "^15.2.0",
     "core-js": "^2.5.3",
     "regenerator-runtime": "^0.11.1",
+    "tslint": "^5.9.1",
     "typedoc": "^0.10.0",
     "typescript": "^2.8.0-dev.20180202"
   }

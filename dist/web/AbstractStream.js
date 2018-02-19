@@ -33,15 +33,6 @@ function () {
   }
 
   _createClass(AbstractStream, [{
-    key: "check",
-    value: function check() {
-      if (this.done) {
-        throw new Error("Stream was already consumed.");
-      }
-
-      this.done = true;
-    }
-  }, {
     key: Symbol.iterator,
     value: function value() {
       this.check();
@@ -260,6 +251,15 @@ function () {
     value: function tryEnd() {
       this.check();
       return Methods_1.tryEnd(this.iterable);
+    }
+  }, {
+    key: "check",
+    value: function check() {
+      if (this.done) {
+        throw new Error("Stream was already consumed.");
+      }
+
+      this.done = true;
     }
   }]);
 

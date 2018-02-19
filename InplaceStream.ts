@@ -1,157 +1,156 @@
 import { Comparator } from "kagura";
 
-import { BiFunction, Stream, TryStream, Consumer, Function, Predicate, Try } from "./Interfaces";
-import { uniqueBy, promise, cycle, chunk, slice, zip, zipSame, visit, index, concat, unique, tryMap, flatMap, limit, map, reverse, skip, sort, filter } from "./Methods";
 import { AbstractStream } from "./AbstractStream";
+import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Predicate } from "./Interfaces";
+import { chunk, concat, cycle, filter, flatMap, index, limit, map, promise, reverse, skip, slice, sort, tryMap, unique, uniqueBy, visit, zip, zipSame } from "./Methods";
 
 export class InplaceStream extends AbstractStream<any> {
-    ['constructor'] : (typeof InplaceStream);
+    public ["constructor"]: (typeof InplaceStream);
 
-    protected clone(iterable: Iterable<any>): this {
-        return new this.constructor(iterable) as this;
-    }
-
-    chunk<K=any>(classifier: BiFunction<any, number, K>) : Stream<any[]> {
+    public chunk<K = any>(classifier: BiFunction<any, number, K>): IStream<any[]> {
         this.iterable = chunk(this.iterable, classifier);
         return this;
     }
 
-    concat(...iterables: Iterable<any>[]) : this {
+    public concat(...iterables: Iterable<any>[]): this {
         this.iterable = concat(this.iterable, ...iterables);
         return this;
     }
 
-    cycle(count?: number) : this {
+    public cycle(count?: number): this {
         this.iterable = cycle(this.iterable, count);
-        return this;        
+        return this;
     }
 
-    flatMap<S>(mapper: Function<any,Iterable<S>>) : Stream<any> {
+    public flatMap<S>(mapper: Function<any, Iterable<S>>): IStream<any> {
         this.iterable = flatMap(this.iterable, mapper);
         return this;
     }
 
-    filter(predicate : Predicate<any>) : this {
+    public filter(predicate: Predicate<any>): this {
         this.iterable = filter(this.iterable, predicate);
         return this;
     }
 
-    index() : Stream<[number, any]> {
+    public index(): IStream<[number, any]> {
         this.iterable = index(this.iterable);
         return this;
     }
-    
-    limit(limitTo: number) : this {
+
+    public limit(limitTo: number): this {
         this.iterable = limit(this.iterable, limitTo);
         return this;
     }
 
-    map<S>(mapper : Function<any,S>) : Stream<any> {
+    public map<S>(mapper: Function<any, S>): IStream<any> {
         this.iterable = map(this.iterable, mapper);
         return this;
     }
 
-    promise<S>(promiseConverter: Function<any, Promise<S>>) : Promise<Stream<any>> {
+    public promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<IStream<any>> {
         this.check();
         return promise(this.iterable, promiseConverter)
             .then(iterable => new InplaceStream(iterable));
     }
 
-    visit(consumer: Consumer<any>) : this {
+    public visit(consumer: Consumer<any>): this {
         this.iterable = visit(this.iterable, consumer);
-        return this;        
+        return this;
     }
 
-    reverse() : this {
+    public reverse(): this {
         this.iterable = reverse(this.iterable);
         return this;
     }
 
-    skip(toSkip: number) : this {
+    public skip(toSkip: number): this {
         this.iterable = skip(this.iterable, toSkip);
         return this;
     }
 
-    slice(sliceSize: number) : Stream<any[]> {
+    public slice(sliceSize: number): IStream<any[]> {
         this.iterable = slice(this.iterable, sliceSize);
         return this;
     }
 
-    sort(comparator?: Comparator<any>) : this {
+    public sort(comparator?: Comparator<any>): this {
         this.iterable = sort(this.iterable, comparator);
         return this;
     }
 
-    try<S>(operation: Function<any,S>) : TryStream<S> {
-        let x = tryMap(this.iterable, operation);
+    public try<S>(operation: Function<any, S>): ITryStream<S> {
+        const x = tryMap(this.iterable, operation);
         return new TryStreamImpl(x);
     }
 
-    unique(comparator?: Comparator<any>) : this {
+    public unique(comparator?: Comparator<any>): this {
         this.iterable = unique(this.iterable, comparator);
         return this;
     }
 
-    uniqueBy(keyExtractor?: Function<any,any>) : this {
+    public uniqueBy(keyExtractor?: Function<any, any>): this {
         this.iterable = uniqueBy(this.iterable, keyExtractor);
         return this;
     }
-    
-    zip<S>(other: Iterable<S>) : Stream<[any, any]> {
+
+    public zip<S>(other: Iterable<S>): IStream<[any, any]> {
         this.iterable = zip(this.iterable, other);
         return this;
     }
 
-    zipSame(...others: Iterable<any>[]) : Stream<any[]> {
+    public zipSame(...others: Iterable<any>[]): IStream<any[]> {
         this.iterable = zipSame(this.iterable, others);
         return this;
     }
-};
 
+    protected clone(iterable: Iterable<any>): this {
+        return new this.constructor(iterable) as this;
+    }
+}
 
-class TryStreamImpl extends InplaceStream implements TryStream<any> {
-    forEachResult(success: Consumer<any>, error?: Consumer<Error>): void {
+class TryStreamImpl extends InplaceStream implements ITryStream<any> {
+    public forEachResult(success: Consumer<any>, error?: Consumer<Error>): void {
         if (error === undefined) {
             error = console.error;
         }
         return this.forEach(x => x.ifPresent(success, error));
     }
 
-    include(predicate: Predicate<any>): this {
+    public include(predicate: Predicate<any>): this {
         return this.visit(x => x.include(predicate));
     }
 
-    onError(handler: Consumer<Error>): this {
-        return this.visit((x:Try<any>) => x.ifAbsent(e => handler(e)));
+    public onError(handler: Consumer<Error>): this {
+        return this.visit((x: ITry<any>) => x.ifAbsent(e => handler(e)));
     }
 
-    onSuccess(success: Consumer<any>, failure: Consumer<Error>): this {
-        return this.visit(x => x.ifPresent(success,failure));
+    public onSuccess(success: Consumer<any>, failure: Consumer<Error>): this {
+        return this.visit(x => x.ifPresent(success, failure));
     }
 
-    orThrow(): Stream<any> {
+    public orThrow(): IStream<any> {
         return this.map(x => x.orThrow());
     }
 
-    orElse(backup: any): Stream<any> {
+    public orElse(backup: any): IStream<any> {
         return this.map(x => x.orElse(backup));
     }
 
-    discardError(handler: Consumer<Error> = console.error) : Stream<any> {
+    public discardError(handler: Consumer<Error> = console.error): IStream<any> {
         return this.onError(handler).filter(x => x.success).orThrow();
     }
 
-    flatConvert<S>(operation: Function<any, Try<S>>, backup?: Function<Error, Try<S>>): TryStream<S> {
+    public flatConvert<S>(operation: Function<any, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S> {
         this.iterable = map(this.iterable, x => x.flatConvert(operation, backup));
         return this;
     }
-    
-    convert<S>(operation: Function<any, S>, backup?: Function<Error, S>): TryStream<any> {
+
+    public convert<S>(operation: Function<any, S>, backup?: Function<Error, S>): ITryStream<any> {
         this.iterable = map(this.iterable, x => x.convert(operation, backup));
         return this;
     }
 
-    orTry(backup: Function<Error, any>): this {
+    public orTry(backup: Function<Error, any>): this {
         this.iterable = map(this.iterable, y => y.orTry(backup));
         return this;
     }

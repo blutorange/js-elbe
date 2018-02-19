@@ -24,8 +24,8 @@ class BaseTryImpl {
     }
     toJSON() {
         return {
+            result: this.result,
             success: this.success,
-            result: this.result
         };
     }
 }
@@ -153,5 +153,5 @@ exports.TryFactory = {
         catch (error) {
             return exports.TryFactory.error(error, cause);
         }
-    }
+    },
 };

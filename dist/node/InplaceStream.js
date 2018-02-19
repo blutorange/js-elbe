@@ -1,11 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Methods_1 = require("./Methods");
 const AbstractStream_1 = require("./AbstractStream");
+const Methods_1 = require("./Methods");
 class InplaceStream extends AbstractStream_1.AbstractStream {
-    clone(iterable) {
-        return new this.constructor(iterable);
-    }
     chunk(classifier) {
         this.iterable = Methods_1.chunk(this.iterable, classifier);
         return this;
@@ -64,7 +61,7 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         return this;
     }
     try(operation) {
-        let x = Methods_1.tryMap(this.iterable, operation);
+        const x = Methods_1.tryMap(this.iterable, operation);
         return new TryStreamImpl(x);
     }
     unique(comparator) {
@@ -83,9 +80,11 @@ class InplaceStream extends AbstractStream_1.AbstractStream {
         this.iterable = Methods_1.zipSame(this.iterable, others);
         return this;
     }
+    clone(iterable) {
+        return new this.constructor(iterable);
+    }
 }
 exports.InplaceStream = InplaceStream;
-;
 class TryStreamImpl extends InplaceStream {
     forEachResult(success, error) {
         if (error === undefined) {

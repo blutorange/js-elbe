@@ -91,11 +91,13 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span c
 </code></pre>
 				<p>This returns an object with the following entries:</p>
 				<ul>
-					<li>Collectors</li>
-					<li>StreamFactory</li>
-					<li>Methods</li>
-					<li>monkeyPatch</li>
-					<li>TryFactory</li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#collectors">Collectors</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory">InplaceStreamFactory</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#chunk">Methods</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#monkeypatch">monkeyPatch</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#stream">stream</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#tryfactory">TryFactory</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory">TypesafeStreamFactory</a></li>
 				</ul>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
@@ -282,49 +284,49 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 						<a href="classes/typesafestream.html" class="tsd-kind-icon">Typesafe<wbr>Stream</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/biconsumer.html" class="tsd-kind-icon">Bi<wbr>Consumer</a>
+						<a href="interfaces/icollector.html" class="tsd-kind-icon">ICollector</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/istatistics.html" class="tsd-kind-icon">IStatistics</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/bifunction.html" class="tsd-kind-icon">Bi<wbr>Function</a>
+						<a href="interfaces/istream.html" class="tsd-kind-icon">IStream</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/istreamfactory.html" class="tsd-kind-icon">IStream<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/bipredicate.html" class="tsd-kind-icon">Bi<wbr>Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/collector.html" class="tsd-kind-icon">Collector</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/consumer.html" class="tsd-kind-icon">Consumer</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/function.html" class="tsd-kind-icon">Function</a>
+						<a href="interfaces/itry.html" class="tsd-kind-icon">ITry</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/itryfactory.html" class="tsd-kind-icon">ITry<wbr>Factory</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/predicate.html" class="tsd-kind-icon">Predicate</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/statistics.html" class="tsd-kind-icon">Statistics</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/stream.html" class="tsd-kind-icon">Stream</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/streamfactory.html" class="tsd-kind-icon">Stream<wbr>Factory</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/supplier.html" class="tsd-kind-icon">Supplier</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/try.html" class="tsd-kind-icon">Try</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/trystream.html" class="tsd-kind-icon">Try<wbr>Stream</a>
+						<a href="interfaces/itrystream.html" class="tsd-kind-icon">ITry<wbr>Stream</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<a href="interfaces/uniqueentry.html" class="tsd-kind-icon">Unique<wbr>Entry</a>
+						<a href="interfaces/iuniqueentry.html" class="tsd-kind-icon">IUnique<wbr>Entry</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#biconsumer" class="tsd-kind-icon">Bi<wbr>Consumer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#bifunction" class="tsd-kind-icon">Bi<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#bipredicate" class="tsd-kind-icon">Bi<wbr>Predicate</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#consumer" class="tsd-kind-icon">Consumer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#function" class="tsd-kind-icon">Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#predicate" class="tsd-kind-icon">Predicate</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#supplier" class="tsd-kind-icon">Supplier</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#inplacestreamfactory" class="tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory</a>

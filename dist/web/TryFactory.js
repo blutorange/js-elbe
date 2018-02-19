@@ -68,8 +68,8 @@ function () {
     key: "toJSON",
     value: function toJSON() {
       return {
-        success: this.success,
-        result: this.result
+        result: this.result,
+        success: this.success
       };
     }
   }]);

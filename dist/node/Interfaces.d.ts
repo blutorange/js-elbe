@@ -1,5 +1,5 @@
 import { Comparator } from "kagura";
-export interface Statistics {
+export interface IStatistics {
     average: number;
     count: number;
     max: number;
@@ -7,74 +7,60 @@ export interface Statistics {
     sum: number;
     variance: number;
 }
-export interface Function<T, R> {
-    (arg1: T): R;
-}
-export interface Supplier<T> {
-    (): T;
-}
-export interface Consumer<T> {
-    (object: T): void;
-}
-export interface BiFunction<S, T, R> {
-    (arg1: S, arg2: T): R;
-}
-export interface Predicate<T> {
-    (object: T): boolean;
-}
-export interface BiPredicate<T, S> {
-    (arg1: T, arg2: S): boolean;
-}
-export interface BiConsumer<S, T> {
-    (arg1: S, arg2: T): void;
-}
-export interface Collector<S, T, R = T> {
+export declare type Function<T, R> = (arg1: T) => R;
+export declare type Supplier<T> = () => T;
+export declare type Consumer<T> = (object: T) => void;
+export declare type BiFunction<S, T, R> = (arg1: S, arg2: T) => R;
+export declare type Predicate<T> = (object: T) => boolean;
+export declare type BiPredicate<T, S> = (arg1: T, arg2: S) => boolean;
+export declare type BiConsumer<S, T> = (arg1: S, arg2: T) => void;
+export interface ICollector<S, T, R = T> {
     accumulator: BiConsumer<T, S>;
     supplier: Supplier<T>;
     finisher: Function<T, R>;
 }
 export interface ITryFactory {
-    success<T>(value: T): Try<T>;
-    error<T>(error: Error | String, cause?: Error): Try<T>;
-    of<T>(operation: Supplier<T>, cause?: Error): Try<T>;
-    flatOf<T>(operation: Supplier<Try<T>>, cause?: Error): Try<T>;
+    success<T>(value: T): ITry<T>;
+    error<T>(error: Error | string, cause?: Error): ITry<T>;
+    of<T>(operation: Supplier<T>, cause?: Error): ITry<T>;
+    flatOf<T>(operation: Supplier<ITry<T>>, cause?: Error): ITry<T>;
 }
-export interface StreamFactory {
-    stream<T>(iterable: Iterable<T>): Stream<T>;
-    generate<T>(generator: Function<number, T>, amount?: number): Stream<T>;
-    iterate<T>(seed: T, next: Function<T, T>, amount?: number): Stream<T>;
-    repeat<T>(item: T, amount?: number): Stream<T>;
-    times(amount: number, start?: number, end?: number): Stream<number>;
+export interface IStreamFactory {
+    stream<T>(iterable: Iterable<T>): IStream<T>;
+    generate<T>(generator: Function<number, T>, amount?: number): IStream<T>;
+    iterate<T>(seed: T, next: Function<T, T>, amount?: number): IStream<T>;
+    repeat<T>(item: T, amount?: number): IStream<T>;
+    times(amount: number, start?: number, end?: number): IStream<number>;
     fromObject<T>(object: {
         [s: string]: T;
-    }): Stream<[string, T]>;
+    }): IStream<[string, T]>;
     fromObjectKeys(object: {
         [s: string]: any;
-    }): Stream<string>;
+    }): IStream<string>;
     fromObjectValues<T>(object: {
         [s: string]: T;
-    }): Stream<T>;
+    }): IStream<T>;
 }
-export interface Try<T> {
+export interface ITry<T> {
     readonly success: boolean;
-    include(predicate: Predicate<T>): Try<T>;
-    convert<S>(success: Function<T, S>, backup?: Function<Error, S>): Try<S>;
-    flatConvert<S>(operation: Function<T, Try<S>>, backup?: Function<Error, Try<S>>): Try<S>;
+    include(predicate: Predicate<T>): ITry<T>;
+    convert<S>(success: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
+    flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S>;
     orElse(backup: T): T;
-    orTry(backup: Function<Error, T>): Try<T>;
-    orFlatTry(backup: Function<Error, Try<T>>): Try<T>;
+    orTry(backup: Function<Error, T>): ITry<T>;
+    orFlatTry(backup: Function<Error, ITry<T>>): ITry<T>;
     orThrow(): T;
     ifPresent(success: Consumer<T>, error?: Consumer<Error>): this;
     ifAbsent(consumer: Consumer<Error>): this;
-    stream(factory?: StreamFactory): Stream<T | Error>;
+    stream(factory?: IStreamFactory): IStream<T | Error>;
     iterate(): Iterable<T | Error>;
-    then<S>(success: Function<T, S | Try<S>>, error: Function<Error, S | Try<S>>): Try<S>;
-    catch(mapper: Function<Error, T | Try<T>>): Try<T>;
+    then<S>(success: Function<T, S | ITry<S>>, error: Function<Error, S | ITry<S>>): ITry<S>;
+    catch(mapper: Function<Error, T | ITry<T>>): ITry<T>;
 }
-export interface Stream<T> {
+export interface IStream<T> {
     [Symbol.iterator](): Iterator<T>;
-    chunk<K = any>(classifier: BiFunction<T, number, K>): Stream<T[]>;
-    collect<S, R = S>(collector: Collector<T, S, R>): R;
+    chunk<K = any>(classifier: BiFunction<T, number, K>): IStream<T[]>;
+    collect<S, R = S>(collector: ICollector<T, S, R>): R;
     collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
     concat(...iterables: Iterable<T>[]): this;
     cycle(count?: number): this;
@@ -83,57 +69,57 @@ export interface Stream<T> {
     find(predicate: BiPredicate<T, number>): T | undefined;
     findIndex(predicate: BiPredicate<T, number>): number;
     first(): T | undefined;
-    flatMap<S>(mapper: Function<T, Iterable<S>>): Stream<S>;
+    flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     filter(predicate: Predicate<T>): this;
     forEach(consumer: Consumer<T>): void;
     fork(): this;
     group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
-    index(): Stream<[number, T]>;
+    index(): IStream<[number, T]>;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
     last(): T | undefined;
     limit(limitTo: number): this;
-    map<S>(mapper: Function<T, S>): Stream<S>;
+    map<S>(mapper: Function<T, S>): IStream<S>;
     max(comparator: Comparator<T>): T | undefined;
     maxBy(sortKey: Function<T, any>): T | undefined;
     min(comparator: Comparator<T>): T | undefined;
     minBy(sortKey: Function<T, any>): T | undefined;
     nth(n: number): T | undefined;
-    partition(predicate: Predicate<T>): {
+    partition(discriminator: Predicate<T>): {
         false: T[];
         true: T[];
     };
-    promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<Stream<S>>;
+    promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<IStream<S>>;
     reduce<S>(reducer: BiFunction<S, T, S>, initialValue: S): S;
     reduceSame(reducer: BiFunction<T, T, T>): T;
     reverse(): this;
     size(): number;
     skip(toSkip: number): this;
-    slice(sliceSize: number): Stream<T[]>;
+    slice(sliceSize: number): IStream<T[]>;
     some(predicate: Predicate<T>): boolean;
     sort(comparator?: Comparator<T>): this;
     sum(converter?: Function<T, number>): number;
-    try<S>(operation: Function<T, S>): TryStream<S>;
-    tryCompute<S>(operation: Function<Stream<T>, S>): Try<S>;
-    tryEnd(): Try<void>;
+    try<S>(operation: Function<T, S>): ITryStream<S>;
+    tryCompute<S>(operation: Function<IStream<T>, S>): ITry<S>;
+    tryEnd(): ITry<void>;
     toArray(fresh?: boolean): T[];
     toSet(fresh?: boolean): Set<any>;
     toMap<K, V>(keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
     unique(comparator?: Comparator<T>): this;
     uniqueBy(keyExtractor?: Function<T, any>): this;
     visit(consumer: Consumer<T>): this;
-    zip<S>(other: Iterable<S>): Stream<[T, S]>;
-    zipSame(...others: Iterable<T>[]): Stream<T[]>;
+    zip<S>(other: Iterable<S>): IStream<[T, S]>;
+    zipSame(...others: Iterable<T>[]): IStream<T[]>;
 }
-export interface TryStream<T> extends Stream<Try<T>> {
-    discardError(handler?: Consumer<Error>): Stream<T>;
+export interface ITryStream<T> extends IStream<ITry<T>> {
+    discardError(handler?: Consumer<Error>): IStream<T>;
     forEachResult(success: Consumer<T>, error?: Consumer<Error>): void;
     include(predicate: Predicate<T>): this;
-    flatConvert<S>(operation: Function<T, Try<S>>, backup?: Function<Error, Try<S>>): TryStream<S>;
-    convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): TryStream<S>;
-    orElse(backup: T): Stream<T>;
+    flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S>;
+    convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITryStream<S>;
+    orElse(backup: T): IStream<T>;
     onError(handler: Consumer<Error>): this;
     onSuccess(success: Consumer<T>, error?: Consumer<Error>): this;
-    orThrow(): Stream<T>;
+    orThrow(): IStream<T>;
     orTry(backup: Function<Error, T>): this;
 }

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Methods_1 = require("./Methods");
 const AbstractStream_1 = require("./AbstractStream");
+const Methods_1 = require("./Methods");
 class TypesafeStream extends AbstractStream_1.AbstractStream {
     chunk(classifier) {
         this.check();
@@ -10,9 +10,6 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
     concat(...iterables) {
         this.check();
         return new this.constructor(Methods_1.concat(this.iterable, ...iterables));
-    }
-    clone(iterable) {
-        return new this.constructor(iterable);
     }
     cycle(count) {
         this.check();
@@ -83,9 +80,11 @@ class TypesafeStream extends AbstractStream_1.AbstractStream {
         this.check();
         return new TypesafeStream(Methods_1.zipSame(this.iterable, others));
     }
+    clone(iterable) {
+        return new this.constructor(iterable);
+    }
 }
 exports.TypesafeStream = TypesafeStream;
-;
 class TryStreamImpl extends TypesafeStream {
     forEachResult(success, error) {
         if (error === undefined) {
@@ -113,17 +112,17 @@ class TryStreamImpl extends TypesafeStream {
     }
     flatConvert(operation, backup) {
         this.check();
-        let x = Methods_1.map(this.iterable, x => x.flatConvert(operation, backup));
+        const x = Methods_1.map(this.iterable, x => x.flatConvert(operation, backup));
         return new this.constructor(x);
     }
     convert(operation, backup) {
         this.check();
-        let x = Methods_1.map(this.iterable, x => x.convert(operation, backup));
+        const x = Methods_1.map(this.iterable, x => x.convert(operation, backup));
         return new this.constructor(x);
     }
     orTry(backup) {
         this.check();
-        let x = Methods_1.map(this.iterable, y => y.orTry(backup));
+        const x = Methods_1.map(this.iterable, y => y.orTry(backup));
         return new this.constructor(x);
     }
 }

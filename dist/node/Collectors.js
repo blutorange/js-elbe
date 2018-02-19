@@ -9,45 +9,45 @@ function toNumber() {
 }
 class StatisticsImpl {
     constructor() {
-        this._count = 0;
-        this._sum = 0;
-        this._sum2 = 0;
-        this._min = undefined;
-        this._max = undefined;
+        this.Count = 0;
+        this.Sum = 0;
+        this.Sum2 = 0;
+        this.Min = undefined;
+        this.Max = undefined;
     }
     accept(value) {
-        this._sum += value;
-        this._sum2 += value * value;
-        if (this._count > 0) {
-            this._max = Math.max(this._max, value);
-            this._min = Math.min(this._min, value);
+        this.Sum += value;
+        this.Sum2 += value * value;
+        if (this.Count > 0) {
+            this.Max = Math.max(this.Max, value);
+            this.Min = Math.min(this.Min, value);
         }
         else {
-            this._min = this._max = value;
+            this.Min = this.Max = value;
         }
-        this._count += 1;
+        this.Count += 1;
     }
     get average() {
-        return this._count > 0 ? this._sum / this._count : 0;
+        return this.Count > 0 ? this.Sum / this.Count : 0;
     }
     get count() {
-        return this._count;
+        return this.Count;
     }
     get max() {
-        return this._max;
+        return this.Max;
     }
     get min() {
-        return this._min;
+        return this.Min;
     }
     get sum() {
-        return this._sum;
+        return this.Sum;
     }
     get variance() {
-        if (this._count === 0) {
+        if (this.Count === 0) {
             return Infinity;
         }
         const average = this.average;
-        return this._sum2 / this._count - average * average;
+        return this.Sum2 / this.Count - average * average;
     }
 }
 exports.Collectors = {
@@ -59,7 +59,7 @@ exports.Collectors = {
             supplier() {
                 return [];
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     count() {
@@ -69,12 +69,12 @@ exports.Collectors = {
             },
             supplier() {
                 return {
-                    count: 0
+                    count: 0,
                 };
             },
             finisher(result) {
                 return result.count;
-            }
+            },
         };
     },
     toSet() {
@@ -85,7 +85,7 @@ exports.Collectors = {
             supplier() {
                 return new Set();
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     toMap(keyMapper, valueMapper) {
@@ -96,7 +96,7 @@ exports.Collectors = {
             supplier() {
                 return new Map();
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     group(classifier) {
@@ -114,7 +114,7 @@ exports.Collectors = {
             supplier() {
                 return new Map();
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     groupDown(classifier, downstream) {
@@ -134,11 +134,11 @@ exports.Collectors = {
             },
             finisher(result) {
                 const x = new Map();
-                for (let [key, value] of result.entries()) {
+                for (const [key, value] of result.entries()) {
                     x.set(key, Methods_1.collect(value[Symbol.iterator](), downstream));
                 }
                 return x;
-            }
+            },
         };
     },
     join(delimiter = "", prefix, suffix) {
@@ -147,11 +147,11 @@ exports.Collectors = {
                 collected.push(String(item));
             },
             supplier() {
-                return prefix != undefined ? [prefix] : [];
+                return prefix !== undefined ? [prefix] : [];
             },
             finisher(result) {
                 return result.join(delimiter);
-            }
+            },
         };
     },
     sum(converter = toNumber()) {
@@ -164,7 +164,7 @@ exports.Collectors = {
             },
             finisher(result) {
                 return result.sum;
-            }
+            },
         };
     },
     average(converter = toNumber()) {
@@ -178,7 +178,7 @@ exports.Collectors = {
             },
             finisher(result) {
                 return result.count > 0 ? result.sum / result.count : 0;
-            }
+            },
         };
     },
     averageGeometrically(converter = toNumber()) {
@@ -192,7 +192,7 @@ exports.Collectors = {
             },
             finisher(result) {
                 return result.count > 0 ? result.product / result.count : 0;
-            }
+            },
         };
     },
     averageHarmonically(converter = toNumber()) {
@@ -206,7 +206,7 @@ exports.Collectors = {
             },
             finisher(result) {
                 return result.count / result.sum;
-            }
+            },
         };
     },
     summarize(converter = toNumber()) {
@@ -215,9 +215,9 @@ exports.Collectors = {
                 collected.accept(converter(item));
             },
             supplier() {
-                return new StatisticsImpl;
+                return new StatisticsImpl();
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     factor() {
@@ -230,7 +230,7 @@ exports.Collectors = {
             },
             finisher(result) {
                 return result.product;
-            }
+            },
         };
     },
     partition(predicate) {
@@ -246,10 +246,10 @@ exports.Collectors = {
             supplier() {
                 return {
                     false: [],
-                    true: []
+                    true: [],
                 };
             },
-            finisher: identity()
+            finisher: identity(),
         };
     },
     partitionDown(predicate, downstream) {
@@ -265,15 +265,15 @@ exports.Collectors = {
             supplier() {
                 return {
                     false: [],
-                    true: []
+                    true: [],
                 };
             },
             finisher(result) {
                 return {
                     false: Methods_1.collect(result.false, downstream),
-                    true: Methods_1.collect(result.true, downstream)
+                    true: Methods_1.collect(result.true, downstream),
                 };
-            }
+            },
         };
     },
 };

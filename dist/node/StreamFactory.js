@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const Methods_1 = require("./Methods");
 const InplaceStream_1 = require("./InplaceStream");
+const Methods_1 = require("./Methods");
 const TypesafeStream_1 = require("./TypesafeStream");
 function make(inplace, iterable) {
     return inplace ? new InplaceStream_1.InplaceStream(iterable) : new TypesafeStream_1.TypesafeStream(iterable);
@@ -37,7 +37,6 @@ function createFactory(inplace = true) {
         },
     };
 }
-;
 exports.TypesafeStreamFactory = createFactory(false);
 exports.InplaceStreamFactory = createFactory(true);
 exports.stream = exports.InplaceStreamFactory.stream;

@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json.schemastore.org/tslint",   
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+    },
+    "rules": {
+        "arrow-parens": {
+            "options": "ban-single-arg-parens"
+        },
+        "array-type": {
+            "options": "array"
+        },
+        "interface-name": {
+            "options": "always-prefix"
+        },
+        "one-line": false,
+        "no-unused-variable": true,
+        "no-unsafe-finally": true,
+        "prefer-const": true,
+        "no-shadowed-variable": false,
+        "max-classes-per-file": {
+            "options": 5
+        },
+        "max-line-length": {
+            "options": 250
+        }
+    },
+    "rulesDirectory": []
+}

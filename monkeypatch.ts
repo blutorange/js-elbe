@@ -1,21 +1,21 @@
-import { Stream } from "./Interfaces";
-import { TypesafeStreamFactory, InplaceStreamFactory } from "./StreamFactory";
+import { IStream } from "./Interfaces";
 import { fromObject, fromObjectKeys, fromObjectValues } from "./Methods";
+import { InplaceStreamFactory, TypesafeStreamFactory } from "./StreamFactory";
 
 /** @internal */
-function patch<P, T,S>(type: {prototype: P}, getStream: (object: T) => Iterable<S>, wrapStream: (iterable: Iterable<S>) => Stream<S>, name: string = "stream") {
+function patch<P, T, S>(type: {prototype: P}, getStream: (object: T) => Iterable<S>, wrapStream: (iterable: Iterable<S>) => IStream<S>, name: string = "stream") {
     if (Object.hasOwnProperty.call(type.prototype, name)) {
         return;
     }
     Object.defineProperty(type.prototype, name, {
         configurable: false,
         enumerable: false,
-        writable: false,
-        value: function(this: T) : Stream<S> {
+        value(this: T): IStream<S> {
             return wrapStream(getStream(this));
-        }
+        },
+        writable: false,
     });
-};
+}
 
 /**
  * Patches a few stream convenience methods to the prototype of objects:
@@ -28,13 +28,17 @@ function patch<P, T,S>(type: {prototype: P}, getStream: (object: T) => Iterable<
  * * Object.values() Stream<T> Creates a stream over all values.
  * @param inplace Iff `true`, uses {@link InplaceStreamFactory} or {@link TypesafeStreamFactory} otherwise.
  */
-export function monkeyPatch(inplace: boolean = false) : void {
+export function monkeyPatch(inplace: boolean = false): void {
     const stream = inplace ? InplaceStreamFactory.stream : TypesafeStreamFactory.stream;
-    patch<Array<any>, Array<any>, Array<any>>(Array, array => array, stream);
+    patch<any[], any[], any[]>(Array, array => array, stream);
     patch<Set<any>, Set<any>, Set<any>>(Set, set => set.values(), stream);
-    patch<Map<any,any>, Map<any,any>, [any,any]>(Map, map => map.entries(), stream);
-    patch<Object, object, [any,any]>(Object, object => fromObject(object), stream);
+    patch<Map<any, any>, Map<any, any>, [any, any]>(Map, map => map.entries(), stream);
+    // tslint:disable-next-line:ban-types
+    patch<Object, object, [any, any]>(Object, object => fromObject(object), stream);
+    // tslint:disable-next-line:ban-types
     patch<Object, object, any>(Object, object => fromObjectKeys(object), stream, "keys");
+    // tslint:disable-next-line:ban-types
     patch<Object, object, any>(Object, object => fromObjectValues(object), stream, "values");
-    patch<String, string, string>(String, string => string, stream);
-};
+    // tslint:disable-next-line:ban-types
+    patch<String, string, string>(String, s => s, stream);
+}

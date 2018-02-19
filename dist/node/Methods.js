@@ -5,25 +5,25 @@ const Collectors_1 = require("./Collectors");
 const TryFactory_1 = require("./TryFactory");
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 function* map(iterable, mapper) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         yield mapper(item);
     }
 }
 exports.map = map;
 function* flatMap(iterable, mapper) {
-    for (let item of iterable) {
-        for (let i of mapper(item)) {
-            yield i;
+    for (const items of iterable) {
+        for (const item of mapper(items)) {
+            yield item;
         }
     }
 }
 exports.flatMap = flatMap;
 function* chunk(iterable, classifier) {
-    let currentClass = undefined;
+    let currentClass;
     let first = true;
     let index = -1;
     let chunk = [];
-    for (let item of iterable) {
+    for (const item of iterable) {
         const clazz = classifier(item, ++index);
         if (!first && currentClass !== clazz) {
             yield chunk;
@@ -42,7 +42,7 @@ function* slice(iterable, sliceSize) {
     sliceSize = Math.max(sliceSize, 1);
     let count = sliceSize;
     let chunk = [];
-    for (let item of iterable) {
+    for (const item of iterable) {
         --count;
         chunk.push(item);
         if (count < 1) {
@@ -70,7 +70,7 @@ function* zip(iterable, other) {
 exports.zip = zip;
 function* zipSame(iterable, others) {
     const it = [iterable[Symbol.iterator]()];
-    for (let other of others) {
+    for (const other of others) {
         it.push(other[Symbol.iterator]());
     }
     let res = it.map(x => x.next());
@@ -81,7 +81,7 @@ function* zipSame(iterable, others) {
 }
 exports.zipSame = zipSame;
 function* filter(iterable, predicate) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (predicate(item)) {
             yield item;
         }
@@ -89,7 +89,7 @@ function* filter(iterable, predicate) {
 }
 exports.filter = filter;
 function* tryMap(iterable, mapper) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         yield TryFactory_1.TryFactory.of(() => mapper(item));
     }
 }
@@ -106,12 +106,10 @@ function partition(iterable, discriminator) {
     return collect(iterable, Collectors_1.Collectors.partition(discriminator));
 }
 exports.partition = partition;
-;
 function group(iterable, classifier) {
     return collect(iterable, Collectors_1.Collectors.group(classifier));
 }
 exports.group = group;
-;
 function join(iterable, delimiter = "", prefix, suffix) {
     return collect(iterable, Collectors_1.Collectors.join(delimiter, prefix, suffix));
 }
@@ -127,7 +125,7 @@ function uniqueBy(iterable, keyExtractor) {
         return new Set(iterable);
     }
     const map = new Map();
-    for (let item of iterable) {
+    for (const item of iterable) {
         const key = keyExtractor(item);
         if (!map.has(key)) {
             map.set(key, item);
@@ -138,24 +136,24 @@ function uniqueBy(iterable, keyExtractor) {
 exports.uniqueBy = uniqueBy;
 function* unique(iterable, comparator) {
     if (comparator === undefined) {
-        for (let item of new Set(iterable)) {
+        for (const item of new Set(iterable)) {
             yield item;
         }
         return;
     }
     const items = [];
     let i = 0;
-    for (let item of iterable) {
+    for (const item of iterable) {
         items.push({
             i: i++,
+            u: false,
             v: item,
-            u: false
         });
     }
     const sorted = Array.from(items).sort((x, y) => comparator(x.v, y.v));
     let first = true;
     let previous;
-    for (let item of sorted) {
+    for (const item of sorted) {
         if (first) {
             item.u = true;
             previous = item;
@@ -171,7 +169,7 @@ function* unique(iterable, comparator) {
             previous = item;
         }
     }
-    for (let item of items) {
+    for (const item of items) {
         if (item.u) {
             yield item.v;
         }
@@ -180,15 +178,14 @@ function* unique(iterable, comparator) {
 exports.unique = unique;
 function* index(iterable) {
     let i = 0;
-    for (let item of iterable) {
+    for (const item of iterable) {
         yield [i, item];
         i += 1;
     }
 }
 exports.index = index;
-;
 function* limit(iterable, limit) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         yield item;
         if (--limit < 1) {
             break;
@@ -200,14 +197,14 @@ function* cycle(iterable, count = Infinity) {
     count = Math.max(0, count);
     const items = toArray(iterable, true);
     for (let i = 0; i < count; ++i) {
-        for (let item of items) {
+        for (const item of items) {
             yield item;
         }
     }
 }
 exports.cycle = cycle;
 function* visit(iterable, consumer) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         consumer(item);
         yield item;
     }
@@ -233,11 +230,11 @@ function* reverse(iterable) {
 }
 exports.reverse = reverse;
 function* concat(iterable, ...moreIterables) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         yield item;
     }
-    for (let iterable of moreIterables) {
-        for (let item of iterable) {
+    for (const iterable of moreIterables) {
+        for (const item of iterable) {
             yield item;
         }
     }
@@ -245,14 +242,15 @@ function* concat(iterable, ...moreIterables) {
 exports.concat = concat;
 function size(iterable) {
     let i = 0;
-    for (let it = iterable[Symbol.iterator](); !it.next().done;)
+    for (const it = iterable[Symbol.iterator](); !it.next().done;) {
         ++i;
+    }
     return i;
 }
 exports.size = size;
 function find(iterable, predicate) {
     let index = -1;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (predicate(item, ++index)) {
             return item;
         }
@@ -262,7 +260,7 @@ function find(iterable, predicate) {
 exports.find = find;
 function findIndex(iterable, predicate) {
     let index = 0;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (predicate(item, index)) {
             return index;
         }
@@ -272,7 +270,7 @@ function findIndex(iterable, predicate) {
 }
 exports.findIndex = findIndex;
 function every(iterable, predicate) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (!predicate(item)) {
             return false;
         }
@@ -281,7 +279,7 @@ function every(iterable, predicate) {
 }
 exports.every = every;
 function some(iterable, predicate) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (predicate(item)) {
             return true;
         }
@@ -310,10 +308,9 @@ function maxBy(iterable, sortKey) {
 }
 exports.maxBy = maxBy;
 function min(iterable, comparator = kagura_1.natural) {
-    console.log(comparator);
     let first = true;
     let min;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (first) {
             min = item;
             first = false;
@@ -330,7 +327,7 @@ exports.min = min;
 function max(iterable, comparator = kagura_1.natural) {
     let first = true;
     let min;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (first) {
             min = item;
             first = false;
@@ -345,7 +342,7 @@ function max(iterable, comparator = kagura_1.natural) {
 }
 exports.max = max;
 function reduce(iterable, reducer, initialValue) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         initialValue = reducer(initialValue, item);
     }
     return initialValue;
@@ -354,7 +351,7 @@ exports.reduce = reduce;
 function reduceSame(iterable, reducer) {
     let reduced;
     let first = true;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (first) {
             reduced = item;
             first = false;
@@ -370,7 +367,6 @@ function sum(iterable, converter) {
     return collect(iterable, Collectors_1.Collectors.sum(converter));
 }
 exports.sum = sum;
-;
 function end(iterable) {
     const it = iterable[Symbol.iterator]();
     while (!it.next().done)
@@ -379,7 +375,7 @@ function end(iterable) {
 exports.end = end;
 function nth(iterable, n) {
     let index = 0;
-    for (let item of iterable) {
+    for (const item of iterable) {
         if (index === n) {
             return item;
         }
@@ -389,7 +385,7 @@ function nth(iterable, n) {
 }
 exports.nth = nth;
 function first(iterable) {
-    for (let item of iterable) {
+    for (const item of iterable) {
         return item;
     }
     return undefined;
@@ -397,7 +393,7 @@ function first(iterable) {
 exports.first = first;
 function last(iterable) {
     let last;
-    for (let item of iterable) {
+    for (const item of iterable) {
         last = item;
     }
     return last;
@@ -407,16 +403,14 @@ function collect(iterable, collector) {
     return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }
 exports.collect = collect;
-;
 function collectWith(iterable, supplier, accumulator, finisher) {
     const collected = supplier();
-    for (let item of iterable) {
+    for (const item of iterable) {
         accumulator(collected, item);
     }
     return finisher(collected);
 }
 exports.collectWith = collectWith;
-;
 function toArray(iterable, fresh = false) {
     if (Array.isArray(iterable) && !fresh) {
         return iterable;
@@ -443,7 +437,7 @@ function toMap(iterable, keyMapper, valueMapper) {
 }
 exports.toMap = toMap;
 function* fromObject(object) {
-    for (let key in object) {
+    for (const key in object) {
         if (hasOwnProperty.call(object, key)) {
             yield [key, object[key]];
         }
@@ -451,7 +445,7 @@ function* fromObject(object) {
 }
 exports.fromObject = fromObject;
 function* fromObjectKeys(object) {
-    for (let key in object) {
+    for (const key in object) {
         if (hasOwnProperty.call(object, key)) {
             yield key;
         }
@@ -459,7 +453,7 @@ function* fromObjectKeys(object) {
 }
 exports.fromObjectKeys = fromObjectKeys;
 function* fromObjectValues(object) {
-    for (let key in object) {
+    for (const key in object) {
         if (hasOwnProperty.call(object, key)) {
             yield object[key];
         }
@@ -495,7 +489,6 @@ function* repeat(item, amount = Infinity) {
     }
 }
 exports.repeat = repeat;
-;
 function* iterate(seed, next, amount = Infinity) {
     amount = Math.max(0, amount);
     for (let i = 0; i < amount; ++i) {

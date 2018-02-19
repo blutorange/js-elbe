@@ -8,9 +8,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var StreamFactory_1 = require("./StreamFactory");
-
 var Methods_1 = require("./Methods");
+
+var StreamFactory_1 = require("./StreamFactory");
 
 function patch(type, getStream, wrapStream) {
   var name = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "stream";
@@ -22,14 +22,12 @@ function patch(type, getStream, wrapStream) {
   Object.defineProperty(type.prototype, name, {
     configurable: false,
     enumerable: false,
-    writable: false,
     value: function value() {
       return wrapStream(getStream(this));
-    }
+    },
+    writable: false
   });
 }
-
-;
 
 function monkeyPatch() {
   var inplace = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -52,10 +50,9 @@ function monkeyPatch() {
   patch(Object, function (object) {
     return Methods_1.fromObjectValues(object);
   }, stream, "values");
-  patch(String, function (string) {
-    return string;
+  patch(String, function (s) {
+    return s;
   }, stream);
 }
 
 exports.monkeyPatch = monkeyPatch;
-;
