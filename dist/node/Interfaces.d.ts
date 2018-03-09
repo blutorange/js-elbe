@@ -8,6 +8,7 @@ export interface IStatistics {
     variance: number;
 }
 export declare type Function<T, R> = (arg1: T) => R;
+export declare type Maybe<T> = T | undefined;
 export declare type Supplier<T> = () => T;
 export declare type Consumer<T> = (object: T) => void;
 export declare type BiFunction<S, T, R> = (arg1: S, arg2: T) => R;
@@ -66,9 +67,9 @@ export interface IStream<T> {
     cycle(count?: number): this;
     end(): void;
     every(predicate: Predicate<T>): boolean;
-    find(predicate: BiPredicate<T, number>): T | undefined;
+    find(predicate: BiPredicate<T, number>): Maybe<T>;
     findIndex(predicate: BiPredicate<T, number>): number;
-    first(): T | undefined;
+    first(): Maybe<T>;
     flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     filter(predicate: Predicate<T>): this;
     forEach(consumer: Consumer<T>): void;
@@ -77,14 +78,14 @@ export interface IStream<T> {
     has(object: T): boolean;
     index(): IStream<[number, T]>;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
-    last(): T | undefined;
+    last(): Maybe<T>;
     limit(limitTo: number): this;
     map<S>(mapper: Function<T, S>): IStream<S>;
-    max(comparator: Comparator<T>): T | undefined;
-    maxBy(sortKey: Function<T, any>): T | undefined;
-    min(comparator: Comparator<T>): T | undefined;
-    minBy(sortKey: Function<T, any>): T | undefined;
-    nth(n: number): T | undefined;
+    max(comparator: Comparator<T>): Maybe<T>;
+    maxBy(sortKey: Function<T, any>): Maybe<T>;
+    min(comparator: Comparator<T>): Maybe<T>;
+    minBy(sortKey: Function<T, any>): Maybe<T>;
+    nth(n: number): Maybe<T>;
     partition(discriminator: Predicate<T>): {
         false: T[];
         true: T[];

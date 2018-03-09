@@ -66,13 +66,16 @@
 					Until I realized you can&#39;t really do much with iterators, and having to do manual iterations
 					all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
 				and ruby&#39;s enumerables. Minified, transpiled code without browser polyfills etc. is 20 KB.</p>
-				<p>Let&#39;s try parsing a set of strings as JSON:</p>
+				<p>Let&#39;s compare how parsing a set of JSON strings feels like with this library and vanilla JS:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">"9"</span>,<span class="hljs-string">"9a"</span>])
 
-<span class="hljs-comment">// With streams, returns [9,0]</span>
-stream(input).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.error).orElse(<span class="hljs-number">0</span>).toArray()
+<span class="hljs-comment">// Doing it with this library, returns [9,0]</span>
+stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
+    .onError(<span class="hljs-built_in">console</span>.error)
+    .orElse(<span class="hljs-number">0</span>)
+    .toArray()
 
-<span class="hljs-comment">// With vanilla JS, returns [9,0]</span>
+<span class="hljs-comment">// The same with vanilla JS, returns [9,0]</span>
 <span class="hljs-built_in">Array</span>.from(<span class="hljs-function"><span class="hljs-keyword">function</span>*(<span class="hljs-params">data</span>) </span>{
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">of</span> data) {
         <span class="hljs-keyword">try</span> {
@@ -143,9 +146,9 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 }
 </code></pre>
 				<p>There are three different ways of using the stream methods:</p>
-				<h2 id="standalone-methods">Standalone methods</h2>
-				<p>All methods are available as stand-alone functions taking an iterable
-				as their first argument.</p>
+				<h2 id="standalone-functions">Standalone functions</h2>
+				<p>All methods are available as stand-alone functions taking an
+				iterable as their first argument.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { Collectors, <span class="hljs-attr">Methods</span>: {map, filter, collect} } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 
 <span class="hljs-keyword">const</span> iterable = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
@@ -157,22 +160,24 @@ filter(iterable, x =&gt; x &gt; <span class="hljs-number">2</span>); <span class
 collect(iterable, Collectors.join()); <span class="hljs-comment">// =&gt; "4,6"</span>
 </code></pre>
 				<h2 id="stream-wrapper">Stream wrapper</h2>
-				<p>For easier chaining, there are also two wrapper classes for
-				the stand-alone functions.</p>
-				<p>The inplace stream comes with less overhead, but is not typesafe. This
-				is most likely irrelevant unless you are using TypeScript.</p>
+				<p>For easier chaining, there are also two wrapper classes
+				available for the stand-alone functions.</p>
+				<p>The inplace stream comes with less overhead, but is not typesafe.
+				This is most likely irrelevant unless you are using TypeScript.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 <span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
-				<p>The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.</p>
+				<p>The typesafe streams creates a new wrapper instance when
+				chaining for type safety. The overhead should not be large.</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).TypesafeStreamFactory.stream;
 
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span><span class="hljs-number">2</span>*x).filter(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x&gt;<span class="hljs-number">2</span>).concat([<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]).join(<span class="hljs-string">","</span>);
 <span class="hljs-comment">// =&gt; "4,6,7,9"</span>
 </code></pre>
-				<p>Once a stream is chained, it must not be used anymore, or an error is thrown:</p>
+				<p>Once a stream was chained (consumed), it must not be used anymore,
+				or an error is thrown:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> stream = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).TypesafeStreamFactory.stream;
 
 <span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
@@ -196,7 +201,8 @@ s.join() <span class="hljs-comment">// =&gt; "46"</span>
 s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</span>
 </code></pre>
 				<h2 id="monkey-patching">Monkey patching</h2>
-				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to objects:</p>
+				<p>I would not recommend it, but you can monkey-patch a <code>stream</code> method to some objects.
+				May be helpful for testing or prototyping.</p>
 				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).monkeypatch();
 
 [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet();
@@ -324,6 +330,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#function" class="tsd-kind-icon">Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#maybe" class="tsd-kind-icon">Maybe</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#predicate" class="tsd-kind-icon">Predicate</a>

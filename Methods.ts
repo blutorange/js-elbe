@@ -1074,7 +1074,7 @@ export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false): T[] {
 /**
  * This returns an iterable that can be iterated over any number of times.
  * If the iterable is an array, set, map or string etc, it simpy return the
- * iterable, otherwise it stores the items temporarily (eg in an array).
+ * iterable, otherwise it stores the items temporarily.
  *
  * ```javascript
  * function * foo() {
@@ -1090,6 +1090,20 @@ export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false): T[] {
  * const persistentIterable = fork(foo());
  * Array.from(persistentIterable) // => [1,2,3]
  * Array.from(persistentIterable) // => [1,2,3]
+ * ```
+ *
+ * Note that buffering takes place on-demand, so the following will not
+ * enter an infinite loop:
+ *
+ * ```javascript
+ * // Create an iterable with an unlimited amount of items. 
+ * const iterable = repeat(Math.random, Infinity);
+ *
+ * // Fork the iterable first, then limit to a finite number of items.
+ * // Items already produced are not recomputed.
+ * Array.from(limit(fork(iterable), 3)) // => [0.28, 0.14, 0.97] 
+ * Array.from(limit(fork(iterable), 2)) // => [0.28, 0.14] 
+ * Array.from(limit(fork(iterable), 4)) // => [0.28, 0.14, 0.97, 0.31] 
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.

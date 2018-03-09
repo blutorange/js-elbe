@@ -748,7 +748,7 @@ export interface IStream<T> {
      * // Items already produced are not recomputed.
      * stream.fork().limit(3).toArray() // => [0.28, 0.14, 0.97] 
      * stream.fork().limit(2).toArray() // => [0.28, 0.14] 
-     * stream.fork().limit(2).toArray() // => [0.28, 0.14, 0.97, 0.31] 
+     * stream.fork().limit(4).toArray() // => [0.28, 0.14, 0.97, 0.31] 
      * ```
      *
      * @return A forked stream that leaves the original stream usable.
