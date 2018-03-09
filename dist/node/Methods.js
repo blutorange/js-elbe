@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const kagura_1 = require("kagura");
+const LazyBufferedIterable_1 = require("./LazyBufferedIterable");
 const Collectors_1 = require("./Collectors");
 const TryFactory_1 = require("./TryFactory");
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -419,10 +420,10 @@ function toArray(iterable, fresh = false) {
 }
 exports.toArray = toArray;
 function fork(iterable) {
-    if (Array.isArray(iterable) || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
+    if (Array.isArray(iterable) || iterable instanceof LazyBufferedIterable_1.LazyBufferedIterable || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
         return iterable;
     }
-    return Array.from(iterable);
+    return new LazyBufferedIterable_1.LazyBufferedIterable(iterable);
 }
 exports.fork = fork;
 function toSet(iterable, fresh = false) {

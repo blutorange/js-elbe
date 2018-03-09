@@ -92,6 +92,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var kagura_1 = require("kagura");
 
+var LazyBufferedIterable_1 = require("./LazyBufferedIterable");
+
 var Collectors_1 = require("./Collectors");
 
 var TryFactory_1 = require("./TryFactory");
@@ -2143,11 +2145,11 @@ function toArray(iterable) {
 exports.toArray = toArray;
 
 function fork(iterable) {
-  if (Array.isArray(iterable) || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
+  if (Array.isArray(iterable) || iterable instanceof LazyBufferedIterable_1.LazyBufferedIterable || iterable instanceof Set || iterable instanceof Map || typeof iterable === "string") {
     return iterable;
   }
 
-  return Array.from(iterable);
+  return new LazyBufferedIterable_1.LazyBufferedIterable(iterable);
 }
 
 exports.fork = fork;

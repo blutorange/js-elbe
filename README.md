@@ -3,15 +3,18 @@ Until I realized you can't really do much with iterators, and having to do manua
 all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
 and ruby's enumerables. Minified, transpiled code without browser polyfills etc. is 20 KB.
 
-Let's try parsing a set of strings as JSON:
+Let's compare how parsing a set of JSON strings feels like with this library and vanilla JS:
 
 ```javascript
 const input = new Set(["9","9a"])
 
-// With streams, returns [9,0]
-stream(input).try(JSON.parse).onError(console.error).orElse(0).toArray()
+// Doing it with this library, returns [9,0]
+stream(input).try(JSON.parse)
+    .onError(console.error)
+    .orElse(0)
+    .toArray()
 
-// With vanilla JS, returns [9,0]
+// The same with vanilla JS, returns [9,0]
 Array.from(function*(data) {
     for (let item of data) {
         try {
@@ -103,10 +106,10 @@ lib = {
 
 There are three different ways of using the stream methods:
 
-## Standalone methods
+## Standalone functions
 
-All methods are available as stand-alone functions taking an iterable
-as their first argument.
+All methods are available as stand-alone functions taking an
+iterable as their first argument.
 
 ```javascript
 const { Collectors, Methods: {map, filter, collect} } = require("elbe");
@@ -122,11 +125,11 @@ collect(iterable, Collectors.join()); // => "4,6"
 
 ## Stream wrapper
 
-For easier chaining, there are also two wrapper classes for
-the stand-alone functions.
+For easier chaining, there are also two wrapper classes
+available for the stand-alone functions.
 
-The inplace stream comes with less overhead, but is not typesafe. This
-is most likely irrelevant unless you are using TypeScript.
+The inplace stream comes with less overhead, but is not typesafe.
+This is most likely irrelevant unless you are using TypeScript.
 
 ```javascript
 const { stream } = require("elbe");
@@ -135,7 +138,8 @@ stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 // => "4,6,7,9"
 ```
 
-The typesafe streams creates new stream instances for type safety. The overhead should be marginal, however.
+The typesafe streams creates a new wrapper instance when
+chaining for type safety. The overhead should not be large.
 
 ```javascript
 const stream = require("elbe").TypesafeStreamFactory.stream;
@@ -144,7 +148,8 @@ stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
 // => "4,6,7,9"
 ```
 
-Once a stream is chained, it must not be used anymore, or an error is thrown:
+Once a stream was chained (consumed), it must not be used anymore,
+or an error is thrown:
 
 ```javascript
 const stream = require("elbe").TypesafeStreamFactory.stream;
@@ -175,7 +180,8 @@ s.join() // Error: "Stream was already consumed."
 
 ## Monkey patching
 
-I would not recommend it, but you can monkey-patch a `stream` method to objects:
+I would not recommend it, but you can monkey-patch a `stream` method to some objects.
+May be helpful for testing or prototyping.
 
 ```javascript
 require("elbe").monkeypatch();

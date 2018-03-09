@@ -26,6 +26,12 @@ export interface IStatistics {
 export type Function<T, R> = (arg1: T) => R;
 
 /**
+ * Represents an optional absent value.
+ * @typeparam T Type of the value when not absent.
+ */
+export type Maybe<T> = T | undefined;
+
+/**
  * A supplier produces a value without explicit input.
  * @typeparam T Type of the produced value.
  */
@@ -638,7 +644,7 @@ export interface IStream<T> {
      * @param predicate Test to be performed on the items. It is passed the current item and the current index.
      * @return The item iff found, `undefined` otherwise.
      */
-    find(predicate: BiPredicate<T, number>): T | undefined;
+    find(predicate: BiPredicate<T, number>): Maybe<T>;
 
     /**
      * Searches for the first occurence of an item matching the predicate,
@@ -663,7 +669,7 @@ export interface IStream<T> {
      *
      * @return The item at the first position, or undefined if empty.
      */
-    first(): T | undefined;
+    first(): Maybe<T>;
 
     /**
      * Applies the mapping function to each item and return a stream
@@ -711,8 +717,7 @@ export interface IStream<T> {
     /**
      * This returns a stream that leaves the original stream open and iterable.
      * If the underlying iterable is an array, set, map or string etc, it simpy
-     * reuses that iterable, otherwise it stores the items temporarily (eg in an
-     * array).
+     * reuses that iterable, otherwise it buffers the items temporarily.
      *
      * ```javascript
      * function * foo() {
@@ -730,6 +735,20 @@ export interface IStream<T> {
      * persistentStream.fork().toArray() // => [1,2,3]
      * persistentStream.toArray()        // => [1,2,3]
      * persistentStream.fork()           // => Error: Stream was consumed already.
+     * ```
+     *
+     * Note that buffering takes place on-demand, so the following will not
+     * enter an infinite loop:
+     *
+     * ```javascript
+     * // Create a stream with an unlimited amount of items. 
+     * const stream = TypesafeStreamFactory.repeat(Math.random, Infinity);
+     *
+     * // Fork the stream first, then limit to a finite number of items.
+     * // Items already produced are not recomputed.
+     * stream.fork().limit(3).toArray() // => [0.28, 0.14, 0.97] 
+     * stream.fork().limit(2).toArray() // => [0.28, 0.14] 
+     * stream.fork().limit(2).toArray() // => [0.28, 0.14, 0.97, 0.31] 
      * ```
      *
      * @return A forked stream that leaves the original stream usable.
@@ -799,7 +818,7 @@ export interface IStream<T> {
      *
      * @return The item at the last position, or undefined if empty.
      */
-    last(): T | undefined;
+    last(): Maybe<T>;
 
     /**
      * Limits the stream to at most the given number of elements.
@@ -838,7 +857,7 @@ export interface IStream<T> {
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The largest item. If there are multiple largest items, returns the first. `undefined` iff this stream is empty.
      */
-    max(comparator: Comparator<T>): T | undefined;
+    max(comparator: Comparator<T>): Maybe<T>;
 
     /**
      * Computes the maximum of the items, as determined by the given sort key.
@@ -851,7 +870,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the maximum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    maxBy(sortKey: Function<T, any>): T | undefined;
+    maxBy(sortKey: Function<T, any>): Maybe<T>;
 
     /**
      * Computes the minimum of the items.
@@ -865,7 +884,7 @@ export interface IStream<T> {
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The smallest item. If there are multiple smallest items, returns the first.  `undefined` iff this stream is empty.
      */
-    min(comparator: Comparator<T>): T | undefined;
+    min(comparator: Comparator<T>): Maybe<T>;
 
     /**
      * Computes the minimum of the items, as determined by the given sort key.
@@ -878,7 +897,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the minimum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    minBy(sortKey: Function<T, any>): T | undefined;
+    minBy(sortKey: Function<T, any>): Maybe<T>;
 
     /**
      * Returns the items at the n-th position.
@@ -892,7 +911,7 @@ export interface IStream<T> {
      * @param n The position of the item to get.
      * @return The item at the given position, or undefined if not found.
      */
-    nth(n: number): T | undefined;
+    nth(n: number): Maybe<T>;
 
     /**
      * Splits the items into two groups according to the given
