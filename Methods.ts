@@ -1,8 +1,8 @@
 import { byKey, Comparator, natural } from "kagura";
 
-import { LazyBufferedIterable } from "./LazyBufferedIterable";
 import { Collectors } from "./Collectors";
 import { BiConsumer, BiFunction, BiPredicate, Consumer, Function, ICollector, ITry, Predicate, Supplier } from "./Interfaces";
+import { LazyBufferedIterable } from "./LazyBufferedIterable";
 import { TryFactory } from "./TryFactory";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;

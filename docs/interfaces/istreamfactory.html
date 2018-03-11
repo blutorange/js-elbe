@@ -98,13 +98,13 @@
 					<a name="fromobject" class="tsd-anchor"></a>
 					<h3>from<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>Object&lt;T&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">from<wbr>Object&lt;T&gt;<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L239">Interfaces.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L239">Interfaces.ts:239</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -113,7 +113,7 @@
 									Only the object&#39;s own property are included.</p>
 								</div>
 								<pre><code class="lang-javascript">fromObject({<span class="hljs-attr">foo</span>:<span class="hljs-number">2</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">3</span>})
-<span class="hljs-comment">// =&gt; Stream[ ["foo", 2], ["bar", 3] ]</span>
+<span class="hljs-comment">// =&gt; Stream[ {key: "foo", value: 2}, {key: "bar", value: 3} ]</span>
 </code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -139,7 +139,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with the object&#39;s key-value-pairs.</p>
 						</li>
 					</ul>
@@ -154,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L253">Interfaces.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L253">Interfaces.ts:253</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -195,7 +195,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L268">Interfaces.ts:268</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L268">Interfaces.ts:268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L168">Interfaces.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L168">Interfaces.ts:168</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +295,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L184">Interfaces.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L184">Interfaces.ts:184</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +351,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L200">Interfaces.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L200">Interfaces.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -402,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L153">Interfaces.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L153">Interfaces.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -431,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b8f0e58/Interfaces.ts#L224">Interfaces.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L224">Interfaces.ts:224</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
