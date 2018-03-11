@@ -30,15 +30,15 @@ Array.from(function*(data) {
 
 # Changelog
 
-## 0.1.2
-- The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
+## 0.1.4
+- The IStreamFactory.fromObject now return a stream of objects {key, value} instead of [key, value].
+- Fixed typing for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
 
 ## 0.1.3
 - The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.
 
-## 0.1.4
-- The IStreamFactory.fromObject now return a stream of objects {key, value} instead of [key, value].
-- Fixed typing for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
+## 0.1.2
+- The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
 
 # Docs
 
