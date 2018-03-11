@@ -229,14 +229,14 @@ export interface IStreamFactory {
      *
      * ```javascript
      * fromObject({foo:2, bar: 3})
-     * // => Stream[ ["foo", 2], ["bar", 3] ]
+     * // => Stream[ {key: "foo", value: 2}, {key: "bar", value: 3} ]
      * ```
      *
      * @typeparam T Type of the object's values.
      * @param object The object with the key-value-pairs to be iterated.
      * @return A stream with the object's key-value-pairs.
      */
-    fromObject<T>(object: { [s: string]: T }): IStream<[string, T]>;
+    fromObject<T>(object: { [s: string]: T }): IStream<[key: string, value: T]>;
 
     /**
      * Creates a stream for iterating over an object's keys.

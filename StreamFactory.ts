@@ -32,7 +32,7 @@ function createFactory(inplace: boolean = true): IStreamFactory {
             return make(inplace, repeat(item, amount));
         },
 
-        fromObject<T>(object: { [s: string]: T }): IStream<[string, T]> {
+        fromObject<T>(object: { [s: string]: T }): IStream<{key: string, value: T}> {
             return make(inplace, fromObject(object));
         },
 

@@ -32,6 +32,7 @@ Array.from(function*(data) {
 
 - 0.1.2 The Stream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
 - 0.1.3 The Stream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.
+- 0.1.4 The StreamFactory.fromObject now return a stream of objects {key, value} instead of [key, value].
 
 # Docs
 

@@ -1,6 +1,6 @@
-dist
 settings.json
 README.typedoc
+docs
 .vscode
 
 # ---> Linux

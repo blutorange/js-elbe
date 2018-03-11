@@ -1165,17 +1165,17 @@ export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K
  *
  * ```javascript
  * fromObject({foo:2, bar: 3})
- * // => Iterable[ ["foo", 2], ["bar", 3] ]
+ * // => Iterable[ {key: "foo", value: 2}, {key: "bar", value: 3} ]
  * ```
  *
  * @typeparam T Type of the object's values.
  * @param object The object with the key-value-pairs to be iterated.
  * @return An iterable with the object's key-value-pairs.
  */
-export function* fromObject<T>(object: { [s: string]: T }): Iterable<[string, T]> {
+export function* fromObject<T>(object: { [s: string]: T }): Iterable<{key: string, value: T}> {
     for (const key in object) {
         if (hasOwnProperty.call(object, key)) {
-            yield [key, object[key]];
+            yield {key, value: object[key]};
         }
     }
 }
