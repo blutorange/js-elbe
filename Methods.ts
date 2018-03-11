@@ -452,18 +452,18 @@ export function* unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): I
  * Adds the index to each element of the given iterable. The index starts at 0
  *
  * ```javascript
- * index(["foo", "bar"]) // => Iterable<[ [0, "foo"], [1, "bar"] ]>
+ * index(["foo", "bar"]) // => Iterable<[ {index: 0, value: "foo"}, {index: 1, value: "bar"} ]>
  * ```
  *
  * @typeparam T Type of the element in the iterable.
  * @param iterable The iterable to be indexed.
- * @return An iterable with each item being an array consisting of the item's index and the item itself. The index starts at 0.
+ * @return An iterable with each item being an object containing the item's index and the item itself. The index starts at 0.
  */
-export function* index<T>(iterable: Iterable<T>): Iterable<[number, T]> {
-    let i = 0;
-    for (const item of iterable) {
-        yield [i, item];
-        i += 1;
+export function* index<T>(iterable: Iterable<T>): Iterable<{index: number, value: T}> {
+    let index = 0;
+    for (const value of iterable) {
+        yield {index, value};
+        index += 1;
     }
 }
 

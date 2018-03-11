@@ -1,11 +1,11 @@
 {
   "name": "elbe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Utility methods for working with iterables as streams.",
   "main": "dist/node/main",
   "types": "dist/node/main",
   "scripts": {
-    "build": "npm run clean && npm run doc && npm run transpile && npm run web",
+    "build": "npm run clean && npm run transpile && npm run doc && npm run web",
     "clean": "rm -rf dist/* docs/*",
     "doc": "npm run doc-create",
     "test": "echo \"Error: no test specified\" && exit 1",

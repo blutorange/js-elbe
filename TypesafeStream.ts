@@ -32,7 +32,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(filter(this.iterable, predicate)) as this;
     }
 
-    public index(): IStream<[number, T]> {
+    public index(): IStream<{index: number, value: T}> {
         this.check();
         return new TypesafeStream(index(this.iterable));
     }

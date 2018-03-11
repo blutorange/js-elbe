@@ -8,7 +8,10 @@ export declare class TypesafeStream<T> extends AbstractStream<T> {
     cycle(count?: number): this;
     flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     filter(predicate: Predicate<T>): this;
-    index(): IStream<[number, T]>;
+    index(): IStream<{
+        index: number;
+        value: T;
+    }>;
     limit(limitTo: number): this;
     map<S>(mapper: Function<T, S>): IStream<S>;
     promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<IStream<any>>;

@@ -1080,13 +1080,13 @@ function unique(iterable, comparator) {
 exports.unique = unique;
 
 function index(iterable) {
-  var i, _iteratorNormalCompletion13, _didIteratorError13, _iteratorError13, _iterator13, _step13, _item13;
+  var index, _iteratorNormalCompletion13, _didIteratorError13, _iteratorError13, _iterator13, _step13, _value;
 
   return regeneratorRuntime.wrap(function index$(_context11) {
     while (1) {
       switch (_context11.prev = _context11.next) {
         case 0:
-          i = 0;
+          index = 0;
           _iteratorNormalCompletion13 = true;
           _didIteratorError13 = false;
           _iteratorError13 = undefined;
@@ -1099,12 +1099,15 @@ function index(iterable) {
             break;
           }
 
-          _item13 = _step13.value;
+          _value = _step13.value;
           _context11.next = 10;
-          return [i, _item13];
+          return {
+            index: index,
+            value: _value
+          };
 
         case 10:
-          i += 1;
+          index += 1;
 
         case 11:
           _iteratorNormalCompletion13 = true;
@@ -1156,7 +1159,7 @@ function index(iterable) {
 exports.index = index;
 
 function limit(iterable, limit) {
-  var _iteratorNormalCompletion14, _didIteratorError14, _iteratorError14, _iterator14, _step14, _item14;
+  var _iteratorNormalCompletion14, _didIteratorError14, _iteratorError14, _iterator14, _step14, _item13;
 
   return regeneratorRuntime.wrap(function limit$(_context12) {
     while (1) {
@@ -1174,9 +1177,9 @@ function limit(iterable, limit) {
             break;
           }
 
-          _item14 = _step14.value;
+          _item13 = _step14.value;
           _context12.next = 9;
-          return _item14;
+          return _item13;
 
         case 9:
           if (!(--limit < 1)) {
@@ -1244,7 +1247,7 @@ function cycle(iterable) {
       _iteratorError15,
       _iterator15,
       _step15,
-      _item15,
+      _item14,
       _args13 = arguments;
 
   return regeneratorRuntime.wrap(function cycle$(_context13) {
@@ -1274,9 +1277,9 @@ function cycle(iterable) {
             break;
           }
 
-          _item15 = _step15.value;
+          _item14 = _step15.value;
           _context13.next = 14;
-          return _item15;
+          return _item14;
 
         case 14:
           _iteratorNormalCompletion15 = true;
@@ -1333,7 +1336,7 @@ function cycle(iterable) {
 exports.cycle = cycle;
 
 function visit(iterable, consumer) {
-  var _iteratorNormalCompletion16, _didIteratorError16, _iteratorError16, _iterator16, _step16, _item16;
+  var _iteratorNormalCompletion16, _didIteratorError16, _iteratorError16, _iterator16, _step16, _item15;
 
   return regeneratorRuntime.wrap(function visit$(_context14) {
     while (1) {
@@ -1351,10 +1354,10 @@ function visit(iterable, consumer) {
             break;
           }
 
-          _item16 = _step16.value;
-          consumer(_item16);
+          _item15 = _step16.value;
+          consumer(_item15);
           _context14.next = 10;
-          return _item16;
+          return _item15;
 
         case 10:
           _iteratorNormalCompletion16 = true;
@@ -1495,7 +1498,7 @@ function concat(iterable) {
       _iteratorError17,
       _iterator17,
       _step17,
-      _item17,
+      _item16,
       _len,
       moreIterables,
       _key,
@@ -1506,7 +1509,7 @@ function concat(iterable) {
       _iteratorError18,
       _iterator18,
       _step18,
-      _item19,
+      _item18,
       _args17 = arguments;
 
   return regeneratorRuntime.wrap(function concat$(_context17) {
@@ -1525,9 +1528,9 @@ function concat(iterable) {
             break;
           }
 
-          _item17 = _step17.value;
+          _item16 = _step17.value;
           _context17.next = 9;
-          return _item17;
+          return _item16;
 
         case 9:
           _iteratorNormalCompletion17 = true;
@@ -1594,9 +1597,9 @@ function concat(iterable) {
             break;
           }
 
-          _item19 = _step18.value;
+          _item18 = _step18.value;
           _context17.next = 39;
-          return _item19;
+          return _item18;
 
         case 39:
           _iteratorNormalCompletion18 = true;
@@ -1672,10 +1675,10 @@ function find(iterable, predicate) {
 
   try {
     for (var _iterator19 = iterable[Symbol.iterator](), _step19; !(_iteratorNormalCompletion19 = (_step19 = _iterator19.next()).done); _iteratorNormalCompletion19 = true) {
-      var _item20 = _step19.value;
+      var _item19 = _step19.value;
 
-      if (predicate(_item20, ++index)) {
-        return _item20;
+      if (predicate(_item19, ++index)) {
+        return _item19;
       }
     }
   } catch (err) {
@@ -1706,9 +1709,9 @@ function findIndex(iterable, predicate) {
 
   try {
     for (var _iterator20 = iterable[Symbol.iterator](), _step20; !(_iteratorNormalCompletion20 = (_step20 = _iterator20.next()).done); _iteratorNormalCompletion20 = true) {
-      var _item21 = _step20.value;
+      var _item20 = _step20.value;
 
-      if (predicate(_item21, index)) {
+      if (predicate(_item20, index)) {
         return index;
       }
 
@@ -1741,9 +1744,9 @@ function every(iterable, predicate) {
 
   try {
     for (var _iterator21 = iterable[Symbol.iterator](), _step21; !(_iteratorNormalCompletion21 = (_step21 = _iterator21.next()).done); _iteratorNormalCompletion21 = true) {
-      var _item22 = _step21.value;
+      var _item21 = _step21.value;
 
-      if (!predicate(_item22)) {
+      if (!predicate(_item21)) {
         return false;
       }
     }
@@ -1774,9 +1777,9 @@ function some(iterable, predicate) {
 
   try {
     for (var _iterator22 = iterable[Symbol.iterator](), _step22; !(_iteratorNormalCompletion22 = (_step22 = _iterator22.next()).done); _iteratorNormalCompletion22 = true) {
-      var _item23 = _step22.value;
+      var _item22 = _step22.value;
 
-      if (predicate(_item23)) {
+      if (predicate(_item22)) {
         return true;
       }
     }
@@ -1842,14 +1845,14 @@ function min(iterable) {
 
   try {
     for (var _iterator23 = iterable[Symbol.iterator](), _step23; !(_iteratorNormalCompletion23 = (_step23 = _iterator23.next()).done); _iteratorNormalCompletion23 = true) {
-      var _item24 = _step23.value;
+      var _item23 = _step23.value;
 
       if (first) {
-        min = _item24;
+        min = _item23;
         first = false;
       } else {
-        if (comparator(_item24, min) < 0) {
-          min = _item24;
+        if (comparator(_item23, min) < 0) {
+          min = _item23;
         }
       }
     }
@@ -1883,14 +1886,14 @@ function max(iterable) {
 
   try {
     for (var _iterator24 = iterable[Symbol.iterator](), _step24; !(_iteratorNormalCompletion24 = (_step24 = _iterator24.next()).done); _iteratorNormalCompletion24 = true) {
-      var _item25 = _step24.value;
+      var _item24 = _step24.value;
 
       if (first) {
-        min = _item25;
+        min = _item24;
         first = false;
       } else {
-        if (comparator(_item25, min) > 0) {
-          min = _item25;
+        if (comparator(_item24, min) > 0) {
+          min = _item24;
         }
       }
     }
@@ -1921,8 +1924,8 @@ function reduce(iterable, reducer, initialValue) {
 
   try {
     for (var _iterator25 = iterable[Symbol.iterator](), _step25; !(_iteratorNormalCompletion25 = (_step25 = _iterator25.next()).done); _iteratorNormalCompletion25 = true) {
-      var _item26 = _step25.value;
-      initialValue = reducer(initialValue, _item26);
+      var _item25 = _step25.value;
+      initialValue = reducer(initialValue, _item25);
     }
   } catch (err) {
     _didIteratorError25 = true;
@@ -1953,13 +1956,13 @@ function reduceSame(iterable, reducer) {
 
   try {
     for (var _iterator26 = iterable[Symbol.iterator](), _step26; !(_iteratorNormalCompletion26 = (_step26 = _iterator26.next()).done); _iteratorNormalCompletion26 = true) {
-      var _item27 = _step26.value;
+      var _item26 = _step26.value;
 
       if (first) {
-        reduced = _item27;
+        reduced = _item26;
         first = false;
       } else {
-        reduced = reducer(reduced, _item27);
+        reduced = reducer(reduced, _item26);
       }
     }
   } catch (err) {
@@ -2006,10 +2009,10 @@ function nth(iterable, n) {
 
   try {
     for (var _iterator27 = iterable[Symbol.iterator](), _step27; !(_iteratorNormalCompletion27 = (_step27 = _iterator27.next()).done); _iteratorNormalCompletion27 = true) {
-      var _item28 = _step27.value;
+      var _item27 = _step27.value;
 
       if (index === n) {
-        return _item28;
+        return _item27;
       }
 
       index += 1;
@@ -2041,8 +2044,8 @@ function first(iterable) {
 
   try {
     for (var _iterator28 = iterable[Symbol.iterator](), _step28; !(_iteratorNormalCompletion28 = (_step28 = _iterator28.next()).done); _iteratorNormalCompletion28 = true) {
-      var _item29 = _step28.value;
-      return _item29;
+      var _item28 = _step28.value;
+      return _item28;
     }
   } catch (err) {
     _didIteratorError28 = true;
@@ -2072,8 +2075,8 @@ function last(iterable) {
 
   try {
     for (var _iterator29 = iterable[Symbol.iterator](), _step29; !(_iteratorNormalCompletion29 = (_step29 = _iterator29.next()).done); _iteratorNormalCompletion29 = true) {
-      var _item30 = _step29.value;
-      last = _item30;
+      var _item29 = _step29.value;
+      last = _item29;
     }
   } catch (err) {
     _didIteratorError29 = true;
@@ -2109,8 +2112,8 @@ function collectWith(iterable, supplier, accumulator, finisher) {
 
   try {
     for (var _iterator30 = iterable[Symbol.iterator](), _step30; !(_iteratorNormalCompletion30 = (_step30 = _iterator30.next()).done); _iteratorNormalCompletion30 = true) {
-      var _item31 = _step30.value;
-      accumulator(collected, _item31);
+      var _item30 = _step30.value;
+      accumulator(collected, _item30);
     }
   } catch (err) {
     _didIteratorError30 = true;

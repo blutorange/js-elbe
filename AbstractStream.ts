@@ -182,7 +182,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract cycle(count?: number): this;
     public abstract flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     public abstract filter(predicate: Predicate<T>): this;
-    public abstract index(): IStream<[number, T]>;
+    public abstract index(): IStream<{index: number, value: T}>;
     public abstract limit(limitTo: number): this;
     public abstract map<S>(mapper: Function<T, S>): IStream<S>;
     public abstract promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<IStream<S>>;

@@ -32,7 +32,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public index(): IStream<[number, any]> {
+    public index(): IStream<{index: number, value: any}> {
         this.iterable = index(this.iterable);
         return this;
     }

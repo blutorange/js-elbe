@@ -178,10 +178,10 @@ function* unique(iterable, comparator) {
 }
 exports.unique = unique;
 function* index(iterable) {
-    let i = 0;
-    for (const item of iterable) {
-        yield [i, item];
-        i += 1;
+    let index = 0;
+    for (const value of iterable) {
+        yield { index, value };
+        index += 1;
     }
 }
 exports.index = index;

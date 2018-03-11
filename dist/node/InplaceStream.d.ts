@@ -8,7 +8,10 @@ export declare class InplaceStream extends AbstractStream<any> {
     cycle(count?: number): this;
     flatMap<S>(mapper: Function<any, Iterable<S>>): IStream<any>;
     filter(predicate: Predicate<any>): this;
-    index(): IStream<[number, any]>;
+    index(): IStream<{
+        index: number;
+        value: any;
+    }>;
     limit(limitTo: number): this;
     map<S>(mapper: Function<any, S>): IStream<any>;
     promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<IStream<any>>;

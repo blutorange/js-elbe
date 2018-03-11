@@ -19,7 +19,10 @@ export declare function join<T>(iterable: Iterable<T>, delimiter?: string, prefi
 export declare function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T>;
 export declare function uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T>;
 export declare function unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T>;
-export declare function index<T>(iterable: Iterable<T>): Iterable<[number, T]>;
+export declare function index<T>(iterable: Iterable<T>): Iterable<{
+    index: number;
+    value: T;
+}>;
 export declare function limit<T>(iterable: Iterable<T>, limit: number): Iterable<T>;
 export declare function cycle<T>(iterable: Iterable<T>, count?: number): Iterable<T>;
 export declare function visit<T>(iterable: Iterable<T>, consumer: Consumer<T>): IterableIterator<T>;

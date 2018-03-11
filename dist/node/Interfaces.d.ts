@@ -76,7 +76,10 @@ export interface IStream<T> {
     fork(): this;
     group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
     has(object: T): boolean;
-    index(): IStream<[number, T]>;
+    index(): IStream<{
+        index: number;
+        value: T;
+    }>;
     join(delimiter?: string, prefix?: string, suffix?: string): string;
     last(): Maybe<T>;
     limit(limitTo: number): this;

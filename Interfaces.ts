@@ -786,12 +786,13 @@ export interface IStream<T> {
      * Adds the index to each element of this stream. The index starts at 0.
      *
      * ```javascript
-     * stream(["foo", "bar"]).index() // => Stream<[ [0, "foo"], [1, "bar"] ]>
+     * stream(["foo", "bar"]).index().toMap(({value}) => value, ({index}) => index})
+     * // => Map<"foo" => 0, "bar" => 1>
      * ```
      *
      * @return A stream with each item being an array consisting of the item's index and the item itself. The index starts at 0.
      */
-    index(): IStream<[number, T]>;
+    index(): IStream<{index: number, value: T}>;
 
     /**
      * Joins every time with the given delimiter, optionally prepending a
