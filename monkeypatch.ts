@@ -34,7 +34,7 @@ export function monkeyPatch(inplace: boolean = false): void {
     patch<Set<any>, Set<any>, Set<any>>(Set, set => set.values(), stream);
     patch<Map<any, any>, Map<any, any>, [any, any]>(Map, map => map.entries(), stream);
     // tslint:disable-next-line:ban-types
-    patch<Object, object, [any, any]>(Object, object => fromObject(object), stream);
+    patch<Object, object, {key: any, value: any}>(Object, object => fromObject(object), stream);
     // tslint:disable-next-line:ban-types
     patch<Object, object, any>(Object, object => fromObjectKeys(object), stream, "keys");
     // tslint:disable-next-line:ban-types

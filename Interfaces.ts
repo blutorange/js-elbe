@@ -229,14 +229,14 @@ export interface IStreamFactory {
      *
      * ```javascript
      * fromObject({foo:2, bar: 3})
-     * // => Stream[ ["foo", 2], ["bar", 3] ]
+     * // => Stream[ {key: "foo", value: 2}, {key: "bar", value: 3} ]
      * ```
      *
      * @typeparam T Type of the object's values.
      * @param object The object with the key-value-pairs to be iterated.
      * @return A stream with the object's key-value-pairs.
      */
-    fromObject<T>(object: { [s: string]: T }): IStream<[string, T]>;
+    fromObject<T>(object: { [s: string]: T }): IStream<{key: string, value: T}>;
 
     /**
      * Creates a stream for iterating over an object's keys.
@@ -741,14 +741,14 @@ export interface IStream<T> {
      * enter an infinite loop:
      *
      * ```javascript
-     * // Create a stream with an unlimited amount of items. 
+     * // Create a stream with an unlimited amount of items.
      * const stream = TypesafeStreamFactory.repeat(Math.random, Infinity);
      *
      * // Fork the stream first, then limit to a finite number of items.
      * // Items already produced are not recomputed.
-     * stream.fork().limit(3).toArray() // => [0.28, 0.14, 0.97] 
-     * stream.fork().limit(2).toArray() // => [0.28, 0.14] 
-     * stream.fork().limit(4).toArray() // => [0.28, 0.14, 0.97, 0.31] 
+     * stream.fork().limit(3).toArray() // => [0.28, 0.14, 0.97]
+     * stream.fork().limit(2).toArray() // => [0.28, 0.14]
+     * stream.fork().limit(4).toArray() // => [0.28, 0.14, 0.97, 0.31]
      * ```
      *
      * @return A forked stream that leaves the original stream usable.
@@ -871,7 +871,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the maximum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    maxBy(sortKey: Function<T, any>): Maybe<T>;
+    maxBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
 
     /**
      * Computes the minimum of the items.
@@ -898,7 +898,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the minimum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    minBy(sortKey: Function<T, any>): Maybe<T>;
+    minBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
 
     /**
      * Returns the items at the n-th position.
@@ -1137,7 +1137,7 @@ export interface IStream<T> {
      * @param fresh Iff true, always creates a new set. Otherwise, reuses existing set when possible.
      * @return A set with the items.
      */
-    toSet(fresh?: boolean): Set<any>;
+    toSet(fresh?: boolean): Set<T>;
 
     /**
      * Creates a map from the items of this stream.
@@ -1153,7 +1153,7 @@ export interface IStream<T> {
      * @param valueMapper Transforms an item into the value used for the corresponding key.
      * @return A map with all the mapped key-value-pairs of the items.
      */
-    toMap<K, V>(keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V>;
+    toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V>;
 
     /**
      * Filters all elements that are considered equal according to
@@ -1189,7 +1189,7 @@ export interface IStream<T> {
      * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
      * @return A stream with all duplicates removed.
      */
-    uniqueBy(keyExtractor?: Function<T, any>): this;
+    uniqueBy<K = any>(keyExtractor?: Function<T, K>): this;
 
     /**
      * Calls the given consumer once for each item. Note that the consumer is
