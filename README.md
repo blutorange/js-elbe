@@ -33,6 +33,12 @@ Array.from(function*(data) {
 - 0.1.2 The Stream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
 - 0.1.3 The Stream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.
 
+# Roadmap
+
+- IStream#rewind
+- IStream#consume
+- testing the API in practive, making it easier to use
+
 # Docs
 
 [All methods with documentation](https://blutorange.github.io/js-elbe/), see also the directory `docs`.
