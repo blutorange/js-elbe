@@ -28,29 +28,6 @@ Array.from(function*(data) {
 }(input))
 ```
 
-# Changelog
-
-## 0.1.4
-- Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
-- Fixed IStreamFactory#repeat(item, amount) to default to Infinity when the second argument is not given.
-- Fixed #IStream#times when called with arguments (Infinity, 0, 10) to return a stream of unlimited `0`s. `times(Infinity, 0, 10) means infinitely many items between 0 and 10, ie. separated by an infinitesimal step.
-- Fixed a bug where ITry#success returned true for an erronous result.
-- Fixed ITryStream#include that would not exclude the items that did not match the predicate.
-- Fixed IStream#nth(n) so that it immediately returns on numbers smaller than 0. If a non-integer is given, floors it.
-- Changed ITry#convert(converter, backup) and ITry#flatConvert so that it applies the backup in case the converter threw an error.
-- Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.
-- Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: `stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)`. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.
-- The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].
-- Added IStrem#none(Predicate), returning true iff no item matches the given predicate.
-- Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.
-- Added first set of tests.
-
-## 0.1.3
-- The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.
-
-## 0.1.2
-- The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
-
 # Roadmap
 
 - IStream#rewind
@@ -61,7 +38,7 @@ Array.from(function*(data) {
 
 [All methods with documentation](https://blutorange.github.io/js-elbe/). The docs are can be viewed offline from the directory `docs`. Tests with more examples are in `test`.
 
-[Coverage report.](https://blutorange.github.io/js-elbe/coverage/).
+[Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
 
 ```javascript
 const lib = require("elbe");
@@ -269,6 +246,29 @@ To provide a default for failed operations:
 ```javascript
 stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JSON object or undefined.
 ```
+
+# Changelog
+
+## 0.1.4
+- Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
+- Fixed IStreamFactory#repeat(item, amount) to default to Infinity when the second argument is not given.
+- Fixed #IStream#times when called with arguments (Infinity, 0, 10) to return a stream of unlimited `0`s. `times(Infinity, 0, 10) means infinitely many items between 0 and 10, ie. separated by an infinitesimal step.
+- Fixed a bug where ITry#success returned true for an erronous result.
+- Fixed ITryStream#include that would not exclude the items that did not match the predicate.
+- Fixed IStream#nth(n) so that it immediately returns on numbers smaller than 0. If a non-integer is given, floors it.
+- Changed ITry#convert(converter, backup) and ITry#flatConvert so that it applies the backup in case the converter threw an error.
+- Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.
+- Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: `stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)`. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.
+- The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].
+- Added IStrem#none(Predicate), returning true iff no item matches the given predicate.
+- Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.
+- Added first set of tests.
+
+## 0.1.3
+- The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.
+
+## 0.1.2
+- The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
 
 # Build
 
