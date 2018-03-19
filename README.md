@@ -195,7 +195,7 @@ May be helpful for testing or prototyping.
 require("elbe").monkeypatch();
 
 [1,2,3].stream().map(x => x + 4).toSet();
-// => Set[2,4,6]
+// => Set[5,6,7]
 
 "foobar".stream().filter(x => x > "d").toArray();
 // => ["f", "o", "o", "r"]
@@ -207,7 +207,7 @@ new Map(["foo", 3], ["bar", 9]).stream();
 // => Stream[ ["foo", 3], ["bar", 9] ]
 
 ({foo: 3, bar: 9}).stream();
-// => Stream[ ["foo", 3], ["bar", 9] ]
+// => Stream[ {key: "foo", value: 3}], {key: "bar", value: 9} ]
 ```
 
 # Catching errors
@@ -248,6 +248,8 @@ stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JS
 ```
 
 # Changelog
+
+## 0.2
 
 ## 0.1.4
 - Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
