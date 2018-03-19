@@ -1,7 +1,50 @@
-import { Comparator, natural } from "kagura";
+import { Comparator } from "kagura";
 
-import { BiConsumer, BiFunction, BiPredicate, Consumer, Function, ICollector, IStream, ITry, ITryStream, Predicate, Supplier } from "./Interfaces";
-import { collect, collectWith, end, every, find, findIndex, first, fork, group, has, join, last, max, maxBy, min, minBy, nth, partition, reduce, reduceSame, size, some, sum, toArray, toMap, toSet, tryCompute, tryEnd } from "./Methods";
+import {
+    BiConsumer,
+    BiFunction,
+    BiPredicate,
+    Consumer,
+    Function,
+    ICollector,
+    IStream,
+    ITry,
+    ITryStream,
+    Predicate,
+    Supplier,
+} from "./Interfaces";
+
+import {
+    collect,
+    collectWith,
+    end,
+    every,
+    find,
+    findIndex,
+    first,
+    fork,
+    group,
+    has,
+    join,
+    last,
+    max,
+    maxBy,
+    min,
+    minBy,
+    none,
+    nth,
+    partition,
+    reduce,
+    reduceSame,
+    size,
+    some,
+    sum,
+    toArray,
+    toMap,
+    toSet,
+    tryCompute,
+    tryEnd,
+} from "./Methods";
 
 /**
  * @private
@@ -79,7 +122,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return has(this.iterable, object);
     }
 
-    public join(delimiter: string = "", prefix?: string, suffix?: string): string {
+    public join(delimiter?: string, prefix?: string, suffix?: string): string {
         this.check();
         return join(this.iterable, delimiter, prefix, suffix);
     }
@@ -89,12 +132,17 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return last(this.iterable);
     }
 
+    public none(predicate: Predicate<T>): boolean {
+        this.check();
+        return none(this.iterable, predicate);
+    }
+
     public nth(n: number): T | undefined {
         this.check();
         return nth(this.iterable, n);
     }
 
-    public max(comparator: Comparator<T> = natural): T | undefined {
+    public max(comparator?: Comparator<T>): T | undefined {
         this.check();
         return max(this.iterable, comparator);
     }
@@ -104,7 +152,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return maxBy(this.iterable, sortKey);
     }
 
-    public min(comparator: Comparator<T> = natural): T | undefined {
+    public min(comparator?: Comparator<T>): T | undefined {
         this.check();
         return min(this.iterable, comparator);
     }

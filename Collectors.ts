@@ -162,9 +162,18 @@ export const Collectors = {
                 collected.push(String(item));
             },
             supplier(): string[] {
-                return prefix !== undefined ? [prefix] : [];
+                return prefix !== undefined ? [] : [];
             },
             finisher(result: string[]): string {
+                if (prefix !== undefined) {
+                    if (suffix !== undefined) {
+                        return prefix.concat(result.join(delimiter)).concat(suffix);
+                    }
+                    return prefix.concat(result.join(delimiter));
+                }
+                if (suffix !== undefined) {
+                    return result.join(delimiter).concat(suffix);
+                }
                 return result.join(delimiter);
             },
         };

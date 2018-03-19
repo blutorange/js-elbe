@@ -53,7 +53,7 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
     }
 
     get success(): boolean {
-        return true;
+        return false;
     }
 
     protected get result(): Error {
@@ -130,11 +130,11 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
     }
 
     public convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITry<S> {
-        return TryFactory.of(() => operation(this.value));
+        return TryFactory.of(() => operation(this.value)).orTry(backup);
     }
 
     public flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S> {
-        return TryFactory.flatOf(() => operation(this.value));
+        return TryFactory.flatOf(() => operation(this.value)).orFlatTry(backup);
     }
 
     public include(predicate: Predicate<T>): ITry<T> {

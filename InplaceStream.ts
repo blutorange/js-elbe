@@ -53,6 +53,11 @@ export class InplaceStream extends AbstractStream<any> {
             .then(iterable => new InplaceStream(iterable));
     }
 
+    public replace<S>(mapper: Function<any, S>): this {
+        this.iterable = map(this.iterable, mapper);
+        return this;
+    }
+
     public visit(consumer: Consumer<any>): this {
         this.iterable = visit(this.iterable, consumer);
         return this;
@@ -117,7 +122,7 @@ class TryStreamImpl extends InplaceStream implements ITryStream<any> {
     }
 
     public include(predicate: Predicate<any>): this {
-        return this.visit(x => x.include(predicate));
+        return this.replace(x => x.include(predicate));
     }
 
     public onError(handler: Consumer<Error>): this {

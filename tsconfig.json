@@ -8,6 +8,8 @@
         "sourceMap": false,
         "watch": false,
         "allowUnreachableCode": false,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "removeComments": true,
         "allowUnusedLabels": false,
         "declaration": true,

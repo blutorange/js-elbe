@@ -64,6 +64,48 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Makes a copy of the elements returned by the given iterable so that
+							multiple iterations over these elements are possible. This is used
+						by IStream#fork.</p>
+					</div>
+					<p>The original iterable is queried only on-demand, ie. when items are
+						requested from this iterable. This reduces memory consumption and
+					allows unlimited iterables to be buffered.</p>
+					<pre><code class="lang-javascript">
+<span class="hljs-comment">// An iterable that returns an unlimited amount of random numbers.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> * <span class="hljs-title">randomStream</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>) <span class="hljs-keyword">yield</span> <span class="hljs-built_in">Math</span>.random();
+}
+
+<span class="hljs-comment">// Many iterations over the same random numbers are possible with buffering.</span>
+<span class="hljs-keyword">const</span> iterable = <span class="hljs-keyword">new</span> LazyBufferedIterable(randomStream());
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> it = iterable[<span class="hljs-built_in">Symbol</span>.iterator](), i = <span class="hljs-number">10</span>; i--&gt;<span class="hljs-number">0</span>;)
+  <span class="hljs-built_in">console</span>.log(it.next().value);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> it = iterable[<span class="hljs-built_in">Symbol</span>.iterator](), i = <span class="hljs-number">10</span>; i--&gt;<span class="hljs-number">0</span>;)
+  <span class="hljs-built_in">console</span>.log(it.next().value);
+<span class="hljs-comment">// =&gt; Both times the same random numbers are printed.</span>
+
+<span class="hljs-comment">// Illustrates buffered vs. unbuffered iterators</span>
+<span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+set.add(<span class="hljs-number">1</span>);
+set.add(<span class="hljs-number">2</span>);
+set.add(<span class="hljs-number">3</span>);
+
+<span class="hljs-comment">// An unbuffered iterables only returns its values once.</span>
+<span class="hljs-keyword">const</span> unbuffered = set.values();
+<span class="hljs-built_in">Array</span>.from(unbuffered) <span class="hljs-comment">// =&gt; [1,2,3]</span>
+<span class="hljs-built_in">Array</span>.from(ubuffered) <span class="hljs-comment">// =&gt; []</span>
+
+<span class="hljs-comment">// A buffered iterable can return them as many times as requested.</span>
+<span class="hljs-keyword">const</span> buffered = <span class="hljs-keyword">new</span> LazyBufferedIterable(set.values());
+<span class="hljs-built_in">Array</span>.from(buffered) <span class="hljs-comment">// =&gt; [1,2,3]</span>
+<span class="hljs-built_in">Array</span>.from(buffered) <span class="hljs-comment">// =&gt; [1,2,3]</span>
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-type-parameters">
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
@@ -117,7 +159,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/LazyBufferedIterable.ts#L3">LazyBufferedIterable.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/LazyBufferedIterable.ts#L46">LazyBufferedIterable.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -143,7 +185,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/LazyBufferedIterable.ts#L8">LazyBufferedIterable.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/LazyBufferedIterable.ts#L53">LazyBufferedIterable.ts:53</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>

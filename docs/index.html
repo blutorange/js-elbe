@@ -89,18 +89,29 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 }(input))
 </code></pre>
 				<h1 id="changelog">Changelog</h1>
-				<h2 id="0-1-2">0.1.2</h2>
+				<h2 id="0-1-4">0.1.4</h2>
 				<ul>
-					<li>The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.</li>
+					<li>Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy</li>
+					<li>Fixed IStreamFactory#repeat(item, amount) to default to Infinity when the second argument is not given.</li>
+					<li>Fixed #IStream#times when called with arguments (Infinity, 0, 10) to return a stream of unlimited <code>0</code>s. `times(Infinity, 0, 10) means infinitely many items between 0 and 10, ie. separated by an infinitesimal step.</li>
+					<li>Fixed a bug where ITry#success returned true for an erronous result.</li>
+					<li>Fixed ITryStream#include that would not exclude the items that did not match the predicate.</li>
+					<li>Fixed IStream#nth(n) so that it immediately returns on numbers smaller than 0. If a non-integer is given, floors it.</li>
+					<li>Changed ITry#convert(converter, backup) and ITry#flatConvert so that it applies the backup in case the converter threw an error.</li>
+					<li>Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.</li>
+					<li>Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: <code>stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)</code>. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.</li>
+					<li>The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].</li>
+					<li>Added IStrem#none(Predicate), returning true iff no item matches the given predicate.</li>
+					<li>Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.</li>
+					<li>Added first set of tests.</li>
 				</ul>
 				<h2 id="0-1-3">0.1.3</h2>
 				<ul>
 					<li>The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.</li>
 				</ul>
-				<h2 id="0-1-4">0.1.4</h2>
+				<h2 id="0-1-2">0.1.2</h2>
 				<ul>
-					<li>The IStreamFactory.fromObject now return a stream of objects {key, value} instead of [key, value].</li>
-					<li>Fixed typing for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy</li>
+					<li>The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.</li>
 				</ul>
 				<h1 id="docs">Docs</h1>
 				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>, see also the directory <code>docs</code>.</p>
@@ -367,6 +378,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 						<a href="globals.html#stream" class="tsd-kind-icon">stream</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#identity" class="tsd-kind-icon">IDENTITY</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#appendcause" class="tsd-kind-icon">append<wbr>Cause</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -512,6 +526,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sort" class="tsd-kind-icon">sort</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#step" class="tsd-kind-icon">step</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sum" class="tsd-kind-icon">sum</a>

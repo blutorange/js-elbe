@@ -53,6 +53,11 @@ export class TypesafeStream<T> extends AbstractStream<T> {
             .then(iterable => new TypesafeStream(iterable));
     }
 
+    public replace(mapper: Function<T, T>): this {
+        this.check();
+        return new this.constructor(map(this.iterable, mapper)) as this;
+    }
+
     public reverse(): this {
         this.check();
         return new this.constructor(reverse(this.iterable)) as this;
@@ -117,7 +122,7 @@ class TryStreamImpl<T> extends TypesafeStream<ITry<T>> implements ITryStream<T> 
     }
 
     public include(predicate: Predicate<T>): this {
-        return this.visit(x => x.include(predicate));
+        return this.replace(x => x.include(predicate));
     }
 
     public onError(handler: Consumer<Error>): this {

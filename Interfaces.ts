@@ -192,7 +192,7 @@ export interface IStreamFactory {
      * // => Stream[0,0,0,0,0,0,0,0,0]
      * ```
      *
-     * @typeparam T Type of the items of the produced iterable.
+     * @typeparam T Type of the items of the produced stream.
      * @param item Item to repeat.
      * @param amount How many times to repeat, `Infinity` for an unlimited amount.
      * @return Stream contains the given item the given number of times.
@@ -200,22 +200,71 @@ export interface IStreamFactory {
     repeat<T>(item: T, amount?: number): IStream<T>;
 
     /**
+     * Creates a stream with numbers starting at the given
+     * value and separated from each other by the given step.
+     *
+     * ```javascript
+     * times(3) // => Stream(0,1,2)
+     * times(3, 4) // => Stream(4, 5, 6)
+     * times(3, 4, 8) // => Stream(4, 12, 20)
+     * times(-3) // => Stream()
+     * times(3, -4) // => Stream(-4, -3, -2)
+     * times(3, 4, -2) // => Stream(4, 2, 0)
+     * times(3, -4, -2) // => Stream(-4, -6, -8)
+     * times(Infinity) // => Stream(0, 1, 2, 3, ...)
+     * times(-Infinity) // => Stream()
+     * times(Infinity, 5) // => Stream(5, 6, 7, 8, ...)
+     * times(Infinity, 5, 2) // => Stream(5, 7, 9, 11, ...)
+     * times(3, Infinity) // => Stream(Infinity, Infinity, Infinity)
+     * times(4, 0, Infinity) // => Stream(0, Infinity, Infinity, Infinity)
+     * times(4, Infinity, Infinity) // => Stream(Infinity, Infinity, Infinity, Infinity)
+     * times(4, -Infinity, Infinity) // => Stream(-Infinity, NaN, NaN, NaN)
+     * times(Infinity, 2, Infinity) // => Stream(2, Infinity, Infinity, Infinity, ...)
+     * times(Infinity, Infinity, 2) // => Stream(Infinity, Infinity, Infinity, Infinity, ...)
+     * times(Infinity, -Infinity, 2) // => Stream(-Infinity, -Infinity, -Infinity, -Infinity, ...)
+     * times(Infinity, Infinity, Infinity) // => Stream(Infinity, Infinity, Infinity, Infinity, ...)
+     * times(NaN) // => Stream()
+     * times(5, NaN) // => Stream(NaN, NaN, NaN, NaN, NaN)
+     * times(5, 1, NaN) // => Stream(1, NaN, NaN, NaN, NaN)
+     * times(5, Infinity, NaN) // => Stream(Infinity, NaN, NaN, NaN, NaN)
+     * times(5, -Infinity, NaN) // => Stream(-Infinity, NaN, NaN, NaN, NaN)
+     * times(5, NaN, 2) // => Stream(NaN, NaN, NaN, NaN, NaN)
+     * times(5, NaN, NaN) // => Stream(NaN, NaN, NaN, NaN, NaN)
+     * times(NaN, NaN, NaN) // => Stream()
+     * ```
+     *
+     * @param amount Number of items to produce. Must not be negative.
+     * @param start Initial number, defaults to 0.
+     * @param step How far apart the individual items are, defaults to 1.
+     * @return Stream with the configured numbers.
+     */
+    step(amount: number, start?: number, step?: number): IStream<number>;
+
+    /**
      * Creates an stream with numbers starting at the given
      * value and ending at the given value.
      *
      * ```javascript
-     * times(3) // => Stream[0,1,2]
-     * times(3, 4) // => Stream[4,5,6]
-     * times(3, 4, 8) // => Stream[4,6,8]
+     * times(3) // => Stream[0, 1, 2]
+     * times(3, 4) // => Stream[4, 5, 6]
+     * times(3, 4, 8) // => Stream[4, 6, 8]
      * times(1, 10, 12) // => Stream[10]
      * times(0) // => Stream[]
-     * times(3, 0, Infinity) // => Stream[NaN, NaN, NaN]
      * times(3, 0, -2) // => Stream[0, -1, -2]
      * times(-3) // => Stream[]
-     * times(Infinity) // => Stream[0,1,2,3,4,5,...]
+     * times(5, 0, Infinity) // => Stream(0, NaN, NaN, NaN, Infinity)
+     * times(5, Infinity, 0) // => Stream(Infinity, NaN, NaN, NaN, 0)
+     * times(Infinity) // => Stream(0, 0, 0, 0, ...)
+     * times(Infinity, 2, 3) // => Stream(2, 2, 2, 2, ...)
+     * times(NaN) // => Stream()
+     * times(5, NaN) // => Stream(NaN, NaN, NaN, NaN, NaN)
+     * times(5, 2, NaN) // => Stream(2, NaN, NaN, NaN, NaN)
+     * times(5, NaN, 7) // => Stream(NaN, NaN, NaN, NaN, 7)
+     * times(NaN, 0, 5) // => Stream()
+     * times(NaN, NaN, NaN) // => Stream()
      * ```
      *
-     * @typeparam T Type of the items of the produced iterable.
+     * @typeparam T Type of the items of the produced stream.
      * @param amount Number of items to produce. Must not be negative.
      * @param start Initial number, defaults to 0.
      * @param end Last number, defaults to `start+amount-1`. May be smaller than end, in which case numbers of decreasing value are generated.
@@ -308,7 +357,8 @@ export interface ITry<T> {
 
     /**
      * Computes a new value by using either the success handler,
-     * or the backup handler. If a handler throws, the returned {@link Try}
+     * or the backup handler. If the mapper throws, the backup is
+     * applied. If the backup throws as well, the returned {@link Try}
      * is not successful. If the backup handler is not given and this try
      * is unsuccessful, return a try with the same error.
      *
@@ -321,19 +371,19 @@ export interface ITry<T> {
      * ```
      *
      * @typeparam S Type of the new value.
-     * @param success Handler that maps the successful value to a new value.
+     * @param mapper Handler that maps the successful value to a new value.
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link Try} for encapsulating errors.
      */
-    convert<S>(success: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
+    convert<S>(mapper: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
 
     /**
      * Computes a new value by using either the success handler,
-     * or the backup handler. If a handler throws, the returned {@link Try}
-     * is not successful. If the backup handler is not given and this try
-     * is unsuccessful, return a try with the same error.
-     * Similar to {@link #convert}, but the handlers return a {@link Try}
-     * directly.
+     * or the backup handler. If the mapper throws, the backup is
+     * applied. If the backup throws as well, the returned Try
+     * is not successful. If the backup handler is not given and this
+     * try is unsuccessful, return a try with the same error. Similar
+     * to #convert, but the handlers return a Try directly.
      *
      * ```javascript
      * TryFactor.success("9").convert(x => Try.of(() => JSON.parse(x)));
@@ -451,7 +501,7 @@ export interface ITry<T> {
     ifAbsent(consumer: Consumer<Error>): this;
 
     /**
-     * Creates an iterable from either the successful value or the error.
+     * Creates an stream from either the successful value or the error.
      *
      * ```javascript
      * TryFactory.of(() => parseIntSafe("2.5")).stream().filter(x => x instanceof Error).first()
@@ -463,8 +513,8 @@ export interface ITry<T> {
     stream(factory?: IStreamFactory): IStream<T | Error>;
 
     /**
-     * Creates an iterable from either the successful value or the error.
-     * @return An iterable over either the successful value or the error.
+     * Creates a stream from either the successful value or the error.
+     * @return A stream over either the successful value or the error.
      */
     iterate(): Iterable<T | Error>;
 
@@ -546,7 +596,7 @@ export interface IStream<T> {
      * returns the same value. Equality is checked with `===`.
      *
      * ```javascript
-     * stream([1,2,3,4,5,6,1,2]).chunk(i => Math.floor((i-1) / 3)) // => Stream[ [1,2,3], [4,5,6], [1,2] ]
+     * stream([1,2,3,4,5,6,1]).chunk(i => i & 10) // => Stream[ [1,2], [3,4], [5,6], [1] ]
      * ```
      *
      * @typeparam K Type of the returned value of the chunker,
@@ -587,7 +637,7 @@ export interface IStream<T> {
     collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
 
     /**
-     * Concatenates given all iterables into one iterable of all the items.
+     * Concatenates all given iterables with this stream into one stream of all the items.
      *
      * ```javascript
      * stream("foo").concat("bar", "baz") // => Stream["f", "o", "o", "b", "a", "r", "b", "a", "z"]
@@ -599,7 +649,7 @@ export interface IStream<T> {
     concat(...iterables: Iterable<T>[]): this;
 
     /**
-     * Cycles over the elements of the iterable the given number of times.
+     * Cycles over the elements of this stream the given number of times.
      *
      * ```javascript
      * stream([1,2,3]).cycle(3) // => Stream[1,2,3,1,2,3,1,2,3]
@@ -691,7 +741,7 @@ export interface IStream<T> {
     flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
 
     /**
-     * Removes all elements from the iterable for which the
+     * Removes all elements from this stream for which the
      * predicate does not return `true`.
      *
      * ```javascript
@@ -802,9 +852,9 @@ export interface IStream<T> {
      * stream([1,2,3]).join(",", "[", "]") // => "[1,2,3]"
      * ```
      *
-     * @param delimiter String inserted between the items.
-     * @param prefix String prepended to the joined string.
-     * @param suffix String appended to the joined string.
+     * @param delimiter String inserted between the items. Defaults to the empty string.
+     * @param prefix String prepended to the joined string. Defaults to the empty string.
+     * @param suffix String appended to the joined string. Defaults to the empty string.
      * @return A string consisting of the prefix, the items joined with the delimiter, and the suffix.
      */
     join(delimiter?: string, prefix?: string, suffix?: string): string;
@@ -828,7 +878,7 @@ export interface IStream<T> {
      *  stream([1,2,3,4,5,6]).limit(3) // => Stream[1,2,3]
      * ```
      *
-     * @param limit The maximum number of items in the resulting iterable.
+     * @param limit The maximum number of items in the resulting stream.
      * @return A stream with at most the given number of items.
      */
     limit(limitTo: number): this;
@@ -840,9 +890,9 @@ export interface IStream<T> {
      * stream([0,1,2,3]).map(x => 2 * x) // => Stream[0,2,4,6]
      * ```
      *
-     * @typeparam S Type of the elements in the produced iterable.
+     * @typeparam S Type of the elements in the produced stream.
      * @param mapper A function taking each item of this stream and transforms it into another item.
-     * @return An iterable over the mapped elements.
+     * @return A stream over the mapped elements.
      */
     map<S>(mapper: Function<T, S>): IStream<S>;
 
@@ -858,7 +908,7 @@ export interface IStream<T> {
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The largest item. If there are multiple largest items, returns the first. `undefined` iff this stream is empty.
      */
-    max(comparator: Comparator<T>): Maybe<T>;
+    max(comparator?: Comparator<T>): Maybe<T>;
 
     /**
      * Computes the maximum of the items, as determined by the given sort key.
@@ -885,7 +935,7 @@ export interface IStream<T> {
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The smallest item. If there are multiple smallest items, returns the first.  `undefined` iff this stream is empty.
      */
-    min(comparator: Comparator<T>): Maybe<T>;
+    min(comparator?: Comparator<T>): Maybe<T>;
 
     /**
      * Computes the minimum of the items, as determined by the given sort key.
@@ -899,6 +949,19 @@ export interface IStream<T> {
      * @return The smallest item, or `undefined` iff there are no items.
      */
     minBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
+
+    /**
+     * Determines whether no item matches the given predicate. This
+     * is equivalent to `!stream.some(predicate)`.
+     *
+     * ```javascript
+     * stream("fooz").none(x => x === "o") // => false
+     * ```
+     *
+     * @param predicate Test to be performed on each item.
+     * @return Whether no item matches the given predicate.
+     */
+    none(predicate: Predicate<T>): boolean;
 
     /**
      * Returns the items at the n-th position.
@@ -941,7 +1004,6 @@ export interface IStream<T> {
      * // Calls the renderUser method with the Response for each user request.
      * ```
      *
-     * @typeparam T Type of the elements in the given iterable.
      * @typeparam S Type of the item of the promises.
      * @param promiseConverter Takes each item and creates a promise.
      * @return A promise that resolves when all promises resolve; or is rejected when any promise is rejected.
@@ -971,9 +1033,9 @@ export interface IStream<T> {
      * ```
      *
      * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
-     * @return The reduced value, or undefined iff the iterable is empty.
+     * @return The reduced value, or undefined iff the stream is empty.
      */
-    reduceSame(reducer: BiFunction<T, T, T>): T;
+    reduceSame(reducer: BiFunction<T, T, T>): Maybe<T>;
 
     /**
      * Reverses the order of the items. Note that the items
@@ -1328,7 +1390,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
     /**
      * Computes a new value from each successful value or error.
      * If the operation or backup function throws an error, or if
-     * no backup is provided, the {@link Try} is not successful.
+     * no backup is provided, the Try is not successful.
      *
      * ```javascript
      * stream("12a").try(JSON.parse).convert(x => 2*x)
@@ -1413,7 +1475,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * ```
      *
      * @param backup Handler that takes each error and produces a backup value.
-     * @return A try-stream with all errornous values replaced with the backup values.
+     * @return A try-stream with all erronous values replaced with the backup values.
      */
     orTry(backup: Function<Error, T>): this;
 }

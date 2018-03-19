@@ -150,7 +150,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 					<div class="tsd-signature tsd-kind-icon">success<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L298">Interfaces.ts:298</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L347">Interfaces.ts:347</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +173,7 @@ t.mapError(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L503">Interfaces.ts:503</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L553">Interfaces.ts:553</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -202,19 +202,20 @@ TryFactory.error(<span class="hljs-string">"bad"</span>).catch(<span class="hljs
 					<a name="convert" class="tsd-anchor"></a>
 					<h3>convert</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">convert&lt;S&gt;<span class="tsd-signature-symbol">(</span>success<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, backup<span class="tsd-signature-symbol">?: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">convert&lt;S&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span>, backup<span class="tsd-signature-symbol">?: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L328">Interfaces.ts:328</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L378">Interfaces.ts:378</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes a new value by using either the success handler,
-										or the backup handler. If a handler throws, the returned {@link Try}
+										or the backup handler. If the mapper throws, the backup is
+										applied. If the backup throws as well, the returned {@link Try}
 										is not successful. If the backup handler is not given and this try
 									is unsuccessful, return a try with the same error.</p>
 								</div>
@@ -237,7 +238,7 @@ TryFactor.error(<span class="hljs-string">"bad"</span>).convert(<span class="hlj
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>success: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>mapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Handler that maps the successful value to a new value.</p>
 									</div>
@@ -264,17 +265,17 @@ TryFactor.error(<span class="hljs-string">"bad"</span>).convert(<span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L348">Interfaces.ts:348</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L398">Interfaces.ts:398</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Computes a new value by using either the success handler,
-										or the backup handler. If a handler throws, the returned {@link Try}
-										is not successful. If the backup handler is not given and this try
-										is unsuccessful, return a try with the same error.
-										Similar to {@link #convert}, but the handlers return a {@link Try}
-									directly.</p>
+										or the backup handler. If the mapper throws, the backup is
+										applied. If the backup throws as well, the returned Try
+										is not successful. If the backup handler is not given and this
+										try is unsuccessful, return a try with the same error. Similar
+									to #convert, but the handlers return a Try directly.</p>
 								</div>
 								<pre><code class="lang-javascript">TryFactor.success(<span class="hljs-string">"9"</span>).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">JSON</span>.parse(x)));
 <span class="hljs-comment">// =&gt; Try[value=9]</span>
@@ -316,7 +317,7 @@ TryFactor.error(<span class="hljs-string">"bad"</span>).convert(<span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L451">Interfaces.ts:451</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L501">Interfaces.ts:501</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -352,7 +353,7 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L435">Interfaces.ts:435</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L485">Interfaces.ts:485</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,7 +392,7 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L307">Interfaces.ts:307</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L356">Interfaces.ts:356</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -425,16 +426,16 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L469">Interfaces.ts:469</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L519">Interfaces.ts:519</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an iterable from either the successful value or the error.</p>
+									<p>Creates a stream from either the successful value or the error.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An iterable over either the successful value or the error.</p>
+							<p>A stream over either the successful value or the error.</p>
 						</li>
 					</ul>
 				</section>
@@ -448,7 +449,7 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L361">Interfaces.ts:361</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L411">Interfaces.ts:411</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -483,7 +484,7 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L404">Interfaces.ts:404</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L454">Interfaces.ts:454</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -527,7 +528,7 @@ T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L419">Interfaces.ts:419</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L469">Interfaces.ts:469</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -556,7 +557,7 @@ TryFactory.error(<span class="hljs-keyword">new</span> <span class="hljs-built_i
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L382">Interfaces.ts:382</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L432">Interfaces.ts:432</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -599,12 +600,12 @@ T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L463">Interfaces.ts:463</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L513">Interfaces.ts:513</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates an iterable from either the successful value or the error.</p>
+									<p>Creates an stream from either the successful value or the error.</p>
 								</div>
 								<pre><code class="lang-javascript">TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(<span class="hljs-string">"2.5"</span>)).stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>).first()
 <span class="hljs-comment">// Error("invalid integer format")</span>
@@ -631,7 +632,7 @@ T.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/99afacc/Interfaces.ts#L487">Interfaces.ts:487</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L537">Interfaces.ts:537</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

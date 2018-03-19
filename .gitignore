@@ -1,6 +1,7 @@
 dist
 settings.json
 README.typedoc
+.nyc_output
 .vscode
 
 # ---> Linux

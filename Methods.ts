@@ -7,6 +7,8 @@ import { TryFactory } from "./TryFactory";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
+const IDENTITY = (x: any) => x;
+
 /**
  * Transform each element to another element of a different type.
  *
@@ -312,7 +314,7 @@ export function group<T, K>(iterable: Iterable<T>, classifier: Function<T, K>): 
  * @param suffix String appended to the joined string.
  * @return A string consisting of the prefix, the items joined with the delimiter, and the suffix.
  */
-export function join<T>(iterable: Iterable<T>, delimiter: string = "", prefix?: string, suffix?: string): string {
+export function join<T>(iterable: Iterable<T>, delimiter?: string, prefix?: string, suffix?: string): string {
     return collect(iterable, Collectors.join(delimiter, prefix, suffix));
 }
 
@@ -352,19 +354,16 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iter
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T> {
-    // Set/Map guarantees iteration in insertion order.
-    if (keyExtractor === undefined) {
-        return new Set(iterable);
-    }
-    const map = new Map();
+export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T> {
+    const set = new Set();
+    keyExtractor = keyExtractor || IDENTITY;
     for (const item of iterable) {
         const key = keyExtractor(item);
-        if (!map.has(key)) {
-            map.set(key, item);
+        if (!set.has(key)) {
+            set.add(key);
+            yield item;
         }
-    }
-    return map.values();
+}
 }
 
 interface IUniqueEntry<T> {
@@ -716,7 +715,7 @@ export function some<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean
  *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable to be scanned.
- * @param predicate Test to be performed on each items.
+ * @param predicate Test to be performed on each item.
  * @return Whether no item matches the given predicate.
  */
 export function none<T>(iterable: Iterable<T>, predicate: Predicate<T>): boolean {
@@ -946,7 +945,11 @@ export function end<T>(iterable: Iterable<T>): void {
  * Returns the item at the n-th position.
  *
  * ```javascript
- * nth("foo", 1) // => "f"
+ * nth("foo", -1) // => "f"
+ *
+ * nth("foo", 0) // => "f"
+ *
+ * nth("foo", 2) // => "o"
  *
  * nth("foo", 3) // => undefined
  * ```
@@ -958,8 +961,12 @@ export function end<T>(iterable: Iterable<T>): void {
  */
 export function nth<T>(iterable: Iterable<T>, n: number): T | undefined {
     let index = 0;
+    if (n < 0) {
+        return undefined;
+    }
+    n = Math.floor(n);
     for (const item of iterable) {
-        if (index === n) {
+        if (index >= n) {
             return item;
         }
         index += 1;
@@ -1096,14 +1103,14 @@ export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false): T[] {
  * enter an infinite loop:
  *
  * ```javascript
- * // Create an iterable with an unlimited amount of items. 
+ * // Create an iterable with an unlimited amount of items.
  * const iterable = repeat(Math.random, Infinity);
  *
  * // Fork the iterable first, then limit to a finite number of items.
  * // Items already produced are not recomputed.
- * Array.from(limit(fork(iterable), 3)) // => [0.28, 0.14, 0.97] 
- * Array.from(limit(fork(iterable), 2)) // => [0.28, 0.14] 
- * Array.from(limit(fork(iterable), 4)) // => [0.28, 0.14, 0.97, 0.31] 
+ * Array.from(limit(fork(iterable), 3)) // => [0.28, 0.14, 0.97]
+ * Array.from(limit(fork(iterable), 2)) // => [0.28, 0.14]
+ * Array.from(limit(fork(iterable), 4)) // => [0.28, 0.14, 0.97, 0.31]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -1251,10 +1258,19 @@ export function* generate<T>(generator: Function<number, T>, amount: number = In
  * times(3, 4, 8) // => Iterable(4,6,8)
  * times(1, 10, 12) // => Iterable(10)
  * times(0) // => Iterable()
- * times(3, 0, Infinity) // => Iterable(NaN, NaN, NaN)
  * times(3, 0, -2) // => Iterable(0, -1, -2)
  * times(-3) // => Iterable()
- * times(Infinity) // => Iterable(0,1,2,3,4,5,...)
+ * times(5, 0, Infinity) // => Iterable(0, NaN, NaN, NaN, Infinity)
+ * times(5, Infinity, 0) // => Iterable(Infinity, NaN, NaN, NaN, 0)
+ * times(Infinity) // => Iterable(0, 0, 0, 0, ...)
+ * times(Infinity, 2, 3) // => Iterable(2, 2, 2, 2, ...)
+ * times(NaN) // => Iterable()
+ * times(5, NaN) // => Iterable(NaN, NaN, NaN, NaN, NaN)
+ * times(5, 2, NaN) // => Iterable(2, NaN, NaN, NaN, NaN)
+ * times(5, NaN, 7) // => Iterable(NaN, NaN, NaN, NaN, 7)
+ * times(NaN, 0, 5) // => Iterable()
+ * times(NaN, NaN, NaN) // => Iterable()
+ *
  * ```
  *
  * @typeparam T Type of the items of the produced iterable.
@@ -1265,18 +1281,68 @@ export function* generate<T>(generator: Function<number, T>, amount: number = In
  */
 export function* times(amount: number, start: number = 0, end: number = start + amount - 1): Iterable<number> {
     amount = Math.floor(Math.max(0, amount));
-    let step = amount > 1 ? (end - start) / (amount - 1) : 0;
+    const diff = end - start;
+    let step = amount !== Infinity  && amount > 1 ? (diff / (amount - 1)) : 0;
     if (!isFinite(step)) {
         step = NaN;
     }
-    const half = Math.floor(amount / 2);
+    const half = amount === 1 ? 1 : Math.floor(amount / 2);
     for (let i = 0; i < half; ++i) {
-        yield start + i * step;
+        yield start + (i === 0 ? 0 : i * step);
     }
     // This makes sure that the end is not missed
     // due to floating point errors.
     for (let i = amount - half - 1; i >= 0; --i) {
-        yield end - i * step;
+        yield end - (i === 0 ? 0 : i * step);
+    }
+}
+
+/**
+ * Creates an iterable with numbers starting at the given
+ * value and separated from each other by the given step.
+ *
+ * ```javascript
+ * step(3) // => Iterable(0,1,2)
+ * step(3, 4) // => Iterable(4, 5, 6)
+ * step(3, 4, 8) // => Iterable(4, 12, 20)
+ * step(-3) // => Iterable()
+ * step(3, -4) // => Iterable(-4, -3, -2)
+ * step(3, 4, -2) // => Iterable(4, 2, 0)
+ * step(3, -4, -2) // => Iterable(-4, -6, -8)
+ * step(Infinity) // => Iterable(0, 1, 2, 3, ...)
+ * step(-Infinity) // => Iterable()
+ * step(Infinity, 5) // => Iterable(5, 6, 7, 8, ...)
+ * step(Infinity, 5, 2) // => Iterable(5, 7, 9, 11, ...)
+ * step(3, Infinity) // => Iterable(Infinity, Infinity, Infinity)
+ * step(4, 0, Infinity) // => Iterable(0, Infinity, Infinity, Infinity)
+ * step(4, Infinity, Infinity) // => Iterable(Infinity, Infinity, Infinity, Infinity)
+ * step(4, -Infinity, Infinity) // => Iterable(-Infinity, NaN, NaN, NaN)
+ * step(Infinity, 2, Infinity) // => Iterable(2, Infinity, Infinity, Infinity, ...)
+ * step(Infinity, Infinity, 2) // => Iterable(Infinity, Infinity, Infinity, Infinity, ...)
+ * step(Infinity, -Infinity, 2) // => Iterable(-Infinity, -Infinity, -Infinity, -Infinity, ...)
+ * step(Infinity, Infinity, Infinity) // => Iterable(Infinity, Infinity, Infinity, Infinity, ...)
+ * step(NaN) // => Iterable()
+ * step(5, NaN) // => Iterable(NaN, NaN, NaN, NaN, NaN)
+ * step(5, 1, NaN) // => Iterable(1, NaN, NaN, NaN, NaN)
+ * step(5, Infinity, NaN) // => Iterable(Infinity, NaN, NaN, NaN, NaN)
+ * step(5, -Infinity, NaN) // => Iterable(-Infinity, NaN, NaN, NaN, NaN)
+ * step(5, NaN, 2) // => Iterable(NaN, NaN, NaN, NaN, NaN)
+ * step(5, NaN, NaN) // => Iterable(NaN, NaN, NaN, NaN, NaN)
+ * step(NaN, NaN, NaN) // => Iterable()
+ * ```
+ *
+ * @typeparam T Type of the items of the produced iterable.
+ * @param amount Number of items to produce. Must not be negative.
+ * @param start Initial number, defaults to 0.
+ * @param step How far apart the individual items are, defaults to 1.
+ * @return Iterable with the configured numbers.
+ */
+export function* step(amount: number, start: number = 0, step: number = 1): Iterable<number> {
+    amount = Math.floor(Math.max(0, amount));
+    let x = start;
+    for (let i = 0; i < amount; ++i) {
+        yield x;
+        x += step;
     }
 }
 
