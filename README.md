@@ -51,6 +51,12 @@ Array.from(function*(data) {
 ## 0.1.2
 - The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.
 
+# Roadmap
+
+- IStream#rewind
+- IStream#consume
+- testing the API in practive, making it easier to use
+
 # Docs
 
 [All methods with documentation](https://blutorange.github.io/js-elbe/). The docs are can be viewed offline from the directory `docs`. Tests with more examples are in `test`.
