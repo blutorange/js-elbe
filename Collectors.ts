@@ -6,18 +6,7 @@ import {
     IStatistics,
     Predicate,
 } from "./Interfaces";
-
-function identity<T>(x: T): T {
-    return x;
-}
-
-function toNumber<T>(x: T): number {
-    return Number(x);
-}
-
-function takeFirst<T>(arg1: T, arg2: T): T {
-    return arg1;
-}
+import { identity, takeFirst, toNumber } from "./util";
 
 class StatisticsImpl implements IStatistics {
     private Count: number = 0;

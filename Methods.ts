@@ -1,3 +1,4 @@
+import { RBTree } from "bintrees";
 import { byKey, Comparator, natural } from "kagura";
 
 import { Collectors } from "./Collectors";
@@ -388,12 +389,6 @@ export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor: Function<T, a
     }
 }
 
-interface IUniqueEntry<T> {
-    i: number;
-    v: T;
-    u: boolean;
-}
-
 /**
  * Filters all elements that are considered equal according to
  * the given comparator. If two items are equal, the first one
@@ -414,57 +409,21 @@ interface IUniqueEntry<T> {
  * @return An iterable with all duplicates removed.
  */
 export function* unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T> {
-    // If no comparator was given, we can use a set as it uses === for comparison.
-    // Set guarantees iteration in insertion order.
-    if (comparator === undefined) {
-        for (const item of new Set(iterable)) {
-            yield item;
-        }
-        return;
-    }
-    // Sort the items, then check which are identical,
-    // then output in original order.
-    const items: IUniqueEntry<T>[] = [];
-    let i = 0;
-    // Safe original index and a flags whether the
-    // item appears in the output.
-    for (const item of iterable) {
-        items.push({
-            i: i++,
-            u: false,
-            v: item,
-        });
-    }
-    // Sort by the given comparator, now duplicates
-    // are next to each other.
-    // The iterations run in O(n) (I hope in JavaScript...),
-    // the sort in O(n*log(n)) (I hope in JavaScript).
-    const sorted = Array.from(items).sort((x, y) => comparator(x.v, y.v));
-    let previous: Maybe<IUniqueEntry<T>>;
-    for (const item of sorted) {
-        // If first item, always yield.
-        if (previous === undefined) {
-            item.u = true;
-            previous = item;
-        }
-        // Check if current item is equal to previous item.
-        else if (comparator(item.v, previous.v) !== 0) {
-            item.u = true;
-            previous = item;
-        }
-        // If equal, take the item with the lowest index.
-        // This makes sure we take the item that comes first,
-        // even if Array#sort is not stable.
-        else if (item.i < previous.i) {
-            previous.u = false;
-            item.u = true;
-            previous = item;
+    if (comparator !== undefined) {
+        const set = new RBTree(comparator);
+        for (const item of iterable) {
+            if (set.insert(item)) {
+                yield item;
+            }
         }
     }
-    // Iterate in original order and yield if unique.
-    for (const item of items) {
-        if (item.u) {
-            yield item.v;
+    else {
+        const set = new Set();
+        for (const item of iterable) {
+            if (!set.has(item)) {
+                set.add(item);
+                yield item;
+            }
         }
     }
 }
@@ -580,18 +539,23 @@ export function* visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
  */
 export function* skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iterable<T> {
     const it = iterable[Symbol.iterator]();
-    while (--toSkip >= 0 && !it.next().done) {/**/};
+    while (--toSkip >= 0 && !it.next().done) {/**/}
     for (let entry = it.next(); !entry.done; entry = it.next()) {
         yield entry.value;
     }
 }
 
 /**
- * Reverses the order of the items. Note that the items
- * need to be saved temporarily.
+ * Reverses the order of the items.
+ *
+ * Note that the items need to be saved temporarily, so that this
+ * does not work with unlimite streams, as the last item needs to
+ * be accesed first.
  *
  * ```javascript
  * reverse([1,2,3]) // => Iterable[3,2,1]
+ * reverse([]) // => Iterable[]
+ * reverse(factory.step(Infinity)) // hangs
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -843,7 +807,7 @@ export function consumeFirst<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>):
     const result = it.next();
     if (!result.done) {
         if (Array.isArray(sink)) {
-            sink.push(result.value)
+            sink.push(result.value);
         }
         else {
             sink(result.value);
@@ -851,7 +815,6 @@ export function consumeFirst<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>):
     }
     return wrapIterator(it);
 }
-
 
 /**
  * Converts each item to a promise and returns a promise
@@ -1366,7 +1329,7 @@ export function* fromObjectValues<T>(object: { [s: string]: T }): Iterable<T> {
  *
  * random(-1) // => Iterable[]
  *
- * limit(random(Infinity), 5) // => Iterable[5 random numbers] 
+ * limit(random(Infinity), 5) // => Iterable[5 random numbers]
  *
  * first(random(10)) // => 1 random number
  * ```
@@ -1382,7 +1345,7 @@ export function random(amount?: number): Iterable<number> {
  * Creates an iterable from the given iterable or iterator. If it is an
  * iterable, returns that iterable, otherwise create an iterabl reading
  * from the iterator.
- * 
+ *
  * ```javascript
  * fromIter([1,2,3]) // => Iterable[1,2,3]
  *

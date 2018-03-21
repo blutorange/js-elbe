@@ -142,6 +142,8 @@ export const hack: any[] = [];
             const u3 = {id: 3};
             const u33 = {id: 3};
             this.stream([], s => s.unique()).to.deep.equal([]);
+            this.stream(this.inf(), s => s.unique().limit(5)).to.deep.equal([0,1,2,3,4]);
+            this.stream(this.inf(), s => s.unique((lhs,rhs)=>rhs-lhs).limit(5)).to.deep.equal([0,1,2,3,4]);
             this.stream([1,2,2], s => s.unique()).to.deep.equal([1,2]);
             this.stream([1,2,2,3,2,3], s => s.unique()).to.deep.equal([1,2,3]);
             this.stream([u1,u2,u22,u3,u222,u33], s => s.unique((lhs, rhs) => lhs.id - rhs.id)).to.include(u1).and.include(u2).and.include(u3).and.not.include(u22).and.not.include(u222).and.not.include(u33);
@@ -507,8 +509,14 @@ export const hack: any[] = [];
 
         @test("should consume some items from the stream")
         public consume() {
-            this.action([1,2,3], s => {s.consume([]);s.consume([]);}).to.not.throw();
-            this.action([1,2,3], s => {s.first();s.consume([]);}).to.throw();
+            if (factory === TypesafeStreamFactory) {
+                this.action([1,2,3], s => {s.consume([]);s.consume([]);}).to.throw();
+                this.action([1,2,3], s => {s.first();s.consume([]);}).to.throw();
+            }
+            else {
+                this.action([1,2,3], s => {s.consume([]);s.consume([]);}).to.not.throw();
+                this.action([1,2,3], s => {s.first();s.consume([]);}).to.throw();
+            }
 
             const s = this.factory.stream;
             let sink: number[] = [];

@@ -200,7 +200,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
 
     public splice(maxAmount?: number, offset?: number): T[] {
         this.checkOnly();
-        let result: T[] = [];
+        const result: T[] = [];
         this.iterable = consume(this.iterable, result, maxAmount, offset);
         return result;
     }
@@ -269,7 +269,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     protected checkOnly() {
         if (this.done) {
             throw new Error("Stream was already consumed.");
-        }        
+        }
     }
 
     protected check() {

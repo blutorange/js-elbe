@@ -39,6 +39,7 @@ export class InplaceStream extends AbstractStream<any> {
     }
 
     public consume(sink: any[] | Consumer<any>, maxAmount?: number, offset?: number): this {
+        this.checkOnly();
         this.iterable = consume(this.iterable, sink, maxAmount, offset);
         return this;
     }

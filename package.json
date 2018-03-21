@@ -6,7 +6,7 @@
   "types": "dist/node/main",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "npm run clean && npm run transpile && npm run test-run && npm run doc && npm run web",
+    "build": "npm run clean && npm run lint && npm run transpile && npm run test-run && npm run doc && npm run web",
     "clean": "rm -rf dist/* docs/*",
     "doc": "npm run doc-create && npm run doc-coverage",
     "doc-create": "npx typedoc --mode file --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
@@ -26,6 +26,7 @@
     "url": "git+https://github.com/blutorange/js-elbe.git"
   },
   "keywords": [
+    "generator",
     "iterable",
     "stream"
   ],
@@ -35,18 +36,20 @@
     "url": "https://github.com/blutorange/js-elbe/issues"
   },
   "dependencies": {
-    "kagura": "^1.0.0",
+    "@types/bintrees": "^1.0.2",
+    "bintrees": "^1.0.2",
+    "kagura": "^1.0.2",
     "tslib": "^1.9.0"
   },
   "homepage": "https://github.com/blutorange/js-elbe#readme",
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.39",
-    "@babel/core": "^7.0.0-beta.39",
-    "@babel/preset-env": "^7.0.0-beta.39",
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
     "@types/chai": "^4.1.2",
-    "babelify": "github:ylemkimon/babelify",
     "babel-minify": "^0.3.0",
-    "browserify": "^15.2.0",
+    "babelify": "github:ylemkimon/babelify",
+    "browserify": "^16.1.1",
     "chai": "^4.1.2",
     "core-js": "^2.5.3",
     "mocha": "^5.0.4",
@@ -55,7 +58,7 @@
     "regenerator-runtime": "^0.11.1",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",
-    "typedoc": "^0.10.0",
-    "typescript": "^2.8.0-dev.20180202"
+    "typedoc": "^0.11.1",
+    "typescript": "^2.8.0-rc"
   }
 }

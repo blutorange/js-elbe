@@ -167,7 +167,7 @@ export interface IStreamFactory {
      * a repeatable iterable and multiple iteration over it are
      * required, use {@link IStream#fork}. The iterable is queried
      * only on-demand, thus allowing for generators that produce an
-     * unlimited number of items. 
+     * unlimited number of items.
      *
      * @param iterable Source from which the items are taken.
      * @return A stream over the iterable's values.
@@ -208,7 +208,7 @@ export interface IStreamFactory {
      *
      * random(-1).toArray() // => []
      *
-     * random(Infinity).limit(5) // => [5 random numbers] 
+     * random(Infinity).limit(5) // => [5 random numbers]
      *
      * random(10).first() // => 1 random number
      *
@@ -949,8 +949,8 @@ export interface IStream<T> {
     /**
      * Extracts and return at most `maxAmount` items of this stream, starting
      * at the given start position. All items up to the starting point and the
-     * remaining items are left in this stream and can be read from it. 
-     * 
+     * remaining items are left in this stream and can be read from it.
+     *
      * ```javascript
      * const s = stream("foobar");
      * s.splice(3); // => ["f", "o", "o"]
@@ -1202,11 +1202,15 @@ export interface IStream<T> {
     reduceSame(reducer: BiFunction<T, T, T>): Maybe<T>;
 
     /**
-     * Reverses the order of the items. Note that the items
-     * need to be saved temporarily.
+     * Reverses the order of the items.
+     *
+     * Note that the items need to be saved temporarily, so that this
+     * does not work with unlimite streams, as the last item needs to
+     * be accesed first.
      *
      * ```javascript
      * stream([1,2,3]).reverse() // => Stream[3,2,1]
+     * stream(factory.step(Infinity)).reverse() // hangs
      * ```
      *
      * @return A stream with the items in reversed order.
@@ -1231,7 +1235,7 @@ export interface IStream<T> {
      * stream([1,2,3,4,5,6]).skip(3) // => Stream[4,5,6]
      * ```
      *
-     * @param toSkip How many items to skip. Default to `Infinity`. 
+     * @param toSkip How many items to skip. Default to `Infinity`.
      * @return A stream with the given number of items skipped.
      * @see {@link limit}
      */

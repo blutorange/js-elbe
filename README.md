@@ -1,7 +1,8 @@
-Iterators are great, and works well with Sets and Maps, eg. `(new Map()).entries()`.
-Until I realized you can't really do much with iterators, and having to do manual iterations
-all the time is a pain. Methods and their names inspired by JavaScript, Java stream API
-and ruby's enumerables. Minified, transpiled code without browser polyfills etc. is 20 KB.
+Iterators are great, and work well with Sets and Maps, eg. `(new Map()).entries()`.
+Until I realized you can't really do much with iterators, and having to do manual
+iterations all the time is a pain. Methods and their names inspired by JavaScript,
+Java stream API and ruby's enumerables. Minified, transpiled code without browser
+polyfills etc. is 20 KB, and around ~7 KB gzipped.
 
 Let's compare how parsing a set of JSON strings feels like with this library and vanilla JS:
 
@@ -30,8 +31,7 @@ Array.from(function*(data) {
 
 # Roadmap
 
-- IStream#rewind
-- IStream#consume
+- investigate a IStream#rewind method. IStream#fork already serves this purpose.
 - testing the API in practice, making it easier to use
 
 # Docs
@@ -222,6 +222,47 @@ s.join() // => "46"
 s.join() // Error: "Stream was already consumed."
 ```
 
+### Unlimited streams
+
+Stream can be of unlimited (`infinite`) length, one common example are generators
+such as random number generators:
+
+```javascript
+const { InplaceStreamFactory: factory } = require("elbe");
+const unlimitedStream = factory.generate(Math.random);
+```
+
+Methods operating on streams try to read only as many items from the stream
+as required. This means you can create chains of stream operations on unlimited
+streams and not have it hang, as long as the terminal operation does not request
+all items. For example:
+
+```javascript
+// Returns the first item
+factory.generate(Math.random)
+  .map(x=>10*x)
+  .filter(x=>x>5)
+  .first();
+
+// Returns the first 20 items.
+factory.generate(Math.random)
+  .map(x=>10*x)
+  .filter(x=>x>5)
+  .limit(20)
+  .toArray()
+
+// Returns the first 20 items and leaves the stream open so
+// that you can read more items from it later.
+factory.generate(Math.random)
+  .map(x=>10*x)
+  .filter(x=>x>5)
+  .splice(20)
+```
+
+A notable example that always needs to read the entire stream is `IStream#reverse`.
+Filtering the stream for uniqueness with `IStream#unique` and `IStream#uniqueBy`
+supports unlimited stream.s
+
 ### Note for typescript users
 
 Some methods from `IStream` have the special return type `this`. They DO NOT
@@ -317,18 +358,20 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 # Changelog
 
 ## 0.2.0
-- Fixed Collectors.averageGeometrically, which returned the wrong result.
+- Fixed ICollectors.averageGeometrically, which returned the wrong result.
 - Fixed a bug with ITry#convert and ITry#flatConvert when called on a successful ITry without a backup.
 - Fixed some typings.
-- Changed Collectors.summarize to return NaN for average, min, max, sum, variance. when there are no items. 
-- Changed Collectors.sum, Collectors.average, Collectors.averageGeometrically Collectors.averageHarmonically to return `NaN` when there are no items.
+- Changed the behaviour of IStream#limit and other methods expecting an integer argument to a more sane behaviour when a floating point number is given. 
+- Changed ICollectors.summarize to return NaN for average, min, max, sum, variance. when there are no items. 
+- Changed ICollectors.sum, Collectors.average, ICollectors.averageGeometrically ICollectors.averageHarmonically to return `NaN` when there are no items.
 - Changed the name of Collectors.factor to Collectors.multiply. This matches the naming
   convention of Collectors.sum.
-- Changed Collectors.toMap so that when two items have the same key, it takes the
+- Changed ICollectors.toMap so that when two items have the same key, it takes the
   first (not last) encountered item and adds it to the map for that key. This makes
   it consistent with IStream#unique that also takes the first value.
-- Changed IStream.cycle to buffer the items lazily. This makes it work with unlimited
-  if streams when limited afterwards.
+- Changed IStream#unique to process items only as requested. This makes it work with unlimited streams when limited afterwards. This is achieved with a [balanced binary tree](https://www.npmjs.com/package/bintrees) when a comparator is given, and a Set otherwise.
+- Changed IStream#cycle to buffer the items lazily. This makes it work with unlimited
+  streams when limited afterwards.
 - Added a method ICollectors.random. This is not cryptographically secure.
 - Added optionality to the error handler parameter of ITry#then, it is now optional.
 - Added optionality to the `skip` parameter of ITry#skip, it is now optional. If not
@@ -342,7 +385,7 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 - Improved performance of Collectors.groupDown and Collectors.partitionDown by
   not creating an unneccessary temporary array.
 - Documented Collectors.
-- Added second set of tests. Tests now cover the code.
+- Added second set of tests.
 
 ## 0.1.4
 - Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy

@@ -1,12 +1,9 @@
 import { Consumer, Function, IStream, IStreamFactory, ITry, ITryFactory, Predicate, Supplier } from "./Interfaces";
 import { TypesafeStreamFactory } from "./StreamFactory";
+import { appendCause } from "./util";
 
 function isTry<S>(result: S | ITry<S>): result is ITry<S> {
     return result instanceof BaseTryImpl;
-}
-
-function appendCause(error: Error, cause: Error) {
-    error.stack += "\nCaused by: " + cause.stack;
 }
 
 abstract class BaseTryImpl<T> {
