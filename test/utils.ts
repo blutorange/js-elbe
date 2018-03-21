@@ -1,8 +1,16 @@
 import { expect } from "chai";
 import { IStream, IStreamFactory } from "../Interfaces";
+import { Consumer, ITry } from "../Interfaces";
 
 export function Expect(stream: IStream<any>): Chai.Assertion {
     return expect(Array.from(stream));
+}
+
+export function expectTry<T>(_try: ITry<T>, success: boolean, handler?: Consumer<Chai.Assertion>): void {
+    expect(_try.success).to.equal(success);
+    if (handler !== undefined) {
+        _try.ifPresent(t => handler(expect(t)), e => handler(expect(e)));
+    }
 }
 
 export function toObj(map: Map<any, any>): {[s: string]: any} {

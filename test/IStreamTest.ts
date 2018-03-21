@@ -1,5 +1,4 @@
 /* tslint:disable */
-
 import { expect } from "chai";
 import { suite, test } from "mocha-typescript";
 
@@ -44,19 +43,34 @@ export const hack: any[] = [];
 
         @test("should cycle the given amount of times")
         public cycle() {
+            this.stream([], s => s.cycle(NaN))
+                .to.deep.equal([]);
+            this.stream(this.inf(), s => s.cycle(Infinity).limit(5))
+                .to.deep.equal([0,1,2,3,4]);
             this.stream([], s => s.cycle(3))
                 .to.deep.equal([]);
             this.stream([0, 1, 2], s => s.cycle().limit(10))
                 .to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2, 0]);
             this.stream([0, 1, 2], s => s.cycle(3))
                 .to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2]);
-            this.stream([0, 1, 2], s => s.cycle(-2))
+            this.stream([0, 1, 2], s => s.cycle(-9999999))
                 .to.deep.equal([]);
+        }
+
+        @test("should limit the stream to the given amount of items")
+        public limit() {
+            this.stream([1,2,3], s => s.limit(NaN)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.limit()).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.limit(0)).to.deep.equal([]);
+            this.stream([1,2,3], s => s.limit(-99999999)).to.deep.equal([]);
+            this.stream([1,2,3], s => s.limit(2)).to.deep.equal([1,2]);
         }
 
         @test("should skip the given amount of items")
         public skip() {
+            this.stream([1,2,3], s => s.skip(NaN)).to.deep.equal([1,2,3]);
             this.stream([], s => s.skip(0)).to.deep.equal([]);
+            this.stream([1,2,3], s => s.skip()).to.deep.equal([]);
             this.stream([1,2,3], s => s.skip(0)).to.deep.equal([1,2,3]);
             this.stream([1,2,3], s => s.skip(2)).to.deep.equal([3]);
             this.stream([1,2,3], s => s.skip(3)).to.deep.equal([]);
@@ -68,7 +82,7 @@ export const hack: any[] = [];
         @test("should concat the items to the stream")
         public concat() {
             this.stream([], s => s.concat([])).to.deep.equal([]);
-            this.stream([], s => s.concat([1,2])).to.deep.equal([1,2]);
+            this.stream<number, number>([], s => s.concat([1,2])).to.deep.equal([1,2]);
             this.stream([1,2], s => s.concat([])).to.deep.equal([1,2]);
             this.stream([1,2], s => s.concat([3,4])).to.deep.equal([1,2,3,4]);
             this.stream([1,2], s => s.concat([3,4],[5], [6,7,8,9,10])).to.deep.equal([1,2,3,4,5,6,7,8,9,10]);
@@ -195,6 +209,40 @@ export const hack: any[] = [];
             this.stream([[1,2], [3,4]], s => s.flatMap(x => x)).to.deep.equal([1,2,3,4]);
         }
 
+        @test("should convert the items to a JSON array")
+        public _toJSON() {
+            this.terminal([], s => s.toJSON()).to.deep.equal([]);
+            this.terminal([4,3,2], s => s.map(x => x*x).toJSON()).to.deep.equal([16,9,4]);
+            this.terminal("foo", s => s.toJSON()).to.deep.equal(["f", "o", "o"]);
+        }
+
+        @test("should report a concise string representation")
+        public _toString() {
+            this.terminal([], s => s.toString()).to.equal("Stream[done=false]");
+            this.terminal("foo", s => s.toString()).to.equal("Stream[done=false]");
+            this.terminal("foo", s => {s.end(); return s.toString()}).to.equal("Stream[done=true]");
+        }
+
+        @test("should try performing an operation on the stream")
+        public tryCompute() {
+            this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => s+x, 0)).orElse(-1)).to.equal(40);
+            this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => {throw new Error}, 0)).orElse(-1)).to.equal(-1);
+        }
+
+        @test("should try ending the stream")
+        public tryEnd() {
+            this.action([1,2,3], s => s.map(x => {throw new Error}).end()).to.throw();
+            this.action([1,2,3], s => s.map(x => {throw new Error})).to.not.throw();
+            this.action([1,2,3], s => s.map(x => {throw new Error}).tryEnd()).to.not.throw();
+        }
+
+        @test("should sum the items")
+        public sum() {
+            this.terminal([], s => s.sum()).to.be.NaN;
+            this.terminal([1,2,3], s => s.sum()).to.equal(6);
+            this.terminal(["foo", "foobar"], s => s.sum(x => x.length)).to.equal(9);
+        }
+
         @test("should reduce the items to one value")
         public reduce() {
             this.terminal([], s => s.reduce((s,x) => s, 2)).to.equal(2);
@@ -204,9 +252,17 @@ export const hack: any[] = [];
 
         @test("should reduce the items starting with the first item")
         public reduceSame() {
-            this.terminal([], s => s.reduceSame((s,x) => s + x)).to.be.undefined;
+            this.terminal<number, number|undefined>([], s => s.reduceSame((s,x) => s + x)).to.be.undefined;
             this.terminal([1,2,3], s => s.reduceSame((s,x) => s + x)).to.equal(6);
             this.terminal(factory.times(100, 1), s => s.reduceSame((s,x) => s + x)).to.equal(5050);
+        }
+
+        @test("should do a collect with the given supplier, accumulator and finisher")
+        public collectWith() {
+            const supplier = () => ({val: 9});
+            const accumulator = (x: {val: number}, y: number) => x.val += 2*y;
+            const finisher = (x: {val: number}) => x.val * 2;
+            this.terminal([1,2,3], s => s.collectWith(supplier, accumulator, finisher)).to.equal(42);
         }
 
         @test("should create a set of the items")
@@ -273,7 +329,7 @@ export const hack: any[] = [];
 
         @test("should report whether the stream contains the given item")
         public has() {
-            this.terminal([], s => s.has(0)).to.be.false;
+            this.terminal<number, boolean>([], s => s.has(0)).to.be.false;
             this.terminal([0,1,2,3], s => s.has(-1)).to.be.false;
             this.terminal([0,1,2,3], s => s.has(0)).to.be.true;
             this.terminal([0,1,2,3], s => s.has(1)).to.be.true;
@@ -378,6 +434,46 @@ export const hack: any[] = [];
             this.terminal([1,2,3,4], s => s.first()).to.equal(1);
             this.terminal(this.inf(), s => s.first()).to.equal(0);
             this.terminal([2,3,4], s => s.first()).to.equal(2);
+            const s = this.factory.stream("foobar");
+            s.first();
+            expect(() => s.first()).to.throw();
+        }
+
+        @test("should return the first few items of the stream")
+        public splice() {
+            this.terminal([1,2,3], s => s.splice(NaN)).to.deep.equal([]);
+            this.terminal("foo", s => s.splice(NaN)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(2, NaN)).to.deep.equal([]);
+            this.terminal("foo", s => s.splice(2, NaN)).to.deep.equal([]);
+            this.terminal([], s => s.splice(0)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(-99999999)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(1)).to.deep.equal([1]);
+            this.terminal([1,2,3], s => s.splice(2)).to.deep.equal([1,2]);
+            this.terminal(this.inf(), s => s.splice(3)).to.deep.equal([0,1,2]);
+            this.terminal([1,2,3], s => s.splice()).to.deep.equal([1,2,3]);
+            this.terminal([1,2,3], s => s.splice(9999999999999)).to.deep.equal([1,2,3]);
+
+            const s = this.factory.stream("foobar");
+            expect(s.splice(2)).to.deep.equal(["f", "o"]);
+            expect(s.splice(1)).to.deep.equal(["o"]);            
+            expect(s.join()).to.equal("bar");
+
+            const s2 = this.factory.stream("foobar");
+            expect(s2.splice(3,2)).to.deep.equal(["o", "b", "a"]);
+            expect(s2.join()).to.equal("for");
+        }
+
+        @test("should return next item in the stream, if it exits")
+        public shift() {
+            this.terminal([], s => s.shift()).to.be.undefined;
+            this.terminal([1,2,3,4], s => s.shift()).to.equal(1);
+            this.terminal(this.inf(), s => s.shift()).to.equal(0);
+            this.terminal([2,3,4], s => s.shift()).to.equal(2);
+            const s = this.factory.stream("foobar");
+            expect(s.shift()).to.equal("f");
+            expect(s.shift()).to.equal("o");
+            expect(s.shift()).to.equal("o");
+            expect(s.toArray()).to.equal(["b", "a", "r"]);
         }
 
         @test("should return the last item, if it exists")

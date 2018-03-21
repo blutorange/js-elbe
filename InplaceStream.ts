@@ -1,8 +1,29 @@
 import { Comparator } from "kagura";
 
 import { AbstractStream } from "./AbstractStream";
-import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Predicate } from "./Interfaces";
-import { chunk, concat, cycle, filter, flatMap, index, limit, map, promise, reverse, skip, slice, sort, tryMap, unique, uniqueBy, visit, zip, zipSame } from "./Methods";
+import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Maybe, Predicate } from "./Interfaces";
+import {
+    chunk,
+    concat,
+    consume,
+    cycle,
+    filter,
+    flatMap,
+    index,
+    limit,
+    map,
+    promise,
+    reverse,
+    skip,
+    slice,
+    sort,
+    tryMap,
+    unique,
+    uniqueBy,
+    visit,
+    zip,
+    zipSame,
+} from "./Methods";
 
 export class InplaceStream extends AbstractStream<any> {
     public ["constructor"]: (typeof InplaceStream);
@@ -14,6 +35,11 @@ export class InplaceStream extends AbstractStream<any> {
 
     public concat(...iterables: Iterable<any>[]): this {
         this.iterable = concat(this.iterable, ...iterables);
+        return this;
+    }
+
+    public consume(sink: any[] | Consumer<any>, maxAmount?: number, offset?: number): this {
+        this.iterable = consume(this.iterable, sink, maxAmount, offset);
         return this;
     }
 
@@ -37,7 +63,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public limit(limitTo: number): this {
+    public limit(limitTo?: number): this {
         this.iterable = limit(this.iterable, limitTo);
         return this;
     }
@@ -68,7 +94,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public skip(toSkip: number): this {
+    public skip(toSkip?: number): this {
         this.iterable = skip(this.iterable, toSkip);
         return this;
     }
@@ -98,12 +124,12 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public zip<S>(other: Iterable<S>): IStream<[any, any]> {
+    public zip<S>(other: Iterable<S>): IStream<[Maybe<any>, Maybe<any>]> {
         this.iterable = zip(this.iterable, other);
         return this;
     }
 
-    public zipSame(...others: Iterable<any>[]): IStream<any[]> {
+    public zipSame(...others: Iterable<any>[]): IStream<Maybe<any>[]> {
         this.iterable = zipSame(this.iterable, others);
         return this;
     }

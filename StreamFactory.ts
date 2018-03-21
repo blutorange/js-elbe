@@ -1,13 +1,13 @@
 import { InplaceStream } from "./InplaceStream";
 import { Function, IStream, IStreamFactory } from "./Interfaces";
-import { fromObject, fromObjectKeys, fromObjectValues, generate, iterate, repeat, step, times } from "./Methods";
+import { fromObject, fromObjectKeys, fromObjectValues, generate, iterate, random, repeat, step, times } from "./Methods";
 import { TypesafeStream } from "./TypesafeStream";
 
 function make<T>(inplace: boolean, iterable: Iterable<T>): IStream<T> {
     return inplace ? new InplaceStream(iterable) : new TypesafeStream(iterable);
 }
 
-function createFactory(inplace: boolean = true): IStreamFactory {
+function createFactory(inplace: boolean): IStreamFactory {
     return {
         stream<T>(iterable: Iterable<T>): IStream<T> {
             if (typeof iterable[Symbol.iterator] !== "function") {
@@ -18,6 +18,10 @@ function createFactory(inplace: boolean = true): IStreamFactory {
 
         times(amount: number, start?: number, end?: number): IStream<number> {
             return make(inplace, times(amount, start, end));
+        },
+
+        random(amount?: number): IStream<number> {
+            return make(inplace, random(amount));
         },
 
         generate<T>(generator: Function<number, T>, amount?: number): IStream<T> {

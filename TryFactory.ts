@@ -22,7 +22,7 @@ abstract class BaseTryImpl<T> {
         return factory.stream(this.iterate());
     }
 
-    public then<S>(success: Function<T, S | ITry<S>>, failure: Function<Error, S | ITry<S>>): ITry<S> {
+    public then<S>(success: Function<T, S | ITry<S>>, failure?: Function<Error, S | ITry<S>>): ITry<S> {
         return this
             .convert(success, failure)
             .flatConvert(v => isTry(v) ? v : TryFactory.success(v));
@@ -35,13 +35,6 @@ abstract class BaseTryImpl<T> {
     public toString(): string {
         return `Try[success=${this.success},${String(this.result)}]`;
     }
-
-    public toJSON(): { success: boolean, result: T | Error } {
-        return {
-            result: this.result,
-            success: this.success,
-        };
-    }
 }
 
 class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
@@ -52,12 +45,19 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         this.error = error;
     }
 
-    get success(): boolean {
+    public get success(): boolean {
         return false;
     }
 
     protected get result(): Error {
         return this.error;
+    }
+
+    public toJSON(): { success: boolean, result: T | string } {
+        return {
+            result: this.error.toString(),
+            success: this.success,
+        };
     }
 
     public convert<S>(success: Function<T, S>, backup?: Function<Error, S>): ITry<S> {
@@ -111,6 +111,10 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
     public * iterate(): Iterable<T | Error> {
         yield this.error;
     }
+
+    public unwrap(): T | Error {
+        return this.error;
+    }
 }
 
 class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
@@ -121,7 +125,7 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         this.value = value;
     }
 
-    get success(): boolean {
+    public get success(): boolean {
         return true;
     }
 
@@ -129,12 +133,21 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         return this.value;
     }
 
+    public toJSON(): { success: boolean, result: T | string } {
+        return {
+            result: this.value,
+            success: this.success,
+        };
+    }
+
     public convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITry<S> {
-        return TryFactory.of(() => operation(this.value)).orTry(backup);
+        const c = TryFactory.of(() => operation(this.value));
+        return backup !== undefined ? c.orTry(backup) : c;
     }
 
     public flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S> {
-        return TryFactory.flatOf(() => operation(this.value)).orFlatTry(backup);
+        const c = TryFactory.flatOf(() => operation(this.value));
+        return backup !== undefined ? c.orFlatTry(backup) : c;
     }
 
     public include(predicate: Predicate<T>): ITry<T> {
@@ -171,6 +184,10 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
 
     public * iterate(): Iterable<T | Error> {
         yield this.value;
+    }
+
+    public unwrap(): T | Error {
+        return this.value;
     }
 }
 

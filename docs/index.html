@@ -88,33 +88,17 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
     }
 }(input))
 </code></pre>
-				<h1 id="changelog">Changelog</h1>
-				<h2 id="0-1-4">0.1.4</h2>
+				<h1 id="roadmap">Roadmap</h1>
 				<ul>
-					<li>Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy</li>
-					<li>Fixed IStreamFactory#repeat(item, amount) to default to Infinity when the second argument is not given.</li>
-					<li>Fixed #IStream#times when called with arguments (Infinity, 0, 10) to return a stream of unlimited <code>0</code>s. `times(Infinity, 0, 10) means infinitely many items between 0 and 10, ie. separated by an infinitesimal step.</li>
-					<li>Fixed a bug where ITry#success returned true for an erronous result.</li>
-					<li>Fixed ITryStream#include that would not exclude the items that did not match the predicate.</li>
-					<li>Fixed IStream#nth(n) so that it immediately returns on numbers smaller than 0. If a non-integer is given, floors it.</li>
-					<li>Changed ITry#convert(converter, backup) and ITry#flatConvert so that it applies the backup in case the converter threw an error.</li>
-					<li>Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.</li>
-					<li>Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: <code>stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)</code>. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.</li>
-					<li>The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].</li>
-					<li>Added IStrem#none(Predicate), returning true iff no item matches the given predicate.</li>
-					<li>Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.</li>
-					<li>Added first set of tests.</li>
-				</ul>
-				<h2 id="0-1-3">0.1.3</h2>
-				<ul>
-					<li>The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.</li>
-				</ul>
-				<h2 id="0-1-2">0.1.2</h2>
-				<ul>
-					<li>The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.</li>
+					<li>IStream#rewind</li>
+					<li>IStream#consume</li>
+					<li>testing the API in practice, making it easier to use</li>
 				</ul>
 				<h1 id="docs">Docs</h1>
-				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>, see also the directory <code>docs</code>.</p>
+				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>. The entire
+				public API is expressed in terms of (typescript) interfaces, these are fully documented.</p>
+				<p>The docs can be viewed offline from the directory <code>docs</code>. Tests with more examples are in <code>test</code>. </p>
+				<p><a href="https://blutorange.github.io/js-elbe/coverage/">Coverage report.</a></p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 </code></pre>
 				<p>This returns an object with the following entries:</p>
@@ -231,7 +215,7 @@ s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</sp
 				<pre><code class="lang-javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).monkeypatch();
 
 [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>].stream().map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x + <span class="hljs-number">4</span>).toSet();
-<span class="hljs-comment">// =&gt; Set[2,4,6]</span>
+<span class="hljs-comment">// =&gt; Set[5,6,7]</span>
 
 <span class="hljs-string">"foobar"</span>.stream().filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-string">"d"</span>).toArray();
 <span class="hljs-comment">// =&gt; ["f", "o", "o", "r"]</span>
@@ -243,7 +227,7 @@ s.join() <span class="hljs-comment">// Error: "Stream was already consumed."</sp
 <span class="hljs-comment">// =&gt; Stream[ ["foo", 3], ["bar", 9] ]</span>
 
 ({<span class="hljs-attr">foo</span>: <span class="hljs-number">3</span>, <span class="hljs-attr">bar</span>: <span class="hljs-number">9</span>}).stream();
-<span class="hljs-comment">// =&gt; Stream[ ["foo", 3], ["bar", 9] ]</span>
+<span class="hljs-comment">// =&gt; Stream[ {key: "foo", value: 3}], {key: "bar", value: 9} ]</span>
 </code></pre>
 				<h1 id="catching-errors">Catching errors</h1>
 				<p>Use the <code>try</code> method to handle errors during stream operations.</p>
@@ -268,6 +252,53 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 				<p>To provide a default for failed operations:</p>
 				<pre><code class="lang-javascript">stream(json1, json2, json3).try(<span class="hljs-built_in">JSON</span>.parse).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.orElse(<span class="hljs-literal">undefined</span>)); <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
+				<h1 id="changelog">Changelog</h1>
+				<h2 id="0-2-0">0.2.0</h2>
+				<ul>
+					<li>Fixed Collectors.averageGeometrically, which returned the wrong result.</li>
+					<li>Fixed a bug with ITry#convert and ITry#flatConvert when called on a successful ITry without a backup.</li>
+					<li>Fixed some typings.</li>
+					<li>Changed Collectors.summarize to return NaN for average, min, max, sum, variance. when there are no items. </li>
+					<li>Changed Collectors.sum, Collectors.average, Collectors.averageGeometrically Collectors.averageHarmonically to return <code>NaN</code> when there are no items.</li>
+					<li>Changed the name of Collectors.factor to Collectors.multiply. This matches the naming
+					convention of Collectors.sum.</li>
+					<li>Changed Collectors.toMap so that when two items have the same key, it takes the
+						first (not last) encountered item and adds it to the map for that key. This makes
+					it consistent with IStream#unique that also takes the first value.</li>
+					<li>Added optionality to the error handler parameter of ITry#then, it is now optional.</li>
+					<li>Added an optional paramter to Collectors.multiply for specifying how to convert
+					the items into numbers.</li>
+					<li>Added the method Collectors.map(mapper, downstream).</li>
+					<li>Added an optional merge function to Collector.toMap and IStream#toMap.</li>
+					<li>Improved performance of Collectors.groupDown and Collectors.partitionDown by
+					not creating an unneccessary temporary array.</li>
+					<li>Documented Collectors.</li>
+					<li>Added second set of tests. Tests now cover the code.</li>
+				</ul>
+				<h2 id="0-1-4">0.1.4</h2>
+				<ul>
+					<li>Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy</li>
+					<li>Fixed IStreamFactory#repeat(item, amount) to default to Infinity when the second argument is not given.</li>
+					<li>Fixed #IStream#times when called with arguments (Infinity, 0, 10) to return a stream of unlimited <code>0</code>s. `times(Infinity, 0, 10) means infinitely many items between 0 and 10, ie. separated by an infinitesimal step.</li>
+					<li>Fixed a bug where ITry#success returned true for an erronous result.</li>
+					<li>Fixed ITryStream#include that would not exclude the items that did not match the predicate.</li>
+					<li>Fixed IStream#nth(n) so that it immediately returns on numbers smaller than 0. If a non-integer is given, floors it.</li>
+					<li>Changed ITry#convert(converter, backup) and ITry#flatConvert so that it applies the backup in case the converter threw an error.</li>
+					<li>Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.</li>
+					<li>Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: <code>stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)</code>. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.</li>
+					<li>The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].</li>
+					<li>Added IStrem#none(Predicate), returning true iff no item matches the given predicate.</li>
+					<li>Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.</li>
+					<li>Added first set of tests.</li>
+				</ul>
+				<h2 id="0-1-3">0.1.3</h2>
+				<ul>
+					<li>The IStream#index method now returns a stream of objects {index, value}. Previously it returned a stream of array [index, value]. Named keys are easier to work with than integer keys. Performance wise, arrays are only objects, and objects with fixed keys can be optimized.</li>
+				</ul>
+				<h2 id="0-1-2">0.1.2</h2>
+				<ul>
+					<li>The IStream#fork method now works with streams of unlimited length. This is achieved by querying and buffering the original stream only when needed.</li>
+				</ul>
 				<h1 id="build">Build</h1>
 				<p>Make sure you fetch all dependencies</p>
 				<pre><code class="lang-sh">npm install
@@ -321,6 +352,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 						<a href="interfaces/icollector.html" class="tsd-kind-icon">ICollector</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/icollectors.html" class="tsd-kind-icon">ICollectors</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/istatistics.html" class="tsd-kind-icon">IStatistics</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
@@ -351,6 +385,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 						<a href="globals.html#bipredicate" class="tsd-kind-icon">Bi<wbr>Predicate</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#binaryoperator" class="tsd-kind-icon">Binary<wbr>Operator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#consumer" class="tsd-kind-icon">Consumer</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -376,9 +413,6 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#stream" class="tsd-kind-icon">stream</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#identity" class="tsd-kind-icon">IDENTITY</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#appendcause" class="tsd-kind-icon">append<wbr>Cause</a>
@@ -532,6 +566,9 @@ result.true.forEach(<span class="hljs-function"><span class="hljs-params">value<
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sum" class="tsd-kind-icon">sum</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#takefirst" class="tsd-kind-icon">take<wbr>First</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#times" class="tsd-kind-icon">times</a>

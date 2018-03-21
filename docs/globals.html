@@ -83,6 +83,7 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/icollector.html" class="tsd-kind-icon">ICollector</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/icollectors.html" class="tsd-kind-icon">ICollectors</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/istatistics.html" class="tsd-kind-icon">IStatistics</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/istream.html" class="tsd-kind-icon">IStream</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/istreamfactory.html" class="tsd-kind-icon">IStream<wbr>Factory</a></li>
@@ -98,6 +99,7 @@
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#biconsumer" class="tsd-kind-icon">Bi<wbr>Consumer</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#bifunction" class="tsd-kind-icon">Bi<wbr>Function</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#bipredicate" class="tsd-kind-icon">Bi<wbr>Predicate</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#binaryoperator" class="tsd-kind-icon">Binary<wbr>Operator</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#consumer" class="tsd-kind-icon">Consumer</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#function" class="tsd-kind-icon">Function</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#maybe" class="tsd-kind-icon">Maybe</a></li>
@@ -117,7 +119,6 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#identity" class="tsd-kind-icon">IDENTITY</a></li>
 								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#appendcause" class="tsd-kind-icon">append<wbr>Cause</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#chunk" class="tsd-kind-icon">chunk</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#collect" class="tsd-kind-icon">collect</a></li>
@@ -169,6 +170,7 @@
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#sort" class="tsd-kind-icon">sort</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#step" class="tsd-kind-icon">step</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#sum" class="tsd-kind-icon">sum</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#takefirst" class="tsd-kind-icon">take<wbr>First</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#times" class="tsd-kind-icon">times</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#toarray" class="tsd-kind-icon">to<wbr>Array</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#tomap" class="tsd-kind-icon">to<wbr>Map</a></li>
@@ -202,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">Bi<wbr>Consumer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L72">Interfaces.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L61">Interfaces.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -241,7 +243,7 @@
 					<div class="tsd-signature tsd-kind-icon">Bi<wbr>Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L52">Interfaces.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L34">Interfaces.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -280,7 +282,7 @@
 					<div class="tsd-signature tsd-kind-icon">Bi<wbr>Predicate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L65">Interfaces.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L54">Interfaces.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -314,12 +316,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="binaryoperator" class="tsd-anchor"></a>
+					<h3>Binary<wbr>Operator</h3>
+					<div class="tsd-signature tsd-kind-icon">Binary<wbr>Operator<span class="tsd-signature-symbol">:</span> <a href="globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L41">Interfaces.ts:41</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An operator that takes two items of the same type and
+							computes an item of the same type.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="consumer" class="tsd-anchor"></a>
 					<h3>Consumer</h3>
 					<div class="tsd-signature tsd-kind-icon">Consumer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L44">Interfaces.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L26">Interfaces.ts:26</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -355,7 +373,7 @@
 					<div class="tsd-signature tsd-kind-icon">Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L26">Interfaces.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L8">Interfaces.ts:8</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -391,7 +409,7 @@
 					<div class="tsd-signature tsd-kind-icon">Maybe<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L32">Interfaces.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L14">Interfaces.ts:14</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -406,7 +424,7 @@
 					<div class="tsd-signature tsd-kind-icon">Predicate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L58">Interfaces.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L47">Interfaces.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -442,7 +460,7 @@
 					<div class="tsd-signature tsd-kind-icon">Supplier<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L38">Interfaces.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Interfaces.ts#L20">Interfaces.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -475,7 +493,7 @@
 					<div class="tsd-signature tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(true)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/StreamFactory.ts#L54">StreamFactory.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/StreamFactory.ts#L54">StreamFactory.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -485,7 +503,7 @@
 					<div class="tsd-signature tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(false)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/StreamFactory.ts#L53">StreamFactory.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/StreamFactory.ts#L53">StreamFactory.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -495,7 +513,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">hasOwnProperty</span><span class="tsd-signature-symbol"> =&nbsp;Object.prototype.hasOwnProperty</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L8">Methods.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L20">Methods.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -505,7 +523,7 @@
 					<div class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html#stream" class="tsd-signature-type">stream</a><span class="tsd-signature-symbol"> =&nbsp;InplaceStreamFactory.stream</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/StreamFactory.ts#L65">StreamFactory.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/StreamFactory.ts#L65">StreamFactory.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -521,29 +539,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
-					<a name="identity" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> IDENTITY</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">IDENTITY<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L10">Methods.ts:10</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>x: <span class="tsd-signature-type">any</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
 					<a name="appendcause" class="tsd-anchor"></a>
 					<h3>append<wbr>Cause</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
@@ -553,7 +548,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L8">TryFactory.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L8">TryFactory.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -579,7 +574,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L69">Methods.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L83">Methods.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -635,7 +630,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1030">Methods.ts:1030</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1049">Methods.ts:1049</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -696,7 +691,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1051">Methods.ts:1051</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1070">Methods.ts:1070</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -767,7 +762,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L590">Methods.ts:590</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L609">Methods.ts:609</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -807,19 +802,19 @@
 					<a name="createfactory" class="tsd-anchor"></a>
 					<h3>create<wbr>Factory</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Factory<span class="tsd-signature-symbol">(</span>inplace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Factory<span class="tsd-signature-symbol">(</span>inplace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/StreamFactory.ts#L10">StreamFactory.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/StreamFactory.ts#L10">StreamFactory.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> inplace: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5>inplace: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a></h4>
@@ -836,7 +831,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L503">Methods.ts:503</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L522">Methods.ts:522</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -886,7 +881,7 @@ limit(cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L938">Methods.ts:938</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L957">Methods.ts:957</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -929,7 +924,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L678">Methods.ts:678</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L697">Methods.ts:697</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -978,7 +973,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L200">Methods.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L214">Methods.ts:214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1022,13 +1017,13 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">find&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, predicate<span class="tsd-signature-symbol">: </span><a href="globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">find&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, predicate<span class="tsd-signature-symbol">: </span><a href="globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L632">Methods.ts:632</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L651">Methods.ts:651</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1062,7 +1057,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item iff found, undefined otherwise.</p>
 						</li>
 					</ul>
@@ -1077,7 +1072,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L655">Methods.ts:655</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L674">Methods.ts:674</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1121,13 +1116,13 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 					<a name="first" class="tsd-anchor"></a>
 					<h3>first</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">first&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">first&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L989">Methods.ts:989</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1008">Methods.ts:1008</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1156,10 +1151,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the first position, or undefined if empty.</p>
 						</li>
 					</ul>
@@ -1174,7 +1166,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L47">Methods.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L61">Methods.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1232,7 +1224,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1120">Methods.ts:1120</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1139">Methods.ts:1139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1300,7 +1292,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1182">Methods.ts:1182</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1209">Methods.ts:1209</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1350,7 +1342,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1202">Methods.ts:1202</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1229">Methods.ts:1229</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1391,7 +1383,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1223">Methods.ts:1223</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1250">Methods.ts:1250</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1441,7 +1433,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1244">Methods.ts:1244</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1271">Methods.ts:1271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1491,7 +1483,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L298">Methods.ts:298</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L317">Methods.ts:317</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1499,7 +1491,8 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 									<p>Splits the items into several groups, according to the given
 									classifier.</p>
 								</div>
-								<pre><code class="lang-javascript">group([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>], x =&gt; x.length) <span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
+								<pre><code class="lang-javascript">group([<span class="hljs-string">"a"</span>, <span class="hljs-string">"foo"</span>, <span class="hljs-string">"is"</span>, <span class="hljs-string">"some"</span>, <span class="hljs-string">"buzz"</span>], x =&gt; x.length)
+<span class="hljs-comment">// =&gt; Map [ 1 =&gt; ["a"], 2 =&gt; ["is"], 3 =&gt; "is", 4 =&gt; ["some", "buzz"] ]</span>
 </code></pre>
 								<dl class="tsd-comment-tags">
 									<dt>typearam</dt>
@@ -1549,7 +1542,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L738">Methods.ts:738</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L757">Methods.ts:757</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1591,13 +1584,13 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 					<a name="identity" class="tsd-anchor"></a>
 					<h3>identity</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">identity&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">identity&lt;T&gt;<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L4">Collectors.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L10">Collectors.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1606,25 +1599,13 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 									<h4>T</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>x: <span class="tsd-signature-type">T</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
-										</li>
-									</ul>
+								<li>
+									<h5>x: <span class="tsd-signature-type">T</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1638,7 +1619,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L461">Methods.ts:461</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L480">Methods.ts:480</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1681,7 +1662,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L4">TryFactory.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L4">TryFactory.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1710,7 +1691,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1384">Methods.ts:1384</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1411">Methods.ts:1411</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1760,13 +1741,13 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 					<a name="join" class="tsd-anchor"></a>
 					<h3>join</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">join&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">join&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L317">Methods.ts:317</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L336">Methods.ts:336</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1795,19 +1776,19 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> delimiter: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> delimiter: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>String inserted between the items.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>String prepended to the joined string.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>String appended to the joined string.</p>
 									</div>
@@ -1822,13 +1803,13 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 					<a name="last" class="tsd-anchor"></a>
 					<h3>last</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">last&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">last&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1008">Methods.ts:1008</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1027">Methods.ts:1027</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1857,10 +1838,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the last position, or undefined if empty.</p>
 						</li>
 					</ul>
@@ -1875,7 +1853,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L481">Methods.ts:481</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L500">Methods.ts:500</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1924,7 +1902,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/StreamFactory.ts#L6">StreamFactory.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/StreamFactory.ts#L6">StreamFactory.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1956,7 +1934,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L25">Methods.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L39">Methods.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2005,13 +1983,13 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 					<a name="max" class="tsd-anchor"></a>
 					<h3>max</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">max&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">max&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L844">Methods.ts:844</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L863">Methods.ts:863</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2047,10 +2025,7 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The largest item. If there are multiple largest items, returns the first. <code>undefined</code> iff the iterable is empty.</p>
 						</li>
 					</ul>
@@ -2059,13 +2034,13 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="maxby" class="tsd-anchor"></a>
 					<h3>max<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">max<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">max<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L795">Methods.ts:795</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L814">Methods.ts:814</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2100,10 +2075,7 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
@@ -2112,13 +2084,13 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="min" class="tsd-anchor"></a>
 					<h3>min</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">min&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">min&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L813">Methods.ts:813</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L832">Methods.ts:832</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2154,10 +2126,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The smallest item. If there are multiple smallest items, returns the first.  <code>undefined</code> iff the iterable is empty.</p>
 						</li>
 					</ul>
@@ -2166,13 +2135,13 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="minby" class="tsd-anchor"></a>
 					<h3>min<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">min<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">min<wbr>By&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, sortKey<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L778">Methods.ts:778</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L797">Methods.ts:797</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2207,10 +2176,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The smallest item, or <code>undefined</code> iff there are no items.</p>
 						</li>
 					</ul>
@@ -2225,7 +2191,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/monkeypatch.ts#L31">monkeypatch.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/monkeypatch.ts#L31">monkeypatch.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2265,7 +2231,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L721">Methods.ts:721</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L740">Methods.ts:740</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2309,13 +2275,13 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 					<a name="nth" class="tsd-anchor"></a>
 					<h3>nth</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">nth&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">nth&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L962">Methods.ts:962</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L981">Methods.ts:981</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2355,10 +2321,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the given position, or undefined if not found.</p>
 						</li>
 					</ul>
@@ -2373,7 +2336,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L280">Methods.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L298">Methods.ts:298</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2381,7 +2344,11 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 									<p>Splits the items into two groups according to the given
 									discriminator.</p>
 								</div>
-								<pre><code class="lang-javascript">partition([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>], x =&gt; x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
+								<pre><code class="lang-javascript">partition([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>], x =&gt; x &gt; <span class="hljs-number">0</span>)
+<span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
+
+partition([], x =&gt; x &gt; <span class="hljs-number">0</span>)
+<span class="hljs-comment">// =&gt; { false: [], true: []}</span>
 </code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2431,7 +2398,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/monkeypatch.ts#L6">monkeypatch.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/monkeypatch.ts#L6">monkeypatch.ts:6</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2522,7 +2489,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L761">Methods.ts:761</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L780">Methods.ts:780</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2583,7 +2550,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L875">Methods.ts:875</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L894">Methods.ts:894</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2638,13 +2605,13 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 					<a name="reducesame" class="tsd-anchor"></a>
 					<h3>reduce<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, reducer<span class="tsd-signature-symbol">: </span><a href="globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, reducer<span class="tsd-signature-symbol">: </span><a href="globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L895">Methods.ts:895</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L914">Methods.ts:914</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2679,7 +2646,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The reduced value, or undefined iff the iterable is empty.</p>
 						</li>
 					</ul>
@@ -2694,7 +2661,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1363">Methods.ts:1363</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1390">Methods.ts:1390</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2745,7 +2712,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L571">Methods.ts:571</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L590">Methods.ts:590</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2789,7 +2756,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L612">Methods.ts:612</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L631">Methods.ts:631</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2828,7 +2795,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L547">Methods.ts:547</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L566">Methods.ts:566</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2879,7 +2846,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L102">Methods.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L116">Methods.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2929,7 +2896,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L699">Methods.ts:699</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L718">Methods.ts:718</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2978,7 +2945,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L334">Methods.ts:334</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L353">Methods.ts:353</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3028,7 +2995,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1340">Methods.ts:1340</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1367">Methods.ts:1367</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3106,7 +3073,7 @@ step(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L923">Methods.ts:923</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L942">Methods.ts:942</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3143,6 +3110,38 @@ sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<a name="takefirst" class="tsd-anchor"></a>
+					<h3>take<wbr>First</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">take<wbr>First&lt;T&gt;<span class="tsd-signature-symbol">(</span>arg1<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, arg2<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L18">Collectors.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>arg1: <span class="tsd-signature-type">T</span></h5>
+								</li>
+								<li>
+									<h5>arg2: <span class="tsd-signature-type">T</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="times" class="tsd-anchor"></a>
 					<h3>times</h3>
@@ -3153,7 +3152,7 @@ sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1282">Methods.ts:1282</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1309">Methods.ts:1309</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3221,7 +3220,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1074">Methods.ts:1074</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1093">Methods.ts:1093</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3267,19 +3266,25 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 					<a name="tomap" class="tsd-anchor"></a>
 					<h3>to<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;T, K, V&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, keyMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;T, K, V&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, keyMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, merger<span class="tsd-signature-symbol">?: </span><a href="globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1165">Methods.ts:1165</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1192">Methods.ts:1192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a map from the items of the given iterable.</p>
+									<p>Creates a map from the items of the given iterable. The item&#39;s
+									key and value is extracted by the given key and value mapper.</p>
 								</div>
+								<p>When two items have the same key, the optional merge
+									function is called with the two items and the result
+									of the merge function is used as the value for that key.
+									If no merge function is given, the value of the item
+								encountered first is taken.</p>
 								<pre><code class="lang-javascript">toMap([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>], x =&gt; x, x =&gt; x.length)
 <span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 3 ]</span>
 </code></pre>
@@ -3325,6 +3330,12 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 										<p>Transforms an item into the value used for the corresponding key.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> merger: <a href="globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A merge function called when two items map to the same key and returns the merged value.  Called with two items having the same key, the first argument is the item encountered first in the stream.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A map with all the mapped key-value-pairs of the items.</p>
@@ -3335,13 +3346,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 					<a name="tonumber" class="tsd-anchor"></a>
 					<h3>to<wbr>Number</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Number&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Number&lt;T&gt;<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L8">Collectors.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L14">Collectors.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3350,25 +3361,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 									<h4>T</h4>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
-								<li class="tsd-parameter-siganture">
-									<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-									</ul>
-									<ul class="tsd-descriptions">
-										<li class="tsd-description">
-											<h4 class="tsd-parameters-title">Parameters</h4>
-											<ul class="tsd-parameters">
-												<li>
-													<h5>x: <span class="tsd-signature-type">T</span></h5>
-												</li>
-											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-										</li>
-									</ul>
+								<li>
+									<h5>x: <span class="tsd-signature-type">T</span></h5>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -3382,7 +3381,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L1142">Methods.ts:1142</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L1161">Methods.ts:1161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3434,7 +3433,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L247">Methods.ts:247</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L261">Methods.ts:261</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3493,7 +3492,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L263">Methods.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L277">Methods.ts:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3537,7 +3536,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L224">Methods.ts:224</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L238">Methods.ts:238</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3595,7 +3594,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L394">Methods.ts:394</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L413">Methods.ts:413</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3651,7 +3650,7 @@ unique({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L357">Methods.ts:357</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L376">Methods.ts:376</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3705,7 +3704,7 @@ distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L528">Methods.ts:528</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L547">Methods.ts:547</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3751,13 +3750,13 @@ distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},
 					<a name="zip" class="tsd-anchor"></a>
 					<h3>zip</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">zip&lt;T, S&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip&lt;T, S&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L141">Methods.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L155">Methods.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3803,7 +3802,7 @@ toMap(zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"ba
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>An iterable over all the produced pairs.</p>
 						</li>
 					</ul>
@@ -3812,13 +3811,13 @@ toMap(zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"ba
 					<a name="zipsame" class="tsd-anchor"></a>
 					<h3>zip<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Methods.ts#L175">Methods.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Methods.ts#L189">Methods.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3862,7 +3861,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><a href="globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>An iterable over al the produced tuples.</p>
 						</li>
 					</ul>
@@ -3876,7 +3875,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">Collectors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L61">Collectors.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L85">Collectors.ts:85</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
@@ -3889,7 +3888,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L198">Collectors.ts:198</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L244">Collectors.ts:244</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3901,7 +3900,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
 									<li>
-										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber()</span></h5>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -3918,7 +3917,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L215">Collectors.ts:215</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L261">Collectors.ts:261</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3930,7 +3929,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
 									<li>
-										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber()</span></h5>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -3947,7 +3946,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L232">Collectors.ts:232</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L278">Collectors.ts:278</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3959,7 +3958,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
 									<li>
-										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber()</span></h5>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -3976,33 +3975,10 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L75">Collectors.ts:75</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L98">Collectors.ts:98</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
-						<a name="collectors.factor" class="tsd-anchor"></a>
-						<h3>factor</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
-							<li class="tsd-signature tsd-kind-icon">factor&lt;T&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L263">Collectors.ts:263</a></li>
-									</ul>
-								</aside>
-								<h4 class="tsd-type-parameters-title">Type parameters</h4>
-								<ul class="tsd-type-parameters">
-									<li>
-										<h4>T</h4>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -4016,7 +3992,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L115">Collectors.ts:115</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L145">Collectors.ts:145</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4042,13 +4018,13 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<a name="collectors.groupdown" class="tsd-anchor"></a>
 						<h3>group<wbr>Down</h3>
 						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
-							<li class="tsd-signature tsd-kind-icon">group<wbr>Down&lt;T, K, A, D&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, downstream<span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-signature tsd-kind-icon">group<wbr>Down&lt;T, K, A, D&gt;<span class="tsd-signature-symbol">(</span>classifier<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, downstream<span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 						</ul>
 						<ul class="tsd-descriptions">
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L134">Collectors.ts:134</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L164">Collectors.ts:164</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4075,7 +4051,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 										<h5>downstream: <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									</li>
 								</ul>
-								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">D</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -4083,13 +4059,13 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<a name="collectors.join" class="tsd-anchor"></a>
 						<h3>join</h3>
 						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
-							<li class="tsd-signature tsd-kind-icon">join&lt;T&gt;<span class="tsd-signature-symbol">(</span>delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-signature tsd-kind-icon">join&lt;T&gt;<span class="tsd-signature-symbol">(</span>delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 						</ul>
 						<ul class="tsd-descriptions">
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L159">Collectors.ts:159</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L204">Collectors.ts:204</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4104,13 +4080,83 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> delimiter: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
 									</li>
 									<li>
-										<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">string</span></h5>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 									<li>
-										<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">string</span></h5>
+										<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
+						<a name="collectors.map" class="tsd-anchor"></a>
+						<h3>map</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
+							<li class="tsd-signature tsd-kind-icon">map&lt;T, U, A, R&gt;<span class="tsd-signature-symbol">(</span>mapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span>, downstream<span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L190">Collectors.ts:190</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-type-parameters-title">Type parameters</h4>
+								<ul class="tsd-type-parameters">
+									<li>
+										<h4>T</h4>
+									</li>
+									<li>
+										<h4>U</h4>
+									</li>
+									<li>
+										<h4>A</h4>
+									</li>
+									<li>
+										<h4>R</h4>
+									</li>
+								</ul>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>mapper: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									</li>
+									<li>
+										<h5>downstream: <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">U</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
+						<a name="collectors.multiply" class="tsd-anchor"></a>
+						<h3>multiply</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
+							<li class="tsd-signature tsd-kind-icon">multiply&lt;T&gt;<span class="tsd-signature-symbol">(</span>converter<span class="tsd-signature-symbol">?: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L308">Collectors.ts:308</a></li>
+									</ul>
+								</aside>
+								<h4 class="tsd-type-parameters-title">Type parameters</h4>
+								<ul class="tsd-type-parameters">
+									<li>
+										<h4>T</h4>
+									</li>
+								</ul>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -4124,7 +4170,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L279">Collectors.ts:279</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L325">Collectors.ts:325</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4153,7 +4199,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L299">Collectors.ts:299</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L345">Collectors.ts:345</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4191,7 +4237,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L182">Collectors.ts:182</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L227">Collectors.ts:227</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4203,7 +4249,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
 									<li>
-										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber()</span></h5>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -4220,7 +4266,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L249">Collectors.ts:249</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L295">Collectors.ts:295</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4232,7 +4278,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 								<h4 class="tsd-parameters-title">Parameters</h4>
 								<ul class="tsd-parameters">
 									<li>
-										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber()</span></h5>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> converter: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;toNumber</span></h5>
 									</li>
 								</ul>
 								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><a href="interfaces/istatistics.html" class="tsd-signature-type">IStatistics</a><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -4249,7 +4295,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L63">Collectors.ts:63</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L86">Collectors.ts:86</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4266,13 +4312,13 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<a name="collectors.tomap" class="tsd-anchor"></a>
 						<h3>to<wbr>Map</h3>
 						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
-							<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;T, K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;T, K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, merger<span class="tsd-signature-symbol">?: </span><a href="globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 						</ul>
 						<ul class="tsd-descriptions">
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L103">Collectors.ts:103</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L126">Collectors.ts:126</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4295,8 +4341,11 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 									<li>
 										<h5>valueMapper: <a href="globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									</li>
+									<li>
+										<h5><span class="tsd-flag ts-flagDefault value">Default value</span> merger: <a href="globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;takeFirst</span></h5>
+									</li>
 								</ul>
-								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+								<h4 class="tsd-returns-title">Returns <a href="interfaces/icollector.html" class="tsd-signature-type">ICollector</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							</li>
 						</ul>
 					</section>
@@ -4310,7 +4359,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Collectors.ts#L91">Collectors.ts:91</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/Collectors.ts#L114">Collectors.ts:114</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4330,7 +4379,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">Try<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L177">TryFactory.ts:177</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L194">TryFactory.ts:194</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal tsd-has-type-parameter">
@@ -4343,7 +4392,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L182">TryFactory.ts:182</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L199">TryFactory.ts:199</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4375,7 +4424,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L199">TryFactory.ts:199</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L216">TryFactory.ts:216</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4407,7 +4456,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L190">TryFactory.ts:190</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L207">TryFactory.ts:207</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4439,7 +4488,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TryFactory.ts#L178">TryFactory.ts:178</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/8a36ad7/TryFactory.ts#L195">TryFactory.ts:195</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4502,6 +4551,9 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<a href="interfaces/icollector.html" class="tsd-kind-icon">ICollector</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/icollectors.html" class="tsd-kind-icon">ICollectors</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/istatistics.html" class="tsd-kind-icon">IStatistics</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
@@ -4532,6 +4584,9 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<a href="globals.html#bipredicate" class="tsd-kind-icon">Bi<wbr>Predicate</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="globals.html#binaryoperator" class="tsd-kind-icon">Binary<wbr>Operator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#consumer" class="tsd-kind-icon">Consumer</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -4557,9 +4612,6 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#stream" class="tsd-kind-icon">stream</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#identity" class="tsd-kind-icon">IDENTITY</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#appendcause" class="tsd-kind-icon">append<wbr>Cause</a>
@@ -4713,6 +4765,9 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sum" class="tsd-kind-icon">sum</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#takefirst" class="tsd-kind-icon">take<wbr>First</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#times" class="tsd-kind-icon">times</a>

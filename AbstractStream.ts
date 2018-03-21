@@ -3,6 +3,7 @@ import { Comparator } from "kagura";
 import {
     BiConsumer,
     BiFunction,
+    BinaryOperator,
     BiPredicate,
     Consumer,
     Function,
@@ -10,6 +11,7 @@ import {
     IStream,
     ITry,
     ITryStream,
+    Maybe,
     Predicate,
     Supplier,
 } from "./Interfaces";
@@ -17,6 +19,8 @@ import {
 import {
     collect,
     collectWith,
+    consume,
+    consumeFirst,
     end,
     every,
     find,
@@ -82,7 +86,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return every(this.iterable, predicate);
     }
 
-    public find(predicate: BiPredicate<T, number>): T | undefined {
+    public find(predicate: BiPredicate<T, number>): Maybe<T> {
         this.check();
         return find(this.iterable, predicate);
     }
@@ -92,7 +96,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return findIndex(this.iterable, predicate);
     }
 
-    public first(): T | undefined {
+    public first(): Maybe<T> {
         this.check();
         return first(this.iterable);
     }
@@ -127,7 +131,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return join(this.iterable, delimiter, prefix, suffix);
     }
 
-    public last(): T | undefined {
+    public last(): Maybe<T> {
         this.check();
         return last(this.iterable);
     }
@@ -137,27 +141,27 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return none(this.iterable, predicate);
     }
 
-    public nth(n: number): T | undefined {
+    public nth(n: number): Maybe<T> {
         this.check();
         return nth(this.iterable, n);
     }
 
-    public max(comparator?: Comparator<T>): T | undefined {
+    public max(comparator?: Comparator<T>): Maybe<T> {
         this.check();
         return max(this.iterable, comparator);
     }
 
-    public maxBy<K = any>(sortKey: Function<T, K>): T | undefined {
+    public maxBy<K = any>(sortKey: Function<T, K>): Maybe<T> {
         this.check();
         return maxBy(this.iterable, sortKey);
     }
 
-    public min(comparator?: Comparator<T>): T | undefined {
+    public min(comparator?: Comparator<T>): Maybe<T> {
         this.check();
         return min(this.iterable, comparator);
     }
 
-    public minBy<K = any>(sortKey: Function<T, K>): T | undefined {
+    public minBy<K = any>(sortKey: Function<T, K>): Maybe<T> {
         this.check();
         return minBy(this.iterable, sortKey);
     }
@@ -172,7 +176,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return reduce(this.iterable, reducer, initialValue);
     }
 
-    public reduceSame(reducer: BiFunction<T, T, T>): T {
+    public reduceSame(reducer: BiFunction<T, T, T>): Maybe<T> {
         this.check();
         return reduceSame(this.iterable, reducer);
     }
@@ -182,9 +186,23 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return size(this.iterable);
     }
 
+    public shift(): Maybe<T> {
+        this.checkOnly();
+        let result: Maybe<T>;
+        this.iterable = consumeFirst(this.iterable, item => result = item);
+        return result;
+    }
+
     public some(predicate: Predicate<T>): boolean {
         this.check();
         return some(this.iterable, predicate);
+    }
+
+    public splice(maxAmount?: number, offset?: number): T[] {
+        this.checkOnly();
+        let result: T[] = [];
+        this.iterable = consume(this.iterable, result, maxAmount, offset);
+        return result;
     }
 
     public sum(converter?: Function<T, number>): number {
@@ -210,9 +228,9 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return `Stream[done=${this.done}]`;
     }
 
-    public toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V> {
+    public toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger?: BinaryOperator<V>): Map<K, V> {
         this.check();
-        return toMap(this.iterable, keyMapper, valueMapper);
+        return toMap(this.iterable, keyMapper, valueMapper, merger);
     }
 
     public tryCompute<S>(operation: Function<IStream<T>, S>): ITry<S> {
@@ -227,6 +245,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
 
     public abstract chunk<K = any>(classifier: BiFunction<T, number, K>): IStream<T[]>;
     public abstract concat(...iterables: Iterable<T>[]): this;
+    public abstract consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this;
     public abstract cycle(count?: number): this;
     public abstract flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     public abstract filter(predicate: Predicate<T>): this;
@@ -242,16 +261,21 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract unique(comparator?: Comparator<T>): this;
     public abstract uniqueBy(keyExtractor?: Function<T, any>): this;
     public abstract visit(consumer: Consumer<T>): this;
-    public abstract zip<S>(other: Iterable<S>): IStream<[T, S]>;
-    public abstract zipSame(...others: Iterable<T>[]): IStream<T[]>;
+    public abstract zip<S>(other: Iterable<S>): IStream<[Maybe<T>, Maybe<S>]>;
+    public abstract zipSame(...others: Iterable<T>[]): IStream<Maybe<T>[]>;
 
     protected abstract clone(iterable: Iterable<T>): this;
+
+    protected checkOnly() {
+        if (this.done) {
+            throw new Error("Stream was already consumed.");
+        }        
+    }
 
     protected check() {
         if (this.done) {
             throw new Error("Stream was already consumed.");
         }
-
         this.done = true;
     }
 }

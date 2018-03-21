@@ -1,20 +1,30 @@
-import { Function, ICollector, IStatistics, Predicate } from "./Interfaces";
-import { collect } from "./Methods";
+import {
+    BinaryOperator,
+    Function,
+    ICollector,
+    ICollectors,
+    IStatistics,
+    Predicate,
+} from "./Interfaces";
 
-function identity<T>(): (x: T) => T {
-    return x => x;
+function identity<T>(x: T): T {
+    return x;
 }
 
-function toNumber<T>(): (x: T) => number {
-    return x => Number(x);
+function toNumber<T>(x: T): number {
+    return Number(x);
+}
+
+function takeFirst<T>(arg1: T, arg2: T): T {
+    return arg1;
 }
 
 class StatisticsImpl implements IStatistics {
     private Count: number = 0;
     private Sum: number = 0;
     private Sum2: number = 0;
-    private Min: number = undefined;
-    private Max: number = undefined;
+    private Min: number = NaN;
+    private Max: number = NaN;
 
     public accept(value: number) {
         this.Sum += value;
@@ -29,37 +39,50 @@ class StatisticsImpl implements IStatistics {
         this.Count += 1;
     }
 
-    get average(): number {
-        return this.Count > 0 ? this.Sum / this.Count : 0;
+    public get average(): number {
+        return this.Count > 0 ? this.Sum / this.Count : NaN;
     }
 
-    get count(): number {
+    public get count(): number {
         return this.Count;
     }
 
-    get max(): number {
+    public get max(): number {
         return this.Max;
     }
 
-    get min(): number {
+    public get min(): number {
         return this.Min;
     }
 
-    get sum(): number {
+    public get sum(): number {
+        if (this.Count === 0) {
+            return NaN;
+        }
         return this.Sum;
     }
 
-    get variance(): number {
+    public get variance(): number {
         if (this.Count === 0) {
-            return Infinity;
+            return NaN;
         }
         const average = this.average;
         return this.Sum2 / this.Count - average * average;
     }
+
+    public toJSON(): {average: number, count: number, max: number, min: number, sum: number, variance: number} {
+        return {
+            average: this.average,
+            count: this.count,
+            max: this.max,
+            min: this.min,
+            sum: this.sum,
+            variance: this.variance,
+        };
+    }
 }
 
-export const Collectors = {
-
+export const Collectors: ICollectors = {
     toArray<T>(): ICollector<T, T[]> {
         return {
             accumulator(collected: T[], item: T): void {
@@ -68,7 +91,7 @@ export const Collectors = {
             supplier(): T[] {
                 return [];
             },
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
@@ -96,19 +119,26 @@ export const Collectors = {
             supplier(): Set<T> {
                 return new Set();
             },
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
-    toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): ICollector<T, Map<K, V>> {
+    toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger: BinaryOperator<V> = takeFirst): ICollector<T, Map<K, V>, Map<K, V>> {
         return {
             accumulator(collected: Map<K, V>, item: T): void {
-                collected.set(keyMapper(item), valueMapper(item));
+                const key = keyMapper(item);
+                const val = valueMapper(item);
+                if (collected.has(key)) {
+                    collected.set(key, merger(collected.get(key) as V, val));
+                }
+                else {
+                    collected.set(key, val);
+                }
             },
             supplier(): Map<K, V> {
                 return new Map();
             },
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
@@ -127,31 +157,46 @@ export const Collectors = {
             supplier(): Map<K, T[]> {
                 return new Map();
             },
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
-    groupDown<T, K, A, D>(classifier: Function<T, K>, downstream: ICollector<T, A, D>): ICollector<T, Map<K, T[]>, Map<K, D>> {
+    groupDown<T, K, A, D>(classifier: Function<T, K>, downstream: ICollector<T, A, D>): ICollector<T, Map<K, A>, Map<K, D>> {
         return {
-            accumulator(collected: Map<K, T[]>, item: T): void {
+            accumulator(collected: Map<K, A>, item: T): void {
                 const key = classifier(item);
-                const list = collected.get(key);
-                if (list === undefined) {
-                    collected.set(key, [item]);
+                if (collected.has(key)) {
+                    downstream.accumulator(collected.get(key) as A, item);
                 }
                 else {
-                    list.push(item);
+                    const a = downstream.supplier();
+                    collected.set(key, a);
+                    downstream.accumulator(a, item);
                 }
             },
-            supplier(): Map<K, T[]> {
+            supplier(): Map<K, A> {
                 return new Map();
             },
-            finisher(result: Map<K, T[]>): Map<K, D> {
+            finisher(result: Map<K, A>): Map<K, D> {
                 const x: Map<K, D> = new Map();
                 for (const [key, value] of result.entries()) {
-                    x.set(key, collect(value[Symbol.iterator](), downstream));
+                    x.set(key, downstream.finisher(value));
                 }
                 return x;
+            },
+        };
+    },
+
+    map<T, U, A, R>(mapper: Function<T, U>, downstream: ICollector<U, A, R>): ICollector<T, A, R> {
+        return {
+            accumulator(collected: A, item: T): void {
+                downstream.accumulator(collected, mapper(item));
+            },
+            supplier(): A {
+                return downstream.supplier();
+            },
+            finisher(result: A): R {
+                return downstream.finisher(result);
             },
         };
     },
@@ -179,23 +224,7 @@ export const Collectors = {
         };
     },
 
-    sum<T>(converter: Function<T, number> = toNumber()): ICollector<T, { sum: number }, number> {
-        return {
-            accumulator(collected: { sum: number }, item: T) {
-                collected.sum += converter(item);
-            },
-
-            supplier(): { sum: number } {
-                return { sum: 0 };
-            },
-
-            finisher(result: { sum: number }): number {
-                return result.sum;
-            },
-        };
-    },
-
-    average<T>(converter: Function<T, number> = toNumber()): ICollector<T, { sum: number, count: number }, number> {
+    sum<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
         return {
             accumulator(collected: { sum: number, count: number }, item: T) {
                 collected.sum += converter(item);
@@ -207,12 +236,29 @@ export const Collectors = {
             },
 
             finisher(result: { sum: number, count: number }): number {
-                return result.count > 0 ? result.sum / result.count : 0;
+                return result.count > 0  ? result.sum : NaN;
             },
         };
     },
 
-    averageGeometrically<T>(converter: Function<T, number> = toNumber()): ICollector<T, { product: number, count: number }, number> {
+    average<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
+        return {
+            accumulator(collected: { sum: number, count: number }, item: T) {
+                collected.sum += converter(item);
+                collected.count += 1;
+            },
+
+            supplier(): { sum: number, count: number } {
+                return { sum: 0, count: 0 };
+            },
+
+            finisher(result: { sum: number, count: number }): number {
+                return result.count > 0 ? result.sum / result.count : NaN;
+            },
+        };
+    },
+
+    averageGeometrically<T>(converter: Function<T, number> = toNumber): ICollector<T, { product: number, count: number }, number> {
         return {
             accumulator(collected: { product: number, count: number }, item: T) {
                 collected.product *= converter(item);
@@ -224,12 +270,12 @@ export const Collectors = {
             },
 
             finisher(result: { product: number, count: number }): number {
-                return result.count > 0 ? result.product / result.count : 0;
+                return result.count > 0 ? Math.pow(result.product, 1 / result.count) : NaN;
             },
         };
     },
 
-    averageHarmonically<T>(converter: Function<T, number> = toNumber()): ICollector<T, { sum: number, count: number }, number> {
+    averageHarmonically<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
         return {
             accumulator(collected: { sum: number, count: number }, item: T) {
                 collected.sum += 1.0 / converter(item);
@@ -241,12 +287,12 @@ export const Collectors = {
             },
 
             finisher(result: { sum: number, count: number }): number {
-                return result.count / result.sum;
+                return result.count > 0 ? result.count / result.sum : NaN;
             },
         };
     },
 
-    summarize<T>(converter: Function<T, number> = toNumber()): ICollector<T, any, IStatistics> {
+    summarize<T>(converter: Function<T, number> = toNumber): ICollector<T, any, IStatistics> {
         return {
             accumulator(collected: StatisticsImpl, item: T) {
                 collected.accept(converter(item));
@@ -255,23 +301,23 @@ export const Collectors = {
             supplier(): StatisticsImpl {
                 return new StatisticsImpl();
             },
-
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
-    factor<T>(): ICollector<T, { product: number }, number> {
+    multiply<T>(converter: Function<T, number> = toNumber): ICollector<T, { product: number, count: number }, number> {
         return {
-            accumulator(collected: { product: number }, item: T) {
-                collected.product *= Number(item);
+            accumulator(collected: { product: number, count: number }, item: T) {
+                collected.product *= converter(item);
+                collected.count += 1;
             },
 
-            supplier(): { product: number } {
-                return { product: 1 };
+            supplier(): { product: number, count: number } {
+                return { product: 1, count: 0 };
             },
 
-            finisher(result: { product: number }): number {
-                return result.product;
+            finisher(result: { product: number, count: number }): number {
+                return result.count > 0 ? result.product : NaN;
             },
         };
     },
@@ -292,30 +338,30 @@ export const Collectors = {
                     true: [],
                 };
             },
-            finisher: identity(),
+            finisher: identity,
         };
     },
 
-    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: ICollector<T, A, D>): ICollector<T, { false: T[], true: T[] }, { false: D, true: D }> {
+    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: ICollector<T, A, D>): ICollector<T, { false: A, true: A }, { false: D, true: D }> {
         return {
-            accumulator(collected: { false: T[], true: T[] }, item: T): void {
+            accumulator(collected: { false: A, true: A }, item: T): void {
                 if (predicate(item)) {
-                    collected.true.push(item);
+                    downstream.accumulator(collected.true, item);
                 }
                 else {
-                    collected.false.push(item);
+                    downstream.accumulator(collected.false, item);
                 }
             },
-            supplier(): { false: T[], true: T[] } {
+            supplier(): { false: A, true: A } {
                 return {
-                    false: [],
-                    true: [],
+                    false: downstream.supplier(),
+                    true: downstream.supplier(),
                 };
             },
-            finisher(result: { false: T[], true: T[] }): { false: D, true: D } {
+            finisher(result: { false: A, true: A }): { false: D, true: D } {
                 return {
-                    false: collect(result.false, downstream),
-                    true: collect(result.true, downstream),
+                    false: downstream.finisher(result.false),
+                    true: downstream.finisher(result.true),
                 };
             },
         };

@@ -32,11 +32,14 @@ Array.from(function*(data) {
 
 - IStream#rewind
 - IStream#consume
-- testing the API in practive, making it easier to use
+- testing the API in practice, making it easier to use
 
 # Docs
 
-[All methods with documentation](https://blutorange.github.io/js-elbe/). The docs are can be viewed offline from the directory `docs`. Tests with more examples are in `test`.
+[All methods with documentation](https://blutorange.github.io/js-elbe/). The entire
+public API is expressed in terms of (typescript) interfaces, these are fully documented.
+
+The docs can be viewed offline from the directory `docs`. Tests with more examples are in `test`. 
 
 [Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
 
@@ -62,11 +65,33 @@ You know the drill.
 npm install --save elbe
 ```
 
-Or use the standalone in `dist/elbe.js`. With node it simply exports itself, within a browser it registers globally as `window.Elbe`.
+Then load it
+
+```javascript
+const { stream, InplaceStreamFactory: factory } = require("elbe");
+// or
+import { stream, InplaceStreamFactory as factory } from "elbe";
+```
+
+Or use the standalone in `dist/elbe.js` that includes all required npm libraries and
+was transformed with babel. Within a browser it registers globally as `window.Elbe`.
 
 # Usage
 
-Generates a stream of 100 numbers between 0 and 2.
+You can create a stream either from an iterable source such as an array
+or a `Set`; or use one of the factory methods such as `times` or `random`.
+The created stream then provides several methods such as `map` or `collect`
+to operate on its items.
+
+Generate a stream of 100 numbers between 1 and 100 and sums them, as fast as Gauss.
+
+```javascript
+const factory = require("elbe").InplaceStreamFactory;
+factory.times(100,1,100).sum()
+// => 5050
+```
+
+Generate numbers between 1.4 and 1.5, and take the one whose square is closest to 2.
 
 ```javascript
 const factory = require("elbe").InplaceStreamFactory;
@@ -74,31 +99,34 @@ factory.times(1000,1.4,1.5).minBy(x => Math.abs(x * x - 2))
 // => 1.41421...
 ```
 
-Generates a stream from an array.
+Generate a stream from an array.
 
 ```javascript
 const { stream } = require("elbe");
 stream([1,2,3]).map(...).filter(...).limit(1).group(...);
 ```
 
-The following entries exist on the `lib` object when requiring the library:
+The following entries exist on the object when requiring the library:
 
 ```javascript
+const lib = require("elbe");
 lib = {
-    stream, // shortcut for InplaceStream.from
+    stream, // shortcut for InplaceStreamFactory.stream
     monkeyPatch, // function that patches some Object prototypes
     InplaceStreamFactory: { // see interface 'StreamFactory'
-      from,
+      stream,
       times,
+      generate,
       ...
     }
     TypesafeStreamFactory: { // see interface 'StreamFactory'
       from,
       times,
+      generate,
       ...
     },
     TryFactory, // see interface 'ITryFactory'
-    Collectors: { // all methods documented in 'Collectors'
+    Collectors: { // see interface 'ICollectors'
         join,
         group,
         ...
@@ -131,6 +159,14 @@ filter(iterable, x => x > 2); // => Iterable[4,6]
 collect(iterable, Collectors.join()); // => "4,6"
 ```
 
+All factory methods for creating streams are also available:
+
+```javascript
+const { Methods: {times} } = require("elbe");
+times(10).map(i => i + 1).toArray()
+// => [1,2,3,4,5,6,7,8,9,10]
+```
+
 ## Stream wrapper
 
 For easier chaining, there are also two wrapper classes
@@ -142,7 +178,7 @@ This is most likely irrelevant unless you are using TypeScript.
 ```javascript
 const { stream } = require("elbe");
 
-stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+stream([1,2,3]).map(x => 2*x).filter(x => x > 2).concat([7,9]).join(",");
 // => "4,6,7,9"
 ```
 
@@ -152,7 +188,7 @@ chaining for type safety. The overhead should not be large.
 ```javascript
 const stream = require("elbe").TypesafeStreamFactory.stream;
 
-stream([1,2,3]).map(x=>2*x).filter(x=>x>2).concat([7,9]).join(",");
+stream([1,2,3]).map(x => 2*x).filter(x=>x>2).concat([7,9]).join(",");
 // => "4,6,7,9"
 ```
 
@@ -186,6 +222,31 @@ s.join() // => "46"
 s.join() // Error: "Stream was already consumed."
 ```
 
+### Note for typescript users
+
+Some methods from `IStream` have the special return type `this`. They DO NOT
+return the same object; but rather `this` is used to indicate that the returned
+stream is of the same type as the stream on which the method was called. This allows
+the typescript compiler to infer that a subclass of `IStream` remains as such even
+when calling methods from the super type. To illustrate:
+
+```javascript
+// s is now of type IStream<number>
+s = stream([1,2,3])
+
+// s is now a ITryStream<number> with some additional methods
+s = s.try(/*something dangerous*/)
+
+// `limit` is a method from IStream<T>, and without the `this` return
+// type, s would be downgraded to a normal stream, losing all additional
+// methods from ITryStream<T>.
+//
+// s is still of type ITryStream<number>, but may be a different
+// instance than before. For this to work with the typescript compile,
+// the return type is required to be `this`.
+s = s.limit(2)
+```
+
 ## Monkey patching
 
 I would not recommend it, but you can monkey-patch a `stream` method to some objects.
@@ -215,10 +276,11 @@ new Map(["foo", 3], ["bar", 9]).stream();
 Use the `try` method to handle errors during stream operations.
 
 ```javascript
-stream(json1, json2, json3).try(JSON.parse);
+const { stream, TryFactory } = require("elbe");
+stream([json1, json2, json3]).try(JSON.parse);
 
-// same as the above
-stream(json1, json2, json3).map(x => lib.TryFactory.of(() => JSON.parse(x)))
+// The same effect could be achieved by mapping each item manually
+stream([json1, json2, json3]).map(x => lib.TryFactory.of(() => JSON.parse(x)))
 ```
 
 This returns a stream with `Try` objects encapsulating the error, if one occured.
@@ -228,28 +290,59 @@ To get the values of the successful operations:
 ```javascript
 // Logs errors to the console, removes them from the stream, and
 // returns successfully parsed JSON objects.
-stream(json1, json2, json3).try(JSON.parse).discardError().toArray()
+stream([json1, json2, json3]).try(JSON.parse).discardError().toArray()
 ```
 
 To get the values of the successful and failed operations:
 
 ```javascript
-const result = stream(json1, json2, json3).try(JSON.parse).partition(x => x.success);
+const result = stream([json1, json2, json3]).try(JSON.parse).partition(x => x.success);
+// do something with the errors
+result.false.forEach(errorTry => { ... })
+// do something with the succesful values
+result.true.forEach(valueTry => { ... })
 
-result.false.forEach(error => { ... }) // do something with the errors
-
-result.true.forEach(value => { ... }) // do something with the succesful values
+// Alternatively, call an error/success handler
+const s = stream([json1, json2, json3]).try(JSON.parse)
+s.then(json => {/* success handler*/}, error => {/*error handler*/})
 ```
 
 To provide a default for failed operations:
 
 ```javascript
-stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JSON object or undefined.
+stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
+// JSON object or undefined.
 ```
 
 # Changelog
 
-## 0.2
+## 0.2.0
+- Fixed Collectors.averageGeometrically, which returned the wrong result.
+- Fixed a bug with ITry#convert and ITry#flatConvert when called on a successful ITry without a backup.
+- Fixed some typings.
+- Changed Collectors.summarize to return NaN for average, min, max, sum, variance. when there are no items. 
+- Changed Collectors.sum, Collectors.average, Collectors.averageGeometrically Collectors.averageHarmonically to return `NaN` when there are no items.
+- Changed the name of Collectors.factor to Collectors.multiply. This matches the naming
+  convention of Collectors.sum.
+- Changed Collectors.toMap so that when two items have the same key, it takes the
+  first (not last) encountered item and adds it to the map for that key. This makes
+  it consistent with IStream#unique that also takes the first value.
+- Changed IStream.cycle to buffer the items lazily. This makes it work with unlimited
+  if streams when limited afterwards.
+- Added a method ICollectors.random. This is not cryptographically secure.
+- Added optionality to the error handler parameter of ITry#then, it is now optional.
+- Added optionality to the `skip` parameter of ITry#skip, it is now optional. If not
+  given, skips no items.
+- Added optionality to the `limit` parameter of ITry#skip, it is now optional. If not 
+  given, apply no limit.
+- Added an optional paramter to Collectors.multiply for specifying how to convert
+  the items into numbers.
+- Added the method Collectors.map(mapper, downstream).
+- Added an optional merge function to Collector.toMap and IStream#toMap.
+- Improved performance of Collectors.groupDown and Collectors.partitionDown by
+  not creating an unneccessary temporary array.
+- Documented Collectors.
+- Added second set of tests. Tests now cover the code.
 
 ## 0.1.4
 - Fixed typings for IStream#toMap and added type parameter to IStream#uniqueBy, IStream#minBy and IStream#maxBy
@@ -262,6 +355,9 @@ stream(json1, json2, json3).try(JSON.parse).map(x => x.orElse(undefined)); // JS
 - Changed IStream#max(comparator) and IStreamFactory#min(comparator) to make the comparator optional, default to the natural comparator.
 - Changed IStream#uniqueBy so that it consumes the iterable only on-demand. This allows it to work with infinite streams: `stream([1,2,3].cycle(Infinity)).uniqueBy().limit(2)`. Note that this still enters a never-ending loop when not called with a limit or a too-high limit, as it needs to keep scanning the stream for elements that are potentially new.
 - The IStreamFactory.fromObject now returns a stream of objects {key, value} instead of [key, value].
+- Added Methods.fromIter() that takes an iterable or an iterator and returns an iterable.
+- Added IStream.consume(sink, maxAmount, offset) that consumes the given amount of items, writes them to the sink and returns a stream over the remaining items.
+- Added IStream#shift and IStream#splice that return the first item or the first few items from the stream, but leave the stream open for further consumption of the remaining items. 
 - Added IStrem#none(Predicate), returning true iff no item matches the given predicate.
 - Added IStreamFactory#step(amount, start, step), which is similar to IStreamFactory#times, but allows specifying the step directly.
 - Added first set of tests.
