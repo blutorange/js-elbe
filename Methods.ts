@@ -103,6 +103,11 @@ export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction
  *
  * ```javascript
  * slice([1,2,3,4,5], 2) // => Iterable[ [1,2], [3,4], [5] ]
+ * slice([1,2,3,4,5], 1) // => Iterable[ [1], [2], [3], [4], [5] ]
+ * slice([1,2,3,4,5], 0) // => Iterable[]
+ * slice([1,2,3,4,5], -1) // => Iterable[]
+ * slice([1,2,3,4,5], NaN) // => Iterable[]
+ * slice([1,2,3,4,5], Infinity) // => Iterable[[1,2,3,4,5]]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -111,7 +116,9 @@ export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction
  * @return An iterable over the sliced items.
  */
 export function* slice<T>(iterable: Iterable<T>, sliceSize: number): Iterable<T[]> {
-    sliceSize = Math.max(sliceSize, 1);
+    if (sliceSize < 1 || isNaN(sliceSize)) {
+        return;
+    }
     let count = sliceSize;
     let chunk = [];
     for (const item of iterable) {
@@ -370,7 +377,7 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iter
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>) = identity: Iterable<T> {
+export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor: Function<T, any> = identity): Iterable<T> {
     const set = new Set();
     for (const item of iterable) {
         const key = keyExtractor(item);
@@ -496,11 +503,15 @@ export function* index<T>(iterable: Iterable<T>): Iterable<{index: number, value
  * @return An iterable with at most the given number of items.
  */
 export function* limit<T>(iterable: Iterable<T>, limit: number = Infinity): Iterable<T> {
+    if (limit < 1) {
+        return;
+    }
+    limit -= 1;
     for (const item of iterable) {
+        yield item;
         if (--limit < 0) {
             break;
         }
-        yield item;
     }
 }
 
@@ -569,9 +580,7 @@ export function* visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
  */
 export function* skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iterable<T> {
     const it = iterable[Symbol.iterator]();
-    if (!isNaN(toSkip)) {
-        while (toSkip --> 0 && !it.next().done) {/**/};
-    }
+    while (--toSkip >= 0 && !it.next().done) {/**/};
     for (let entry = it.next(); !entry.done; entry = it.next()) {
         yield entry.value;
     }
@@ -785,20 +794,6 @@ export function has<T>(iterable: Iterable<T>, object: T): boolean {
  */
 export function consume<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>, maxAmount: number = Infinity, offset: number = 0): Iterable<T> {
     if (maxAmount < 1 || isNaN(maxAmount) || isNaN(offset)) {
-        return iterable;
-    }
-
-    // optimize if iterable is array
-    if (Array.isArray(iterable)) {
-        const result = iterable.splice(offset, maxAmount);
-        if (Array.isArray(sink)) {
-            for (let i = 0, j = result.length; i < j; ++i) {
-                sink.push(result[i]);
-            }
-        }
-        else {
-            result.forEach(sink);
-        }
         return iterable;
     }
 
@@ -1079,16 +1074,15 @@ export function end<T>(iterable: Iterable<T>): void {
  * @return The item at the given position, or undefined if not found.
  */
 export function nth<T>(iterable: Iterable<T>, n: number): Maybe<T> {
-    let index = 0;
-    if (n < 0) {
+    if (n < 0 || isNaN(n)) {
         return undefined;
     }
-    n = Math.floor(n);
+    n -= 1;
     for (const item of iterable) {
-        if (index >= n) {
+        if (n < 0) {
             return item;
         }
-        index += 1;
+        n -= 1;
     }
     return undefined;
 }
@@ -1411,8 +1405,12 @@ export function fromIter<T>(iterableOrIterator: Iterable<T> | Iterator<T>): Iter
  * Creates an iterable with the items provided by the given generator.
  *
  * ```javascript
- * generate(index => index)
- * // => Iterable(0,1,2,3,4,...)
+ * generate(index => index, 2) // => Iterable[0,1,2]
+ * generate(index => index, 0) // => Iterable[]
+ * generate(index => index) // => Iterable[0,1,2,3,4,...]
+ * generate(index => index, Infinity) // => Iterable[0,1,2,3,4,...]
+ * generate(index => index, -Infinity) // => Iterable[]
+ * generate(index => index, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the generated items.
@@ -1424,8 +1422,9 @@ export function* generate<T>(generator: Function<number, T>, amount: number = In
     if (amount < 1 || isNaN(amount)) {
         return;
     }
-    for (let i = 0; i < amount; ++i) {
-        yield generator(i);
+    let i = 0;
+    while (--amount >= 0) {
+        yield generator(i++);
     }
 }
 
@@ -1534,6 +1533,11 @@ export function* step(amount: number, start: number = 0, step: number = 1): Iter
  * ```javascript
  * repeat(0, 9)
  * // => Iterable[0,0,0,0,0,0,0,0,0]
+ *
+ * repeat(0, 0) // => Iterable[]
+ * repeat(0, -Infinity) // => Iterable[]
+ * repeat(0, Infinity) // => Iterable[0,0,0,...]
+ * repeat(0, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the items of the produced iterable.
@@ -1545,7 +1549,7 @@ export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
     if (amount < 1 || isNaN(amount)) {
         return;
     }
-    for (let i = 0; i < amount; ++i) {
+    while (--amount >= 0) {
         yield item;
     }
 }
@@ -1556,6 +1560,12 @@ export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
  * ```javascript
  * iterate(42, x => (0x19660D * x + 0x3C6EF35F) % 0x100000000)
  * // Random number generator, linear congruential generator from "Numerical Recipes".
+ *
+ * iterate(2, x => 2*x, 3) // => Iterable[2,4,8]
+ * iterate(2, x => 2*x, 0) // => Iterable[]
+ * iterate(2, x => 2*x, Infinity) // => Iterable[2,4,8,16,...]
+ * iterate(2, x => 2*x, -Infinity) // => Iterable[]
+ * iterate(2, x => 2*x, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the items of the produced iterable.
@@ -1568,7 +1578,7 @@ export function* iterate<T>(seed: T, next: Function<T, T>, amount: number = Infi
     if (amount < 1 || isNaN(amount)) {
         return;
     }
-    for (let i = 0; i < amount; ++i) {
+    while ( --amount >= 0) {
         yield seed;
         seed = next(seed);
     }

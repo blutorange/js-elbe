@@ -178,8 +178,12 @@ export interface IStreamFactory {
      * Creates a stream with the items provided by the given generator.
      *
      * ```javascript
-     * generate(index => index)
-     * // => Stream[0,1,2,3,4,...]
+     * generate(index => index) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, 0) // => Stream[]
+     * generate(index => index) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, Infinity) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, -Infinity) // => Stream[]
+     * generate(index => index, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -221,6 +225,11 @@ export interface IStreamFactory {
      * ```javascript
      * iterate(42, x => (0x19660D * x + 0x3C6EF35F) % 0x100000000)
      * // Random number generator, linear congruential generator from "Numerical Recipes".
+     * iterate(2, x => 2*x, 3) // => Stream[2,4,8]
+     * iterate(2, x => 2*x, 0) // => Stream[]
+     * iterate(2, x => 2*x, Infinity) // => Stream[2,4,8,16,...]
+     * iterate(2, x => 2*x, -Infinity) // => Stream[]
+     * iterate(2, x => 2*x, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -238,6 +247,11 @@ export interface IStreamFactory {
      * ```javascript
      * repeat(0, 9)
      * // => Stream[0,0,0,0,0,0,0,0,0]
+     *
+     * repeat(0, 0) // => Stream[]
+     * repeat(0, -Infinity) // => Stream[]
+     * repeat(0, Infinity) // => Stream[0,0,0,...]
+     * repeat(0, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -1228,6 +1242,10 @@ export interface IStream<T> {
      *
      * ```javascript
      * stream([1,2,3,4,5]).slice(2) // => Stream[ [1,2], [3,4], [5] ]
+     * stream([1,2,3,4,5]).slice(1) // => Stream[ [1], [2], [3], [4], [5] ]
+     * stream([1,2,3,4,5]).slice(0) // => Stream[]
+     * stream([1,2,3,4,5]).slice(NaN) // => Stream[]
+     * stream([1,2,3,4,5]).slice(Infinity) // => Stream[[1,2,3,4,5]]
      * ```
      *
      * @param sliceSize Size of the produced chunks.

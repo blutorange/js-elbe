@@ -15,16 +15,17 @@ export const hack: any[] = [];
 
         @test("should chunk items according to the classifier")
         public chunk() {
-            this.stream([], s => s.chunk(i => i))
-                .to.deep.equal([]);
-            this.stream([0, 1, 2, 3, 4], s => s.chunk(i => i & 10))
-                .to.deep.equal([[0, 1], [2, 3], [4]]);
-            this.stream([0, 1, 2, 3], s => s.chunk(i => i & 10))
-                .to.deep.equal([[0, 1], [2, 3]]);
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.chunk(x=>x);s.chunk(x=>x)}).to.throw();
+            this.stream([], s => s.chunk(i => i)).to.deep.equal([]);
+            this.stream([0, 1, 2, 3, 4], s => s.chunk(i => i & 10)).to.deep.equal([[0, 1], [2, 3], [4]]);
+            this.stream([0, 1, 2, 3], s => s.chunk(i => i & 10)).to.deep.equal([[0, 1], [2, 3]]);
         }
 
         @test("should add an index to the items")
         public index() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.index();s.index()}).to.throw();            
             this.stream([], s => s.index()).to.deep.equal([]);
             this.stream([4,5,6], s => s.index()).to.deep.equal([
                 {index: 0, value: 4},
@@ -35,52 +36,65 @@ export const hack: any[] = [];
 
         @test("should filter items with the given filter")
         public filter() {
-            this.stream([], s => s.filter(i => true))
-                .to.deep.equal([]);
-            this.stream([0, 1, 2, 3, 4, 5, 6], s => s.filter(i => i < 3))
-                .to.deep.equal([0, 1, 2]);
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.filter(x=>true);s.filter(x=>true)}).to.throw();
+            this.stream([], s => s.filter(i => true)).to.deep.equal([]);
+            this.stream([0, 1, 2, 3, 4, 5, 6], s => s.filter(i => i < 3)).to.deep.equal([0, 1, 2]);
         }
 
         @test("should cycle the given amount of times")
         public cycle() {
-            this.stream([], s => s.cycle(NaN))
-                .to.deep.equal([]);
-            this.stream(this.inf(), s => s.cycle(Infinity).limit(5))
-                .to.deep.equal([0,1,2,3,4]);
-            this.stream([], s => s.cycle(3))
-                .to.deep.equal([]);
-            this.stream([0, 1, 2], s => s.cycle().limit(10))
-                .to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2, 0]);
-            this.stream([0, 1, 2], s => s.cycle(3))
-                .to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2]);
-            this.stream([0, 1, 2], s => s.cycle(-9999999))
-                .to.deep.equal([]);
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.cycle(1);s.cycle(1)}).to.throw();
+            this.stream([], s => s.cycle(NaN)).to.deep.equal([]);
+            this.stream([0,1,2], s => s.cycle(NaN)).to.deep.equal([]);
+            this.stream(this.inf(), s => s.cycle(Infinity).limit(5)).to.deep.equal([0,1,2,3,4]);
+            this.stream(this.inf(), s => s.cycle(5).limit(5)).to.deep.equal([0,1,2,3,4]);
+            this.stream([], s => s.cycle(3)).to.deep.equal([]);
+            this.stream([0, 1, 2], s => s.cycle().limit(10)).to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2, 0]);
+            this.stream([0, 1, 2], s => s.cycle(3)).to.deep.equal([0, 1, 2, 0, 1, 2, 0, 1, 2]);
+            this.stream([0, 1, 2], s => s.cycle(-999999999)).to.deep.equal([]);
         }
 
         @test("should limit the stream to the given amount of items")
         public limit() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.limit(2);s.limit(2)}).to.throw();
             this.stream([1,2,3], s => s.limit(NaN)).to.deep.equal([1,2,3]);
-            this.stream([1,2,3], s => s.limit()).to.deep.equal([1,2,3]);
+            this.stream([1,2,3,4,5], s => s.limit()).to.deep.equal([1,2,3,4,5]);
             this.stream([1,2,3], s => s.limit(0)).to.deep.equal([]);
+            this.stream([1,2,3], s => s.limit(0.9)).to.deep.equal([]);
             this.stream([1,2,3], s => s.limit(-99999999)).to.deep.equal([]);
             this.stream([1,2,3], s => s.limit(2)).to.deep.equal([1,2]);
+            this.stream([1,2,3], s => s.limit(2.5)).to.deep.equal([1,2]);
+            this.stream(this.inf(), s => s.limit(2)).to.deep.equal([0,1]);
+            this.stream([1,2,3], s => s.limit(-Infinity)).to.deep.equal([]);
+            this.stream([1,2,3,4], s => s.limit(Infinity)).to.deep.equal([1,2, 3, 4]);
         }
 
         @test("should skip the given amount of items")
         public skip() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.skip(2);s.skip(2)}).to.throw();
             this.stream([1,2,3], s => s.skip(NaN)).to.deep.equal([1,2,3]);
             this.stream([], s => s.skip(0)).to.deep.equal([]);
             this.stream([1,2,3], s => s.skip()).to.deep.equal([]);
             this.stream([1,2,3], s => s.skip(0)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.skip(0.9)).to.deep.equal([1,2,3]);
             this.stream([1,2,3], s => s.skip(2)).to.deep.equal([3]);
+            this.stream([1,2,3], s => s.skip(2.9)).to.deep.equal([3]);
             this.stream([1,2,3], s => s.skip(3)).to.deep.equal([]);
             this.stream([1,2,3], s => s.skip(10)).to.deep.equal([]);
             this.stream([1,2,3], s => s.skip(-3)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.skip(-Infinity)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.skip(Infinity)).to.deep.equal([]);
             this.stream(this.inf(), s => s.skip(2).limit(3)).to.deep.equal([2,3,4]);
         }
 
         @test("should concat the items to the stream")
         public concat() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.concat([2]);s.concat([2])}).to.throw();
             this.stream([], s => s.concat([])).to.deep.equal([]);
             this.stream<number, number>([], s => s.concat([1,2])).to.deep.equal([1,2]);
             this.stream([1,2], s => s.concat([])).to.deep.equal([1,2]);
@@ -90,6 +104,8 @@ export const hack: any[] = [];
 
         @test("should reverse the items")
         public reverse() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.reverse();s.reverse()}).to.throw();
             this.stream([], s => s.reverse()).to.deep.equal([]);
             this.stream([1], s => s.reverse()).to.deep.equal([1]);
             this.stream([1,2,3], s => s.reverse()).to.deep.equal([3,2,1]);
@@ -117,6 +133,8 @@ export const hack: any[] = [];
 
         @test("should filter out duplicates")
         public unique() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.unique();s.unique()}).to.throw();
             const u1 = {id: 1};
             const u2 = {id: 2};
             const u22 = {id: 2};
@@ -132,6 +150,8 @@ export const hack: any[] = [];
 
         @test("should filter out duplicates by a given key")
         public uniqueBy() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.uniqueBy(x=>x);s.uniqueBy(x=>x)}).to.throw();
             const u1 = {id: 1};
             const u2 = {id: 2};
             const u22 = {id: 2};
@@ -148,6 +168,8 @@ export const hack: any[] = [];
 
         @test("should sort the items")
         public sort() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.sort();s.sort()}).to.throw();
             this.stream([], s => s.sort()).to.deep.equal([]);
             this.stream([1], s => s.sort()).to.deep.equal([1]);
             this.stream([3,1,2], s => s.sort()).to.deep.equal([1,2,3]);
@@ -159,20 +181,30 @@ export const hack: any[] = [];
 
         @test("should slice the items into slices of a given length")
         public slice() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.slice(1);s.slice(1)}).to.throw();
             this.stream([], s => s.slice(2)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(-1)).to.deep.equal([[1],[2],[3],[4],[5],[6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(0)).to.deep.equal([[1],[2],[3],[4],[5],[6]]);
+            this.stream([1,2,3,4,5,6], s => s.slice(-1)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.slice(NaN)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.slice(-Infinity)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.slice(0)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.slice(0.5)).to.deep.equal([]);
             this.stream([1,2,3,4,5,6], s => s.slice(1)).to.deep.equal([[1],[2],[3],[4],[5],[6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(2)).to.deep.equal([[1,2],[3,4],[5,6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(3)).to.deep.equal([[1,2,3],[4, 5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.slice(3.9)).to.deep.equal([[1,2,3],[4, 5,6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(4)).to.deep.equal([[1,2,3,4],[5,6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(5)).to.deep.equal([[1,2,3,4,5],[6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(6)).to.deep.equal([[1,2,3,4,5,6]]);
             this.stream([1,2,3,4,5,6], s => s.slice(7)).to.deep.equal([[1,2,3,4,5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.slice(Infinity)).to.deep.equal([[1,2,3,4,5,6]]);
+            this.stream(this.inf(), s => s.slice(2).limit(3)).to.deep.equal([[0,1],[2,3],[4,5]]);
         }
 
         @test("should zip the items with another iterable")
         public zip() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.zip([]);s.zip([])}).to.throw();
             this.stream([], s => s.zip([])).to.deep.equal([]);
             this.stream([1,2], s => s.zip([3,4])).to.deep.equal([[1,3], [2,4]]);
             this.stream([1,2], s => s.zip("xy")).to.deep.equal([[1,"x"], [2,"y"]]);
@@ -183,6 +215,8 @@ export const hack: any[] = [];
 
         @test("should zip the items with all iterables")
         public zipSame() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.zipSame([]);s.zipSame([])}).to.throw();
             this.stream([], s => s.zipSame([])).to.deep.equal([]);
             this.stream([1,2], s => s.zipSame([3,4])).to.deep.equal([[1,3], [2,4]]);
             this.stream([1,2], s => s.zipSame([3])).to.deep.equal([[1,3], [2,undefined]]);
@@ -196,6 +230,8 @@ export const hack: any[] = [];
 
         @test("should map the items")
         public map() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.map(x=>x);s.map(x=>x)}).to.throw();
             this.stream([], s => s.map(x => x)).to.deep.equal([]);
             this.stream([1,2,3], s => s.map(x => x)).to.deep.equal([1,2,3]);
             this.stream([1,2,3], s => s.map(x => x*x)).to.deep.equal([1,4,9]);
@@ -204,6 +240,8 @@ export const hack: any[] = [];
 
         @test("should flat map the items")
         public flatMap() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.flatMap(x=>[x]);s.flatMap(x=>[x])}).to.throw();
             this.stream([], s => s.flatMap(x => x)).to.deep.equal([]);
             this.stream(["foo", "bar"], s => s.flatMap(x => x)).to.deep.equal(["f", "o", "o", "b", "a", "r"]);
             this.stream([[1,2], [3,4]], s => s.flatMap(x => x)).to.deep.equal([1,2,3,4]);
@@ -211,6 +249,7 @@ export const hack: any[] = [];
 
         @test("should convert the items to a JSON array")
         public _toJSON() {
+            this.action([1,2,3], s => {s.toJSON();s.toJSON()}).to.throw();
             this.terminal([], s => s.toJSON()).to.deep.equal([]);
             this.terminal([4,3,2], s => s.map(x => x*x).toJSON()).to.deep.equal([16,9,4]);
             this.terminal("foo", s => s.toJSON()).to.deep.equal(["f", "o", "o"]);
@@ -225,12 +264,14 @@ export const hack: any[] = [];
 
         @test("should try performing an operation on the stream")
         public tryCompute() {
+            this.action([1,2,3], s => {s.tryCompute(m=>0);s.tryCompute(m=>0)}).to.throw();
             this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => s+x, 0)).orElse(-1)).to.equal(40);
             this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => {throw new Error}, 0)).orElse(-1)).to.equal(-1);
         }
 
         @test("should try ending the stream")
         public tryEnd() {
+            this.action([1,2,3], s => {s.tryEnd();s.tryEnd()}).to.throw();
             this.action([1,2,3], s => s.map(x => {throw new Error}).end()).to.throw();
             this.action([1,2,3], s => s.map(x => {throw new Error})).to.not.throw();
             this.action([1,2,3], s => s.map(x => {throw new Error}).tryEnd()).to.not.throw();
@@ -238,6 +279,7 @@ export const hack: any[] = [];
 
         @test("should sum the items")
         public sum() {
+            this.action([1,2,3], s => {s.sum();s.sum()}).to.throw();
             this.terminal([], s => s.sum()).to.be.NaN;
             this.terminal([1,2,3], s => s.sum()).to.equal(6);
             this.terminal(["foo", "foobar"], s => s.sum(x => x.length)).to.equal(9);
@@ -245,6 +287,7 @@ export const hack: any[] = [];
 
         @test("should reduce the items to one value")
         public reduce() {
+            this.action([1,2,3], s => {s.reduce((s,x)=>0,0);s.reduce((s,x)=>0,0)}).to.throw();
             this.terminal([], s => s.reduce((s,x) => s, 2)).to.equal(2);
             this.terminal([0,1,2,3], s => s.reduce((s,x) => s + x, 0)).to.equal(6);
             this.terminal(factory.times(100, 1), s => s.reduce((s,x) => s + x, 0)).to.equal(5050);
@@ -252,6 +295,7 @@ export const hack: any[] = [];
 
         @test("should reduce the items starting with the first item")
         public reduceSame() {
+            this.action([1,2,3], s => {s.reduceSame((s,x)=>0);s.reduceSame((s,x)=>0)}).to.throw();
             this.terminal<number, number|undefined>([], s => s.reduceSame((s,x) => s + x)).to.be.undefined;
             this.terminal([1,2,3], s => s.reduceSame((s,x) => s + x)).to.equal(6);
             this.terminal(factory.times(100, 1), s => s.reduceSame((s,x) => s + x)).to.equal(5050);
@@ -262,11 +306,13 @@ export const hack: any[] = [];
             const supplier = () => ({val: 9});
             const accumulator = (x: {val: number}, y: number) => x.val += 2*y;
             const finisher = (x: {val: number}) => x.val * 2;
+            this.action([1,2,3], s => {s.collectWith(supplier,accumulator,finisher);s.collectWith(supplier,accumulator,finisher)}).to.throw();
             this.terminal([1,2,3], s => s.collectWith(supplier, accumulator, finisher)).to.equal(42);
         }
 
         @test("should create a set of the items")
         public toSet() {
+            this.action([1,2,3], s => {s.toSet();s.toSet()}).to.throw();
             const set = setOf(1,2,3);
             this.terminal([], s => s.toSet()).to.be.instanceof(Set).and.to.be.empty;
             this.terminal(set, s => s.toSet()).to.equal(set).and.contain(1).and.contain(2).and.contain(3);
@@ -276,6 +322,7 @@ export const hack: any[] = [];
 
         @test("should create a map of the items")
         public toMap() {
+            this.action([1,2,3], s => {s.toMap(x=>x,x=>x);s.toMap(x=>x,x=>x)}).to.throw();
             this.terminal([], s => s.toMap(i => i, i => i)).to.be.instanceof(Map).and.to.be.empty;
             this.terminal([1,2,3], s => toObj(s.toMap(i => i, i => i))).to.deep.equal({1: 1, 2: 2, 3: 3});
             this.terminal([1,2,3], s => toObj(s.toMap(i => i*i, i => i))).to.deep.equal({1: 1, 4: 2, 9: 3});
@@ -300,6 +347,7 @@ export const hack: any[] = [];
 
         @test("should create an array of the items")
         public toArray() {
+            this.action([1,2,3], s => {s.toArray();s.toArray()}).to.throw();
             const arr = [1,2,3];
             this.terminal([], s => s.toArray()).to.deep.equal([]);
             this.terminal("foo", s => s.toArray()).to.deep.equal(["f", "o", "o"]);
@@ -312,6 +360,7 @@ export const hack: any[] = [];
 
         @test("should report whether all items match the given predicate")
         public every() {
+            this.action([1,2,3], s => {s.every(x=>true);s.every(x=>true)}).to.throw();
             this.terminal([], s => s.every(i => i < 3)).to.be.true;
             this.terminal([0, 1, 2], s => s.every(i => i < 3)).to.be.true;
             this.terminal([3, 4], s => s.every(i => i >2)).to.be.true;
@@ -320,6 +369,7 @@ export const hack: any[] = [];
 
         @test("should report whether any item matches the given predicate")
         public some() {
+            this.action([1,2,3], s => {s.some(x=>true);s.some(x=>true)}).to.throw();
             this.terminal([], s => s.some(i => i < 3)).to.be.false;
             this.terminal([0, 1, 2], s => s.some(i => i > 3)).to.be.false;
             this.terminal([3, 4], s => s.some(i => i < 3)).to.be.false;
@@ -329,6 +379,7 @@ export const hack: any[] = [];
 
         @test("should report whether the stream contains the given item")
         public has() {
+            this.action([1,2,3], s => {s.has(2);s.has(2)}).to.throw();
             this.terminal<number, boolean>([], s => s.has(0)).to.be.false;
             this.terminal([0,1,2,3], s => s.has(-1)).to.be.false;
             this.terminal([0,1,2,3], s => s.has(0)).to.be.true;
@@ -340,6 +391,7 @@ export const hack: any[] = [];
 
         @test("should find the index of the given element")
         public findIndex() {
+            this.action([1,2,3], s => {s.findIndex(x=>true);s.findIndex(x=>true)}).to.throw();
             this.terminal([], s => s.findIndex(i => i === 0)).to.equal(-1);
             this.terminal([0,1,2,3], s => s.findIndex(i => i < 0)).to.equal(-1);
             this.terminal([0,1,2,3], s => s.findIndex(i => i === 0)).to.equal(0);
@@ -351,6 +403,7 @@ export const hack: any[] = [];
 
         @test("should find the element matching the predicate of the given element")
         public find() {
+            this.action([1,2,3], s => {s.find(x=>true);s.find(x=>true)}).to.throw();
             this.terminal([], s => s.find(i => i === 0)).to.be.undefined;
             this.terminal([2,3,4], s => s.find(i => i < 2)).to.be.undefined;
             this.terminal([2,3,4], s => s.find(i => i === 2)).to.equal(2);
@@ -364,6 +417,7 @@ export const hack: any[] = [];
 
         @test("should find the minimum item")
         public min() {
+            this.action([1,2,3], s => {s.min();s.min()}).to.throw();
             this.terminal([], s => s.min()).to.be.undefined;
             this.terminal([0], s => s.min()).to.be.equal(0);
             this.terminal([0,1,2], s => s.min()).to.be.equal(0);
@@ -374,6 +428,7 @@ export const hack: any[] = [];
 
         @test("should find the maximum item")
         public max() {
+            this.action([1,2,3], s => {s.max();s.max()}).to.throw();
             this.terminal([], s => s.max()).to.be.undefined;
             this.terminal([0], s => s.max()).to.be.equal(0);
             this.terminal([0,1,2], s => s.max()).to.be.equal(2);
@@ -384,6 +439,7 @@ export const hack: any[] = [];
 
         @test("should find the minimum item by a comparison key")
         public minBy() {
+            this.action([1,2,3], s => {s.minBy(x=>x);s.minBy(x=>x)}).to.throw();
             this.terminal([], s => s.minBy(i => i)).to.be.undefined;
             this.terminal([0], s => s.minBy(i => i)).to.equal(0);
             this.terminal([0,1,2,3,4,5], s => s.minBy(i => -i)).to.equal(5);
@@ -392,6 +448,7 @@ export const hack: any[] = [];
 
         @test("should find the maximum item by a comparison key")
         public maxBy() {
+            this.action([1,2,3], s => {s.maxBy(x=>x);s.maxBy(x=>x)}).to.throw();
             this.terminal([], s => s.maxBy(i => i)).to.be.undefined;
             this.terminal([0], s => s.maxBy(i => i)).to.equal(0);
             this.terminal([0,1,2,3,4,5], s => s.maxBy(i => -i)).to.equal(0);
@@ -400,6 +457,7 @@ export const hack: any[] = [];
 
         @test("should report whether no item matches the given predicate")
         public none() {
+            this.action([1,2,3], s => {s.none(x=>true);s.none(x=>true)}).to.throw();            
             this.terminal([], s => s.none(i => i < 3)).to.be.true;
             this.terminal([0, 1, 2], s => s.none(i => i > 3)).to.be.true;
             this.terminal([3, 4], s => s.none(i => i < 3)).to.be.true;
@@ -409,6 +467,7 @@ export const hack: any[] = [];
 
         @test("should report the number of items")
         public size() {
+            this.action([1,2,3], s => {s.size();s.size()}).to.throw();
             this.terminal([], s => s.size()).to.equal(0);
             this.terminal("f", s => s.size()).to.equal(1);
             this.terminal("foo", s => s.size()).to.equal(3);
@@ -416,13 +475,18 @@ export const hack: any[] = [];
 
         @test("should return the nth item, if it exists")
         public nth() {
+            this.action([1,2,3], s => {s.nth(2);s.nth(2)}).to.throw();
+
             this.terminal([], s => s.nth(0)).to.be.undefined;
             this.terminal([], s => s.nth(1)).to.be.undefined;
             this.terminal([], s => s.nth(Infinity)).to.be.undefined;
+            this.terminal([1,2,3], s => s.nth(Infinity)).to.be.undefined;
             this.terminal(this.inf(), s => s.nth(-1)).to.be.undefined;
             this.terminal(this.inf(), s => s.nth(1)).to.be.equal(1);
+            this.terminal([1,2,3,4], s => s.nth(NaN)).to.be.undefined;
             this.terminal([1,2,3,4], s => s.nth(-1)).to.be.undefined;
             this.terminal([1,2,3,4], s => s.nth(1.5)).to.equal(2);
+            this.terminal([1,2,3,4], s => s.nth(0.99)).to.equal(1);
             this.terminal([1,2,3,4], s => s.nth(1)).to.equal(2);
             this.terminal([1,2,3,4], s => s.nth(3)).to.equal(4);
             this.terminal([1,2,3,4], s => s.nth(10)).to.be.undefined;
@@ -430,6 +494,8 @@ export const hack: any[] = [];
 
         @test("should return the first item, if it exists")
         public first() {
+            this.action([1,2,3], s => {s.first();s.first()}).to.throw();
+
             this.terminal([], s => s.first()).to.be.undefined;
             this.terminal([1,2,3,4], s => s.first()).to.equal(1);
             this.terminal(this.inf(), s => s.first()).to.equal(0);
@@ -439,23 +505,115 @@ export const hack: any[] = [];
             expect(() => s.first()).to.throw();
         }
 
+        @test("should consume some items from the stream")
+        public consume() {
+            this.action([1,2,3], s => {s.consume([]);s.consume([]);}).to.not.throw();
+            this.action([1,2,3], s => {s.first();s.consume([]);}).to.throw();
+
+            const s = this.factory.stream;
+            let sink: number[] = [];
+            const add = (item: number) => sink.push(item);
+            
+            sink = [];s([1,2,3]).consume(add);
+            expect(sink).to.deep.equal([1,2,3]);
+
+            sink = [];s([1,2,3]).consume(add, -9999999999);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,2,3]).consume(add, -Infinity);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,2,3]).consume(add, 0);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,2,3]).consume(add, 0.9);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,2,3]).consume(add, 1);
+            expect(sink).to.deep.equal([1]);
+
+            sink = [];s([1,2,3]).consume(add, NaN);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,2,3]).consume(add, 1.9);
+            expect(sink).to.deep.equal([1]);
+
+            sink = [];s([11,12,3]).consume(add, 9);
+            expect(sink).to.deep.equal([11,12,3]);
+
+            sink = [];s([1,12,13]).consume(add, Infinity);
+            expect(sink).to.deep.equal([1,12,13]);
+
+            sink = [];s([1,12,3,9,7]).consume(add, 2, -999999);
+            expect(sink).to.deep.equal([1,12]);
+
+            sink = [];s([1,12,3,9,7]).consume(add, 2, 1);
+            expect(sink).to.deep.equal([12,3]);
+
+            sink = [];s([1,12,3,9,7]).consume(add, 2, 1.9);
+            expect(sink).to.deep.equal([12,3]);
+
+            sink = [];s([1,12,3,9,7]).consume(add, 2, Infinity);
+            expect(sink).to.deep.equal([]);
+
+            sink = [];s([1,12,3,9,7]).consume(add, 2, NaN);
+            expect(sink).to.deep.equal([]);
+        }
+
         @test("should return the first few items of the stream")
         public splice() {
+            this.action([1,2,3], s => {s.splice();s.splice();}).to.not.throw();
+            this.action([1,2,3], s => {s.first();s.splice();}).to.throw();
+
+            const simpleIterable: Iterable<number> = {
+                [Symbol.iterator](): Iterator<number> {
+                    let i = 0;
+                    return {
+                        next(val: any): IteratorResult<number> {
+                            return {
+                                done: false,
+                                value: i++,
+                            };
+                        }
+                    }
+                }
+            };
+            this.terminal(simpleIterable, s => s.splice(2)).to.deep.equal([0,1]);
+            this.terminal(simpleIterable, s => s.splice(2, 1)).to.deep.equal([1,2]);
+            const s3 = this.factory.stream(simpleIterable);
+            expect(s3.splice(3,4)).to.deep.equal([4,5,6]);
+            Expect(s3.limit(5)).to.deep.equal([0,1,2,3,7]);
+
             this.terminal([1,2,3], s => s.splice(NaN)).to.deep.equal([]);
             this.terminal("foo", s => s.splice(NaN)).to.deep.equal([]);
             this.terminal([1,2,3], s => s.splice(2, NaN)).to.deep.equal([]);
             this.terminal("foo", s => s.splice(2, NaN)).to.deep.equal([]);
             this.terminal([], s => s.splice(0)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(0)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(0.9)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(1, 9)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(5, 9)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(5, Infinity)).to.deep.equal([]);
+            this.terminal([1,5,3], s => s.splice(5, -Infinity)).to.deep.equal([1,5,3]);
             this.terminal([1,2,3], s => s.splice(-99999999)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(-99999999, 99999999)).to.deep.equal([]);
             this.terminal([1,2,3], s => s.splice(1)).to.deep.equal([1]);
-            this.terminal([1,2,3], s => s.splice(2)).to.deep.equal([1,2]);
+            this.terminal([9,2,3], s => s.splice(2)).to.deep.equal([9,2]);
+            this.terminal([8,2,3], s => s.splice(2, 0.5)).to.deep.equal([8,2]);
+            this.terminal([1,2,3], s => s.splice(2.9)).to.deep.equal([1,2]);
+            this.terminal([1,2,3], s => s.splice(2,1)).to.deep.equal([2,3]);
+            this.terminal([1,6,3], s => s.splice(2,1.5)).to.deep.equal([6,3]);
+            this.terminal([1,2,7], s => s.splice(7)).to.deep.equal([1,2,7]);
+            this.terminal([1,2,11], s => s.splice(7,1)).to.deep.equal([2,11]);
+            this.terminal([1,4,3], s => s.splice(Infinity)).to.deep.equal([1,4,3]);
+            this.terminal([1,2,13], s => s.splice(Infinity,1)).to.deep.equal([2,13]);
             this.terminal(this.inf(), s => s.splice(3)).to.deep.equal([0,1,2]);
-            this.terminal([1,2,3], s => s.splice()).to.deep.equal([1,2,3]);
-            this.terminal([1,2,3], s => s.splice(9999999999999)).to.deep.equal([1,2,3]);
+            this.terminal([1,12,3], s => s.splice()).to.deep.equal([1,12,3]);
+            this.terminal([11,2,3], s => s.splice(9999999999999)).to.deep.equal([11,2,3]);
 
             const s = this.factory.stream("foobar");
             expect(s.splice(2)).to.deep.equal(["f", "o"]);
-            expect(s.splice(1)).to.deep.equal(["o"]);            
+            expect(s.splice(1)).to.deep.equal(["o"]);
             expect(s.join()).to.equal("bar");
 
             const s2 = this.factory.stream("foobar");
@@ -465,6 +623,9 @@ export const hack: any[] = [];
 
         @test("should return next item in the stream, if it exits")
         public shift() {
+            this.action([1,2,3], s => {s.shift();s.shift();}).to.not.throw();
+            this.action([1,2,3], s => {s.first();s.shift();}).to.throw();
+
             this.terminal([], s => s.shift()).to.be.undefined;
             this.terminal([1,2,3,4], s => s.shift()).to.equal(1);
             this.terminal(this.inf(), s => s.shift()).to.equal(0);
@@ -473,11 +634,12 @@ export const hack: any[] = [];
             expect(s.shift()).to.equal("f");
             expect(s.shift()).to.equal("o");
             expect(s.shift()).to.equal("o");
-            expect(s.toArray()).to.equal(["b", "a", "r"]);
+            expect(s.toArray()).to.deep.equal(["b", "a", "r"]);
         }
 
         @test("should return the last item, if it exists")
         public last() {
+            this.action([1,2,3], s => {s.last();s.last()}).to.throw();
             this.terminal([], s => s.last()).to.be.undefined;
             this.terminal([1,2,3,4], s => s.last()).to.equal(4);
             this.terminal([2,3,4], s => s.last()).to.equal(4);
@@ -485,6 +647,7 @@ export const hack: any[] = [];
 
         @test("should join the items")
         public join() {
+            this.action([1,2,3], s => {s.join();s.join()}).to.throw();
             this.terminal([], s => s.join()).to.equal("");
             this.terminal([1,2,3], s => s.join()).to.equal("123");
             this.terminal([1,2,3], s => s.join(",")).to.equal("1,2,3");
@@ -497,6 +660,7 @@ export const hack: any[] = [];
 
         @test("should partition the items into two groups")
         public partition() {
+            this.action([1,2,3], s => {s.partition(x=>true);s.partition(x=>true)}).to.throw();
             const u1 = {id: 1, name: "foo"};
             const u2 = {id: 2, name: "foobar"};
             const u3 = {id: 3, name: "baz"};
@@ -517,6 +681,7 @@ export const hack: any[] = [];
 
         @test("should group the items")
         public group() {
+            this.action([1,2,3], s => {s.group(x=>x);s.group(x=>x)}).to.throw();
             const u1 = {id: 1, name: "foo"};
             const u2 = {id: 2, name: "bar"};
             const u3 = {id: 3, name: "foo"};

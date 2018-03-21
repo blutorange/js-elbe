@@ -106,10 +106,13 @@ export const hack: any[] = [];
             Expect(factory.repeat(0, NaN).limit(9)).to.deep.equal([]);
             Expect(factory.repeat(0).limit(9)).to.deep.equal([0,0,0,0,0,0,0,0,0]);
             Expect(factory.repeat(0, Infinity).limit(9)).to.deep.equal([0,0,0,0,0,0,0,0,0]);
+            Expect(factory.repeat(1, -Infinity).limit(9)).to.deep.equal([]);
             Expect(factory.repeat(1, -1).limit(9)).to.deep.equal([]);
             Expect(factory.repeat(1, 0).limit(9)).to.deep.equal([]);
+            Expect(factory.repeat(1, 0.8).limit(9)).to.deep.equal([]);
             Expect(factory.repeat(1, 1).limit(9)).to.deep.equal([1]);
             Expect(factory.repeat(1, 2).limit(9)).to.deep.equal([1,1]);
+            Expect(factory.repeat(1, 2.8).limit(9)).to.deep.equal([1,1]);
             Expect(factory.repeat(1, 5).limit(9)).to.deep.equal([1,1,1,1,1]);
             Expect(factory.repeat(obj, 4).limit(9)).to.deep.equal([obj,obj,obj,obj]);
         }
@@ -117,19 +120,26 @@ export const hack: any[] = [];
         @test("should produce items with the given iterator")
         public iterate() {
             Expect(factory.iterate(NaN, i => i + 2, 0)).to.deep.equal([]);
+            Expect(factory.iterate(0, i => i + 2, NaN)).to.deep.equal([]);
             Expect(factory.iterate(0, i => i + 2, 0)).to.deep.equal([]);
+            Expect(factory.iterate(0, i => i + 2, 0.5)).to.deep.equal([]);
             Expect(factory.iterate(0, i => i + 2, 3)).to.deep.equal([0, 2, 4]);
+            Expect(factory.iterate(0, i => i + 2, 3.5)).to.deep.equal([0, 2, 4]);
             Expect(factory.iterate(2, i => i + 2, 4)).to.deep.equal([2, 4, 6, 8]);
             Expect(factory.iterate(0, i => i + 2).limit(6)).to.deep.equal([0, 2, 4, 6, 8, 10]);
+            Expect(factory.iterate(0, i => i + 2, Infinity).limit(6)).to.deep.equal([0, 2, 4, 6, 8, 10]);
         }
 
         @test("should produce items with the given generator")
         public generate() {
             const generator = (index: number) => index*index;
             Expect(factory.generate(generator, NaN)).to.deep.equal([]);
+            Expect(factory.generate(generator, -Infinity)).to.deep.equal([]);
             Expect(factory.generate(generator, 0)).to.deep.equal([]);
+            Expect(factory.generate(generator, 0.9)).to.deep.equal([]);
             Expect(factory.generate(generator, -99999999999)).to.deep.equal([]);
             Expect(factory.generate(generator, 5)).to.deep.equal([0,1,4,9,16]);
+            Expect(factory.generate(generator, 5.4)).to.deep.equal([0,1,4,9,16]);
             Expect(factory.generate(generator).limit(6)).to.deep.equal([0,1,4,9,16,25]);
             Expect(factory.generate(generator, Infinity).limit(7)).to.deep.equal([0,1,4,9,16,25,36]);
         }
