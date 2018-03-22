@@ -41,8 +41,6 @@ public API is expressed in terms of (typescript) interfaces, these are fully doc
 
 The docs can be viewed offline from the directory `docs`. Tests with more examples are in `test`. 
 
-[Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
-
 ```javascript
 const lib = require("elbe");
 ```
@@ -56,6 +54,10 @@ This returns an object with the following entries:
 * [stream](https://blutorange.github.io/js-elbe/globals.html#stream)
 * [TryFactory](https://blutorange.github.io/js-elbe/globals.html#tryfactory)
 * [TypesafeStreamFactory](https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory)
+
+The [IStream](https://blutorange.github.io/js-elbe/interfaces/istream.html) contains all the juicy methods you want.
+
+[Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
 
 # Install
 
