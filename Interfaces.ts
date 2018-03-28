@@ -105,12 +105,12 @@ export interface ICollector<S, T, R = T> {
 }
 
 /**
- * A factory for producing a {@link Try} representing
- * the result of some operation that may errror.
+ * A factory for producing an {@link ITry} representing
+ * the result of some operation that may throw an error.
  */
 export interface ITryFactory {
     /**
-     * Creates a {@link Try} from a successfully produced value.
+     * Creates a {@link ITry} from a successfully produced value.
      *
      * ```javascript
      * TryFactory.success("foobar").orThrow() // => "foobar"
@@ -118,12 +118,12 @@ export interface ITryFactory {
      *
      * @typeparam T Type of the value produced by the operation on success.
      * @param value The successful result of some operation.
-     * @return A {@link Try} representing the sucessful operation.
+     * @return A {@link ITry} representing the sucessful operation.
      */
     success<T>(value: T): ITry<T>;
 
     /**
-     * Creates a {@link Try} from a erronous operation.
+     * Creates a {@link ITry} from a erronous operation.
      *
      * ```javascript
      * TryFactory.error("foobar").orThrow() // => throws Error("foobar")
@@ -131,12 +131,12 @@ export interface ITryFactory {
      *
      * @typeparam T Type of the value produced by the operation on success.
      * @param value The error of some erronous operation.
-     * @return A {@link Try} representing the erronous operation.
+     * @return A {@link ITry} representing the erronous operation.
      */
     error<T>(error: Error | string, cause?: Error): ITry<T>;
 
     /**
-     * Creates a {@link Try} from an operation that may succeed or fail to
+     * Creates a {@link ITry} from an operation that may succeed or fail to
      * return a value.
      *
      * ```javascript
@@ -146,16 +146,16 @@ export interface ITryFactory {
      *
      * @typeparam T Type of the value produced by the operation on success.
      * @param operation An operation that produces a value, but may fail to do so by throwing an error.
-     * @return A {@link Try} representing the result of the operation.
+     * @return A {@link ITry} representing the result of the operation.
      */
     of<T>(operation: Supplier<T>, cause?: Error): ITry<T>;
 
     /**
-     * Creates a {@link Try} from an operation that may succeed or fail
-     * to produce a {@link Try}.
-     * @typeparam T Type of the success value of the produced {@link Try}.
-     * @param operation Am operation that produces a {@link Try}, but may fail to do so by throwing an error.
-     * @return The produced {@link Try} or a {@link Try} representing the error.
+     * Creates a {@link ITry} from an operation that may succeed or fail
+     * to produce a {@link ITry}.
+     * @typeparam T Type of the success value of the produced {@link ITry}.
+     * @param operation Am operation that produces a {@link ITry}, but may fail to do so by throwing an error.
+     * @return The produced {@link ITry} or a {@link ITry} representing the error.
      */
     flatOf<T>(operation: Supplier<ITry<T>>, cause?: Error): ITry<T>;
 }
@@ -417,9 +417,9 @@ export interface IStreamFactory {
  * t.orElse({}); // => The parsed JSON object or an empty object.
  * ```
  *
- * Several methods such as {@link Try.map} take an abitrary callback
+ * Several methods such as {@link ITry.map} take an abitrary callback
  * for manipulating the success or error value. If these methods throw
- * an error, the returned {@link Try} is not successful and contains an
+ * an error, the returned {@link ITry} is not successful and contains an
  * error with the stacktrace of the original error added.
  *
  * ```javascript
@@ -431,24 +431,24 @@ export interface IStreamFactory {
  */
 export interface ITry<T> {
     /**
-     * Whether this {@link Try} represents a successful or failed
+     * Whether this {@link ITry} represents a successful or failed
      * operation.
      */
     readonly success: boolean;
 
     /**
      * If operation was succesful and the value matches the
-     * predicate, returns a {@link Try} with that value, otherwise
-     * a {@link Try} with a `No such element` error.
+     * predicate, returns a {@link ITry} with that value, otherwise
+     * a {@link ITry} with a `No such element` error.
      * @param predicate Test to perform on the success value.
-     * @return A {@link Try} with the current success value iff it exists and matches the predicate.
+     * @return A {@link ITry} with the current success value iff it exists and matches the predicate.
      */
     include(predicate: Predicate<T>): ITry<T>;
 
     /**
      * Computes a new value by using either the success handler,
      * or the backup handler. If the mapper throws, the backup is
-     * applied. If the backup throws as well, the returned {@link Try}
+     * applied. If the backup throws as well, the returned {@link ITry}
      * is not successful. If the backup handler is not given and this try
      * is unsuccessful, return a try with the same error.
      *
@@ -463,7 +463,7 @@ export interface ITry<T> {
      * @typeparam S Type of the new value.
      * @param mapper Handler that maps the successful value to a new value.
      * @param backup Handler that maps the error to a new value.
-     * @return The new value, wrapped in a {@link Try} for encapsulating errors.
+     * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
     convert<S>(mapper: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
 
@@ -483,7 +483,7 @@ export interface ITry<T> {
      * @typeparam S Type of the new value.
      * @param success Handler that maps the successful value to a new value.
      * @param backup Handler that maps the error to a new value.
-     * @return The new value, wrapped in a {@link Try} for encapsulating errors.
+     * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
     flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S>;
 
@@ -517,14 +517,14 @@ export interface ITry<T> {
      * ```
      *
      * @param backup Backup handler that computes a new value for the error.
-     * @return A {@link Try} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
+     * @return A {@link ITry} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
      */
     orTry(backup: Function<Error, T>): ITry<T>;
 
     /**
      * If not successful, attempts to compute a value from the error
      * with the given backup handler. Similar to {@link orTry}, but
-     * the backup handler returns a {@link Try} directly.
+     * the backup handler returns a {@link ITry} directly.
      *
      * ```javascript
      * parseIntSafe = string => {
@@ -539,7 +539,7 @@ export interface ITry<T> {
      * ```
      *
      * @param backup Backup handler that computes a new value for the error.
-     * @return A {@link Try} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
+     * @return A {@link ITry} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
      */
     orFlatTry(backup: Function<Error, ITry<T>>): ITry<T>;
 
@@ -570,7 +570,7 @@ export interface ITry<T> {
      * // warns about error
      * ```
      *
-     * @return This {@link Try}.
+     * @return This {@link ITry}.
      */
     ifPresent(success: Consumer<T>, error?: Consumer<Error>): this;
 
@@ -586,7 +586,7 @@ export interface ITry<T> {
      * // Informs about error
      * ```
      *
-     * @return This {@link Try}..
+     * @return This {@link ITry}..
      */
     ifAbsent(consumer: Consumer<Error>): this;
 
@@ -626,7 +626,7 @@ export interface ITry<T> {
     /**
      * Similar to [[Try.convert]], but works like a `thenable`-object.
      * The handlers are allowed to return either the new value directly,
-     * or a {@link Try} with the new value.
+     * or a {@link ITry} with the new value.
      *
      * ```javascript
      * TryFactory.of(...).then(x => JSON.parse(x))
@@ -637,14 +637,14 @@ export interface ITry<T> {
      * @typeparam S Type of the new value.
      * @param success Handler that maps the successful value to a new value.
      * @param backup Handler that maps the error to a new value.
-     * @return The new value, wrapped in a {@link Try} for encapsulating errors.
+     * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
     then<S>(success: Function<T, S | ITry<S>>, error?: Function<Error, S | ITry<S>>): ITry<S>;
 
     /**
      * Similar to {@link #orTry}, but works like a `thenable`-object.
      * The handler is allowed to return either the new value directly,
-     * or a {@link Try} with the new value.
+     * or a {@link ITry} with the new value.
      *
      * ```javascript
      * TryFactory.error("bad").catch(e => 0)
@@ -653,7 +653,7 @@ export interface ITry<T> {
      * ```
      *
      * @param backup Handler that maps the error to a new value.
-     * @return The new value, wrapped in a {@link Try} for encapsulating errors.
+     * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
     catch(mapper: Function<Error, T | ITry<T>>): ITry<T>;
 }
@@ -1343,7 +1343,7 @@ export interface IStream<T> {
 
     /**
      * Maps each item to the result of the given operation,
-     * wrapped in a {@link Try} for error handling.
+     * wrapped in a {@link ITry} for error handling.
      *
      * ```javascript
      * stream(["1","7","7a"])
@@ -1361,7 +1361,7 @@ export interface IStream<T> {
 
     /**
      * Passes this stream to the the operation and returns its result,
-     * wrapped in a {@link Try} in case the operation throws an error.
+     * wrapped in a {@link ITry} in case the operation throws an error.
      * Usually used for performing a terminal operation with error handling
      * on the stream.
      *
@@ -1371,8 +1371,8 @@ export interface IStream<T> {
      * ```
      *
      * @typeparam S Type of the value produced by the operation.
-     * @param operation Takes this stream and returns value. If it throws an error, the resulting {@link Try} is not successful.
-     * @return The result of the operation, wrapped in a {@link Try} for encapsulating thrown errors.
+     * @param operation Takes this stream and returns value. If it throws an error, the resulting {@link ITry} is not successful.
+     * @return The result of the operation, wrapped in a {@link ITry} for encapsulating thrown errors.
      */
     tryCompute<S>(operation: Function<IStream<T>, S>): ITry<S>;
 
@@ -1546,7 +1546,7 @@ export interface IStream<T> {
 
 /**
  * Contains several convenience methods for easier error handling
- * with {@link Try}. A try-stream is created by using the {@link Stream.try}
+ * with {@link ITry}. A try-stream is created by using the {@link Stream.try}
  * method.
  * ```javascript
  * stream(input).try(operation).orElse(0)
@@ -1605,9 +1605,9 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
     /**
      * Computes a new value from each successful value or error.
      * If the operation or backup function throws an error, or if
-     * no backup is provided, the {@link Try} is not successful.
+     * no backup is provided, the {@link ITry} is not successful.
      * Similar to {@link #flatConvert}, but the operation and
-     * backup handlers return a {@link Try} directly.
+     * backup handlers return a {@link ITry} directly.
      *
      * ```javascript
      * stream(["\"1\"", "\"1.5\""]).try(JSON.parse).convert(x => Try.of(() => parseIntSafe(x)))
@@ -1615,8 +1615,8 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * ```
      *
      * @typeparam S Type of the new value.
-     * @param operation Mapper that converts each succesful values into a {@link Try} of the new value.
-     * @param backup Optional mapper that converts each error into a {@link Try} of the new value.
+     * @param operation Mapper that converts each succesful values into a {@link ITry} of the new value.
+     * @param backup Optional mapper that converts each error into a {@link ITry} of the new value.
      * @return A try-stream with the converted values, or any thrown errors.
      */
     flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S>;
@@ -1640,7 +1640,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
 
     /**
      * Returns a stream with each items being either the successful value
-     * of the {@link Try} or the given backup value.
+     * of the {@link ITry} or the given backup value.
      *
      * ```javascript
      * stream("12a").try(JSON.parse).orElse(undefined)
@@ -1684,7 +1684,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
     onSuccess(success: Consumer<T>, error?: Consumer<Error>): this;
 
     /**
-     * Throws iff any {@link Try} is not successful. Otherwise
+     * Throws iff any {@link ITry} is not successful. Otherwise
      * unwraps all tries and returns a stream with the contained
      * successful values.
      *
@@ -1700,7 +1700,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
     /**
      * Applies the backup handler to each error, producing
      * a value of the same type as the succesful value of this
-     * try-stream. If the handler throws, the resulting {@link Try}
+     * try-stream. If the handler throws, the resulting {@link ITry}
      * is not successful.
      *
      * ```javascript

@@ -98,8 +98,9 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 				<p>This is currently in version 0.x. Once this package is used by other packages other than my own, the version will be
 				increased to 1.0 and start using <a href="https://semver.org/">semantic versioning</a>.</p>
 				<h1 id="docs">Docs</h1>
-				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>. The entire
-				public API is expressed in terms of (typescript) interfaces, these are fully documented.</p>
+				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>.</p>
+				<p>The entire public API is expressed in terms of (typescript) interfaces, these
+				are fully documented.</p>
 				<p>The docs can be viewed offline from the directory <code>docs</code>. Tests with more examples are in <code>test</code>. </p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 </code></pre>
@@ -107,22 +108,23 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 				<ul>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#collectors">Collectors</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory">InplaceStreamFactory</a></li>
-					<li><a href="https://blutorange.github.io/js-elbe/globals.html#chunk">Methods</a></li>
+					<li><a href="https://blutorange.github.io/js-elbe/globals.html#appendCause">Methods</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#monkeypatch">monkeyPatch</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#stream">stream</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#tryfactory">TryFactory</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory">TypesafeStreamFactory</a></li>
 				</ul>
-				<p>The <a href="https://blutorange.github.io/js-elbe/interfaces/istream.html">IStream</a> contains all the juicy methods you want.</p>
+				<p>The <a href="https://blutorange.github.io/js-elbe/interfaces/istream.html">IStream</a> contains all the juicy methods you want. A stream is created by an <a href="https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory">InplaceStreamFactory</a>, accessible via <code>require(&quot;elbe&quot;).factory</code>. Read
+				below for further details.</p>
 				<p><a href="https://blutorange.github.io/js-elbe/coverage/">Coverage report.</a></p>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
 				<pre><code class="lang-sh">npm install --save elbe
 </code></pre>
 				<p>Then load it</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream, <span class="hljs-attr">InplaceStreamFactory</span>: factory } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> { stream, factory } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 <span class="hljs-comment">// or</span>
-<span class="hljs-keyword">import</span> { stream, InplaceStreamFactory <span class="hljs-keyword">as</span> factory } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
+<span class="hljs-keyword">import</span> { stream, factory } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
 </code></pre>
 				<p>Or use the standalone in <code>dist/elbe.js</code> that includes all required npm libraries and
 				was transformed with babel. Within a browser it registers globally as <code>window.Elbe</code>.</p>
@@ -132,12 +134,12 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 					The created stream then provides several methods such as <code>map</code> or <code>collect</code>
 				to operate on its items.</p>
 				<p>Generate a stream of 100 numbers between 1 and 100 and sums them, as fast as Gauss.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).InplaceStreamFactory;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).factory;
 factory.times(<span class="hljs-number">100</span>,<span class="hljs-number">1</span>,<span class="hljs-number">100</span>).sum()
 <span class="hljs-comment">// =&gt; 5050</span>
 </code></pre>
 				<p>Generate numbers between 1.4 and 1.5, and take the one whose square is closest to 2.</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).InplaceStreamFactory;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> factory = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>).factory;
 factory.times(<span class="hljs-number">1000</span>,<span class="hljs-number">1.4</span>,<span class="hljs-number">1.5</span>).minBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-built_in">Math</span>.abs(x * x - <span class="hljs-number">2</span>))
 <span class="hljs-comment">// =&gt; 1.41421...</span>
 </code></pre>
@@ -149,6 +151,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 lib = {
     stream, <span class="hljs-comment">// shortcut for InplaceStreamFactory.stream</span>
+    factory, <span class="hljs-comment">// shortcut for InplaceStreamFactory</span>
     monkeyPatch, <span class="hljs-comment">// function that patches some Object prototypes</span>
     InplaceStreamFactory: { <span class="hljs-comment">// see interface 'StreamFactory'</span>
       stream,
@@ -343,6 +346,7 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 				<h3 id="0-2-1">0.2.1</h3>
 				<ul>
 					<li>Added method IStreamFactory#empty</li>
+					<li>Added a shortcut for InplaceStreamFactory, <code>require(&quot;elbe&quot;).factory</code></li>
 				</ul>
 				<h2 id="0-2-0">0.2.0</h2>
 				<ul>

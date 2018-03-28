@@ -188,6 +188,11 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
     }
 }
 
+/**
+ * This implements the factory methods as specified by {@link ITryFactory}.
+ *
+ * @see {@link ITryFactory}
+ */
 export const TryFactory: ITryFactory = {
     success<T>(value: T): ITry<T> {
         return new SuccessImpl(value);

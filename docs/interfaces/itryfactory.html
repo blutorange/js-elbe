@@ -67,8 +67,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A factory for producing a {@link Try} representing
-						the result of some operation that may errror.</p>
+						<p>A factory for producing an <a href="itry.html">ITry</a> representing
+						the result of some operation that may throw an error.</p>
 					</div>
 				</div>
 			</section>
@@ -108,12 +108,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/c61425c/Interfaces.ts#L136">Interfaces.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/9b98085/Interfaces.ts#L136">Interfaces.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a {@link Try} from a erronous operation.</p>
+									<p>Creates a <a href="itry.html">ITry</a> from a erronous operation.</p>
 								</div>
 								<pre><code class="lang-javascript">TryFactory.error(<span class="hljs-string">"foobar"</span>).orThrow() <span class="hljs-comment">// =&gt; throws Error("foobar")</span>
 </code></pre>
@@ -137,7 +137,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A {@link Try} representing the erronous operation.</p>
+							<p>A <a href="itry.html">ITry</a> representing the erronous operation.</p>
 						</li>
 					</ul>
 				</section>
@@ -151,13 +151,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/c61425c/Interfaces.ts#L160">Interfaces.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/9b98085/Interfaces.ts#L160">Interfaces.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a {@link Try} from an operation that may succeed or fail
-									to produce a {@link Try}.</p>
+									<p>Creates a <a href="itry.html">ITry</a> from an operation that may succeed or fail
+									to produce a <a href="itry.html">ITry</a>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -165,7 +165,7 @@
 								<li>
 									<h4>T</h4>
 									<div class="tsd-comment tsd-typography">
-										<p>Type of the success value of the produced {@link Try}.</p>
+										<p>Type of the success value of the produced <a href="itry.html">ITry</a>.</p>
 									</div>
 								</li>
 							</ul>
@@ -174,7 +174,7 @@
 								<li>
 									<h5>operation: <a href="../globals.html#supplier" class="tsd-signature-type">Supplier</a><span class="tsd-signature-symbol">&lt;</span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Am operation that produces a {@link Try}, but may fail to do so by throwing an error.</p>
+										<p>Am operation that produces a <a href="itry.html">ITry</a>, but may fail to do so by throwing an error.</p>
 									</div>
 								</li>
 								<li>
@@ -182,7 +182,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The produced {@link Try} or a {@link Try} representing the error.</p>
+							<p>The produced <a href="itry.html">ITry</a> or a <a href="itry.html">ITry</a> representing the error.</p>
 						</li>
 					</ul>
 				</section>
@@ -196,12 +196,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/c61425c/Interfaces.ts#L151">Interfaces.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/9b98085/Interfaces.ts#L151">Interfaces.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a {@link Try} from an operation that may succeed or fail to
+									<p>Creates a <a href="itry.html">ITry</a> from an operation that may succeed or fail to
 									return a value.</p>
 								</div>
 								<pre><code class="lang-javascript"> <span class="hljs-comment">// returns JSON object or throws if input is not valid JSON string</span>
@@ -230,7 +230,7 @@ TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A {@link Try} representing the result of the operation.</p>
+							<p>A <a href="itry.html">ITry</a> representing the result of the operation.</p>
 						</li>
 					</ul>
 				</section>
@@ -244,12 +244,12 @@ TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/c61425c/Interfaces.ts#L123">Interfaces.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/9b98085/Interfaces.ts#L123">Interfaces.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a {@link Try} from a successfully produced value.</p>
+									<p>Creates a <a href="itry.html">ITry</a> from a successfully produced value.</p>
 								</div>
 								<pre><code class="lang-javascript">TryFactory.success(<span class="hljs-string">"foobar"</span>).orThrow() <span class="hljs-comment">// =&gt; "foobar"</span>
 </code></pre>
@@ -273,7 +273,7 @@ TryFactory.of(<span class="hljs-function"><span class="hljs-params">()</span> =&
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A {@link Try} representing the sucessful operation.</p>
+							<p>A <a href="itry.html">ITry</a> representing the sucessful operation.</p>
 						</li>
 					</ul>
 				</section>

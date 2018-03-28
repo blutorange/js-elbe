@@ -71,6 +71,10 @@ class StatisticsImpl implements IStatistics {
     }
 }
 
+/**
+ * This implements the factory methods as defined by the interface {@link ICollectors}.
+ * @see {@link ICollectors}
+ */
 export const Collectors: ICollectors = {
     toArray<T>(): ICollector<T, T[]> {
         return {

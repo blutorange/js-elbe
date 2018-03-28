@@ -41,8 +41,10 @@ increased to 1.0 and start using [semantic versioning](https://semver.org/).
 
 # Docs
 
-[All methods with documentation](https://blutorange.github.io/js-elbe/). The entire
-public API is expressed in terms of (typescript) interfaces, these are fully documented.
+[All methods with documentation](https://blutorange.github.io/js-elbe/).
+
+The entire public API is expressed in terms of (typescript) interfaces, these
+are fully documented.
 
 The docs can be viewed offline from the directory `docs`. Tests with more examples are in `test`. 
 
@@ -54,13 +56,14 @@ This returns an object with the following entries:
 
 * [Collectors](https://blutorange.github.io/js-elbe/globals.html#collectors)
 * [InplaceStreamFactory](https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory)
-* [Methods](https://blutorange.github.io/js-elbe/globals.html#chunk)
+* [Methods](https://blutorange.github.io/js-elbe/globals.html#appendCause)
 * [monkeyPatch](https://blutorange.github.io/js-elbe/globals.html#monkeypatch)
 * [stream](https://blutorange.github.io/js-elbe/globals.html#stream)
 * [TryFactory](https://blutorange.github.io/js-elbe/globals.html#tryfactory)
 * [TypesafeStreamFactory](https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory)
 
-The [IStream](https://blutorange.github.io/js-elbe/interfaces/istream.html) contains all the juicy methods you want.
+The [IStream](https://blutorange.github.io/js-elbe/interfaces/istream.html) contains all the juicy methods you want. A stream is created by an [InplaceStreamFactory](https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory), accessible via `require("elbe").factory`. Read
+below for further details.
 
 [Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
 

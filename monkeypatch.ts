@@ -19,13 +19,24 @@ function patch<P, T, S>(type: {prototype: P}, getStream: (object: T) => Iterable
 
 /**
  * Patches a few stream convenience methods to the prototype of objects:
- * * String.stream() Stream<string> Creates a stream over all characters.
- * * Array.stream() Stream<T> Creates a stream over all items.
- * * Set.stream() Stream<T> Creates a stream over all items.
- * * Map.stream() Stream<K,V> Creates a stream over all key-value pairs.
- * * Object.stream() Stream<[string,T]> Creates a stream over all key-value pairs.
- * * Object.keys() Stream<string> Creates a stream over all keys.
- * * Object.values() Stream<T> Creates a stream over all values.
+ * * String.stream() `Stream<string>` Creates a stream over all characters.
+ * * Array.stream() `Stream<T>` Creates a stream over all items.
+ * * Set.stream() `Stream<T>` Creates a stream over all items.
+ * * Map.stream() `Stream<K,V>` Creates a stream over all key-value pairs.
+ * * Object.stream() `Stream<{key: string, value: T}>` Creates a stream over all key-value pairs.
+ * * Object.keys() `Stream<string>` Creates a stream over all keys.
+ * * Object.values() `Stream<T>` Creates a stream over all values.
+ *
+ * ```javascript
+ * require("elbe").monkeyPatch();
+ *
+ * "foo".stream() // => Stream["f", "o", "o"]
+ *
+ * [1,2,3].stream() // => Stream[1, 2, 3]
+ *
+ * {foo: 42, bar: 99}.keys() // => Stream["foo", "bar"]
+ * ```
+ *
  * @param inplace Iff `true`, uses {@link InplaceStreamFactory} or {@link TypesafeStreamFactory} otherwise.
  */
 export function monkeyPatch(inplace: boolean = false): void {
