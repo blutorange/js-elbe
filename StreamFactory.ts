@@ -1,3 +1,4 @@
+import { EMPTY_ITERABLE } from "./helpers";
 import { InplaceStream } from "./InplaceStream";
 import { Function, IStream, IStreamFactory } from "./Interfaces";
 import { fromObject, fromObjectKeys, fromObjectValues, generate, iterate, repeat, step, times } from "./Methods";
@@ -14,6 +15,10 @@ function createFactory(inplace: boolean = true): IStreamFactory {
                 throw new Error("Passed value is not iterable: " + typeof iterable);
             }
             return make(inplace, iterable);
+        },
+
+        empty<T>(): IStream<T> {
+            return make(inplace, EMPTY_ITERABLE);
         },
 
         times(amount: number, start?: number, end?: number): IStream<number> {

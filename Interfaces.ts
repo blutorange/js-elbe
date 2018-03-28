@@ -150,7 +150,43 @@ export interface ITryFactory {
 }
 
 export interface IStreamFactory {
+    /**
+     * Creates a stream with the items from the given iterable.
+     * The iterable is consumed by the stream and should not
+     * be used externally anymore.
+     *
+     * ```javascript
+     * const stream1 = factory.stream("foo");
+     * // => Stream["f", "o", "o"]
+     *
+     * const stream2 = factory.stream("[1,2,3]");
+     * // => Stream[1, 2, 3]
+     *
+     * const stream3 = factory.stream(new Set([1,2,3]).values());
+     * // => Stream[1, 2, 3]
+     *
+     * function * generator() {
+     *   let i = 0;
+     *   while (true) yield ++i;
+     * }
+     *
+     * const stream4 = factory.stream(generator());
+     * // => Stream[1, 2, 3, 4, 5, 6, ...]
+     * ```
+     *
+     * @typeparam T Type of the items of the produced stream.
+     * @param iterable The iterable with the items.
+     * @return A stream with the items from the iterable.
+     */
     stream<T>(iterable: Iterable<T>): IStream<T>;
+
+    /**
+     * Creates an empty stream with no items.
+     *
+     * @typeparam T Type of the items of the produced stream.
+     * @return A stream with no items.
+     */
+    empty<T>(): IStream<T>;
 
     /**
      * Creates a stream with the items provided by the given generator.
