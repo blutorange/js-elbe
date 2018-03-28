@@ -114,6 +114,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="typesafestream.html#collect" class="tsd-kind-icon">collect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited"><a href="typesafestream.html#collectwith" class="tsd-kind-icon">collect<wbr>With</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#concat" class="tsd-kind-icon">concat</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#consume" class="tsd-kind-icon">consume</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#cycle" class="tsd-kind-icon">cycle</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#end" class="tsd-kind-icon">end</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#every" class="tsd-kind-icon">every</a></li>
@@ -143,11 +144,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#reducesame" class="tsd-kind-icon">reduce<wbr>Same</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="typesafestream.html#replace" class="tsd-kind-icon">replace</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#reverse" class="tsd-kind-icon">reverse</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#shift" class="tsd-kind-icon">shift</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#size" class="tsd-kind-icon">size</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#skip" class="tsd-kind-icon">skip</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#slice" class="tsd-kind-icon">slice</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#some" class="tsd-kind-icon">some</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="typesafestream.html#sort" class="tsd-kind-icon">sort</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#splice" class="tsd-kind-icon">splice</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#sum" class="tsd-kind-icon">sum</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#toarray" class="tsd-kind-icon">to<wbr>Array</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="typesafestream.html#tojson" class="tsd-kind-icon">toJSON</a></li>
@@ -176,7 +179,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#constructor">constructor</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L8">TypesafeStream.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L29">TypesafeStream.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +198,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#___iterator">__@iterator</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L60">AbstractStream.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L64">AbstractStream.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -214,7 +217,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L10">TypesafeStream.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L31">TypesafeStream.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -245,7 +248,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#collect">collect</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collect">collect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L65">AbstractStream.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L69">AbstractStream.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -279,7 +282,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#collectwith">collectWith</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collectwith">collectWith</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L70">AbstractStream.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L74">AbstractStream.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -319,7 +322,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#concat">concat</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#concat">concat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L15">TypesafeStream.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L36">TypesafeStream.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -333,10 +336,41 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="consume" class="tsd-anchor"></a>
+					<h3>consume</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">consume<span class="tsd-signature-symbol">(</span>sink<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, maxAmount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#consume">consume</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#consume">consume</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L41">TypesafeStream.ts:41</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sink: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><a href="../globals.html#consumer" class="tsd-signature-type">Consumer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxAmount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> offset: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 					<a name="cycle" class="tsd-anchor"></a>
 					<h3>cycle</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">cycle<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">cycle<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -344,13 +378,13 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#cycle">cycle</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#cycle">cycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L20">TypesafeStream.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L46">TypesafeStream.ts:46</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -369,7 +403,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#end">end</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#end">end</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L75">AbstractStream.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -388,7 +422,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#every">every</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#every">every</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L80">AbstractStream.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +447,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#filter">filter</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#filter">filter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L30">TypesafeStream.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L56">TypesafeStream.ts:56</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -430,7 +464,7 @@
 					<a name="find" class="tsd-anchor"></a>
 					<h3>find</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -438,7 +472,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#find">find</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L85">AbstractStream.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -447,10 +481,7 @@
 									<h5>predicate: <a href="../globals.html#bipredicate" class="tsd-signature-type">BiPredicate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -466,7 +497,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#findindex">findIndex</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#findindex">findIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L90">AbstractStream.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -483,7 +514,7 @@
 					<a name="first" class="tsd-anchor"></a>
 					<h3>first</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">first<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -491,13 +522,10 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#first">first</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L95">AbstractStream.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -513,7 +541,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#flatmap">flatMap</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L25">TypesafeStream.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L51">TypesafeStream.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -544,7 +572,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#foreach">forEach</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L100">AbstractStream.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -569,7 +597,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#fork">fork</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#fork">fork</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L107">AbstractStream.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L111">AbstractStream.ts:111</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -588,7 +616,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#group">group</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#group">group</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L115">AbstractStream.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -619,7 +647,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#has">has</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L120">AbstractStream.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L124">AbstractStream.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -644,7 +672,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#index">index</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#index">index</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L35">TypesafeStream.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L61">TypesafeStream.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -655,7 +683,7 @@
 					<a name="join" class="tsd-anchor"></a>
 					<h3>join</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span>delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">join<span class="tsd-signature-symbol">(</span>delimiter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, prefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, suffix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -663,19 +691,19 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#join">join</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L125">AbstractStream.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L129">AbstractStream.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> delimiter: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> delimiter: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> prefix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> suffix: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -686,7 +714,7 @@
 					<a name="last" class="tsd-anchor"></a>
 					<h3>last</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">last<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">last<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -694,13 +722,10 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#last">last</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L130">AbstractStream.ts:130</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L134">AbstractStream.ts:134</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -708,7 +733,7 @@
 					<a name="limit" class="tsd-anchor"></a>
 					<h3>limit</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">(</span>limitTo<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">(</span>limitTo<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -716,13 +741,13 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#limit">limit</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#limit">limit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L40">TypesafeStream.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L66">TypesafeStream.ts:66</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>limitTo: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> limitTo: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -741,7 +766,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#map">map</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L45">TypesafeStream.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L71">TypesafeStream.ts:71</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -764,7 +789,7 @@
 					<a name="max" class="tsd-anchor"></a>
 					<h3>max</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">max<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -772,7 +797,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#max">max</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#max">max</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L145">AbstractStream.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L149">AbstractStream.ts:149</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -781,10 +806,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -792,7 +814,7 @@
 					<a name="maxby" class="tsd-anchor"></a>
 					<h3>max<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">max<wbr>By&lt;K&gt;<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">max<wbr>By&lt;K&gt;<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -800,7 +822,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#maxby">maxBy</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#maxby">maxBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L150">AbstractStream.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L154">AbstractStream.ts:154</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -815,10 +837,7 @@
 									<h5>sortKey: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -826,7 +845,7 @@
 					<a name="min" class="tsd-anchor"></a>
 					<h3>min</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">min<span class="tsd-signature-symbol">(</span>comparator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -834,7 +853,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#min">min</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#min">min</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L155">AbstractStream.ts:155</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L159">AbstractStream.ts:159</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -843,10 +862,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> comparator: <span class="tsd-signature-type">Comparator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -854,7 +870,7 @@
 					<a name="minby" class="tsd-anchor"></a>
 					<h3>min<wbr>By</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">min<wbr>By&lt;K&gt;<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">min<wbr>By&lt;K&gt;<span class="tsd-signature-symbol">(</span>sortKey<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -862,7 +878,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#minby">minBy</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#minby">minBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L160">AbstractStream.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L164">AbstractStream.ts:164</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -877,10 +893,7 @@
 									<h5>sortKey: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -896,7 +909,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#none">none</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#none">none</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L135">AbstractStream.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L139">AbstractStream.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -913,7 +926,7 @@
 					<a name="nth" class="tsd-anchor"></a>
 					<h3>nth</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">nth<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">nth<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -921,7 +934,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#nth">nth</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#nth">nth</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L140">AbstractStream.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L144">AbstractStream.ts:144</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -930,10 +943,7 @@
 									<h5>n: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -949,7 +959,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#partition">partition</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#partition">partition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L165">AbstractStream.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L169">AbstractStream.ts:169</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -982,7 +992,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#promise">promise</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#promise">promise</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L50">TypesafeStream.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L76">TypesafeStream.ts:76</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1013,7 +1023,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reduce">reduce</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reduce">reduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L170">AbstractStream.ts:170</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L174">AbstractStream.ts:174</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1039,7 +1049,7 @@
 					<a name="reducesame" class="tsd-anchor"></a>
 					<h3>reduce<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+						<li class="tsd-signature tsd-kind-icon">reduce<wbr>Same<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1047,7 +1057,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reducesame">reduceSame</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reducesame">reduceSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L175">AbstractStream.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L179">AbstractStream.ts:179</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1056,7 +1066,7 @@
 									<h5>reducer: <a href="../globals.html#bifunction" class="tsd-signature-type">BiFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1070,7 +1080,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L56">TypesafeStream.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L82">TypesafeStream.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1095,10 +1105,29 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reverse">reverse</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reverse">reverse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L61">TypesafeStream.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L87">TypesafeStream.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="shift" class="tsd-anchor"></a>
+					<h3>shift</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">shift<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#shift">shift</a></p>
+								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#shift">shift</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L189">AbstractStream.ts:189</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1114,7 +1143,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#size">size</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L180">AbstractStream.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L184">AbstractStream.ts:184</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1125,7 +1154,7 @@
 					<a name="skip" class="tsd-anchor"></a>
 					<h3>skip</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">skip<span class="tsd-signature-symbol">(</span>toSkip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">skip<span class="tsd-signature-symbol">(</span>toSkip<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1133,13 +1162,13 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#skip">skip</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#skip">skip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L66">TypesafeStream.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L92">TypesafeStream.ts:92</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>toSkip: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> toSkip: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1158,7 +1187,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#slice">slice</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#slice">slice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L71">TypesafeStream.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L97">TypesafeStream.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1183,7 +1212,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#some">some</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#some">some</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L185">AbstractStream.ts:185</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L196">AbstractStream.ts:196</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1208,7 +1237,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#sort">sort</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sort">sort</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L76">TypesafeStream.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L102">TypesafeStream.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1218,6 +1247,34 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="splice" class="tsd-anchor"></a>
+					<h3>splice</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">splice<span class="tsd-signature-symbol">(</span>maxAmount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#splice">splice</a></p>
+								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#splice">splice</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L201">AbstractStream.ts:201</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxAmount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> offset: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1233,7 +1290,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#sum">sum</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sum">sum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L190">AbstractStream.ts:190</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L208">AbstractStream.ts:208</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1250,7 +1307,7 @@
 					<a name="toarray" class="tsd-anchor"></a>
 					<h3>to<wbr>Array</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Array<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1258,13 +1315,13 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#toarray">toArray</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L195">AbstractStream.ts:195</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L213">AbstractStream.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">boolean</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -1280,9 +1337,10 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tojson">toJSON</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L205">AbstractStream.ts:205</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L223">AbstractStream.ts:223</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -1293,7 +1351,7 @@
 					<a name="tomap" class="tsd-anchor"></a>
 					<h3>to<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Map&lt;K, V&gt;<span class="tsd-signature-symbol">(</span>keyMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, valueMapper<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span>, merger<span class="tsd-signature-symbol">?: </span><a href="../globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1301,7 +1359,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tomap">toMap</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tomap">toMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L213">AbstractStream.ts:213</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L231">AbstractStream.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1321,6 +1379,9 @@
 								<li>
 									<h5>valueMapper: <a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> merger: <a href="../globals.html#binaryoperator" class="tsd-signature-type">BinaryOperator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">V</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
@@ -1330,7 +1391,7 @@
 					<a name="toset" class="tsd-anchor"></a>
 					<h3>to<wbr>Set</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">to<wbr>Set<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Set<span class="tsd-signature-symbol">(</span>fresh<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1338,13 +1399,13 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#toset">toSet</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toset">toSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L200">AbstractStream.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L218">AbstractStream.ts:218</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">boolean</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> fresh: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1362,7 +1423,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L209">AbstractStream.ts:209</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L227">AbstractStream.ts:227</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1381,7 +1442,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#try">try</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#try">try</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L81">TypesafeStream.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L107">TypesafeStream.ts:107</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1412,7 +1473,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#trycompute">tryCompute</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#trycompute">tryCompute</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L218">AbstractStream.ts:218</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L236">AbstractStream.ts:236</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1443,7 +1504,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tryend">tryEnd</a></p>
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tryend">tryEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/AbstractStream.ts#L223">AbstractStream.ts:223</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/AbstractStream.ts#L241">AbstractStream.ts:241</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1462,7 +1523,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#unique">unique</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#unique">unique</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L86">TypesafeStream.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L112">TypesafeStream.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1487,7 +1548,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#uniqueby">uniqueBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#uniqueby">uniqueBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L91">TypesafeStream.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L117">TypesafeStream.ts:117</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1512,7 +1573,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#visit">visit</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#visit">visit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L96">TypesafeStream.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L122">TypesafeStream.ts:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1529,7 +1590,7 @@
 					<a name="zip" class="tsd-anchor"></a>
 					<h3>zip</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">zip&lt;S&gt;<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip&lt;S&gt;<span class="tsd-signature-symbol">(</span>other<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1537,7 +1598,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#zip">zip</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#zip">zip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L101">TypesafeStream.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L127">TypesafeStream.ts:127</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1552,7 +1613,7 @@
 									<h5>other: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1560,7 +1621,7 @@
 					<a name="zipsame" class="tsd-anchor"></a>
 					<h3>zip<wbr>Same</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">zip<wbr>Same<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>others<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1568,7 +1629,7 @@
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#zipsame">zipSame</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#zipsame">zipSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/TypesafeStream.ts#L106">TypesafeStream.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/TypesafeStream.ts#L132">TypesafeStream.ts:132</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1577,7 +1638,7 @@
 									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>others: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#maybe" class="tsd-signature-type">Maybe</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -1615,6 +1676,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="typesafestream.html#concat" class="tsd-kind-icon">concat</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="typesafestream.html#consume" class="tsd-kind-icon">consume</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="typesafestream.html#cycle" class="tsd-kind-icon">cycle</a>
@@ -1704,6 +1768,9 @@
 								<a href="typesafestream.html#reverse" class="tsd-kind-icon">reverse</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="typesafestream.html#shift" class="tsd-kind-icon">shift</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="typesafestream.html#size" class="tsd-kind-icon">size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
@@ -1717,6 +1784,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="typesafestream.html#sort" class="tsd-kind-icon">sort</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="typesafestream.html#splice" class="tsd-kind-icon">splice</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="typesafestream.html#sum" class="tsd-kind-icon">sum</a>

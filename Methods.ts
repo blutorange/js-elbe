@@ -1,13 +1,25 @@
+import { RBTree } from "bintrees";
 import { byKey, Comparator, natural } from "kagura";
 
 import { Collectors } from "./Collectors";
-import { BiConsumer, BiFunction, BiPredicate, Consumer, Function, ICollector, ITry, Predicate, Supplier } from "./Interfaces";
+import {
+    BiConsumer,
+    BiFunction,
+    BinaryOperator,
+    BiPredicate,
+    Consumer,
+    Function,
+    ICollector,
+    ITry,
+    Maybe,
+    Predicate,
+    Supplier,
+} from "./Interfaces";
 import { LazyBufferedIterable } from "./LazyBufferedIterable";
 import { TryFactory } from "./TryFactory";
+import { EMPTY_ITERABLE, identity, wrapIterator } from "./util";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
-
-const IDENTITY = (x: any) => x;
 
 /**
  * Transform each element to another element of a different type.
@@ -92,6 +104,11 @@ export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction
  *
  * ```javascript
  * slice([1,2,3,4,5], 2) // => Iterable[ [1,2], [3,4], [5] ]
+ * slice([1,2,3,4,5], 1) // => Iterable[ [1], [2], [3], [4], [5] ]
+ * slice([1,2,3,4,5], 0) // => Iterable[]
+ * slice([1,2,3,4,5], -1) // => Iterable[]
+ * slice([1,2,3,4,5], NaN) // => Iterable[]
+ * slice([1,2,3,4,5], Infinity) // => Iterable[[1,2,3,4,5]]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -100,7 +117,9 @@ export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction
  * @return An iterable over the sliced items.
  */
 export function* slice<T>(iterable: Iterable<T>, sliceSize: number): Iterable<T[]> {
-    sliceSize = Math.max(sliceSize, 1);
+    if (sliceSize < 1 || isNaN(sliceSize)) {
+        return;
+    }
     let count = sliceSize;
     let chunk = [];
     for (const item of iterable) {
@@ -138,7 +157,7 @@ export function* slice<T>(iterable: Iterable<T>, sliceSize: number): Iterable<T[
  * @param other Other iterable to be zipped to the given iterable.
  * @return An iterable over all the produced pairs.
  */
-export function * zip<T, S>(iterable: Iterable<T>, other: Iterable<S>): Iterable<[T, S]> {
+export function * zip<T, S>(iterable: Iterable<T>, other: Iterable<S>): Iterable<[Maybe<T>, Maybe<S>]> {
     const it1 = iterable[Symbol.iterator]();
     const it2 = other[Symbol.iterator]();
     let res1 = it1.next();
@@ -172,7 +191,7 @@ export function * zip<T, S>(iterable: Iterable<T>, other: Iterable<S>): Iterable
  * @param others Other iterable to be zipped to the given iterable.
  * @return An iterable over al the produced tuples.
  */
-export function* zipSame<T>(iterable: Iterable<T>, others: Iterable<T>[]): Iterable<T[]> {
+export function* zipSame<T>(iterable: Iterable<T>, others: Iterable<T>[]): Iterable<Maybe<T>[]> {
     const it = [iterable[Symbol.iterator]()];
     for (const other of others) {
         it.push(other[Symbol.iterator]());
@@ -269,7 +288,11 @@ export function tryEnd<T>(iterable: Iterable<T>): ITry<void> {
  * discriminator.
  *
  * ```javascript
- * partition([-3,2,9,-4], x => x > 0) // => { false: [-3,-4], true: [2,9]}
+ * partition([-3,2,9,-4], x => x > 0)
+ * // => { false: [-3,-4], true: [2,9]}
+ *
+ * partition([], x => x > 0)
+ * // => { false: [], true: []}
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -286,7 +309,8 @@ export function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>)
  * classifier.
  *
  * ```javascript
- * group(["a", "foo", "is", "some", "buzz"], x => x.length) // => Map [ 1 => ["a"], 2 => ["is"], 3 => "is", 4 => ["some", "buzz"] ]
+ * group(["a", "foo", "is", "some", "buzz"], x => x.length)
+ * // => Map [ 1 => ["a"], 2 => ["is"], 3 => "is", 4 => ["some", "buzz"] ]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -354,22 +378,15 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iter
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor?: Function<T, any>): Iterable<T> {
+export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor: Function<T, any> = identity): Iterable<T> {
     const set = new Set();
-    keyExtractor = keyExtractor || IDENTITY;
     for (const item of iterable) {
         const key = keyExtractor(item);
         if (!set.has(key)) {
             set.add(key);
             yield item;
         }
-}
-}
-
-interface IUniqueEntry<T> {
-    i: number;
-    v: T;
-    u: boolean;
+    }
 }
 
 /**
@@ -392,57 +409,21 @@ interface IUniqueEntry<T> {
  * @return An iterable with all duplicates removed.
  */
 export function* unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T> {
-    // If no comparator was given, we can use a set as it uses === for comparison.
-    // Set guarantees iteration in insertion order.
-    if (comparator === undefined) {
-        for (const item of new Set(iterable)) {
-            yield item;
-        }
-        return;
-    }
-    // Sort the items, then check which are identical,
-    // then output in original order.
-    const items: IUniqueEntry<T>[] = [];
-    let i = 0;
-    // Safe original index and a flags whether the
-    // item appears in the output.
-    for (const item of iterable) {
-        items.push({
-            i: i++,
-            u: false,
-            v: item,
-        });
-    }
-    // Sort by the given comparator, now duplicates
-    // are next to each other.
-    // The iterations run in O(n) (I hope in JavaScript...),
-    // the sort in O(n*log(n)) (I hope in JavaScript).
-    const sorted = Array.from(items).sort((x, y) => comparator(x.v, y.v));
-    let first = true;
-    let previous: IUniqueEntry<T>;
-    for (const item of sorted) {
-        // If first item, always yield.
-        if (first) {
-            item.u = true;
-            previous = item;
-            first = false;
-        }
-        // Check if current item is equal to previous item.
-        else if (comparator(item.v, previous.v) !== 0) {
-            item.u = true;
-            previous = item;
-        }
-        // If equal, take the item with the lowest index.
-        else if (item.i < previous.i) {
-            previous.u = false;
-            item.u = true;
-            previous = item;
+    if (comparator !== undefined) {
+        const set = new RBTree(comparator);
+        for (const item of iterable) {
+            if (set.insert(item)) {
+                yield item;
+            }
         }
     }
-    // Iterate in original order and yield if unique.
-    for (const item of items) {
-        if (item.u) {
-            yield item.v;
+    else {
+        const set = new Set();
+        for (const item of iterable) {
+            if (!set.has(item)) {
+                set.add(item);
+                yield item;
+            }
         }
     }
 }
@@ -470,18 +451,24 @@ export function* index<T>(iterable: Iterable<T>): Iterable<{index: number, value
  * Limits the iterable to at most the given number of elements.
  *
  * ```javascript
+ *  limit([1,2,3,4,5,6], NaN) // => Iterable[1,2,3,4,5,6]
+ *  limit([1,2,3,4,5,6], 0) // => Iterable[]
  *  limit([1,2,3,4,5,6], 3) // => Iterable[1,2,3]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable to be limited.
- * @param limit The maximum number of items in the resulting iterable.
+ * @param limit The maximum number of items in the resulting iterable. Default to `Infinity`.
  * @return An iterable with at most the given number of items.
  */
-export function* limit<T>(iterable: Iterable<T>, limit: number): Iterable<T> {
+export function* limit<T>(iterable: Iterable<T>, limit: number = Infinity): Iterable<T> {
+    if (limit < 1) {
+        return;
+    }
+    limit -= 1;
     for (const item of iterable) {
         yield item;
-        if (--limit < 1) {
+        if (--limit < 0) {
             break;
         }
     }
@@ -491,6 +478,7 @@ export function* limit<T>(iterable: Iterable<T>, limit: number): Iterable<T> {
  * Cycles over the elements of the iterable the given number of times.
  *
  * ```javascript
+ * cycle([1,2,3], NaN) // => Iterable[]
  * cycle([1,2,3], 3) // => Iterable[1,2,3,1,2,3,1,2,3]
  * limit(cycle([1,2,3]), 5) // => Iterable[1,2,3,1,2]
  * ```
@@ -501,10 +489,12 @@ export function* limit<T>(iterable: Iterable<T>, limit: number): Iterable<T> {
  * @return An iterable with the items of the given iterable repeating.
  */
 export function* cycle<T>(iterable: Iterable<T>, count: number = Infinity): Iterable<T> {
-    count = Math.max(0, count);
-    const items = toArray(iterable, true);
+    if (count < 1 || isNaN(count)) {
+        return;
+    }
+    const lazy = new LazyBufferedIterable(iterable);
     for (let i = 0; i < count; ++i) {
-        for (const item of items) {
+        for (const item of lazy) {
             yield item;
         }
     }
@@ -536,32 +526,36 @@ export function* visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
  * Discards the given number of items from the iterable.
  *
  * ```javascript
+ * skip([1,2,3,4,5,6], NaN) // => Iterable[1,2,3,4,5,6]
+ * skip([1,2,3,4,5,6], 0) // => Iterable[1,2,3,4,5,6]
  * skip([1,2,3,4,5,6], 3) // => Iterable[4,5,6]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
  * @param iterable The iterable to be skipped.
+ * @param toSkip Number of items to skip. Default to `Infinity`.
  * @return An iterable with the given number of items skipped.
  * @see {@link limit}
  */
-export function* skip<T>(iterable: Iterable<T>, skip: number): Iterable<T> {
+export function* skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iterable<T> {
     const it = iterable[Symbol.iterator]();
-    while (skip-- > 0) {
-        if (it.next().done) {
-            break;
-        }
-    }
+    while (--toSkip >= 0 && !it.next().done) {/**/}
     for (let entry = it.next(); !entry.done; entry = it.next()) {
         yield entry.value;
     }
 }
 
 /**
- * Reverses the order of the items. Note that the items
- * need to be saved temporarily.
+ * Reverses the order of the items.
+ *
+ * Note that the items need to be saved temporarily, so that this
+ * does not work with unlimite streams, as the last item needs to
+ * be accesed first.
  *
  * ```javascript
  * reverse([1,2,3]) // => Iterable[3,2,1]
+ * reverse([]) // => Iterable[]
+ * reverse(factory.step(Infinity)) // hangs
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -629,7 +623,7 @@ export function size(iterable: Iterable<any>): number {
  * @param predicate Test to be performed on the items. It is passed the current item and the current index.
  * @return The item iff found, undefined otherwise.
  */
-export function find<T>(iterable: Iterable<T>, predicate: BiPredicate<T, number>): T {
+export function find<T>(iterable: Iterable<T>, predicate: BiPredicate<T, number>): Maybe<T> {
     let index = -1;
     for (const item of iterable) {
         if (predicate(item, ++index)) {
@@ -740,6 +734,89 @@ export function has<T>(iterable: Iterable<T>, object: T): boolean {
 }
 
 /**
+ * Consumes the given amount of items from the iterable, adding it
+ * to the sink, and returns an iterable over the remaining items.
+ *
+ * ```javascript
+ * const sink = [];
+ * consume("foobar", sink, 3);
+ * // => sink is now ["f", "o", "o"]
+ *
+ * consume("foobar", console.log, 3);
+ * // => logs "f", "o", "o"
+ *
+ * consume("foobar", console.log, -3);
+ * // => logs nothing
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be scanned.
+ * @param sink If an array, consmed items are added to the array. Otherwise, the consumer is called with the consumed item.
+ * @param maxAmount Maximum number of items to consume. Defaults to `Infinity`.
+ * @param offset Where to start removing items from the iterable. Defaults to `0`.
+ * @return An iterable over the remaining items.
+ */
+export function consume<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>, maxAmount: number = Infinity, offset: number = 0): Iterable<T> {
+    if (maxAmount < 1 || isNaN(maxAmount) || isNaN(offset)) {
+        return iterable;
+    }
+
+    const it = iterable[Symbol.iterator]();
+    let result: IteratorResult<T>;
+
+    // go to offset position
+    let head: Iterable<T> = EMPTY_ITERABLE;
+    if (offset >= 1) {
+        const headArray: T[] = [];
+        --offset;
+        do {
+            result = it.next();
+            if (result.done) {
+                break;
+            }
+            headArray.push(result.value);
+        } while (--offset >= 0);
+        head = headArray;
+    }
+
+    // splice of the items
+    --maxAmount;
+    if (Array.isArray(sink)) {
+        do {
+            result = it.next();
+            if (result.done) {
+                break;
+            }
+            sink.push(result.value);
+        } while (--maxAmount >= 0);
+    }
+    else {
+        do {
+            result = it.next();
+            if (result.done) {
+                break;
+            }
+            sink(result.value);
+        } while (--maxAmount >= 0);
+    }
+    return concat(head, fromIter(it));
+}
+
+export function consumeFirst<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>): Iterable<T> {
+    const it = iterable[Symbol.iterator]();
+    const result = it.next();
+    if (!result.done) {
+        if (Array.isArray(sink)) {
+            sink.push(result.value);
+        }
+        else {
+            sink(result.value);
+        }
+    }
+    return wrapIterator(it);
+}
+
+/**
  * Converts each item to a promise and returns a promise
  * that is resolved with an iterable of results when all
  * of the created Promises resolve, or rejected when any
@@ -775,7 +852,7 @@ export function promise<T, S>(iterable: Iterable<T>, promiseConverter: Function<
  * @param sortKey Takes an item and produces the key by which the minimum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | undefined {
+export function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): Maybe<T> {
     return min(iterable, byKey(sortKey));
 }
 
@@ -792,7 +869,7 @@ export function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | 
  * @param sortKey Takes an item and produces the key by which the maximum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function maxBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | undefined {
+export function maxBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): Maybe<T> {
     return max(iterable, byKey(sortKey));
 }
 
@@ -810,16 +887,16 @@ export function maxBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): T | 
  * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
  * @return The smallest item. If there are multiple smallest items, returns the first.  `undefined` iff the iterable is empty.
  */
-export function min<T>(iterable: Iterable<T>, comparator: Comparator<T> = natural): T | undefined {
+export function min<T>(iterable: Iterable<T>, comparator: Comparator<T> = natural): Maybe<T> {
     let first = true;
-    let min: T;
+    let min: Maybe<T>;
     for (const item of iterable) {
         if (first) {
             min = item;
             first = false;
         }
         else {
-            if (comparator(item, min) < 0) {
+            if (comparator(item, min as T) < 0) {
                 min = item;
             }
         }
@@ -841,21 +918,21 @@ export function min<T>(iterable: Iterable<T>, comparator: Comparator<T> = natura
  * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
  * @return The largest item. If there are multiple largest items, returns the first. `undefined` iff the iterable is empty.
  */
-export function max<T>(iterable: Iterable<T>, comparator: Comparator<T> = natural): T | undefined {
+export function max<T>(iterable: Iterable<T>, comparator: Comparator<T> = natural): Maybe<T> {
     let first = true;
-    let min: T;
+    let max: Maybe<T>;
     for (const item of iterable) {
         if (first) {
-            min = item;
+            max = item;
             first = false;
         }
         else {
-            if (comparator(item, min) > 0) {
-                min = item;
+            if (comparator(item, max as T) > 0) {
+                max = item;
             }
         }
     }
-    return min;
+    return max;
 }
 
 /**
@@ -892,8 +969,8 @@ export function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<S, T, S>
  * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
  * @return The reduced value, or undefined iff the iterable is empty.
  */
-export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): T {
-    let reduced: T;
+export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): Maybe<T> {
+    let reduced: Maybe<T>;
     let first = true;
     for (const item of iterable) {
         if (first) {
@@ -901,7 +978,7 @@ export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T
             first = false;
         }
         else {
-            reduced = reducer(reduced, item);
+            reduced = reducer(reduced as T, item);
         }
     }
     return reduced;
@@ -959,17 +1036,16 @@ export function end<T>(iterable: Iterable<T>): void {
  * @param n The position of the item to get.
  * @return The item at the given position, or undefined if not found.
  */
-export function nth<T>(iterable: Iterable<T>, n: number): T | undefined {
-    let index = 0;
-    if (n < 0) {
+export function nth<T>(iterable: Iterable<T>, n: number): Maybe<T> {
+    if (n < 0 || isNaN(n)) {
         return undefined;
     }
-    n = Math.floor(n);
+    n -= 1;
     for (const item of iterable) {
-        if (index >= n) {
+        if (n < 0) {
             return item;
         }
-        index += 1;
+        n -= 1;
     }
     return undefined;
 }
@@ -986,7 +1062,7 @@ export function nth<T>(iterable: Iterable<T>, n: number): T | undefined {
  * @param iterable The iterable to be scanned.
  * @return The item at the first position, or undefined if empty.
  */
-export function first<T>(iterable: Iterable<T>): T | undefined {
+export function first<T>(iterable: Iterable<T>): Maybe<T> {
     for (const item of iterable) {
         return item;
     }
@@ -1005,7 +1081,7 @@ export function first<T>(iterable: Iterable<T>): T | undefined {
  * @param iterable The iterable to be scanned.
  * @return The item at the last position, or undefined if empty.
  */
-export function last<T>(iterable: Iterable<T>): T | undefined {
+export function last<T>(iterable: Iterable<T>): Maybe<T> {
     let last;
     for (const item of iterable) {
         last = item;
@@ -1036,7 +1112,8 @@ export function collect<T, S, R = S>(iterable: Iterable<T>, collector: ICollecto
  * the collector individually.
  *
  * ```javascript
- * collect([1,2,3], () => [], (array, x) => array.push(x), x => new Set(x)) // => Set[1,2,3]
+ * collect([1,2,3], () => [], (array, x) => array.push(x), x => new Set(x))
+ * // => Set[1,2,3]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -1147,7 +1224,14 @@ export function toSet<T>(iterable: Iterable<T>, fresh: boolean = false): Set<T> 
 }
 
 /**
- * Creates a map from the items of the given iterable.
+ * Creates a map from the items of the given iterable. The item's
+ * key and value is extracted by the given key and value mapper.
+ *
+ * When two items have the same key, the optional merge
+ * function is called with the two items and the result
+ * of the merge function is used as the value for that key.
+ * If no merge function is given, the value of the item
+ * encountered first is taken.
  *
  * ```javascript
  * toMap(["foo", "bar"], x => x, x => x.length)
@@ -1160,10 +1244,11 @@ export function toSet<T>(iterable: Iterable<T>, fresh: boolean = false): Set<T> 
  * @param iterable The iterable to to be converted.
  * @param keyMapper Transforms an item into the map key to be used.
  * @param valueMapper Transforms an item into the value used for the corresponding key.
+ * @param merger A merge function called when two items map to the same key and returns the merged value.  Called with two items having the same key, the first argument is the item encountered first in the stream.
  * @return A map with all the mapped key-value-pairs of the items.
  */
-export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>): Map<K, V> {
-    return collect(iterable, Collectors.toMap(keyMapper, valueMapper));
+export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>, merger?: BinaryOperator<V>): Map<K, V> {
+    return collect(iterable, Collectors.toMap(keyMapper, valueMapper, merger));
 }
 
 /**
@@ -1229,11 +1314,66 @@ export function* fromObjectValues<T>(object: { [s: string]: T }): Iterable<T> {
 }
 
 /**
+ * Creates an iterable of random numbers. The generated numbers are
+ * in the interval `[0,1]`. When the amount of numbers to generate
+ * is not specified, an unlimited amount of numbers are generated.
+ * Use methods such as {@link Methods.limit} to limit the iterable or
+ * {@link Methods.consume} to extract only a few numbers.
+ *
+ * **Please note that the generated numbers are not cryptographically
+ * secure random numbers and must not be used in any context dealing
+ * with security.**
+ *
+ * ```javascript
+ * random(3) // => Iterable[3 random numbers]
+ *
+ * random(-1) // => Iterable[]
+ *
+ * limit(random(Infinity), 5) // => Iterable[5 random numbers]
+ *
+ * first(random(10)) // => 1 random number
+ * ```
+ *
+ * @param amount How many random numbers to generate. Defaults to `Infinity`.
+ * @return A stream with the specified amount of random numbers.
+ */
+export function random(amount?: number): Iterable<number> {
+    return generate(Math.random, amount);
+}
+
+/**
+ * Creates an iterable from the given iterable or iterator. If it is an
+ * iterable, returns that iterable, otherwise create an iterabl reading
+ * from the iterator.
+ *
+ * ```javascript
+ * fromIter([1,2,3]) // => Iterable[1,2,3]
+ *
+ * const set = new Set([1,2,3])
+ * fromIter(set.values().next()) // => Iterable[2,3]
+ * ```
+ *
+ * @typeparam T Type of the generated items.
+ * @param iterableOrIterator Iterable or iterator from which to read the items.
+ * @return An iterable over the iterable's or the iterator's items.
+ */
+export function fromIter<T>(iterableOrIterator: Iterable<T> | Iterator<T>): Iterable<T> {
+    if (Symbol.iterator in iterableOrIterator) {
+        return iterableOrIterator as Iterable<T>;
+    }
+    return wrapIterator(iterableOrIterator as Iterator<T>);
+}
+
+/**
  * Creates an iterable with the items provided by the given generator.
  *
  * ```javascript
- * generate(index => index)
- * // => Iterable(0,1,2,3,4,...)
+ * generate(index => index, 2) // => Iterable[0,1,2]
+ * generate(index => index, 0) // => Iterable[]
+ * generate(index => index) // => Iterable[0,1,2,3,4,...]
+ * generate(index => index, Infinity) // => Iterable[0,1,2,3,4,...]
+ * generate(index => index, -Infinity) // => Iterable[]
+ * generate(index => index, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the generated items.
@@ -1242,9 +1382,12 @@ export function* fromObjectValues<T>(object: { [s: string]: T }): Iterable<T> {
  * @return Iterable for iterating the given amount of times over the items supplied by the supplier.
  */
 export function* generate<T>(generator: Function<number, T>, amount: number = Infinity): Iterable<T> {
-    amount = Math.max(0, amount);
-    for (let i = 0; i < amount; ++i) {
-        yield generator(i);
+    if (amount < 1 || isNaN(amount)) {
+        return;
+    }
+    let i = 0;
+    while (--amount >= 0) {
+        yield generator(i++);
     }
 }
 
@@ -1353,6 +1496,11 @@ export function* step(amount: number, start: number = 0, step: number = 1): Iter
  * ```javascript
  * repeat(0, 9)
  * // => Iterable[0,0,0,0,0,0,0,0,0]
+ *
+ * repeat(0, 0) // => Iterable[]
+ * repeat(0, -Infinity) // => Iterable[]
+ * repeat(0, Infinity) // => Iterable[0,0,0,...]
+ * repeat(0, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the items of the produced iterable.
@@ -1361,8 +1509,10 @@ export function* step(amount: number, start: number = 0, step: number = 1): Iter
  * @return Iterable contains the given item the given number of times.
  */
 export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
-    amount = Math.max(0, amount);
-    for (let i = 0; i < amount; ++i) {
+    if (amount < 1 || isNaN(amount)) {
+        return;
+    }
+    while (--amount >= 0) {
         yield item;
     }
 }
@@ -1373,6 +1523,12 @@ export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
  * ```javascript
  * iterate(42, x => (0x19660D * x + 0x3C6EF35F) % 0x100000000)
  * // Random number generator, linear congruential generator from "Numerical Recipes".
+ *
+ * iterate(2, x => 2*x, 3) // => Iterable[2,4,8]
+ * iterate(2, x => 2*x, 0) // => Iterable[]
+ * iterate(2, x => 2*x, Infinity) // => Iterable[2,4,8,16,...]
+ * iterate(2, x => 2*x, -Infinity) // => Iterable[]
+ * iterate(2, x => 2*x, NaN) // => Iterable[]
  * ```
  *
  * @typeparam T Type of the items of the produced iterable.
@@ -1382,8 +1538,10 @@ export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
  * @return Iterable for iterating over the provided items the given amount of times.
  */
 export function* iterate<T>(seed: T, next: Function<T, T>, amount: number = Infinity): Iterable<T> {
-    amount = Math.max(0, amount);
-    for (let i = 0; i < amount; ++i) {
+    if (amount < 1 || isNaN(amount)) {
+        return;
+    }
+    while ( --amount >= 0) {
         yield seed;
         seed = next(seed);
     }

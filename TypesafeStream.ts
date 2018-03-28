@@ -1,8 +1,29 @@
 import { Comparator } from "kagura";
 
 import { AbstractStream } from "./AbstractStream";
-import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Predicate } from "./Interfaces";
-import { chunk, concat, cycle, filter, flatMap, index, limit, map, promise, reverse, skip, slice, sort, tryMap, unique, uniqueBy, visit, zip, zipSame } from "./Methods";
+import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Maybe, Predicate } from "./Interfaces";
+import {
+    chunk,
+    concat,
+    consume,
+    cycle,
+    filter,
+    flatMap,
+    index,
+    limit,
+    map,
+    promise,
+    reverse,
+    skip,
+    slice,
+    sort,
+    tryMap,
+    unique,
+    uniqueBy,
+    visit,
+    zip,
+    zipSame,
+} from "./Methods";
 
 export class TypesafeStream<T> extends AbstractStream<T> {
     public ["constructor"]: (typeof TypesafeStream);
@@ -15,6 +36,11 @@ export class TypesafeStream<T> extends AbstractStream<T> {
     public concat(...iterables: Iterable<T>[]): this {
         this.check();
         return new this.constructor(concat(this.iterable, ...iterables)) as this;
+    }
+
+    public consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this {
+        this.check();
+        return new this.constructor(consume(this.iterable, sink, maxAmount, offset)) as this;
     }
 
     public cycle(count?: number): this {
@@ -37,7 +63,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new TypesafeStream(index(this.iterable));
     }
 
-    public limit(limitTo: number): this {
+    public limit(limitTo?: number): this {
         this.check();
         return new this.constructor(limit(this.iterable, limitTo)) as this;
     }
@@ -63,7 +89,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(reverse(this.iterable)) as this;
     }
 
-    public skip(toSkip: number): this {
+    public skip(toSkip?: number): this {
         this.check();
         return new this.constructor(skip(this.iterable, toSkip)) as this;
     }
@@ -98,12 +124,12 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(visit(this.iterable, consumer)) as this;
     }
 
-    public zip<S>(other: Iterable<S>): IStream<[T, S]> {
+    public zip<S>(other: Iterable<S>): IStream<[Maybe<T>, Maybe<S>]> {
         this.check();
         return new TypesafeStream(zip(this.iterable, other));
     }
 
-    public zipSame(...others: Iterable<T>[]): IStream<T[]> {
+    public zipSame(...others: Iterable<T>[]): IStream<Maybe<T>[]> {
         this.check();
         return new TypesafeStream(zipSame(this.iterable, others));
     }

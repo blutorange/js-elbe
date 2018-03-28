@@ -84,6 +84,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istreamfactory.html#fromobjectvalues" class="tsd-kind-icon">from<wbr>Object<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istreamfactory.html#generate" class="tsd-kind-icon">generate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istreamfactory.html#iterate" class="tsd-kind-icon">iterate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istreamfactory.html#random" class="tsd-kind-icon">random</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istreamfactory.html#repeat" class="tsd-kind-icon">repeat</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istreamfactory.html#step" class="tsd-kind-icon">step</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istreamfactory.html#stream" class="tsd-kind-icon">stream</a></li>
@@ -105,7 +106,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L288">Interfaces.ts:288</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L350">Interfaces.ts:350</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -155,7 +156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L302">Interfaces.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L364">Interfaces.ts:364</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -196,7 +197,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L317">Interfaces.ts:317</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L379">Interfaces.ts:379</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -240,21 +241,25 @@
 					<a name="generate" class="tsd-anchor"></a>
 					<h3>generate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">generate&lt;T&gt;<span class="tsd-signature-symbol">(</span>generator<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">generate&lt;T&gt;<span class="tsd-signature-symbol">(</span>generator<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L168">Interfaces.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L194">Interfaces.ts:194</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Creates a stream with the items provided by the given generator.</p>
 								</div>
-								<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index)
-<span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
+								<pre><code class="lang-javascript">generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index) <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
+generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index, <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index) <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
+generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index, <span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[0,1,2,3,4,...]</span>
+generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index, -<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt;</span> index, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
 </code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -275,7 +280,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>How many items to generate, <code>Infinity</code> for an unlimited amount.</p>
 									</div>
@@ -290,13 +295,13 @@
 					<a name="iterate" class="tsd-anchor"></a>
 					<h3>iterate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">iterate&lt;T&gt;<span class="tsd-signature-symbol">(</span>seed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, next<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">iterate&lt;T&gt;<span class="tsd-signature-symbol">(</span>seed<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, next<span class="tsd-signature-symbol">: </span><a href="../globals.html#function" class="tsd-signature-type">Function</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L184">Interfaces.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L241">Interfaces.ts:241</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -305,6 +310,11 @@
 								</div>
 								<pre><code class="lang-javascript">iterate(<span class="hljs-number">42</span>, x =&gt; (<span class="hljs-number">0x19660D</span> * x + <span class="hljs-number">0x3C6EF35F</span>) % <span class="hljs-number">0x100000000</span>)
 <span class="hljs-comment">// Random number generator, linear congruential generator from "Numerical Recipes".</span>
+iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2</span>*x, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[2,4,8]</span>
+iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2</span>*x, <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2</span>*x, <span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[2,4,8,16,...]</span>
+iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2</span>*x, -<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2</span>*x, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
 </code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -331,7 +341,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>How many times to iterate, <code>Infinity</code> for an unlimited amount.</p>
 									</div>
@@ -342,17 +352,64 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-					<a name="repeat" class="tsd-anchor"></a>
-					<h3>repeat</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">repeat&lt;T&gt;<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="random" class="tsd-anchor"></a>
+					<h3>random</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">random<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L200">Interfaces.ts:200</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L220">Interfaces.ts:220</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream of random numbers. The generated numbers are
+										in the interval <code>[0,1]</code>. When the amount of numbers to generate
+										is not specified, an unlimited amount of numbers are generated.
+									Use methods such as {@link IStream#limit} to limit the stream.</p>
+								</div>
+								<p><strong>Please note that the generated numbers are not cryptographically
+										secure random numbers and must not be used in any context dealing
+								with security.</strong></p>
+								<pre><code class="lang-javascript">random(<span class="hljs-number">3</span>).toArray() <span class="hljs-comment">// =&gt; [3 random numbers]</span>
+
+random(<span class="hljs-number">-1</span>).toArray() <span class="hljs-comment">// =&gt; []</span>
+
+random(<span class="hljs-literal">Infinity</span>).limit(<span class="hljs-number">5</span>) <span class="hljs-comment">// =&gt; [5 random numbers]</span>
+
+random(<span class="hljs-number">10</span>).first() <span class="hljs-comment">// =&gt; 1 random number</span>
+
+</code></pre>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How many random numbers to generate. Defaults to <code>Infinity</code>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A stream with the specified amount of random numbers.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+					<a name="repeat" class="tsd-anchor"></a>
+					<h3>repeat</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">repeat&lt;T&gt;<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L262">Interfaces.ts:262</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,6 +419,11 @@
 								</div>
 								<pre><code class="lang-javascript">repeat(<span class="hljs-number">0</span>, <span class="hljs-number">9</span>)
 <span class="hljs-comment">// =&gt; Stream[0,0,0,0,0,0,0,0,0]</span>
+
+repeat(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+repeat(<span class="hljs-number">0</span>, -<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
+repeat(<span class="hljs-number">0</span>, <span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[0,0,0,...]</span>
+repeat(<span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
 </code></pre>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -382,7 +444,7 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> amount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>How many times to repeat, <code>Infinity</code> for an unlimited amount.</p>
 									</div>
@@ -397,13 +459,13 @@
 					<a name="step" class="tsd-anchor"></a>
 					<h3>step</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">step<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, start<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, step<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">step<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, start<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, step<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L241">Interfaces.ts:241</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L303">Interfaces.ts:303</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,13 +511,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Initial number, defaults to 0.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> step: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> step: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>How far apart the individual items are, defaults to 1.</p>
 									</div>
@@ -476,9 +538,19 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L153">Interfaces.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L175">Interfaces.ts:175</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a stream from the given iterable. The iterable
+										is consumed as part of stream operations. If it is not
+										a repeatable iterable and multiple iteration over it are
+										required, use {@link IStream#fork}. The iterable is queried
+										only on-demand, thus allowing for generators that produce an
+									unlimited number of items.</p>
+								</div>
+							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
@@ -489,9 +561,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 							<ul class="tsd-parameters">
 								<li>
 									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Source from which the items are taken.</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A stream over the iterable&#39;s values.</p>
 						</li>
 					</ul>
 				</section>
@@ -499,13 +575,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 					<a name="times" class="tsd-anchor"></a>
 					<h3>times</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, start<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, end<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">times<span class="tsd-signature-symbol">(</span>amount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, start<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, end<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/44c4aea/Interfaces.ts#L273">Interfaces.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/d160f90/Interfaces.ts#L335">Interfaces.ts:335</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,13 +622,13 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Initial number, defaults to 0.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> end: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> end: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Last number, defaults to <code>start+amount-1</code>. May be smaller than end, in which case numbers of decreasing value are generated.</p>
 									</div>
@@ -594,6 +670,9 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="istreamfactory.html#iterate" class="tsd-kind-icon">iterate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="istreamfactory.html#random" class="tsd-kind-icon">random</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="istreamfactory.html#repeat" class="tsd-kind-icon">repeat</a>

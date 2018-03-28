@@ -7,6 +7,8 @@
         "outDir": "dist/node",
         "sourceMap": false,
         "watch": false,
+        "strictNullChecks": true,
+        "alwaysStrict": true,
         "allowUnreachableCode": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,

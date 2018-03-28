@@ -1,24 +1,6 @@
 import { Comparator } from "kagura";
 
 /**
- * Represents various statistics of a set of numbers.
- */
-export interface IStatistics {
-    /** The arithmetic average of the incorporated items. */
-    average: number;
-    /** The number of incorporated items. */
-    count: number;
-    /** The largest of the incorporated items. */
-    max: number;
-    /** The smallest of the incorporated items. */
-    min: number;
-    /** The arithmetic sum of the incorporated items. */
-    sum: number;
-    /** The variance of the incorporated items. This is the uncorrected (not sampled) variance. */
-    variance: number;
-}
-
-/**
  * A function with a single argument.
  * @typeparam T Type of the function's argument.
  * @typeparam R Type of the function's return value.
@@ -52,6 +34,13 @@ export type Consumer<T> = (object: T) => void;
 export type BiFunction<S, T, R> = (arg1: S, arg2: T) => R;
 
 /**
+ * An operator that takes two items of the same type and
+ * computes an item of the same type.
+ * @typeparam T Type of the item.
+ */
+export type BinaryOperator<T> = BiFunction<T, T, T>;
+
+/**
  * A predicate assign a boolean value to an item.
  * @typeparam T Type of the item.
  */
@@ -70,6 +59,28 @@ export type BiPredicate<T, S> = (arg1: T, arg2: S) => boolean;
  * @typeparam T Type of the second consumed value.
  */
 export type BiConsumer<S, T> = (arg1: S, arg2: T) => void;
+
+/**
+ * Represents various statistics of a set of numbers.
+ */
+export interface IStatistics {
+    /** The arithmetic average of the incorporated items. */
+    average: number;
+    /** The number of incorporated items. */
+    count: number;
+    /** The largest of the incorporated items. */
+    max: number;
+    /** The smallest of the incorporated items. */
+    min: number;
+    /** The arithmetic sum of the incorporated items. */
+    sum: number;
+    /** The variance of the incorporated items. This is the uncorrected (not sampled) variance. */
+    variance: number;
+    /**
+     * @return Object with all statistics.
+     */
+    toJSON(): {average: number, count: number, max: number, min: number, sum: number, variance: number};
+}
 
 /**
  * A collector takes all items of a stream and incorporates them
@@ -151,9 +162,12 @@ export interface ITryFactory {
 
 export interface IStreamFactory {
     /**
-     * Creates a stream with the items from the given iterable.
-     * The iterable is consumed by the stream and should not
-     * be used externally anymore.
+     * Creates a stream from the given iterable. The iterable
+     * is consumed as part of stream operations. If it is not
+     * a repeatable iterable and multiple iterations over it are
+     * required, use {@link IStream#fork}. The iterable is queried
+     * only on-demand, thus allowing for generators that produce an
+     * unlimited number of items.
      *
      * ```javascript
      * const stream1 = factory.stream("foo");
@@ -175,8 +189,8 @@ export interface IStreamFactory {
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
-     * @param iterable The iterable with the items.
-     * @return A stream with the items from the iterable.
+     * @param iterable Source from which the items are taken.
+     * @return A stream over the iterable's values.
      */
     stream<T>(iterable: Iterable<T>): IStream<T>;
 
@@ -192,8 +206,12 @@ export interface IStreamFactory {
      * Creates a stream with the items provided by the given generator.
      *
      * ```javascript
-     * generate(index => index)
-     * // => Stream[0,1,2,3,4,...]
+     * generate(index => index) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, 0) // => Stream[]
+     * generate(index => index) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, Infinity) // => Stream[0,1,2,3,4,...]
+     * generate(index => index, -Infinity) // => Stream[]
+     * generate(index => index, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -204,11 +222,42 @@ export interface IStreamFactory {
     generate<T>(generator: Function<number, T>, amount?: number): IStream<T>;
 
     /**
+     * Creates a stream of random numbers. The generated numbers are
+     * in the interval `[0,1]`. When the amount of numbers to generate
+     * is not specified, an unlimited amount of numbers are generated.
+     * Use methods such as {@link IStream#limit} to limit the stream.
+     *
+     * **Please note that the generated numbers are not cryptographically
+     * secure random numbers and must not be used in any context dealing
+     * with security.**
+     *
+     * ```javascript
+     * random(3).toArray() // => [3 random numbers]
+     *
+     * random(-1).toArray() // => []
+     *
+     * random(Infinity).limit(5) // => [5 random numbers]
+     *
+     * random(10).first() // => 1 random number
+     *
+     * ```
+     *
+     * @param amount How many random numbers to generate. Defaults to `Infinity`.
+     * @return A stream with the specified amount of random numbers.
+     */
+    random(amount?: number): IStream<number>;
+
+    /**
      * Creates a stream starting with the initial seed.
      *
      * ```javascript
      * iterate(42, x => (0x19660D * x + 0x3C6EF35F) % 0x100000000)
      * // Random number generator, linear congruential generator from "Numerical Recipes".
+     * iterate(2, x => 2*x, 3) // => Stream[2,4,8]
+     * iterate(2, x => 2*x, 0) // => Stream[]
+     * iterate(2, x => 2*x, Infinity) // => Stream[2,4,8,16,...]
+     * iterate(2, x => 2*x, -Infinity) // => Stream[]
+     * iterate(2, x => 2*x, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -226,6 +275,11 @@ export interface IStreamFactory {
      * ```javascript
      * repeat(0, 9)
      * // => Stream[0,0,0,0,0,0,0,0,0]
+     *
+     * repeat(0, 0) // => Stream[]
+     * repeat(0, -Infinity) // => Stream[]
+     * repeat(0, Infinity) // => Stream[0,0,0,...]
+     * repeat(0, NaN) // => Stream[]
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
@@ -549,10 +603,25 @@ export interface ITry<T> {
     stream(factory?: IStreamFactory): IStream<T | Error>;
 
     /**
-     * Creates a stream from either the successful value or the error.
+     * Creates an iterable over either the successful value or the error.
      * @return A stream over either the successful value or the error.
      */
     iterate(): Iterable<T | Error>;
+
+   /**
+    * Hook for JSON.stringify. Returns a JSON representation
+    * of itself, containing its value and whether it represents
+    * a success or failure of an operation.
+    * @return An object with keys `result` (contained value) and `success` (whether the operation was successful).
+    */
+    toJSON(): {result: T | string, success: boolean};
+
+    /**
+     * Unwraps the try an returns either the contained successful
+     * value or the error.
+     * @return Either the contained value or the error.
+     */
+    unwrap(): T | Error;
 
     /**
      * Similar to [[Try.convert]], but works like a `thenable`-object.
@@ -570,7 +639,7 @@ export interface ITry<T> {
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link Try} for encapsulating errors.
      */
-    then<S>(success: Function<T, S | ITry<S>>, error: Function<Error, S | ITry<S>>): ITry<S>;
+    then<S>(success: Function<T, S | ITry<S>>, error?: Function<Error, S | ITry<S>>): ITry<S>;
 
     /**
      * Similar to {@link #orTry}, but works like a `thenable`-object.
@@ -685,9 +754,42 @@ export interface IStream<T> {
     concat(...iterables: Iterable<T>[]): this;
 
     /**
+     * Consumes the given amount of items at a given offse from the start of
+     * from this stream, and adds thems to the sink. The items at the start
+     * of the stream and the remaining items can be read from the returned
+     * stream.
+     *
+     * ```javascript
+     * const sink = [];
+     * const s = stream("foobar").consume(sink, 3);
+     * // => sink is now ["f", "o", "o"]
+     * s.join() // => "bar"
+     *
+     * const sink2 = [];
+     * const s2 = stream("foobar").consume(sink, 3, 2);
+     * // => sink is now ["o", "b", "a"]
+     * s2.join() // => "for"
+     *
+     * stream("foobar").consume(console.log, 3);
+     * // => logs "f", "o", "o"
+     *
+     * stream("foobar").consume(console.log, -3);
+     * // => logs nothing
+     * ```
+     *
+     * @param sink If an array, consmed items are added to the array. Otherwise, the consumer is called with the consumed item.
+     * @param maxAmount Maximum number of items to consume. Defaults to `Infinity`.
+     * @param offset Where to start consuming items. Defaults to `0`.
+     * @return A stream over the remaining items.
+     */
+    consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this;
+
+    /**
      * Cycles over the elements of this stream the given number of times.
      *
      * ```javascript
+     * stream([1,2,3]).cycle(NaN) // => Stream[]
+     * stream([1,2,3]).cycle(0) // => Stream[]
      * stream([1,2,3]).cycle(3) // => Stream[1,2,3,1,2,3,1,2,3]
      * stream([1,2,3]).cycle().limit(5) // => Stream[1,2,3,1,2]
      * ```
@@ -746,11 +848,15 @@ export interface IStream<T> {
     findIndex(predicate: BiPredicate<T, number>): number;
 
     /**
-     * Returns the first item.
+     * Returns the first item and closes the stream. It cannot be read anymore.
      *
      * ```javascript
-     * first("foo") // => "f"
-     * first("") // => undefined
+     * stream("foo").first() // => "f"
+     * stream("").first() // => undefined
+     *
+     * const s = stream("foobar");
+     * s.first()
+     * s.first() // => Error
      * ```
      *
      * @return The item at the first position, or undefined if empty.
@@ -851,7 +957,7 @@ export interface IStream<T> {
      *
      * @typearam K Type of the group key.
      * @param classifier Returns the group for each item.
-     * @return A map with the groups as keys and arrays as values, containg all the items for that group.
+     * @return A map with the groups as keys and arrays as values, containing all the items for that group.
      */
     group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
 
@@ -867,6 +973,35 @@ export interface IStream<T> {
      * @return Whether the given object is contained in this stream.
      */
     has(object: T): boolean;
+
+    /**
+     * Extracts and return at most `maxAmount` items of this stream, starting
+     * at the given start position. All items up to the starting point and the
+     * remaining items are left in this stream and can be read from it.
+     *
+     * ```javascript
+     * const s = stream("foobar");
+     * s.splice(3); // => ["f", "o", "o"]
+     * s.join() // => "bar"
+     *
+     * const s2 = stream("foobar");
+     * s.splice(3,2); // => ["o", "b", "a"]
+     * s.join() // => "for"
+     *
+     * const s = stream("foobar");
+     * s.splice(3); // => ["f", "o", "o"]
+     * s.join() // => "bar"
+     *
+     * stream("foo").splice(0) // => []
+     * stream("foo").splice(NaN) // => []
+     * stream("foo").splice(2, NaN) // => []
+     * ```
+     *
+     * @param maxAmount Maximum number if items to read from this stream. Defaults to `Infinity`.
+     * @param offset Position at which to start removing items from the stream. Default to `0`.
+     * @return At most `maxAmount` items from the given start position of this stream.
+     */
+    splice(maxAmount?: number, offset?: number): T[];
 
     /**
      * Adds the index to each element of this stream. The index starts at 0.
@@ -911,13 +1046,15 @@ export interface IStream<T> {
      * Limits the stream to at most the given number of elements.
      *
      * ```javascript
+     *  stream([1,2,3,4,5,6]).limit(NaN) // => Stream[1,2,3,4,5,6]
+     *  stream([1,2,3,4,5,6]).limit(0) // => Stream[1,2,3,4,5,6]
      *  stream([1,2,3,4,5,6]).limit(3) // => Stream[1,2,3]
      * ```
      *
-     * @param limit The maximum number of items in the resulting stream.
+     * @param limit The maximum number of items in the resulting stream. Defaults to Infinity.
      * @return A stream with at most the given number of items.
      */
-    limit(limitTo: number): this;
+    limit(limitTo?: number): this;
 
     /**
      * Transform each element to another element of a possibly different type.
@@ -985,6 +1122,25 @@ export interface IStream<T> {
      * @return The smallest item, or `undefined` iff there are no items.
      */
     minBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
+
+    /**
+     * Returns the first item and keeps the stream open. The remaining
+     * items can still be read from the stream.
+     *
+     * ```javascript
+     * stream("foo").shift() // => "f"
+     * stream("").shift() // => undefined
+     *
+     * const s = stream("foobar");
+     * s.shift() // => "f"
+     * s.shift() // => "o"
+     * s.shift() // => "o"
+     * s.join() // => "bar"
+     * ```
+     *
+     * @return The item at the first position, or undefined if empty.
+     */
+    shift(): Maybe<T>;
 
     /**
      * Determines whether no item matches the given predicate. This
@@ -1074,11 +1230,15 @@ export interface IStream<T> {
     reduceSame(reducer: BiFunction<T, T, T>): Maybe<T>;
 
     /**
-     * Reverses the order of the items. Note that the items
-     * need to be saved temporarily.
+     * Reverses the order of the items.
+     *
+     * Note that the items need to be saved temporarily, so that this
+     * does not work with unlimite streams, as the last item needs to
+     * be accesed first.
      *
      * ```javascript
      * stream([1,2,3]).reverse() // => Stream[3,2,1]
+     * stream(factory.step(Infinity)).reverse() // hangs
      * ```
      *
      * @return A stream with the items in reversed order.
@@ -1103,16 +1263,21 @@ export interface IStream<T> {
      * stream([1,2,3,4,5,6]).skip(3) // => Stream[4,5,6]
      * ```
      *
+     * @param toSkip How many items to skip. Default to `Infinity`.
      * @return A stream with the given number of items skipped.
      * @see {@link limit}
      */
-    skip(toSkip: number): this;
+    skip(toSkip?: number): this;
 
     /**
      * Slices the items into chunks of sliceSize.
      *
      * ```javascript
      * stream([1,2,3,4,5]).slice(2) // => Stream[ [1,2], [3,4], [5] ]
+     * stream([1,2,3,4,5]).slice(1) // => Stream[ [1], [2], [3], [4], [5] ]
+     * stream([1,2,3,4,5]).slice(0) // => Stream[]
+     * stream([1,2,3,4,5]).slice(NaN) // => Stream[]
+     * stream([1,2,3,4,5]).slice(Infinity) // => Stream[[1,2,3,4,5]]
      * ```
      *
      * @param sliceSize Size of the produced chunks.
@@ -1147,9 +1312,11 @@ export interface IStream<T> {
     sort(comparator?: Comparator<T>): this;
 
     /**
-     * Sums all items arithmetically.
+     * Sums all items arithmetically. If there are no items
+     * in the stream, returns `NaN`.
      *
      * ```javascript
+     * stream([]).sum() // => NaN
      * stream([1,2,3]).sum() // => 6
      * stream(["I", "of", "Borg"]).sum(x => x.length) // => 7
      * ```
@@ -1158,6 +1325,21 @@ export interface IStream<T> {
      * @return The sum of the items.
      */
     sum(converter?: Function<T, number>): number;
+
+    /**
+     * Hook for JSON.stringify. Returns the items of this stream
+     * as an array. Note that this terminates the stream, any
+     * subsequent operations on the stream will fail.
+     *
+     * ```javascript
+     * stream("foo").toJSON()
+     * // => ["f", "o", "o"]
+     *
+     * JSON.stringify(stream("foo"))
+     * // => '["f","o","o"]'
+     * ```
+     */
+    toJSON(): T[] ;
 
     /**
      * Maps each item to the result of the given operation,
@@ -1238,20 +1420,33 @@ export interface IStream<T> {
     toSet(fresh?: boolean): Set<T>;
 
     /**
-     * Creates a map from the items of this stream.
+     * Creates a map from the items of this stream. When two items have
+     * the same key, the optional merge function is called with the two
+     * items and the result of the merge function is used as the value
+     * for that key. If no merge function is given, the value of the item
+     * encountered first is taken.
      *
      * ```javascript
      * stream(["foo", "bar"]).toMap(x => x, x => x.length)
      * // => Map[ "foo" => 3, "bar" => 3 ]
+     *
+     * const data = [{id: 0, name: "foo"}, {id: 0, name: "bar"}];
+     *
+     * stream(data).toMap(x => x.id, x => x.name)
+     * // => Map[ 0 => "bar" ]
+     *
+     * stream(data).toMap(x => x.id, x => x.name, (name1, name2) => name1 + "," + name2)
+     * // => Map[ 0 => "foo,bar" ]
      * ```
      *
      * @typeparam K Type of the map's keys.
      * @typeparam V Type of the map's values.
      * @param keyMapper Transforms an item into the map key to be used.
      * @param valueMapper Transforms an item into the value used for the corresponding key.
+     * @param merger A merge function called when two items map to the same key and returns the merged value. Called with two items having the same key, the first argument is the item encountered first in the stream.
      * @return A map with all the mapped key-value-pairs of the items.
      */
-    toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>): Map<K, V>;
+    toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger?: BinaryOperator<V>): Map<K, V>;
 
     /**
      * Filters all elements that are considered equal according to
@@ -1275,6 +1470,9 @@ export interface IStream<T> {
     /**
      * Similar to {@link #unique}, but allows for a custom key to
      * be specified, according to which uniqueness is determined.
+     * If two items compare equal, the item encountered first in the
+     * stream is taken. If items with the same key need to be merged,
+     * consider using `stream.collect(Collectors.toSet(merger))`.
      *
      * ```javascript
      * stream([4,1,3,4,1,3,1,9]).distinct()
@@ -1321,7 +1519,7 @@ export interface IStream<T> {
      * @param other Other iterable to be zipped to this stream.
      * @return A stream over all the produced tuples.
      */
-    zip<S>(other: Iterable<S>): IStream<[T, S]>;
+    zip<S>(other: Iterable<S>): IStream<[Maybe<T>, Maybe<S>]>;
 
     /**
      * Produces a stream over tuples of consisting of an item of this stream and
@@ -1343,7 +1541,7 @@ export interface IStream<T> {
      * @param others Other iterable to be zipped to the given iterable.
      * @return A stream over al the produced tuples.
      */
-    zipSame(...others: Iterable<T>[]): IStream<T[]>;
+    zipSame(...others: Iterable<T>[]): IStream<Maybe<T>[]>;
 }
 
 /**
@@ -1514,4 +1712,359 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @return A try-stream with all erronous values replaced with the backup values.
      */
     orTry(backup: Function<Error, T>): this;
+}
+
+export interface ICollectors {
+    /**
+     * Collects all items into an array, in the order in
+     * which the items are provided.
+     *
+     * ```javscript
+     * factory.stream().toArray()
+     * // => []
+     *
+     * factory.stream("foo").toArray()
+     * // => ["f", "o", "o"]
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @return A collector that adds all items into an array.
+     */
+    toArray<T>(): ICollector<T, any, T[]>;
+
+    /**
+     * Counts the number of items.
+     *
+     * ```javascript
+     * factory.stream([4,1,0,4]).collect(Collectors.count())
+     * // => 4
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @return A collector that counts the number of items.
+     */
+    count(): ICollector<any, any, number>;
+
+    /**
+     * Collects all items into a set. Duplicate items are ignored.
+     *
+     * ```javscript
+     * factory.stream().toSet()
+     * // => Set()
+     *
+     * factory.stream("foo").toSet()
+     * // => Set("f", "o")
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @return A collector that adds all items to a Set.
+     */
+    toSet<T>(): ICollector<T, any, Set<T>>;
+
+    /**
+     * Collects all items into a map. An item is added to the
+     * map with the key as returned by the key mapper and the
+     * value as returned by the value mapper.
+     *
+     * When two items have the same key, the optional merge
+     * function is called with the two items and the result
+     * of the merge function is used as the value for that key.
+     * If no merge function is given, the value of the item
+     * encountered first is taken.
+     *
+     * ```javscript
+     * factory.stream().toMap(x=>x, x=>x)
+     * // => Map()
+     *
+     * const data = [{id: 0, name: "foo"}, {id: 0, name: "bar"}];
+     *
+     * factory.stream(data).toMap(x => x.id, x => x.name)
+     * // => Map[ 0 => "bar" ]
+     *
+     * factory.stream(data).toMap(x => x.id, x => x.name, (name1, name2) => name1 + "," + name2)
+     * // => Map[ 0 => "foo,bar" ]
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @typeparam K Type of the key of the map.
+     * @typeparam V Type of the value of the map.
+     * @param keyMapper Takes an item and returns the key for that item.
+     * @param valueMapper Takes an items and returns the value for that item.
+     * @param merger A merge function called when two items map to the same key and returns the merged value.  Called with two items having the same key, the first argument is the item encountered first in the stream.
+     * @return A collector that adds all items to a Map with the key and value as computed by the key and value mapper.
+     */
+    toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger?: BinaryOperator<V>): ICollector<T, any, Map<K, V>>;
+
+    /**
+     * Splits the items into several groups, according to the given
+     * classifier.
+     *
+     * ```javascript
+     * factory.stream(["a", "foo", "is", "some", "buzz"]).collect(Collectors.group(x => x.length))
+     * // => Map [ 1 => ["a"], 2 => ["is"], 3 => "is", 4 => ["some", "buzz"] ]
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @typearam K Type of the group key.
+     * @param classifier Returns the group for each item.
+     * @return A map with the groups as keys and arrays as values, containing all the items for that group.
+     */
+    group<T, K>(classifier: Function<T, K>): ICollector<T, any, Map<K, T[]>>;
+
+    /**
+     * Applies the classifier on items and groups those items into
+     * a group for which the classifier returned the same value.
+     * Equality is determined by `===`. The downstream collector is
+     * then applied to the items of each group. The result is a map
+     * between the key returned by the classifier and the value
+     * returned by the downstream collector.
+     *
+     * ```javascript
+     * factory.stream(factory.times(11)).collect(Collectors.groupDown(x => x % 3, Collectors.sum()))
+     * // => Map{0: 0+3+6+9, 1: 1+4+7+10, 2: 2+5+8}
+     *
+     * // Returns a map between the city and the people living in that city.
+     * factory.stream(people).groupDown(person => person.city, Collectors.toSet())
+     * // => Map<City, Set<Person>>
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @typeparam K Type of the group key.
+     * @typeparam A Type of the intermediate value use by the downstream.
+     * @typeparam D Type of the group value.
+     * @param classifier Determines the group key of each item. Items with the same group key are grouped together.
+     * @param downstream Collector that is applied to the items of each group.
+     * @return A collector that groups the items and then collects the items of each group.
+     */
+    groupDown<T, K, A, D>(classifier: Function<T, K>, downstream: ICollector<T, A, D>): ICollector<T, any, Map<K, D>>;
+
+    /**
+     * Maps the items with the given mapper and passed them on to the
+     * given downstream collector.
+     *
+     * ```javascript
+     * const countLetters = Collectors.map(x => x.length), Collectors.sum();
+     * factory.stream(["foo", "foobar"]).collect(countLetters)
+     * // => 9
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @typeparam U Type of the mapped items.
+     * @typeparam A Type of the intermediate value used by the downstream.
+     * @typeparam R Type of the downstream result.
+     * @param mapper Mapping function applied to each item.
+     * @param downstream Collector that takes the mapped items.
+     * @return The result of the given downstream collector.
+     */
+    map<T, U, A, R>(mapper: Function<T, U>, downstream: ICollector<U, A, R>): ICollector<T, any, R>;
+
+    /**
+     * Turns the items into strings and joins these strings together
+     * with the given delimiter. Optionally, if prefix or suffix is
+     * given, prepends or appends it to the result.
+     *
+     * ```javascript
+     * factory.stream(["foo", "bar"]).collect(Collectors.join())
+     * // => "foobar"
+     *
+     * factory.stream(["foo", "bar"]).collect(Collectors.join(","))
+     * // => "foo,bar"
+     *
+     * factory.stream(["foo", "bar"]).collect(Collectors.join(",", "[", "]"))
+     * // => "[foo,bar]"
+     *
+     * factory.stream([]).collect(Collectors.join(","))
+     * // => ""
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param delimiter A separator inserted between two items. Default to the empty string.
+     * @param prefix If given, it is prepended to the joined result.
+     * @param suffix If given, it is appended to the joined result.
+     * @return A collector that joins the items into one string with the given delimiter, prefix and suffix.
+     */
+    join<T>(delimiter?: string, prefix?: string, suffix?: string): ICollector<T, any, string>;
+
+    /**
+     * Computes the sum of all the collected items, ie.
+     * `(x_1 + x_2 + ... + x_n)`, where `n` is the number of items and
+     * the `x_i` are the individual items. Returns `NaN` when there are
+     * no items.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.sum());
+     * // => NaN
+     *
+     * factory.stream([1, 2, 3]).collect(Collectors.sum());
+     * // => 6
+     *
+     * const letterCount = Collectors.sum(x => x.length);
+     * factory.stream(["fish", "and", "chips"]).collect(letterCount);
+     * // => 12
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and computes their sum.
+     */
+    sum<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+
+    /**
+     * Computes the (arithmetic) average of all the collected items, ie.
+     * `(x_1 + x_2 + ... + x_n)/n`, where `n` is the number of items and
+     * the `x_i` are the individual items. Returns `NaN` when there are
+     * no items.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.average());
+     * // => NaN
+     *
+     * factory.stream([1, 2, 3]).collect(Collectors.average());
+     * // => 2
+     *
+     * const letterAverage = Collectors.sum(x => x.length);
+     * factory.stream(["fish", "and", "chips"]).collect(letterAverage);
+     * // => 4
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and computes their (arithmetic) mean.
+     */
+    average<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+
+    /**
+     * Computes the geometric average of all the collected items, ie.
+     * `(x_1 * x_2 * ... * x_n)/n`, where `n` is the number of
+     * items and the `x_i` are the individual items. Returns `NaN`
+     * when there are no items.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.averageGeometrically());
+     * // => NaN
+     *
+     * factory.stream([2, 4, 8]).collect(Collectors.averageGeometrically());
+     * // => 4
+     *
+     * const letterAverage = Collectors.averageGeometrically(x => x.length);
+     * factory.stream(["fish", "is", "allergic"]).collect(letterAverage);
+     * // => 4
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and computes their geometric mean.
+     */
+    averageGeometrically<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+
+    /**
+     * Computes the harmonic average of all the collected items, ie.
+     * `n/(1/x_1 + 1/x_2 + ... + 1/x_n)`, where `n` is the number of items and the
+     * `x_i` are the individual items. Returns `NaN` when there are no
+     * items.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.averageHarmonically());
+     * // => NaN
+     *
+     * factory.stream([2, 4, 6, 8]).collect(Collectors.averageHarmonically());
+     * // => 3.84
+     *
+     * const letterAverage = Collectors.averageHarmonically(x => x.length);
+     * factory.stream(["is", "fish", "likely", "allergic"]).collect(letterAverage);
+     * // => 3.84
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and computes their harmonic mean.
+     */
+    averageHarmonically<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+
+    /**
+     * Computes a statistic for the items, such as the variance
+     * and the mean. Returns an instance of IStatistics, see
+     * {@link IStatistics} for an in-depth description.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.summarize());
+     * // => Statistics(count=3, mean=NaN, min=NaN, ...)
+     *
+     * factory.stream([1,3,8]).collect(Collectors.summarize());
+     * // => Statistics(count=3, mean=4, min=1, ...)
+     *
+     * const letterAverage = Collectors.summarize(x => x.length);
+     * factory.stream(["is", "fish", "likely", "allergic"]).collect(letterAverage);
+     * // => Statistics(count=4, mean=5, min=2, ...)
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and computes statistics for these numbers.
+     */
+    summarize<T>(converter?: Function<T, number>): ICollector<T, any, IStatistics>;
+
+    /**
+     * Computes the product of all the collected items, ie.
+     * `(x_1 * x_2 * ... * x_n)`, where `n` is the number of items
+     * and the `x_i` are the individual items. Returns `NaN` when
+     * there are no items.
+     *
+     * ```javascript
+     * factory.stream([]).collect(Collectors.multiply());
+     * // => NaN
+     *
+     * factory.stream([2, 4, 6]).collect(Collectors.multiply());
+     * // => 48
+     *
+     * const multiply = Collectors.multiply(x => x.length);
+     * factory.stream(["is", "fish", "likely", "allergic"]).collect(multiply);
+     * // => 384
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
+     * @return A collector that converts each item into a number and multiplies them.
+     */
+    multiply<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+
+    /**
+     * Splits the items into two groups according to the given
+     * discriminator.
+     *
+     * ```javascript
+     * factory.stream([-3,2,9,-4]).collect(Collectors.partition(x => x > 0))
+     * // => { false: [-3,-4], true: [2,9]}
+     *
+     * factory.stream([-3,2,9,-4]).collect(Collectors.partition(x => x > 0))
+     * // => { false: [], true: []}
+     * ```
+     *
+     * @typeparam T Type of the elements in the given iterable.
+     * @param iterable The iterable to be partitioned.
+     * @param discriminator Partitions each item into one of two groups by returning `true` of `false`.
+     * @return An object containing the partitioned items.
+     */
+    partition<T>(predicate: Predicate<T>): ICollector<T, any, { false: T[], true: T[] }>;
+
+    /**
+     * Applies the predicate on the items, grouping them in one of
+     * two classes according to the result of the predicate. The
+     * downstream collector is then applied to the items of each
+     * group. The result is an object with the keys `false` and `true`
+     * and the value as returned by the downstream collector.
+     *
+     * ```javascript
+     * factory.stream(factory.times(11)).collect(Collectors.groupDown(x => x % 2 === 1, Collectors.sum()))
+     * // => {false: 0+2+4+6+8+10, true: 1+3+5+7+9}
+     * ```
+     *
+     * @typeparam T Type of the items to be collected.
+     * @typeparam A Type of the intermediate value used by the downstream.
+     * @typeparam D Type of the group result.
+     * @param classifier Determines the group key of each item. Items are partitioned into either the `true` or `false` group..
+     * @param downstream Collector that is applied to the items of each group.
+     * @return A collector that partitions the items and then collects the items of the `true` and `false` group.
+     */
+    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: ICollector<T, A, D>): ICollector<T, any, { false: D, true: D }>;
 }

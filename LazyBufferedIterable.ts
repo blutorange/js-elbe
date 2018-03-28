@@ -1,3 +1,5 @@
+import { EMPTY_ITERATOR } from "./util";
+
 /**
  * Makes a copy of the elements returned by the given iterable so that
  * multiple iterations over these elements are possible. This is used
@@ -46,8 +48,14 @@ export class LazyBufferedIterable<T> implements Iterable<T> {
     private buffer: T[];
 
     constructor(iterable: Iterable<T>) {
-        this.iterator = iterable[Symbol.iterator]();
-        this.buffer = [];
+        if (Array.isArray(iterable)) {
+            this.buffer = iterable;
+            this.iterator = EMPTY_ITERATOR;
+        }
+        else {
+            this.iterator = iterable[Symbol.iterator]();
+            this.buffer = [];
+        }
     }
 
     public [Symbol.iterator](): Iterator<T> {
