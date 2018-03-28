@@ -43,6 +43,12 @@ export const hack: any[] = [];
             expect(() => factory.stream(0 as any)).to.throw();
         }
 
+        @test("should create an empty stream")
+        public empty() {
+            Expect(factory.empty()).to.deep.equal([]);
+            Expect(factory.empty().map(x => 9)).to.deep.equal([]);
+        }
+
         @test("should produce numbers via times")
         public times() {
             Expect(factory.times(0)).to.deep.equal([]);

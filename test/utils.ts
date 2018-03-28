@@ -6,10 +6,10 @@ export function Expect(stream: IStream<any>): Chai.Assertion {
     return expect(Array.from(stream));
 }
 
-export function expectTry<T>(_try: ITry<T>, success: boolean, handler?: Consumer<Chai.Assertion>): void {
-    expect(_try.success).to.equal(success);
+export function expectTry<T>(ATry: ITry<T>, success: boolean, handler?: Consumer<Chai.Assertion>): void {
+    expect(ATry.success).to.equal(success);
     if (handler !== undefined) {
-        _try.ifPresent(t => handler(expect(t)), e => handler(expect(e)));
+        ATry.ifPresent(t => handler(expect(t)), e => handler(expect(e)));
     }
 }
 

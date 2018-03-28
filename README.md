@@ -34,6 +34,11 @@ Array.from(function*(data) {
 - investigate a IStream#rewind method. IStream#fork already serves this purpose.
 - testing the API in practice, making it easier to use
 
+# Versioning
+
+This is currently in version 0.x. Once this package is used by other packages other than my own, the version will be
+increased to 1.0 and start using [semantic versioning](https://semver.org/).
+
 # Docs
 
 [All methods with documentation](https://blutorange.github.io/js-elbe/). The entire
@@ -70,9 +75,9 @@ npm install --save elbe
 Then load it
 
 ```javascript
-const { stream, InplaceStreamFactory: factory } = require("elbe");
+const { stream, factory } = require("elbe");
 // or
-import { stream, InplaceStreamFactory as factory } from "elbe";
+import { stream, factory } from "elbe";
 ```
 
 Or use the standalone in `dist/elbe.js` that includes all required npm libraries and
@@ -88,7 +93,7 @@ to operate on its items.
 Generate a stream of 100 numbers between 1 and 100 and sums them, as fast as Gauss.
 
 ```javascript
-const factory = require("elbe").InplaceStreamFactory;
+const factory = require("elbe").factory;
 factory.times(100,1,100).sum()
 // => 5050
 ```
@@ -96,7 +101,7 @@ factory.times(100,1,100).sum()
 Generate numbers between 1.4 and 1.5, and take the one whose square is closest to 2.
 
 ```javascript
-const factory = require("elbe").InplaceStreamFactory;
+const factory = require("elbe").factory;
 factory.times(1000,1.4,1.5).minBy(x => Math.abs(x * x - 2))
 // => 1.41421...
 ```
@@ -114,6 +119,7 @@ The following entries exist on the object when requiring the library:
 const lib = require("elbe");
 lib = {
     stream, // shortcut for InplaceStreamFactory.stream
+    factory, // shortcut for InplaceStreamFactory
     monkeyPatch, // function that patches some Object prototypes
     InplaceStreamFactory: { // see interface 'StreamFactory'
       stream,
@@ -358,6 +364,11 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 ```
 
 # Changelog
+
+### 0.2.1
+
+- Added method IStreamFactory#empty
+- Added a shortcut for InplaceStreamFactory, `require("elbe").factory`
 
 ## 0.2.0
 - Fixed ICollectors.averageGeometrically, which returned the wrong result.

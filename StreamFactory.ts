@@ -72,3 +72,4 @@ export const InplaceStreamFactory: IStreamFactory = createFactory(true);
  * ```
  */
 export const stream = InplaceStreamFactory.stream;
+export const factory = InplaceStreamFactory;

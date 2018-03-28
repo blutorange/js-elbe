@@ -94,11 +94,13 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 					<li>investigate a IStream#rewind method. IStream#fork already serves this purpose.</li>
 					<li>testing the API in practice, making it easier to use</li>
 				</ul>
+				<h1 id="versioning">Versioning</h1>
+				<p>This is currently in version 0.x. Once this package is used by other packages other than my own, the version will be
+				increased to 1.0 and start using <a href="https://semver.org/">semantic versioning</a>.</p>
 				<h1 id="docs">Docs</h1>
 				<p><a href="https://blutorange.github.io/js-elbe/">All methods with documentation</a>. The entire
 				public API is expressed in terms of (typescript) interfaces, these are fully documented.</p>
 				<p>The docs can be viewed offline from the directory <code>docs</code>. Tests with more examples are in <code>test</code>. </p>
-				<p><a href="https://blutorange.github.io/js-elbe/coverage/">Coverage report.</a></p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> lib = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 </code></pre>
 				<p>This returns an object with the following entries:</p>
@@ -111,6 +113,8 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#tryfactory">TryFactory</a></li>
 					<li><a href="https://blutorange.github.io/js-elbe/globals.html#typesafestreamfactory">TypesafeStreamFactory</a></li>
 				</ul>
+				<p>The <a href="https://blutorange.github.io/js-elbe/interfaces/istream.html">IStream</a> contains all the juicy methods you want.</p>
+				<p><a href="https://blutorange.github.io/js-elbe/coverage/">Coverage report.</a></p>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
 				<pre><code class="lang-sh">npm install --save elbe
@@ -336,6 +340,10 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
 				<h1 id="changelog">Changelog</h1>
+				<h3 id="0-2-1">0.2.1</h3>
+				<ul>
+					<li>Added method IStreamFactory#empty</li>
+				</ul>
 				<h2 id="0-2-0">0.2.0</h2>
 				<ul>
 					<li>Fixed ICollectors.averageGeometrically, which returned the wrong result.</li>
@@ -499,6 +507,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#typesafestreamfactory" class="tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#factory" class="tsd-kind-icon">factory</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#hasownproperty" class="tsd-kind-icon">has<wbr>Own<wbr>Property</a>
@@ -727,6 +738,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#empty_iterator" class="tsd-kind-icon">EMPTY_<wbr>ITERATOR</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#empty_iterator_result" class="tsd-kind-icon">EMPTY_<wbr>ITERATOR_<wbr>RESULT</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#tryfactory" class="tsd-kind-icon">Try<wbr>Factory</a>
