@@ -69,6 +69,7 @@
 				polyfills etc. is 20 KB, and around ~7 KB gzipped.</p>
 				<p>Let&#39;s compare how parsing a set of JSON strings feels like with this library and vanilla JS:</p>
 				<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> input = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">"9"</span>,<span class="hljs-string">"9a"</span>])
+<span class="hljs-keyword">const</span> { stream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"elbe"</span>);
 
 <span class="hljs-comment">// Doing it with this library, returns [9,0]</span>
 stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
@@ -343,6 +344,14 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
 				<h1 id="changelog">Changelog</h1>
+				<h3 id="0-2-2">0.2.2</h3>
+				<ul>
+					<li>Changed IStream#unique so that the single parameter <code>keyExtractor</code> is required. Not passing this parameter is equivalent to using IStream#unique with no parameters.</li>
+					<li>Added method IStreamFactory#filterBy</li>
+					<li>Added method IStreamFactory#sortBy</li>
+					<li>Added possibility for Methods.concat to take 0 iterables instead of at least 1.</li>
+					<li>Fixed typing for Methods.minBy, Methods.maxBy, Methods.uniqueBy</li>
+				</ul>
 				<h3 id="0-2-1">0.2.1</h3>
 				<ul>
 					<li>Added method IStreamFactory#empty</li>
@@ -558,6 +567,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 						<a href="globals.html#filter" class="tsd-kind-icon">filter</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#filterby" class="tsd-kind-icon">filter<wbr>By</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#find" class="tsd-kind-icon">find</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -679,6 +691,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sort" class="tsd-kind-icon">sort</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#sortby" class="tsd-kind-icon">sort<wbr>By</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#step" class="tsd-kind-icon">step</a>

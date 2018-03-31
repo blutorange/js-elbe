@@ -189,8 +189,8 @@ export interface IStreamFactory {
      * ```
      *
      * @typeparam T Type of the items of the produced stream.
-     * @param iterable Source from which the items are taken.
-     * @return A stream over the iterable's values.
+     * @param iterables Source from which the items are taken.
+     * @return A stream over the iterables' values.
      */
     stream<T>(iterable: Iterable<T>): IStream<T>;
 
@@ -896,6 +896,30 @@ export interface IStream<T> {
     filter(predicate: Predicate<T>): this;
 
     /**
+     * Similar to {@link IStream}#filter, but filters out all items not equivalent to
+     * the given target. Items are compared to the target by first extracting a key
+     * with the given key extractor, and then comparing the keys with the given
+     * comparator.
+     *
+     * ```javascript
+     * stream(["foo", "bar", "foobar"]).filterBy(x => x.length)
+     * // => Stream["foo", "bar"]
+     *
+     * const user1 = {name: "Dave", birth: {day: 5, month: 4, year: 2005}}
+     * const user2 = {name: "Maria", birth: {day: 9, month: 11, year: 2005}}
+     * const user3 = {name: "Odo", birth: {day: 22, month: 7, year: 2004}}
+     *
+     * stream([user1, user2, user3]).filterBy(2005, user => user.birth, (lhs,rhs) => lhs.year - rhs.year)
+     * // => Stream[user1, user2]
+     * ```
+     *
+     * @param target Target for filterting. All items in the stream not equivalent to the target are removed.
+     * @param keyExtractor Extracts the key by which equality is determined. Default to identity `x => x`.
+     * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+     */
+    filterBy<K>(target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): this;
+
+    /**
      * Passes each item of this stream to the given consumer.
      *
      * ```javascript
@@ -1312,6 +1336,28 @@ export interface IStream<T> {
     sort(comparator?: Comparator<T>): this;
 
     /**
+     * Similar to {@link IStream}#sort, but sorts items by comparing them according
+     * to the given key extractor and comparator. For each item, a key is extracted,
+     * two items are then compared by comparing theirs keys with the given comparator.
+     *
+     * ```javascript
+     * stream(["foo", "foobar", "bar"]).sortBy(x => x.length)
+     * // => Stream["foo", "bar", "foobar"]
+     *
+     * const user1 = {name: "Dave", birth: {day: 5, month: 4, year: 1990}}
+     * const user2 = {name: "Maria", birth: {day: 9, month: 11, year: 2005}}
+     * const user3 = {name: "Odo", birth: {day: 22, month: 7, year: 2004}}
+     *
+     * stream([user1, user2, user3]).filterBy(user => user.birth, (lhs,rhs) => lhs.year - rhs.year)
+     * // => Stream[user1, user3, user1]
+     * ```
+     *
+     * @param keyExtractor Extracts the key by which the sort order is determined. Default to identity `x => x`.
+     * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+     */
+    sortBy<K>(keyExtractor: Function<T, K>, comparator?: Comparator<K>): this;
+
+    /**
      * Sums all items arithmetically. If there are no items
      * in the stream, returns `NaN`.
      *
@@ -1485,7 +1531,7 @@ export interface IStream<T> {
      * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
      * @return A stream with all duplicates removed.
      */
-    uniqueBy<K = any>(keyExtractor?: Function<T, K>): this;
+    uniqueBy<K = any>(keyExtractor: Function<T, K>): this;
 
     /**
      * Calls the given consumer once for each item. Note that the consumer is

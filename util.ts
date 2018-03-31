@@ -21,7 +21,7 @@ export function * wrapIterator<T>(iterator: Iterator<T>): Iterable<T> {
     }
 }
 
-export function identity<T>(x: T): T  {
+export function identity<T>(x: T): any  {
     return x;
 }
 

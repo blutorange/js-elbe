@@ -1,6 +1,6 @@
 {
   "name": "elbe",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Utility methods for working with iterables as streams.",
   "main": "dist/node/main",
   "types": "dist/node/main",

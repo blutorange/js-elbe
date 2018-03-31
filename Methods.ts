@@ -17,7 +17,7 @@ import {
 } from "./Interfaces";
 import { LazyBufferedIterable } from "./LazyBufferedIterable";
 import { TryFactory } from "./TryFactory";
-import { EMPTY_ITERABLE, identity, wrapIterator } from "./util";
+import { EMPTY_ITERABLE, wrapIterator } from "./util";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -378,7 +378,7 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iter
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function * uniqueBy<T>(iterable: Iterable<T>, keyExtractor: Function<T, any> = identity): Iterable<T> {
+export function * uniqueBy<T, K = any>(iterable: Iterable<T>, keyExtractor: Function<T, K>): Iterable<T> {
     const set = new Set();
     for (const item of iterable) {
         const key = keyExtractor(item);
@@ -577,15 +577,11 @@ export function* reverse<T>(iterable: Iterable<T>): Iterable<T> {
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
- * @param iterable The iterable to be concatenated to the others.
- * @param moreIterable Other iteratbles to be concatenated.
+ * @param iterable Iteratbles to be concatenated.
  * @return An iterable over all the items of the given iterables.
  */
-export function* concat<T>(iterable: Iterable<T>, ...moreIterables: Iterable<T>[]): Iterable<T> {
-    for (const item of iterable) {
-        yield item;
-    }
-    for (const iterable of moreIterables) {
+export function* concat<T>(...iterables: Iterable<T>[]): Iterable<T> {
+    for (const iterable of iterables) {
         for (const item of iterable) {
             yield item;
         }
@@ -609,6 +605,73 @@ export function size(iterable: Iterable<any>): number {
         ++i;
     }
     return i;
+}
+
+/**
+ * Similar to {@link Methods}#sort, but sorts items by comparing them according
+ * to the given key extractor and comparator. For each item, a key is extracted,
+ * two items are then compared by comparing theirs keys with the given comparator.
+ *
+ * ```javascript
+ * sortBy(["foo", "foobar", "bar"], x => x.length)
+ * // => Iterable["foo", "bar", "foobar"]
+ *
+ * const user1 = {name: "Dave", birth: {day: 5, month: 4, year: 1990}}
+ * const user2 = {name: "Maria", birth: {day: 9, month: 11, year: 2005}}
+ * const user3 = {name: "Odo", birth: {day: 22, month: 7, year: 2004}}
+ *
+ * sortBy([user1, user2, user3], user => user.birth, (lhs,rhs) => lhs.year - rhs.year)
+ * // => Iterable[user1, user3, user1]
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param keyExtractor Extracts the key by which the sort order is determined. Default to identity `x => x`.
+ * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+ * @return An iterable with the items in sorted order.
+ */
+export function sortBy<T, K>(iterable: Iterable<T>, keyExtractor: Function<T, K>, comparator?: Comparator<K>): Iterable<T> {
+    return sort(iterable, byKey(keyExtractor, comparator));
+}
+
+/**
+ * Similar to {@link Methods}#filter, but filters out all items not equivalent to
+ * the given target. Items are compared to the target by first extracting a key
+ * with the given key extractor, and then comparing the keys with the given
+ * comparator.
+ *
+ * ```javascript
+ * filterBy(["foo", "bar", "foobar"], x => x.length)
+ * // => Iterable["foo", "bar"]
+ *
+ * const user1 = {name: "Dave", birth: {day: 5, month: 4, year: 2005}}
+ * const user2 = {name: "Maria", birth: {day: 9, month: 11, year: 2005}}
+ * const user3 = {name: "Odo", birth: {day: 22, month: 7, year: 2004}}
+ *
+ * filterBy([user1, user2, user3], 2005, user => user.birth, (lhs,rhs) => lhs.year - rhs.year)
+ * // => Iterable[user1, user2]
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param target Target for filterting. All items in the iterable not equivalent to the target are removed.
+ * @param keyExtractor Extracts the key by which equality is determined. Default to identity `x => x`.
+ * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+ * @return An iterable with the items not matching the target removed.
+ */
+export function * filterBy<T, K>(iterable: Iterable<T>, target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): Iterable<T> {
+    if (comparator !== undefined) {
+        for (const item of iterable) {
+            if (comparator(target, keyExtractor(item)) === 0) {
+                yield item;
+            }
+        }
+    }
+    else {
+        for (const item of iterable) {
+            if (target === keyExtractor(item)) {
+                yield item;
+            }
+        }
+    }
 }
 
 /**
@@ -852,7 +915,7 @@ export function promise<T, S>(iterable: Iterable<T>, promiseConverter: Function<
  * @param sortKey Takes an item and produces the key by which the minimum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): Maybe<T> {
+export function minBy<T, K = any>(iterable: Iterable<T>, sortKey: Function<T, K>): Maybe<T> {
     return min(iterable, byKey(sortKey));
 }
 
@@ -869,7 +932,7 @@ export function minBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): Mayb
  * @param sortKey Takes an item and produces the key by which the maximum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function maxBy<T>(iterable: Iterable<T>, sortKey: Function<T, any>): Maybe<T> {
+export function maxBy<T, K = any>(iterable: Iterable<T>, sortKey: Function<T, K>): Maybe<T> {
     return max(iterable, byKey(sortKey));
 }
 

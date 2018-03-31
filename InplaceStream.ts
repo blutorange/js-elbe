@@ -8,6 +8,7 @@ import {
     consume,
     cycle,
     filter,
+    filterBy,
     flatMap,
     index,
     limit,
@@ -17,6 +18,7 @@ import {
     skip,
     slice,
     sort,
+    sortBy,
     tryMap,
     unique,
     uniqueBy,
@@ -56,6 +58,11 @@ export class InplaceStream extends AbstractStream<any> {
 
     public filter(predicate: Predicate<any>): this {
         this.iterable = filter(this.iterable, predicate);
+        return this;
+    }
+
+    public filterBy<K>(target: K, keyExtractor: Function<any, K>, comparator?: Comparator<K>): this {
+        this.iterable = filterBy(this.iterable, target, keyExtractor, comparator);
         return this;
     }
 
@@ -110,6 +117,11 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
+    public sortBy<K>(keyExtractor: Function<any, K>, comparator?: Comparator<K>): this {
+        this.iterable = sortBy(this.iterable, keyExtractor, comparator);
+        return this;
+    }
+
     public try<S>(operation: Function<any, S>): ITryStream<S> {
         const x = tryMap(this.iterable, operation);
         return new TryStreamImpl(x);
@@ -120,7 +132,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public uniqueBy(keyExtractor?: Function<any, any>): this {
+    public uniqueBy(keyExtractor: Function<any, any>): this {
         this.iterable = uniqueBy(this.iterable, keyExtractor);
         return this;
     }

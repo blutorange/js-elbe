@@ -8,6 +8,7 @@ Let's compare how parsing a set of JSON strings feels like with this library and
 
 ```javascript
 const input = new Set(["9","9a"])
+const { stream } = require("elbe");
 
 // Doing it with this library, returns [9,0]
 stream(input).try(JSON.parse)
@@ -367,6 +368,14 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 ```
 
 # Changelog
+
+### 0.3.0
+
+- Changed IStream#unique so that the single parameter `keyExtractor` is required. Not passing this parameter is equivalent to using IStream#unique with no parameters.
+- Added method IStreamFactory#filterBy
+- Added method IStreamFactory#sortBy
+- Added possibility for Methods.concat to take 0 iterables instead of at least 1.
+- Fixed typing for Methods.minBy, Methods.maxBy, Methods.uniqueBy
 
 ### 0.2.1
 

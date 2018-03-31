@@ -8,6 +8,7 @@ import {
     consume,
     cycle,
     filter,
+    filterBy,
     flatMap,
     index,
     limit,
@@ -17,6 +18,7 @@ import {
     skip,
     slice,
     sort,
+    sortBy,
     tryMap,
     unique,
     uniqueBy,
@@ -56,6 +58,11 @@ export class TypesafeStream<T> extends AbstractStream<T> {
     public filter(predicate: Predicate<T>): this {
         this.check();
         return new this.constructor(filter(this.iterable, predicate)) as this;
+    }
+
+    public filterBy<K>(target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): this {
+        this.check();
+        return new this.constructor(filterBy(this.iterable, target, keyExtractor, comparator)) as this;
     }
 
     public index(): IStream<{index: number, value: T}> {
@@ -104,6 +111,11 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(sort(this.iterable, comparator)) as this;
     }
 
+    public sortBy<K>(keyExtractor: Function<T, K>, comparator?: Comparator<K>): this {
+        this.check();
+        return new this.constructor(sortBy(this.iterable, keyExtractor, comparator)) as this;
+    }
+
     public try<S>(operation: Function<T, S>): ITryStream<S> {
         this.check();
         return new TryStreamImpl(tryMap(this.iterable, operation));
@@ -114,7 +126,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(unique(this.iterable, comparator)) as this;
     }
 
-    public uniqueBy(keyExtractor?: Function<T, any>): this {
+    public uniqueBy(keyExtractor: Function<T, any>): this {
         this.check();
         return new this.constructor(uniqueBy(this.iterable, keyExtractor)) as this;
     }

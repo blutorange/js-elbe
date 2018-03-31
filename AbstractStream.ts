@@ -249,6 +249,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract cycle(count?: number): this;
     public abstract flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
     public abstract filter(predicate: Predicate<T>): this;
+    public abstract filterBy<K>(target: K, keyExtractor?: Function<T, K>, comparator?: Comparator<K>): this;
     public abstract index(): IStream<{index: number, value: T}>;
     public abstract limit(limitTo: number): this;
     public abstract map<S>(mapper: Function<T, S>): IStream<S>;
@@ -257,6 +258,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract skip(toSkip: number): this;
     public abstract slice(sliceSize: number): IStream<T[]>;
     public abstract sort(comparator?: Comparator<T>): this;
+    public abstract sortBy<K>(keyExtractor: Function<T, K>, comparator?: Comparator<K>): this;
     public abstract try<S>(operation: Function<T, S>): ITryStream<S>;
     public abstract unique(comparator?: Comparator<T>): this;
     public abstract uniqueBy(keyExtractor?: Function<T, any>): this;

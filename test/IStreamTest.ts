@@ -42,6 +42,17 @@ export const hack: any[] = [];
             this.stream([0, 1, 2, 3, 4, 5, 6], s => s.filter(i => i < 3)).to.deep.equal([0, 1, 2]);
         }
 
+        @test("should filter items by the given key extractor and comparator")
+        public filterBy() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.filterBy(0, x=>x);s.filterBy(0, x=>x)}).to.throw();
+            this.stream([], s => s.filterBy(0, x=>x)).to.deep.equal([]);
+            this.stream([0, 1, 2, 0, 1, 2 , 3], s => s.filterBy(0, x=>x)).to.deep.equal([0, 0]);
+            this.stream(["foo", "bar", "foobar"], s => s.filterBy(3, x => x.length)).to.deep.equal(["foo", "bar"]);
+            this.stream(["foo", "bar", "foobar"], s => s.filterBy(6, x => x.length)).to.deep.equal(["foobar"]);
+            this.stream(["foo", "bar", "foobar"], s => s.filterBy("foo", x => x, (lhs, rhs) => lhs.length - rhs.length)).to.deep.equal(["foo", "bar"]);
+        }
+
         @test("should cycle the given amount of times")
         public cycle() {
             if (factory === TypesafeStreamFactory)
@@ -160,12 +171,12 @@ export const hack: any[] = [];
             const u222 = {id: 2};
             const u3 = {id: 3};
             const u33 = {id: 3};
-            this.stream([], s => s.uniqueBy()).to.deep.equal([]);
-            this.stream([1,2,2], s => s.uniqueBy()).to.deep.equal([1,2]);
-            this.stream([1,2,2,3,2,3], s => s.uniqueBy()).to.deep.equal([1,2,3]);
-            this.stream([3,2,3,2,2,1], s => s.uniqueBy()).to.deep.equal([3,2,1]);
+            this.stream([], s => s.uniqueBy(x=>x)).to.deep.equal([]);
+            this.stream([1,2,2], s => s.uniqueBy(x=>x)).to.deep.equal([1,2]);
+            this.stream([1,2,2,3,2,3], s => s.uniqueBy(x=>x)).to.deep.equal([1,2,3]);
+            this.stream([3,2,3,2,2,1], s => s.uniqueBy(x=>x)).to.deep.equal([3,2,1]);
             this.stream([u1,u2,u22,u3,u222,u33], s => s.uniqueBy(user => user.id)).to.include(u1).and.include(u2).and.include(u3).and.not.include(u22).and.not.include(u222).and.not.include(u33);
-            this.stream([1,2,3], s => s.cycle(Infinity).uniqueBy().limit(3)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.cycle(Infinity).uniqueBy(x=>x).limit(3)).to.deep.equal([1,2,3]);
         }
 
         @test("should sort the items")
@@ -179,6 +190,22 @@ export const hack: any[] = [];
             this.stream([3,1,2], s => s.sort((lhs, rhs) => rhs -lhs)).to.deep.equal([3,2,1]);
             this.stream([1,2,3], s => s.sort((lhs, rhs) => rhs -lhs)).to.deep.equal([3,2,1]);
             this.stream([50,48,49], s => s.sort()).to.deep.equal([48,49,50]);
+        }
+
+        @test("should sort the items by the given key extractor and comparator")
+        public sortBy() {
+            if (factory === TypesafeStreamFactory)
+                this.action([1,2,3], s => {s.sortBy(x=>x);s.sortBy(x=>x)}).to.throw();
+            this.stream([], s => s.sortBy(x=>x)).to.deep.equal([]);
+            this.stream([1], s => s.sortBy(x=>x)).to.deep.equal([1]);
+            this.stream([3,1,2], s => s.sortBy(x=>x)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.sortBy(x=>x)).to.deep.equal([1,2,3]);
+            this.stream([3,1,2], s => s.sortBy(x=>-x)).to.deep.equal([3,2,1]);
+            this.stream([1,2,3], s => s.sortBy(x=>-x)).to.deep.equal([3,2,1]);
+            this.stream([3,1,2], s => s.sortBy(x=>x, (lhs, rhs) => rhs - lhs)).to.deep.equal([3,2,1]);
+            this.stream([1,2,3], s => s.sortBy(x=>x, (lhs, rhs) => rhs - lhs)).to.deep.equal([3,2,1]);
+            this.stream([3,1,2], s => s.sortBy(x=>-x, (lhs, rhs) => rhs - lhs)).to.deep.equal([1,2,3]);
+            this.stream([1,2,3], s => s.sortBy(x=>-x, (lhs, rhs) => rhs - lhs)).to.deep.equal([1,2,3]);
         }
 
         @test("should slice the items into slices of a given length")
