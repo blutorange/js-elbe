@@ -1,7 +1,16 @@
-import { Comparator } from "kagura";
+import {
+    Comparator,
+    Consumer,
+    Maybe,
+    Predicate,
+    TypedBiFunction,
+    TypedFunction,
+} from "andross";
 
 import { AbstractStream } from "./AbstractStream";
-import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Maybe, Predicate } from "./Interfaces";
+
+import { IStream, ITry, ITryStream } from "./Interfaces";
+
 import {
     chunk,
     concat,
@@ -30,7 +39,7 @@ import {
 export class InplaceStream extends AbstractStream<any> {
     public ["constructor"]: (typeof InplaceStream);
 
-    public chunk<K = any>(classifier: BiFunction<any, number, K>): IStream<any[]> {
+    public chunk<K = any>(classifier: TypedBiFunction<any, number, K>): IStream<any[]> {
         this.iterable = chunk(this.iterable, classifier);
         return this;
     }
@@ -51,7 +60,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public flatMap<S>(mapper: Function<any, Iterable<S>>): IStream<any> {
+    public flatMap<S>(mapper: TypedFunction<any, Iterable<S>>): IStream<any> {
         this.iterable = flatMap(this.iterable, mapper);
         return this;
     }
@@ -61,7 +70,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public filterBy<K>(target: K, keyExtractor: Function<any, K>, comparator?: Comparator<K>): this {
+    public filterBy<K>(target: K, keyExtractor: TypedFunction<any, K>, comparator?: Comparator<K>): this {
         this.iterable = filterBy(this.iterable, target, keyExtractor, comparator);
         return this;
     }
@@ -76,18 +85,18 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public map<S>(mapper: Function<any, S>): IStream<any> {
+    public map<S>(mapper: TypedFunction<any, S>): IStream<any> {
         this.iterable = map(this.iterable, mapper);
         return this;
     }
 
-    public promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<IStream<any>> {
+    public promise<S>(promiseConverter: TypedFunction<any, Promise<S>>): Promise<IStream<any>> {
         this.check();
         return promise(this.iterable, promiseConverter)
             .then(iterable => new InplaceStream(iterable));
     }
 
-    public replace<S>(mapper: Function<any, S>): this {
+    public replace<S>(mapper: TypedFunction<any, S>): this {
         this.iterable = map(this.iterable, mapper);
         return this;
     }
@@ -117,12 +126,12 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public sortBy<K>(keyExtractor: Function<any, K>, comparator?: Comparator<K>): this {
+    public sortBy<K>(keyExtractor: TypedFunction<any, K>, comparator?: Comparator<K>): this {
         this.iterable = sortBy(this.iterable, keyExtractor, comparator);
         return this;
     }
 
-    public try<S>(operation: Function<any, S>): ITryStream<S> {
+    public try<S>(operation: TypedFunction<any, S>): ITryStream<S> {
         const x = tryMap(this.iterable, operation);
         return new TryStreamImpl(x);
     }
@@ -132,7 +141,7 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public uniqueBy(keyExtractor: Function<any, any>): this {
+    public uniqueBy(keyExtractor: TypedFunction<any, any>): this {
         this.iterable = uniqueBy(this.iterable, keyExtractor);
         return this;
     }
@@ -184,17 +193,17 @@ class TryStreamImpl extends InplaceStream implements ITryStream<any> {
         return this.onError(handler).filter(x => x.success).orThrow();
     }
 
-    public flatConvert<S>(operation: Function<any, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S> {
+    public flatConvert<S>(operation: TypedFunction<any, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITryStream<S> {
         this.iterable = map(this.iterable, x => x.flatConvert(operation, backup));
         return this;
     }
 
-    public convert<S>(operation: Function<any, S>, backup?: Function<Error, S>): ITryStream<any> {
+    public convert<S>(operation: TypedFunction<any, S>, backup?: TypedFunction<Error, S>): ITryStream<any> {
         this.iterable = map(this.iterable, x => x.convert(operation, backup));
         return this;
     }
 
-    public orTry(backup: Function<Error, any>): this {
+    public orTry(backup: TypedFunction<Error, any>): this {
         this.iterable = map(this.iterable, y => y.orTry(backup));
         return this;
     }

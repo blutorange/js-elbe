@@ -1,11 +1,15 @@
 import {
     BinaryOperator,
-    Function,
-    ICollector,
+    Collector,
+    Predicate,
+    TypedFunction,
+} from "andross";
+
+import {
     ICollectors,
     IStatistics,
-    Predicate,
 } from "./Interfaces";
+
 import { identity, takeFirst, toNumber } from "./util";
 
 class StatisticsImpl implements IStatistics {
@@ -72,11 +76,11 @@ class StatisticsImpl implements IStatistics {
 }
 
 /**
- * This implements the factory methods as defined by the interface {@link ICollectors}.
- * @see {@link ICollectors}
+ * This implements the factory methods as defined by the interface {@link Collectors}.
+ * @see {@link Collectors}
  */
 export const Collectors: ICollectors = {
-    toArray<T>(): ICollector<T, T[]> {
+    toArray<T>(): Collector<T, T[], T[]> {
         return {
             accumulator(collected: T[], item: T): void {
                 collected.push(item);
@@ -88,7 +92,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    count(): ICollector<any, { count: number }, number> {
+    count(): Collector<any, { count: number }, number> {
         return {
             accumulator(collected: { count: number }, item: any): void {
                 collected.count += 1;
@@ -104,7 +108,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    toSet<T>(): ICollector<T, Set<T>> {
+    toSet<T>(): Collector<T, Set<T>, Set<T>> {
         return {
             accumulator(collected: Set<T>, item: T): void {
                 collected.add(item);
@@ -116,7 +120,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger: BinaryOperator<V> = takeFirst): ICollector<T, Map<K, V>, Map<K, V>> {
+    toMap<T, K, V>(keyMapper: TypedFunction<T, K>, valueMapper: TypedFunction<T, V>, merger: BinaryOperator<V> = takeFirst): Collector<T, Map<K, V>, Map<K, V>> {
         return {
             accumulator(collected: Map<K, V>, item: T): void {
                 const key = keyMapper(item);
@@ -135,7 +139,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    group<T, K>(classifier: Function<T, K>): ICollector<T, Map<K, T[]>> {
+    group<T, K>(classifier: TypedFunction<T, K>): Collector<T, Map<K, T[]>, Map<K, T[]>> {
         return {
             accumulator(collected: Map<K, T[]>, item: T): void {
                 const key = classifier(item);
@@ -154,7 +158,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    groupDown<T, K, A, D>(classifier: Function<T, K>, downstream: ICollector<T, A, D>): ICollector<T, Map<K, A>, Map<K, D>> {
+    groupDown<T, K, A, D>(classifier: TypedFunction<T, K>, downstream: Collector<T, A, D>): Collector<T, Map<K, A>, Map<K, D>> {
         return {
             accumulator(collected: Map<K, A>, item: T): void {
                 const key = classifier(item);
@@ -180,7 +184,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    map<T, U, A, R>(mapper: Function<T, U>, downstream: ICollector<U, A, R>): ICollector<T, A, R> {
+    map<T, U, A, R>(mapper: TypedFunction<T, U>, downstream: Collector<U, A, R>): Collector<T, A, R> {
         return {
             accumulator(collected: A, item: T): void {
                 downstream.accumulator(collected, mapper(item));
@@ -194,7 +198,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    join<T>(delimiter: string = "", prefix?: string, suffix?: string): ICollector<T, string[], string> {
+    join<T>(delimiter: string = "", prefix?: string, suffix?: string): Collector<T, string[], string> {
         return {
             accumulator(collected: string[], item: T) {
                 collected.push(String(item));
@@ -217,7 +221,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    sum<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
+    sum<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, { sum: number, count: number }, number> {
         return {
             accumulator(collected: { sum: number, count: number }, item: T) {
                 collected.sum += converter(item);
@@ -234,7 +238,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    average<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
+    average<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, { sum: number, count: number }, number> {
         return {
             accumulator(collected: { sum: number, count: number }, item: T) {
                 collected.sum += converter(item);
@@ -251,7 +255,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    averageGeometrically<T>(converter: Function<T, number> = toNumber): ICollector<T, { product: number, count: number }, number> {
+    averageGeometrically<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, { product: number, count: number }, number> {
         return {
             accumulator(collected: { product: number, count: number }, item: T) {
                 collected.product *= converter(item);
@@ -268,7 +272,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    averageHarmonically<T>(converter: Function<T, number> = toNumber): ICollector<T, { sum: number, count: number }, number> {
+    averageHarmonically<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, { sum: number, count: number }, number> {
         return {
             accumulator(collected: { sum: number, count: number }, item: T) {
                 collected.sum += 1.0 / converter(item);
@@ -285,7 +289,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    summarize<T>(converter: Function<T, number> = toNumber): ICollector<T, any, IStatistics> {
+    summarize<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, any, IStatistics> {
         return {
             accumulator(collected: StatisticsImpl, item: T) {
                 collected.accept(converter(item));
@@ -298,7 +302,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    multiply<T>(converter: Function<T, number> = toNumber): ICollector<T, { product: number, count: number }, number> {
+    multiply<T>(converter: TypedFunction<T, number> = toNumber): Collector<T, { product: number, count: number }, number> {
         return {
             accumulator(collected: { product: number, count: number }, item: T) {
                 collected.product *= converter(item);
@@ -315,7 +319,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    partition<T>(predicate: Predicate<T>): ICollector<T, { false: T[], true: T[] }> {
+    partition<T>(predicate: Predicate<T>): Collector<T, { false: T[], true: T[] }, { false: T[], true: T[] }> {
         return {
             accumulator(collected: { false: T[], true: T[] }, item: T): void {
                 if (predicate(item)) {
@@ -335,7 +339,7 @@ export const Collectors: ICollectors = {
         };
     },
 
-    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: ICollector<T, A, D>): ICollector<T, { false: A, true: A }, { false: D, true: D }> {
+    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: Collector<T, A, D>): Collector<T, { false: A, true: A }, { false: D, true: D }> {
         return {
             accumulator(collected: { false: A, true: A }, item: T): void {
                 if (predicate(item)) {

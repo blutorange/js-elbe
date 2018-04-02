@@ -369,7 +369,17 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 
 # Changelog
 
-### 0.3.0
+# 0.3.1
+
+- Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from `elbe` to `andross`.
+
+```typescript
+import { Predicate } from "elbe";
+// change to
+import { Predicate } from "andross";
+```
+
+## 0.3.0
 
 - Changed IStream#unique so that the single parameter `keyExtractor` is required. Not passing this parameter is equivalent to using IStream#unique with no parameters.
 - Added method IStreamFactory#filterBy
@@ -377,7 +387,7 @@ stream(json1, json2, json3).try(JSON.parse).orElse(undefined);
 - Added possibility for Methods.concat to take 0 iterables instead of at least 1.
 - Fixed typing for Methods.minBy, Methods.maxBy, Methods.uniqueBy
 
-### 0.2.1
+## 0.2.1
 
 - Added method IStreamFactory#empty
 - Added a shortcut for InplaceStreamFactory, `require("elbe").factory`

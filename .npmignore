@@ -2,6 +2,7 @@ settings.json
 README.typedoc
 docs
 .vscode
+check.js
 
 # ---> Linux
 *~

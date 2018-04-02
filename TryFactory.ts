@@ -1,4 +1,11 @@
-import { Consumer, Function, IStream, IStreamFactory, ITry, ITryFactory, Predicate, Supplier } from "./Interfaces";
+import {
+    Consumer,
+    Predicate,
+    Supplier,
+    TypedFunction,
+} from "andross";
+
+import { IStream, IStreamFactory, ITry, ITryFactory } from "./Interfaces";
 import { TypesafeStreamFactory } from "./StreamFactory";
 import { appendCause } from "./util";
 
@@ -11,7 +18,7 @@ abstract class BaseTryImpl<T> {
 
     public abstract iterate(): Iterable<T | Error>;
 
-    public abstract convert<S>(success: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
+    public abstract convert<S>(success: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITry<S>;
 
     protected abstract get result(): T | Error;
 
@@ -19,13 +26,13 @@ abstract class BaseTryImpl<T> {
         return factory.stream(this.iterate());
     }
 
-    public then<S>(success: Function<T, S | ITry<S>>, failure?: Function<Error, S | ITry<S>>): ITry<S> {
+    public then<S>(success: TypedFunction<T, S | ITry<S>>, failure?: TypedFunction<Error, S | ITry<S>>): ITry<S> {
         return this
             .convert(success, failure)
             .flatConvert(v => isTry(v) ? v : TryFactory.success(v));
     }
 
-    public catch(backup: Function<Error, T | ITry<T>>): ITry<T> {
+    public catch(backup: TypedFunction<Error, T | ITry<T>>): ITry<T> {
         return this.then(x => x, backup);
     }
 
@@ -57,7 +64,7 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         };
     }
 
-    public convert<S>(success: Function<T, S>, backup?: Function<Error, S>): ITry<S> {
+    public convert<S>(success: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITry<S> {
         if (backup !== undefined) {
             return TryFactory.of(() => backup(this.error), this.error);
         }
@@ -65,7 +72,7 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         return this as ITry<any>;
     }
 
-    public flatConvert<S>(mapper: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S> {
+    public flatConvert<S>(mapper: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITry<S> {
         if (backup !== undefined) {
             return TryFactory.flatOf(() => backup(this.error), this.error);
         }
@@ -77,11 +84,11 @@ class FailureImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         return TryFactory.error(new Error("Value does not match the predicate as it does not exist."), this.error);
     }
 
-    public orTry(backup: Function<Error, T>): ITry<T> {
+    public orTry(backup: TypedFunction<Error, T>): ITry<T> {
         return TryFactory.of(() => backup(this.error), this.error);
     }
 
-    public orFlatTry(backup: Function<Error, ITry<T>>): ITry<T> {
+    public orFlatTry(backup: TypedFunction<Error, ITry<T>>): ITry<T> {
         return TryFactory.flatOf(() => backup(this.error), this.error);
     }
 
@@ -137,12 +144,12 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         };
     }
 
-    public convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITry<S> {
+    public convert<S>(operation: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITry<S> {
         const c = TryFactory.of(() => operation(this.value));
         return backup !== undefined ? c.orTry(backup) : c;
     }
 
-    public flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S> {
+    public flatConvert<S>(operation: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITry<S> {
         const c = TryFactory.flatOf(() => operation(this.value));
         return backup !== undefined ? c.orFlatTry(backup) : c;
     }
@@ -154,11 +161,11 @@ class SuccessImpl<T> extends BaseTryImpl<T> implements ITry<T> {
         return TryFactory.error(new Error("Value does not match the predicate."));
     }
 
-    public orTry(backup: Function<Error, T>): ITry<T> {
+    public orTry(backup: TypedFunction<Error, T>): ITry<T> {
         return this;
     }
 
-    public orFlatTry(backup: Function<Error, ITry<T>>): ITry<T> {
+    public orFlatTry(backup: TypedFunction<Error, ITry<T>>): ITry<T> {
         return this;
     }
 

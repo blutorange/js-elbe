@@ -1,64 +1,16 @@
-import { Comparator } from "kagura";
-
-/**
- * A function with a single argument.
- * @typeparam T Type of the function's argument.
- * @typeparam R Type of the function's return value.
- */
-export type Function<T, R> = (arg1: T) => R;
-
-/**
- * Represents an optional absent value.
- * @typeparam T Type of the value when not absent.
- */
-export type Maybe<T> = T | undefined;
-
-/**
- * A supplier produces a value without explicit input.
- * @typeparam T Type of the produced value.
- */
-export type Supplier<T> = () => T;
-
-/**
- * A consumer takes a value and outputs nothing.
- * @typeparam T Type of the consumed value.
- */
-export type Consumer<T> = (object: T) => void;
-
-/**
- * A function with a two argument.
- * @typeparam S Type of the function's first argument.
- * @typeparam T Type of the function's second argument.
- * @typeparam R Type of the function's return value.
- */
-export type BiFunction<S, T, R> = (arg1: S, arg2: T) => R;
-
-/**
- * An operator that takes two items of the same type and
- * computes an item of the same type.
- * @typeparam T Type of the item.
- */
-export type BinaryOperator<T> = BiFunction<T, T, T>;
-
-/**
- * A predicate assign a boolean value to an item.
- * @typeparam T Type of the item.
- */
-export type Predicate<T> = (object: T) => boolean;
-
-/**
- * A predicate assign a boolean value to a pair of objects.
- * @typeparam T Type of the first object.
- * @typeparam S Type of the second object.
- */
-export type BiPredicate<T, S> = (arg1: T, arg2: S) => boolean;
-
-/**
- * A consumer that takes two value and outputs nothing.
- * @typeparam S Type of the first consumed value.
- * @typeparam T Type of the second consumed value.
- */
-export type BiConsumer<S, T> = (arg1: S, arg2: T) => void;
+import {
+    BiConsumer,
+    BinaryOperator,
+    BiPredicate,
+    Collector,
+    Comparator,
+    Consumer,
+    Maybe,
+    Predicate,
+    Supplier,
+    TypedBiFunction,
+    TypedFunction,
+} from "andross";
 
 /**
  * Represents various statistics of a set of numbers.
@@ -80,28 +32,6 @@ export interface IStatistics {
      * @return Object with all statistics.
      */
     toJSON(): {average: number, count: number, max: number, min: number, sum: number, variance: number};
-}
-
-/**
- * A collector takes all items of a stream and incorporates them
- * into a single object. It does this by first creating an intermediate
- * container (eg. a Set), then processing all items (eg. adding them
- * to the Set), and finally converting the intermediate value to the
- * resulting value (eg. the size of the set).
- */
-export interface ICollector<S, T, R = T> {
-    /**
-     * Incorporates each item into the intermediate container.
-     */
-    accumulator: BiConsumer<T, S>;
-    /**
-     * Creates a new intermediate container.
-     */
-    supplier: Supplier<T>;
-    /**
-     * Transform the intermediate container into the final result.
-     */
-    finisher: Function<T, R>;
 }
 
 /**
@@ -219,7 +149,7 @@ export interface IStreamFactory {
      * @param amount How many items to generate, `Infinity` for an unlimited amount.
      * @return Stream for iterating the given amount of times over the items supplied by the supplier.
      */
-    generate<T>(generator: Function<number, T>, amount?: number): IStream<T>;
+    generate<T>(generator: TypedFunction<number, T>, amount?: number): IStream<T>;
 
     /**
      * Creates a stream of random numbers. The generated numbers are
@@ -266,7 +196,7 @@ export interface IStreamFactory {
      * @param amount How many times to iterate, `Infinity` for an unlimited amount.
      * @return Stream for iterating over the provided items the given amount of times.
      */
-    iterate<T>(seed: T, next: Function<T, T>, amount?: number): IStream<T>;
+    iterate<T>(seed: T, next: TypedFunction<T, T>, amount?: number): IStream<T>;
 
     /**
      * Creates an stream with the given item occuring the given
@@ -465,7 +395,7 @@ export interface ITry<T> {
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
-    convert<S>(mapper: Function<T, S>, backup?: Function<Error, S>): ITry<S>;
+    convert<S>(mapper: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITry<S>;
 
     /**
      * Computes a new value by using either the success handler,
@@ -485,7 +415,7 @@ export interface ITry<T> {
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
-    flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITry<S>;
+    flatConvert<S>(operation: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITry<S>;
 
     /**
      * Returns the successful value or the backup value in case
@@ -519,7 +449,7 @@ export interface ITry<T> {
      * @param backup Backup handler that computes a new value for the error.
      * @return A {@link ITry} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
      */
-    orTry(backup: Function<Error, T>): ITry<T>;
+    orTry(backup: TypedFunction<Error, T>): ITry<T>;
 
     /**
      * If not successful, attempts to compute a value from the error
@@ -541,7 +471,7 @@ export interface ITry<T> {
      * @param backup Backup handler that computes a new value for the error.
      * @return A {@link ITry} with the current successful value, the new computed backup value, or an error in case the backup handler threw an error.
      */
-    orFlatTry(backup: Function<Error, ITry<T>>): ITry<T>;
+    orFlatTry(backup: TypedFunction<Error, ITry<T>>): ITry<T>;
 
     /**
      * On success, returns the value; otherwise throws the error.
@@ -639,7 +569,7 @@ export interface ITry<T> {
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
-    then<S>(success: Function<T, S | ITry<S>>, error?: Function<Error, S | ITry<S>>): ITry<S>;
+    then<S>(success: TypedFunction<T, S | ITry<S>>, error?: TypedFunction<Error, S | ITry<S>>): ITry<S>;
 
     /**
      * Similar to {@link #orTry}, but works like a `thenable`-object.
@@ -655,7 +585,7 @@ export interface ITry<T> {
      * @param backup Handler that maps the error to a new value.
      * @return The new value, wrapped in a {@link ITry} for encapsulating errors.
      */
-    catch(mapper: Function<Error, T | ITry<T>>): ITry<T>;
+    catch(mapper: TypedFunction<Error, T | ITry<T>>): ITry<T>;
 }
 
 /**
@@ -708,7 +638,7 @@ export interface IStream<T> {
      * @param classifier It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.
      * @return A stream over the chunked items.
      */
-    chunk<K = any>(classifier: BiFunction<T, number, K>): IStream<T[]>;
+    chunk<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
 
     /**
      * Creates an object and incorporates all items into that object.
@@ -722,7 +652,7 @@ export interface IStream<T> {
      * @param collector How to collect the items.
      * @return The collected value.
      */
-    collect<S, R = S>(collector: ICollector<T, S, R>): R;
+    collect<S, R = S>(collector: Collector<T, S, R>): R;
 
     /**
      * Same as {@link #collect}, but allows specifying the parts of
@@ -739,7 +669,7 @@ export interface IStream<T> {
      * @param finisher Takes the intermediate object with all the items incoporated, and transforms it into the final value.
      * @return The final collected value.
      */
-    collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R;
+    collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: TypedFunction<S, R>): R;
 
     /**
      * Concatenates all given iterables with this stream into one stream of all the items.
@@ -880,7 +810,7 @@ export interface IStream<T> {
      * @param mapper Mapping function taking each item and producing a new stream or iterable.
      * @return A stream over all the items of the iterables produced by the mapper.
      */
-    flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S>;
+    flatMap<S>(mapper: TypedFunction<T, Iterable<S>>): IStream<S>;
 
     /**
      * Removes all elements from this stream for which the
@@ -917,7 +847,7 @@ export interface IStream<T> {
      * @param keyExtractor Extracts the key by which equality is determined. Default to identity `x => x`.
      * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
      */
-    filterBy<K>(target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): this;
+    filterBy<K>(target: K, keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;
 
     /**
      * Passes each item of this stream to the given consumer.
@@ -983,7 +913,7 @@ export interface IStream<T> {
      * @param classifier Returns the group for each item.
      * @return A map with the groups as keys and arrays as values, containing all the items for that group.
      */
-    group<K = any>(classifier: Function<T, K>): Map<K, T[]>;
+    group<K = any>(classifier: TypedFunction<T, K>): Map<K, T[]>;
 
     /**
      * Determines whether thsi stream contains the given item.
@@ -1091,7 +1021,7 @@ export interface IStream<T> {
      * @param mapper A function taking each item of this stream and transforms it into another item.
      * @return A stream over the mapped elements.
      */
-    map<S>(mapper: Function<T, S>): IStream<S>;
+    map<S>(mapper: TypedFunction<T, S>): IStream<S>;
 
     /**
      * Computes the maxmimum of the items.
@@ -1118,7 +1048,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the maximum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    maxBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
+    maxBy<K = any>(sortKey: TypedFunction<T, K>): Maybe<T>;
 
     /**
      * Computes the minimum of the items.
@@ -1145,7 +1075,7 @@ export interface IStream<T> {
      * @param sortKey Takes an item and produces the key by which the minimum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
      */
-    minBy<K = any>(sortKey: Function<T, K>): Maybe<T>;
+    minBy<K = any>(sortKey: TypedFunction<T, K>): Maybe<T>;
 
     /**
      * Returns the first item and keeps the stream open. The remaining
@@ -1224,7 +1154,7 @@ export interface IStream<T> {
      * @param promiseConverter Takes each item and creates a promise.
      * @return A promise that resolves when all promises resolve; or is rejected when any promise is rejected.
      */
-    promise<S>(promiseConverter: Function<T, Promise<S>>): Promise<IStream<S>>;
+    promise<S>(promiseConverter: TypedFunction<T, Promise<S>>): Promise<IStream<S>>;
 
     /**
      * Coalesces all items into one value.
@@ -1238,7 +1168,7 @@ export interface IStream<T> {
      * @param initialValue The initial value of the reduction.
      * @return The reduced value, or the initial value iff this stream is empty.
      */
-    reduce<S>(reducer: BiFunction<S, T, S>, initialValue: S): S;
+    reduce<S>(reducer: TypedBiFunction<S, T, S>, initialValue: S): S;
 
     /**
      * Similar to {@link reduceSame}, but reduces to items of the same type
@@ -1251,7 +1181,7 @@ export interface IStream<T> {
      * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
      * @return The reduced value, or undefined iff the stream is empty.
      */
-    reduceSame(reducer: BiFunction<T, T, T>): Maybe<T>;
+    reduceSame(reducer: TypedBiFunction<T, T, T>): Maybe<T>;
 
     /**
      * Reverses the order of the items.
@@ -1355,7 +1285,7 @@ export interface IStream<T> {
      * @param keyExtractor Extracts the key by which the sort order is determined. Default to identity `x => x`.
      * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
      */
-    sortBy<K>(keyExtractor: Function<T, K>, comparator?: Comparator<K>): this;
+    sortBy<K>(keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;
 
     /**
      * Sums all items arithmetically. If there are no items
@@ -1370,7 +1300,7 @@ export interface IStream<T> {
      * @param converted Converts an item into a number. Defaults to `Number(...)`.
      * @return The sum of the items.
      */
-    sum(converter?: Function<T, number>): number;
+    sum(converter?: TypedFunction<T, number>): number;
 
     /**
      * Hook for JSON.stringify. Returns the items of this stream
@@ -1403,7 +1333,7 @@ export interface IStream<T> {
      * @param operation Takes each item and returns a mapped value, or throws an `Error`.
      * @return A stream with the mapped values and additional methods for handling errors.
      */
-    try<S>(operation: Function<T, S>): ITryStream<S>;
+    try<S>(operation: TypedFunction<T, S>): ITryStream<S>;
 
     /**
      * Passes this stream to the the operation and returns its result,
@@ -1420,7 +1350,7 @@ export interface IStream<T> {
      * @param operation Takes this stream and returns value. If it throws an error, the resulting {@link ITry} is not successful.
      * @return The result of the operation, wrapped in a {@link ITry} for encapsulating thrown errors.
      */
-    tryCompute<S>(operation: Function<IStream<T>, S>): ITry<S>;
+    tryCompute<S>(operation: TypedFunction<IStream<T>, S>): ITry<S>;
 
     /**
      * Same as {@link #end}, but encapsulates any errors thrown. Applies
@@ -1492,7 +1422,7 @@ export interface IStream<T> {
      * @param merger A merge function called when two items map to the same key and returns the merged value. Called with two items having the same key, the first argument is the item encountered first in the stream.
      * @return A map with all the mapped key-value-pairs of the items.
      */
-    toMap<K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger?: BinaryOperator<V>): Map<K, V>;
+    toMap<K, V>(keyMapper: TypedFunction<T, K>, valueMapper: TypedFunction<T, V>, merger?: BinaryOperator<V>): Map<K, V>;
 
     /**
      * Filters all elements that are considered equal according to
@@ -1531,7 +1461,7 @@ export interface IStream<T> {
      * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
      * @return A stream with all duplicates removed.
      */
-    uniqueBy<K = any>(keyExtractor: Function<T, K>): this;
+    uniqueBy<K = any>(keyExtractor: TypedFunction<T, K>): this;
 
     /**
      * Calls the given consumer once for each item. Note that the consumer is
@@ -1665,7 +1595,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param backup Optional mapper that converts each error into a {@link ITry} of the new value.
      * @return A try-stream with the converted values, or any thrown errors.
      */
-    flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S>;
+    flatConvert<S>(operation: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITryStream<S>;
 
     /**
      * Computes a new value from each successful value or error.
@@ -1682,7 +1612,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param backup Optional mapper that converts each error into the new value.
      * @return A try-stream with the converted values, or any thrown errors.
      */
-    convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITryStream<S>;
+    convert<S>(operation: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITryStream<S>;
 
     /**
      * Returns a stream with each items being either the successful value
@@ -1757,7 +1687,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param backup Handler that takes each error and produces a backup value.
      * @return A try-stream with all erronous values replaced with the backup values.
      */
-    orTry(backup: Function<Error, T>): this;
+    orTry(backup: TypedFunction<Error, T>): this;
 }
 
 export interface ICollectors {
@@ -1776,7 +1706,7 @@ export interface ICollectors {
      * @typeparam T Type of the items to be collected.
      * @return A collector that adds all items into an array.
      */
-    toArray<T>(): ICollector<T, any, T[]>;
+    toArray<T>(): Collector<T, any, T[]>;
 
     /**
      * Counts the number of items.
@@ -1789,7 +1719,7 @@ export interface ICollectors {
      * @typeparam T Type of the items to be collected.
      * @return A collector that counts the number of items.
      */
-    count(): ICollector<any, any, number>;
+    count(): Collector<any, any, number>;
 
     /**
      * Collects all items into a set. Duplicate items are ignored.
@@ -1805,7 +1735,7 @@ export interface ICollectors {
      * @typeparam T Type of the items to be collected.
      * @return A collector that adds all items to a Set.
      */
-    toSet<T>(): ICollector<T, any, Set<T>>;
+    toSet<T>(): Collector<T, any, Set<T>>;
 
     /**
      * Collects all items into a map. An item is added to the
@@ -1839,7 +1769,7 @@ export interface ICollectors {
      * @param merger A merge function called when two items map to the same key and returns the merged value.  Called with two items having the same key, the first argument is the item encountered first in the stream.
      * @return A collector that adds all items to a Map with the key and value as computed by the key and value mapper.
      */
-    toMap<T, K, V>(keyMapper: Function<T, K>, valueMapper: Function<T, V>, merger?: BinaryOperator<V>): ICollector<T, any, Map<K, V>>;
+    toMap<T, K, V>(keyMapper: TypedFunction<T, K>, valueMapper: TypedFunction<T, V>, merger?: BinaryOperator<V>): Collector<T, any, Map<K, V>>;
 
     /**
      * Splits the items into several groups, according to the given
@@ -1855,7 +1785,7 @@ export interface ICollectors {
      * @param classifier Returns the group for each item.
      * @return A map with the groups as keys and arrays as values, containing all the items for that group.
      */
-    group<T, K>(classifier: Function<T, K>): ICollector<T, any, Map<K, T[]>>;
+    group<T, K>(classifier: TypedFunction<T, K>): Collector<T, any, Map<K, T[]>>;
 
     /**
      * Applies the classifier on items and groups those items into
@@ -1882,7 +1812,7 @@ export interface ICollectors {
      * @param downstream Collector that is applied to the items of each group.
      * @return A collector that groups the items and then collects the items of each group.
      */
-    groupDown<T, K, A, D>(classifier: Function<T, K>, downstream: ICollector<T, A, D>): ICollector<T, any, Map<K, D>>;
+    groupDown<T, K, A, D>(classifier: TypedFunction<T, K>, downstream: Collector<T, A, D>): Collector<T, any, Map<K, D>>;
 
     /**
      * Maps the items with the given mapper and passed them on to the
@@ -1902,7 +1832,7 @@ export interface ICollectors {
      * @param downstream Collector that takes the mapped items.
      * @return The result of the given downstream collector.
      */
-    map<T, U, A, R>(mapper: Function<T, U>, downstream: ICollector<U, A, R>): ICollector<T, any, R>;
+    map<T, U, A, R>(mapper: TypedFunction<T, U>, downstream: Collector<U, A, R>): Collector<T, any, R>;
 
     /**
      * Turns the items into strings and joins these strings together
@@ -1929,7 +1859,7 @@ export interface ICollectors {
      * @param suffix If given, it is appended to the joined result.
      * @return A collector that joins the items into one string with the given delimiter, prefix and suffix.
      */
-    join<T>(delimiter?: string, prefix?: string, suffix?: string): ICollector<T, any, string>;
+    join<T>(delimiter?: string, prefix?: string, suffix?: string): Collector<T, any, string>;
 
     /**
      * Computes the sum of all the collected items, ie.
@@ -1953,7 +1883,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and computes their sum.
      */
-    sum<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+    sum<T>(converter?: TypedFunction<T, number>): Collector<T, any, number>;
 
     /**
      * Computes the (arithmetic) average of all the collected items, ie.
@@ -1977,7 +1907,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and computes their (arithmetic) mean.
      */
-    average<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+    average<T>(converter?: TypedFunction<T, number>): Collector<T, any, number>;
 
     /**
      * Computes the geometric average of all the collected items, ie.
@@ -2001,7 +1931,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and computes their geometric mean.
      */
-    averageGeometrically<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+    averageGeometrically<T>(converter?: TypedFunction<T, number>): Collector<T, any, number>;
 
     /**
      * Computes the harmonic average of all the collected items, ie.
@@ -2025,7 +1955,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and computes their harmonic mean.
      */
-    averageHarmonically<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+    averageHarmonically<T>(converter?: TypedFunction<T, number>): Collector<T, any, number>;
 
     /**
      * Computes a statistic for the items, such as the variance
@@ -2048,7 +1978,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and computes statistics for these numbers.
      */
-    summarize<T>(converter?: Function<T, number>): ICollector<T, any, IStatistics>;
+    summarize<T>(converter?: TypedFunction<T, number>): Collector<T, any, IStatistics>;
 
     /**
      * Computes the product of all the collected items, ie.
@@ -2072,7 +2002,7 @@ export interface ICollectors {
      * @param converter An optional converter for turning items into numbers. Default to `item => Number(item)`.
      * @return A collector that converts each item into a number and multiplies them.
      */
-    multiply<T>(converter?: Function<T, number>): ICollector<T, any, number>;
+    multiply<T>(converter?: TypedFunction<T, number>): Collector<T, any, number>;
 
     /**
      * Splits the items into two groups according to the given
@@ -2091,7 +2021,7 @@ export interface ICollectors {
      * @param discriminator Partitions each item into one of two groups by returning `true` of `false`.
      * @return An object containing the partitioned items.
      */
-    partition<T>(predicate: Predicate<T>): ICollector<T, any, { false: T[], true: T[] }>;
+    partition<T>(predicate: Predicate<T>): Collector<T, any, { false: T[], true: T[] }>;
 
     /**
      * Applies the predicate on the items, grouping them in one of
@@ -2112,5 +2042,5 @@ export interface ICollectors {
      * @param downstream Collector that is applied to the items of each group.
      * @return A collector that partitions the items and then collects the items of the `true` and `false` group.
      */
-    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: ICollector<T, A, D>): ICollector<T, any, { false: D, true: D }>;
+    partitionDown<T, A, D>(predicate: Predicate<T>, downstream: Collector<T, A, D>): Collector<T, any, { false: D, true: D }>;
 }

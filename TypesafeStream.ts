@@ -1,7 +1,16 @@
-import { Comparator } from "kagura";
+import {
+    Comparator,
+    Consumer,
+    Maybe,
+    Predicate,
+    TypedBiFunction,
+    TypedFunction,
+} from "andross";
 
 import { AbstractStream } from "./AbstractStream";
-import { BiFunction, Consumer, Function, IStream, ITry, ITryStream, Maybe, Predicate } from "./Interfaces";
+
+import { IStream, ITry, ITryStream } from "./Interfaces";
+
 import {
     chunk,
     concat,
@@ -30,7 +39,7 @@ import {
 export class TypesafeStream<T> extends AbstractStream<T> {
     public ["constructor"]: (typeof TypesafeStream);
 
-    public chunk<K= any>(classifier: BiFunction<T, number, K>): IStream<T[]> {
+    public chunk<K= any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]> {
         this.check();
         return new TypesafeStream(chunk(this.iterable, classifier));
     }
@@ -50,7 +59,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(cycle(this.iterable, count)) as this;
     }
 
-    public flatMap<S>(mapper: Function<T, Iterable<S>>): IStream<S> {
+    public flatMap<S>(mapper: TypedFunction<T, Iterable<S>>): IStream<S> {
         this.check();
         return new TypesafeStream(flatMap(this.iterable, mapper));
     }
@@ -60,7 +69,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(filter(this.iterable, predicate)) as this;
     }
 
-    public filterBy<K>(target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): this {
+    public filterBy<K>(target: K, keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this {
         this.check();
         return new this.constructor(filterBy(this.iterable, target, keyExtractor, comparator)) as this;
     }
@@ -75,18 +84,18 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(limit(this.iterable, limitTo)) as this;
     }
 
-    public map<S>(mapper: Function<T, S>): IStream<S> {
+    public map<S>(mapper: TypedFunction<T, S>): IStream<S> {
         this.check();
         return new TypesafeStream(map(this.iterable, mapper));
     }
 
-    public promise<S>(promiseConverter: Function<any, Promise<S>>): Promise<IStream<any>> {
+    public promise<S>(promiseConverter: TypedFunction<any, Promise<S>>): Promise<IStream<any>> {
         this.check();
         return promise(this.iterable, promiseConverter)
             .then(iterable => new TypesafeStream(iterable));
     }
 
-    public replace(mapper: Function<T, T>): this {
+    public replace(mapper: TypedFunction<T, T>): this {
         this.check();
         return new this.constructor(map(this.iterable, mapper)) as this;
     }
@@ -111,12 +120,12 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(sort(this.iterable, comparator)) as this;
     }
 
-    public sortBy<K>(keyExtractor: Function<T, K>, comparator?: Comparator<K>): this {
+    public sortBy<K>(keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this {
         this.check();
         return new this.constructor(sortBy(this.iterable, keyExtractor, comparator)) as this;
     }
 
-    public try<S>(operation: Function<T, S>): ITryStream<S> {
+    public try<S>(operation: TypedFunction<T, S>): ITryStream<S> {
         this.check();
         return new TryStreamImpl(tryMap(this.iterable, operation));
     }
@@ -126,7 +135,7 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(unique(this.iterable, comparator)) as this;
     }
 
-    public uniqueBy(keyExtractor: Function<T, any>): this {
+    public uniqueBy(keyExtractor: TypedFunction<T, any>): this {
         this.check();
         return new this.constructor(uniqueBy(this.iterable, keyExtractor)) as this;
     }
@@ -183,19 +192,19 @@ class TryStreamImpl<T> extends TypesafeStream<ITry<T>> implements ITryStream<T> 
         return this.onError(handler).filter(x => x.success).orThrow();
     }
 
-    public flatConvert<S>(operation: Function<T, ITry<S>>, backup?: Function<Error, ITry<S>>): ITryStream<S> {
+    public flatConvert<S>(operation: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITryStream<S> {
         this.check();
         const x = map(this.iterable, x => x.flatConvert(operation, backup));
         return new this.constructor(x) as object as ITryStream<S>;
     }
 
-    public convert<S>(operation: Function<T, S>, backup?: Function<Error, S>): ITryStream<S> {
+    public convert<S>(operation: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITryStream<S> {
         this.check();
         const x = map(this.iterable, x => x.convert(operation, backup));
         return new this.constructor(x) as object as ITryStream<S>;
     }
 
-    public orTry(backup: Function<Error, T>): this {
+    public orTry(backup: TypedFunction<Error, T>): this {
         this.check();
         const x = map(this.iterable, y => y.orTry(backup));
         return new this.constructor(x) as object as this;

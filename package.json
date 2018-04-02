@@ -1,12 +1,13 @@
 {
   "name": "elbe",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Utility methods for working with iterables as streams.",
   "main": "dist/node/main",
   "types": "dist/node/main",
   "scripts": {
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run check && npm run build",
     "build": "npm run clean && npm run lint && npm run transpile && npm run test-run && npm run doc && npm run web",
+    "check": "node check",
     "clean": "rm -rf dist/* docs/*",
     "doc": "npm run doc-create && npm run doc-coverage",
     "doc-create": "npx typedoc --mode file --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
@@ -37,8 +38,9 @@
   },
   "dependencies": {
     "@types/bintrees": "^1.0.2",
+    "andross": "^0.1.0",
     "bintrees": "^1.0.2",
-    "kagura": "^1.0.2",
+    "kagura": "github:blutorange/js-kagura",
     "tslib": "^1.9.0"
   },
   "homepage": "https://github.com/blutorange/js-elbe#readme",

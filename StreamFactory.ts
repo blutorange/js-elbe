@@ -1,8 +1,9 @@
-import { EMPTY_ITERABLE } from "./helpers";
+import { TypedFunction } from "andross";
 import { InplaceStream } from "./InplaceStream";
-import { Function, IStream, IStreamFactory } from "./Interfaces";
+import { IStream, IStreamFactory } from "./Interfaces";
 import { fromObject, fromObjectKeys, fromObjectValues, generate, iterate, random, repeat, step, times } from "./Methods";
 import { TypesafeStream } from "./TypesafeStream";
+import { EMPTY_ITERABLE } from "./util";
 
 function make<T>(inplace: boolean, iterable: Iterable<T>): IStream<T> {
     return inplace ? new InplaceStream(iterable) : new TypesafeStream(iterable);
@@ -29,11 +30,11 @@ function createFactory(inplace: boolean): IStreamFactory {
             return make(inplace, random(amount));
         },
 
-        generate<T>(generator: Function<number, T>, amount?: number): IStream<T> {
+        generate<T>(generator: TypedFunction<number, T>, amount?: number): IStream<T> {
             return make(inplace, generate(generator, amount));
         },
 
-        iterate<T>(seed: T, next: Function<T, T>, amount?: number): IStream<T> {
+        iterate<T>(seed: T, next: TypedFunction<T, T>, amount?: number): IStream<T> {
             return make(inplace, iterate(seed, next, amount));
         },
 

@@ -344,7 +344,15 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 <span class="hljs-comment">// JSON object or undefined.</span>
 </code></pre>
 				<h1 id="changelog">Changelog</h1>
-				<h3 id="0-2-2">0.2.2</h3>
+				<h1 id="0-3-1">0.3.1</h1>
+				<ul>
+					<li>Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from <code>elbe</code> to <code>andross</code>.</li>
+				</ul>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Predicate } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
+<span class="hljs-comment">// change to</span>
+<span class="hljs-keyword">import</span> { Predicate } <span class="hljs-keyword">from</span> <span class="hljs-string">"andross"</span>;
+</code></pre>
+				<h2 id="0-3-0">0.3.0</h2>
 				<ul>
 					<li>Changed IStream#unique so that the single parameter <code>keyExtractor</code> is required. Not passing this parameter is equivalent to using IStream#unique with no parameters.</li>
 					<li>Added method IStreamFactory#filterBy</li>
@@ -352,7 +360,7 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					<li>Added possibility for Methods.concat to take 0 iterables instead of at least 1.</li>
 					<li>Fixed typing for Methods.minBy, Methods.maxBy, Methods.uniqueBy</li>
 				</ul>
-				<h3 id="0-2-1">0.2.1</h3>
+				<h2 id="0-2-1">0.2.1</h2>
 				<ul>
 					<li>Added method IStreamFactory#empty</li>
 					<li>Added a shortcut for InplaceStreamFactory, <code>require(&quot;elbe&quot;).factory</code></li>
@@ -464,9 +472,6 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="classes/typesafestream.html" class="tsd-kind-icon">Typesafe<wbr>Stream</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="interfaces/icollector.html" class="tsd-kind-icon">ICollector</a>
-					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icollectors.html" class="tsd-kind-icon">ICollectors</a>
 					</li>
@@ -487,33 +492,6 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/itrystream.html" class="tsd-kind-icon">ITry<wbr>Stream</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#biconsumer" class="tsd-kind-icon">Bi<wbr>Consumer</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#bifunction" class="tsd-kind-icon">Bi<wbr>Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#bipredicate" class="tsd-kind-icon">Bi<wbr>Predicate</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#binaryoperator" class="tsd-kind-icon">Binary<wbr>Operator</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#consumer" class="tsd-kind-icon">Consumer</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#function" class="tsd-kind-icon">Function</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#maybe" class="tsd-kind-icon">Maybe</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#predicate" class="tsd-kind-icon">Predicate</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="globals.html#supplier" class="tsd-kind-icon">Supplier</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#inplacestreamfactory" class="tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory</a>
@@ -757,9 +735,6 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#empty_iterator" class="tsd-kind-icon">EMPTY_<wbr>ITERATOR</a>
-					</li>
-					<li class=" tsd-kind-object-literal tsd-is-not-exported">
-						<a href="globals.html#empty_iterator_result" class="tsd-kind-icon">EMPTY_<wbr>ITERATOR_<wbr>RESULT</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="globals.html#tryfactory" class="tsd-kind-icon">Try<wbr>Factory</a>

@@ -1,6 +1,7 @@
+import { Consumer } from "andross";
 import { expect } from "chai";
 import { IStream, IStreamFactory } from "../Interfaces";
-import { Consumer, ITry } from "../Interfaces";
+import { ITry } from "../Interfaces";
 
 export function Expect(stream: IStream<any>): Chai.Assertion {
     return expect(Array.from(stream));

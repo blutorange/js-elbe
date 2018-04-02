@@ -1,22 +1,29 @@
-import { RBTree } from "bintrees";
-import { byKey, Comparator, natural } from "kagura";
-
-import { Collectors } from "./Collectors";
 import {
     BiConsumer,
-    BiFunction,
     BinaryOperator,
     BiPredicate,
+    Collector,
+    Comparator,
     Consumer,
-    Function,
-    ICollector,
-    ITry,
     Maybe,
     Predicate,
     Supplier,
-} from "./Interfaces";
+    TypedBiFunction,
+    TypedFunction,
+} from "andross";
+
+import { RBTree } from "bintrees";
+
+import { byKey, natural, sort as arraySort, sortBy as arraySortBy } from "kagura";
+
+import { Collectors } from "./Collectors";
+
+import { ITry } from "./Interfaces";
+
 import { LazyBufferedIterable } from "./LazyBufferedIterable";
+
 import { TryFactory } from "./TryFactory";
+
 import { EMPTY_ITERABLE, wrapIterator } from "./util";
 
 const hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -34,7 +41,7 @@ const hasOwnProperty = Object.prototype.hasOwnProperty;
  * @param mapper A function taking each item of the given iterable and transforms it into another item.
  * @return An iterable over the mapped elements.
  */
-export function * map<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<S> {
+export function * map<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, S>): Iterable<S> {
     for (const item of iterable) {
         yield mapper(item);
     }
@@ -56,7 +63,7 @@ export function * map<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iter
  * @param mapper Mapping function taking each item and producing a new iterable.
  * @return An iterable over all the items of the iterables produced by the mapper.
  */
-export function* flatMap<T, S>(iterable: Iterable<T>, mapper: Function<T, Iterable<S>>): Iterable<S> {
+export function* flatMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, Iterable<S>>): Iterable<S> {
     for (const items of iterable) {
         for (const item of mapper(items)) {
             yield item;
@@ -78,7 +85,7 @@ export function* flatMap<T, S>(iterable: Iterable<T>, mapper: Function<T, Iterab
  * @param classifier It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.
  * @return An iterable over the chunked items.
  */
-export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: BiFunction<T, number, K>): Iterable<T[]> {
+export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: TypedBiFunction<T, number, K>): Iterable<T[]> {
     let currentClass;
     let first = true;
     let index = -1;
@@ -240,7 +247,7 @@ export function * filter<T>(iterable: Iterable<T>, predicate: Predicate<T>): Ite
  * @param mapper Mapping function that takes an item of the given iterable and produces a mapped item. If it throws an error, the resulting {@link Try} is not successful.
  * @return An iterable over the mapped elements, wrapped in a {@link Try} for encapsulating thrown errors.
  */
-export function* tryMap<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): Iterable<ITry<S>> {
+export function* tryMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, S>): Iterable<ITry<S>> {
     for (const item of iterable) {
         yield TryFactory.of(() => mapper(item));
     }
@@ -263,7 +270,7 @@ export function* tryMap<T, S>(iterable: Iterable<T>, mapper: Function<T, S>): It
  * @param operation Takes the given iterable and returns a value. If it throws an error, the resulting {@link Try} is not successful.
  * @return The result of the operation, wrapped in a {@link Try} for encapsulating thrown errors.
  */
-export function tryCompute<T, S>(iterable: Iterable<T>, operation: Function<Iterable<T>, S>): ITry<S> {
+export function tryCompute<T, S>(iterable: Iterable<T>, operation: TypedFunction<Iterable<T>, S>): ITry<S> {
     return TryFactory.of(() => operation(iterable));
 }
 
@@ -319,7 +326,7 @@ export function partition<T>(iterable: Iterable<T>, discriminator: Predicate<T>)
  * @param classifier Returns the group for each item.
  * @return A map with the groups as keys and arrays as values, containg all the items for that group.
  */
-export function group<T, K>(iterable: Iterable<T>, classifier: Function<T, K>): Map<K, T[]> {
+export function group<T, K>(iterable: Iterable<T>, classifier: TypedFunction<T, K>): Map<K, T[]> {
     return collect(iterable, Collectors.group(classifier));
 }
 
@@ -357,7 +364,7 @@ export function join<T>(iterable: Iterable<T>, delimiter?: string, prefix?: stri
  */
 export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T> {
     const arr = toArray(iterable, true);
-    arr.sort(comparator);
+    arraySort(arr, comparator);
     return arr;
 }
 
@@ -378,7 +385,7 @@ export function sort<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iter
  * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
  * @return An iterable with all duplicates removed.
  */
-export function * uniqueBy<T, K = any>(iterable: Iterable<T>, keyExtractor: Function<T, K>): Iterable<T> {
+export function * uniqueBy<T, K = any>(iterable: Iterable<T>, keyExtractor: TypedFunction<T, K>): Iterable<T> {
     const set = new Set();
     for (const item of iterable) {
         const key = keyExtractor(item);
@@ -629,8 +636,10 @@ export function size(iterable: Iterable<any>): number {
  * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
  * @return An iterable with the items in sorted order.
  */
-export function sortBy<T, K>(iterable: Iterable<T>, keyExtractor: Function<T, K>, comparator?: Comparator<K>): Iterable<T> {
-    return sort(iterable, byKey(keyExtractor, comparator));
+export function sortBy<T, K>(iterable: Iterable<T>, keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): Iterable<T> {
+    const arr = toArray(iterable, true);
+    arraySortBy(arr, keyExtractor, comparator);
+    return arr;
 }
 
 /**
@@ -657,7 +666,7 @@ export function sortBy<T, K>(iterable: Iterable<T>, keyExtractor: Function<T, K>
  * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
  * @return An iterable with the items not matching the target removed.
  */
-export function * filterBy<T, K>(iterable: Iterable<T>, target: K, keyExtractor: Function<T, K>, comparator?: Comparator<K>): Iterable<T> {
+export function * filterBy<T, K>(iterable: Iterable<T>, target: K, keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): Iterable<T> {
     if (comparator !== undefined) {
         for (const item of iterable) {
             if (comparator(target, keyExtractor(item)) === 0) {
@@ -898,7 +907,7 @@ export function consumeFirst<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>):
  * @param promiseConverter Takes each item and creates a promise.
  * @return A promise that resolves when all promises resolve; or is rejected when any promise is rejected.
  */
-export function promise<T, S>(iterable: Iterable<T>, promiseConverter: Function<T, Promise<S>>): Promise<Iterable<S>> {
+export function promise<T, S>(iterable: Iterable<T>, promiseConverter: TypedFunction<T, Promise<S>>): Promise<Iterable<S>> {
     return Promise.all(map(iterable, promiseConverter));
 }
 
@@ -915,7 +924,7 @@ export function promise<T, S>(iterable: Iterable<T>, promiseConverter: Function<
  * @param sortKey Takes an item and produces the key by which the minimum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function minBy<T, K = any>(iterable: Iterable<T>, sortKey: Function<T, K>): Maybe<T> {
+export function minBy<T, K = any>(iterable: Iterable<T>, sortKey: TypedFunction<T, K>): Maybe<T> {
     return min(iterable, byKey(sortKey));
 }
 
@@ -932,7 +941,7 @@ export function minBy<T, K = any>(iterable: Iterable<T>, sortKey: Function<T, K>
  * @param sortKey Takes an item and produces the key by which the maximum is determined.
  * @return The smallest item, or `undefined` iff there are no items.
  */
-export function maxBy<T, K = any>(iterable: Iterable<T>, sortKey: Function<T, K>): Maybe<T> {
+export function maxBy<T, K = any>(iterable: Iterable<T>, sortKey: TypedFunction<T, K>): Maybe<T> {
     return max(iterable, byKey(sortKey));
 }
 
@@ -1012,7 +1021,7 @@ export function max<T>(iterable: Iterable<T>, comparator: Comparator<T> = natura
  * @param initialValue The initial value of the reduction.
  * @return The reduced value, or the initial value iff the iterable is empty.
  */
-export function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<S, T, S>, initialValue: S): S {
+export function reduce<T, S>(iterable: Iterable<T>, reducer: TypedBiFunction<S, T, S>, initialValue: S): S {
     for (const item of iterable) {
         initialValue = reducer(initialValue, item);
     }
@@ -1032,7 +1041,7 @@ export function reduce<T, S>(iterable: Iterable<T>, reducer: BiFunction<S, T, S>
  * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
  * @return The reduced value, or undefined iff the iterable is empty.
  */
-export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T>): Maybe<T> {
+export function reduceSame<T>(iterable: Iterable<T>, reducer: TypedBiFunction<T, T, T>): Maybe<T> {
     let reduced: Maybe<T>;
     let first = true;
     for (const item of iterable) {
@@ -1060,7 +1069,7 @@ export function reduceSame<T>(iterable: Iterable<T>, reducer: BiFunction<T, T, T
  * @param converted Converts an item into a number. Defaults to `Number(...)`.
  * @return The sum of the items.
  */
-export function sum<T>(iterable: Iterable<T>, converter?: Function<T, number>): number {
+export function sum<T>(iterable: Iterable<T>, converter?: TypedFunction<T, number>): number {
     return collect(iterable, Collectors.sum(converter));
 }
 
@@ -1166,7 +1175,7 @@ export function last<T>(iterable: Iterable<T>): Maybe<T> {
  * @param collector How to collect the items.
  * @return The collected value.
  */
-export function collect<T, S, R = S>(iterable: Iterable<T>, collector: ICollector<T, S, R>): R {
+export function collect<T, S, R = S>(iterable: Iterable<T>, collector: Collector<T, S, R>): R {
     return collectWith(iterable, collector.supplier, collector.accumulator, collector.finisher);
 }
 
@@ -1188,7 +1197,7 @@ export function collect<T, S, R = S>(iterable: Iterable<T>, collector: ICollecto
  * @param finisher Takes the intermediate object with all the items incoporated, and transforms it into the final value.
  * @return The final collected value.
  */
-export function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: Function<S, R>): R {
+export function collectWith<T, S, R = S>(iterable: Iterable<T>, supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: TypedFunction<S, R>): R {
     const collected = supplier();
     for (const item of iterable) {
         accumulator(collected, item);
@@ -1310,7 +1319,7 @@ export function toSet<T>(iterable: Iterable<T>, fresh: boolean = false): Set<T> 
  * @param merger A merge function called when two items map to the same key and returns the merged value.  Called with two items having the same key, the first argument is the item encountered first in the stream.
  * @return A map with all the mapped key-value-pairs of the items.
  */
-export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: Function<any, K>, valueMapper: Function<any, V>, merger?: BinaryOperator<V>): Map<K, V> {
+export function toMap<T, K, V>(iterable: Iterable<T>, keyMapper: TypedFunction<any, K>, valueMapper: TypedFunction<any, V>, merger?: BinaryOperator<V>): Map<K, V> {
     return collect(iterable, Collectors.toMap(keyMapper, valueMapper, merger));
 }
 
@@ -1444,7 +1453,7 @@ export function fromIter<T>(iterableOrIterator: Iterable<T> | Iterator<T>): Iter
  * @param amount How many items to generate, `Infinity` for an unlimited amount.
  * @return Iterable for iterating the given amount of times over the items supplied by the supplier.
  */
-export function* generate<T>(generator: Function<number, T>, amount: number = Infinity): Iterable<T> {
+export function* generate<T>(generator: TypedFunction<number, T>, amount: number = Infinity): Iterable<T> {
     if (amount < 1 || isNaN(amount)) {
         return;
     }
@@ -1600,7 +1609,7 @@ export function* repeat<T>(item: T, amount: number = Infinity): Iterable<T> {
  * @param amount How many times to iterate, `Infinity` for an unlimited amount.
  * @return Iterable for iterating over the provided items the given amount of times.
  */
-export function* iterate<T>(seed: T, next: Function<T, T>, amount: number = Infinity): Iterable<T> {
+export function* iterate<T>(seed: T, next: TypedFunction<T, T>, amount: number = Infinity): Iterable<T> {
     if (amount < 1 || isNaN(amount)) {
         return;
     }
