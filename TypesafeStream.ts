@@ -13,6 +13,7 @@ import { IStream, ITry, ITryStream } from "./Interfaces";
 
 import {
     chunk,
+    chunkBy,
     concat,
     consume,
     cycle,
@@ -25,7 +26,6 @@ import {
     promise,
     reverse,
     skip,
-    slice,
     sort,
     sortBy,
     tryMap,
@@ -39,9 +39,14 @@ import {
 export class TypesafeStream<T> extends AbstractStream<T> {
     public ["constructor"]: (typeof TypesafeStream);
 
-    public chunk<K= any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]> {
+    public chunk(chunkSize: number): IStream<T[]> {
         this.check();
-        return new TypesafeStream(chunk(this.iterable, classifier));
+        return new TypesafeStream(chunk(this.iterable, chunkSize));
+    }
+
+    public chunkBy<K= any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]> {
+        this.check();
+        return new TypesafeStream(chunkBy(this.iterable, classifier));
     }
 
     public concat(...iterables: Iterable<T>[]): this {
@@ -49,9 +54,9 @@ export class TypesafeStream<T> extends AbstractStream<T> {
         return new this.constructor(concat(this.iterable, ...iterables)) as this;
     }
 
-    public consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this {
+    public consume(sink: T[] | Consumer<T>, offset?: number, maxAmount?: number): this {
         this.check();
-        return new this.constructor(consume(this.iterable, sink, maxAmount, offset)) as this;
+        return new this.constructor(consume(this.iterable, sink, offset, maxAmount)) as this;
     }
 
     public cycle(count?: number): this {
@@ -108,11 +113,6 @@ export class TypesafeStream<T> extends AbstractStream<T> {
     public skip(toSkip?: number): this {
         this.check();
         return new this.constructor(skip(this.iterable, toSkip)) as this;
-    }
-
-    public slice(sliceSize: number): IStream<T[]> {
-        this.check();
-        return new TypesafeStream(slice(this.iterable, sliceSize));
     }
 
     public sort(comparator?: Comparator<T>): this {

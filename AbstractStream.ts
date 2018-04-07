@@ -200,10 +200,10 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return some(this.iterable, predicate);
     }
 
-    public splice(maxAmount?: number, offset?: number): T[] {
+    public splice(offset?: number, maxAmount?: number): T[] {
         this.checkOnly();
         const result: T[] = [];
-        this.iterable = consume(this.iterable, result, maxAmount, offset);
+        this.iterable = consume(this.iterable, result, offset, maxAmount);
         return result;
     }
 
@@ -245,9 +245,9 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return tryEnd(this.iterable);
     }
 
-    public abstract chunk<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
+    public abstract chunkBy<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
     public abstract concat(...iterables: Iterable<T>[]): this;
-    public abstract consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this;
+    public abstract consume(sink: T[] | Consumer<T>, offset?: number, maxAmount?: number): this;
     public abstract cycle(count?: number): this;
     public abstract flatMap<S>(mapper: TypedFunction<T, Iterable<S>>): IStream<S>;
     public abstract filter(predicate: Predicate<T>): this;
@@ -258,7 +258,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract promise<S>(promiseConverter: TypedFunction<T, Promise<S>>): Promise<IStream<S>>;
     public abstract reverse(): this;
     public abstract skip(toSkip: number): this;
-    public abstract slice(sliceSize: number): IStream<T[]>;
+    public abstract chunk(sliceSize: number): IStream<T[]>;
     public abstract sort(comparator?: Comparator<T>): this;
     public abstract sortBy<K>(keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;
     public abstract try<S>(operation: TypedFunction<T, S>): ITryStream<S>;

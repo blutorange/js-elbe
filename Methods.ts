@@ -76,7 +76,7 @@ export function* flatMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, I
  * returns the same value. Equality is checked with `===`.
  *
  * ```javascript
- * chunk([1,2,3,4,5,6,1,2], i => Math.floor((i-1) / 3)) // => Stream[ [1,2,3], [4,5,6], [1,2] ]
+ * chunkBy([1,2,3,4,5,6,1,2], i => Math.floor((i-1) / 3)) // => Stream[ [1,2,3], [4,5,6], [1,2] ]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
@@ -85,7 +85,7 @@ export function* flatMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, I
  * @param classifier It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.
  * @return An iterable over the chunked items.
  */
-export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: TypedBiFunction<T, number, K>): Iterable<T[]> {
+export function* chunkBy<T, K = any>(iterable: Iterable<T>, classifier: TypedBiFunction<T, number, K>): Iterable<T[]> {
     let currentClass;
     let first = true;
     let index = -1;
@@ -106,28 +106,28 @@ export function* chunk<T, K = any>(iterable: Iterable<T>, classifier: TypedBiFun
 }
 
 /**
- * Slices the items into chunks of sliceSize. This is equivalent
- * to `chunk(iterable, (_, i) => Math.floor(i/sliceSize))`.
+ * Chunks the items into chunks of chunkSize. This is equivalent
+ * to `chunkBy(iterable, (_, i) => Math.floor(i/chunkSize))`.
  *
  * ```javascript
- * slice([1,2,3,4,5], 2) // => Iterable[ [1,2], [3,4], [5] ]
- * slice([1,2,3,4,5], 1) // => Iterable[ [1], [2], [3], [4], [5] ]
- * slice([1,2,3,4,5], 0) // => Iterable[]
- * slice([1,2,3,4,5], -1) // => Iterable[]
- * slice([1,2,3,4,5], NaN) // => Iterable[]
- * slice([1,2,3,4,5], Infinity) // => Iterable[[1,2,3,4,5]]
+ * chunk([1,2,3,4,5], 2) // => Iterable[ [1,2], [3,4], [5] ]
+ * chunk([1,2,3,4,5], 1) // => Iterable[ [1], [2], [3], [4], [5] ]
+ * chunk([1,2,3,4,5], 0) // => Iterable[]
+ * chunk([1,2,3,4,5], -1) // => Iterable[]
+ * chunk([1,2,3,4,5], NaN) // => Iterable[]
+ * chunk([1,2,3,4,5], Infinity) // => Iterable[[1,2,3,4,5]]
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
- * @param iterable The iterable to be sliced.
- * @param sliceSize Size of the produced chunks.
- * @return An iterable over the sliced items.
+ * @param iterable The iterable to be chunked.
+ * @param chunkSize Size of the produced chunks.
+ * @return An iterable over the chunked items.
  */
-export function* slice<T>(iterable: Iterable<T>, sliceSize: number): Iterable<T[]> {
-    if (sliceSize < 1 || isNaN(sliceSize)) {
+export function* chunk<T>(iterable: Iterable<T>, chunkSize: number): Iterable<T[]> {
+    if (chunkSize < 1 || isNaN(chunkSize)) {
         return;
     }
-    let count = sliceSize;
+    let count = chunkSize;
     let chunk = [];
     for (const item of iterable) {
         --count;
@@ -135,7 +135,7 @@ export function* slice<T>(iterable: Iterable<T>, sliceSize: number): Iterable<T[
         if (count < 1) {
             yield chunk;
             chunk = [];
-            count = sliceSize;
+            count = chunkSize;
         }
     }
     if (chunk.length > 0) {
@@ -811,13 +811,13 @@ export function has<T>(iterable: Iterable<T>, object: T): boolean {
  *
  * ```javascript
  * const sink = [];
- * consume("foobar", sink, 3);
+ * consume("foobar", sink, 0, 3);
  * // => sink is now ["f", "o", "o"]
  *
- * consume("foobar", console.log, 3);
+ * consume("foobar", console.log, 0, 3);
  * // => logs "f", "o", "o"
  *
- * consume("foobar", console.log, -3);
+ * consume("foobar", console.log, 0, -3);
  * // => logs nothing
  * ```
  *
@@ -828,7 +828,7 @@ export function has<T>(iterable: Iterable<T>, object: T): boolean {
  * @param offset Where to start removing items from the iterable. Defaults to `0`.
  * @return An iterable over the remaining items.
  */
-export function consume<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>, maxAmount: number = Infinity, offset: number = 0): Iterable<T> {
+export function consume<T>(iterable: Iterable<T>, sink: T[] | Consumer<T>, offset: number = 0, maxAmount: number = Infinity): Iterable<T> {
     if (maxAmount < 1 || isNaN(maxAmount) || isNaN(offset)) {
         return iterable;
     }

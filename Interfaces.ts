@@ -627,18 +627,34 @@ export interface IStream<T> {
     [Symbol.iterator](): Iterator<T>;
 
     /**
+     * Chunks the items into chunks of chunkSize.
+     *
+     * ```javascript
+     * stream([1,2,3,4,5]).chunk(2) // => Stream[ [1,2], [3,4], [5] ]
+     * stream([1,2,3,4,5]).chunk(1) // => Stream[ [1], [2], [3], [4], [5] ]
+     * stream([1,2,3,4,5]).chunk(0) // => Stream[]
+     * stream([1,2,3,4,5]).chunk(NaN) // => Stream[]
+     * stream([1,2,3,4,5]).chunk(Infinity) // => Stream[[1,2,3,4,5]]
+     * ```
+     *
+     * @param chunkSize Size of the produced chunks.
+     * @return A stream over the chunked items.
+     */
+    chunk(chunkSize: number): IStream<T[]>;
+
+    /**
      * Chunks together consecutive items for which the classifier
      * returns the same value. Equality is checked with `===`.
      *
      * ```javascript
-     * stream([1,2,3,4,5,6,1]).chunk(i => i & 10) // => Stream[ [1,2], [3,4], [5,6], [1] ]
+     * stream([1,2,3,4,5,6,1]).chunkBy(i => i & 10) // => Stream[ [1,2], [3,4], [5,6], [1] ]
      * ```
      *
      * @typeparam K Type of the returned value of the chunker,
      * @param classifier It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.
      * @return A stream over the chunked items.
      */
-    chunk<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
+    chunkBy<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
 
     /**
      * Creates an object and incorporates all items into that object.
@@ -691,19 +707,19 @@ export interface IStream<T> {
      *
      * ```javascript
      * const sink = [];
-     * const s = stream("foobar").consume(sink, 3);
+     * const s = stream("foobar").consume(sink, 0, 3);
      * // => sink is now ["f", "o", "o"]
      * s.join() // => "bar"
      *
      * const sink2 = [];
-     * const s2 = stream("foobar").consume(sink, 3, 2);
+     * const s2 = stream("foobar").consume(sink, 2, 3);
      * // => sink is now ["o", "b", "a"]
      * s2.join() // => "for"
      *
-     * stream("foobar").consume(console.log, 3);
+     * stream("foobar").consume(console.log, 0, 3);
      * // => logs "f", "o", "o"
      *
-     * stream("foobar").consume(console.log, -3);
+     * stream("foobar").consume(console.log, 0, -3);
      * // => logs nothing
      * ```
      *
@@ -712,7 +728,7 @@ export interface IStream<T> {
      * @param offset Where to start consuming items. Defaults to `0`.
      * @return A stream over the remaining items.
      */
-    consume(sink: T[] | Consumer<T>, maxAmount?: number, offset?: number): this;
+    consume(sink: T[] | Consumer<T>, offset?: number, maxAmount?: number): this;
 
     /**
      * Cycles over the elements of this stream the given number of times.
@@ -931,31 +947,31 @@ export interface IStream<T> {
     /**
      * Extracts and return at most `maxAmount` items of this stream, starting
      * at the given start position. All items up to the starting point and the
-     * remaining items are left in this stream and can be read from it.
+     * remaining items are left in this stream and can still be read from it.
      *
      * ```javascript
      * const s = stream("foobar");
-     * s.splice(3); // => ["f", "o", "o"]
+     * s.splice(0, 3); // => ["f", "o", "o"]
      * s.join() // => "bar"
      *
      * const s2 = stream("foobar");
-     * s.splice(3,2); // => ["o", "b", "a"]
+     * s.splice(2,3); // => ["o", "b", "a"]
      * s.join() // => "for"
      *
      * const s = stream("foobar");
-     * s.splice(3); // => ["f", "o", "o"]
+     * s.splice(0, 3); // => ["f", "o", "o"]
      * s.join() // => "bar"
      *
-     * stream("foo").splice(0) // => []
-     * stream("foo").splice(NaN) // => []
-     * stream("foo").splice(2, NaN) // => []
+     * stream("foo").splice(0, 0) // => []
+     * stream("foo").splice(0, NaN) // => []
+     * stream("foo").splice(NaN, 2) // => []
      * ```
      *
      * @param maxAmount Maximum number if items to read from this stream. Defaults to `Infinity`.
      * @param offset Position at which to start removing items from the stream. Default to `0`.
      * @return At most `maxAmount` items from the given start position of this stream.
      */
-    splice(maxAmount?: number, offset?: number): T[];
+    splice(offset?: number, maxAmount?: number): T[];
 
     /**
      * Adds the index to each element of this stream. The index starts at 0.
@@ -1222,22 +1238,6 @@ export interface IStream<T> {
      * @see {@link limit}
      */
     skip(toSkip?: number): this;
-
-    /**
-     * Slices the items into chunks of sliceSize.
-     *
-     * ```javascript
-     * stream([1,2,3,4,5]).slice(2) // => Stream[ [1,2], [3,4], [5] ]
-     * stream([1,2,3,4,5]).slice(1) // => Stream[ [1], [2], [3], [4], [5] ]
-     * stream([1,2,3,4,5]).slice(0) // => Stream[]
-     * stream([1,2,3,4,5]).slice(NaN) // => Stream[]
-     * stream([1,2,3,4,5]).slice(Infinity) // => Stream[[1,2,3,4,5]]
-     * ```
-     *
-     * @param sliceSize Size of the produced chunks.
-     * @return A stream over the sliced items.
-     */
-    slice(sliceSize: number): IStream<T[]>;
 
     /**
      * Determines whether at least one items matches the given predicate.

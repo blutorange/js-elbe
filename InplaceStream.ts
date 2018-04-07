@@ -13,6 +13,7 @@ import { IStream, ITry, ITryStream } from "./Interfaces";
 
 import {
     chunk,
+    chunkBy,
     concat,
     consume,
     cycle,
@@ -25,7 +26,6 @@ import {
     promise,
     reverse,
     skip,
-    slice,
     sort,
     sortBy,
     tryMap,
@@ -39,8 +39,13 @@ import {
 export class InplaceStream extends AbstractStream<any> {
     public ["constructor"]: (typeof InplaceStream);
 
-    public chunk<K = any>(classifier: TypedBiFunction<any, number, K>): IStream<any[]> {
-        this.iterable = chunk(this.iterable, classifier);
+    public chunk(chunkSize: number): IStream<any[]> {
+        this.iterable = chunk(this.iterable, chunkSize);
+        return this;
+    }
+
+    public chunkBy<K = any>(classifier: TypedBiFunction<any, number, K>): IStream<any[]> {
+        this.iterable = chunkBy(this.iterable, classifier);
         return this;
     }
 
@@ -49,9 +54,9 @@ export class InplaceStream extends AbstractStream<any> {
         return this;
     }
 
-    public consume(sink: any[] | Consumer<any>, maxAmount?: number, offset?: number): this {
+    public consume(sink: any[] | Consumer<any>, offset?: number, maxAmount?: number): this {
         this.checkOnly();
-        this.iterable = consume(this.iterable, sink, maxAmount, offset);
+        this.iterable = consume(this.iterable, sink, offset, maxAmount);
         return this;
     }
 
@@ -113,11 +118,6 @@ export class InplaceStream extends AbstractStream<any> {
 
     public skip(toSkip?: number): this {
         this.iterable = skip(this.iterable, toSkip);
-        return this;
-    }
-
-    public slice(sliceSize: number): IStream<any[]> {
-        this.iterable = slice(this.iterable, sliceSize);
         return this;
     }
 

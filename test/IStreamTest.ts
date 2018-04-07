@@ -16,10 +16,10 @@ export const hack: any[] = [];
         @test("should chunk items according to the classifier")
         public chunk() {
             if (factory === TypesafeStreamFactory)
-                this.action([1,2,3], s => {s.chunk(x=>x);s.chunk(x=>x)}).to.throw();
-            this.stream([], s => s.chunk(i => i)).to.deep.equal([]);
-            this.stream([0, 1, 2, 3, 4], s => s.chunk(i => i & 10)).to.deep.equal([[0, 1], [2, 3], [4]]);
-            this.stream([0, 1, 2, 3], s => s.chunk(i => i & 10)).to.deep.equal([[0, 1], [2, 3]]);
+                this.action([1,2,3], s => {s.chunkBy(x=>x);s.chunkBy(x=>x)}).to.throw();
+            this.stream([], s => s.chunkBy(i => i)).to.deep.equal([]);
+            this.stream([0, 1, 2, 3, 4], s => s.chunkBy(i => i & 10)).to.deep.equal([[0, 1], [2, 3], [4]]);
+            this.stream([0, 1, 2, 3], s => s.chunkBy(i => i & 10)).to.deep.equal([[0, 1], [2, 3]]);
         }
 
         @test("should add an index to the items")
@@ -211,23 +211,23 @@ export const hack: any[] = [];
         @test("should slice the items into slices of a given length")
         public slice() {
             if (factory === TypesafeStreamFactory)
-                this.action([1,2,3], s => {s.slice(1);s.slice(1)}).to.throw();
-            this.stream([], s => s.slice(2)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(-1)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(NaN)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(-Infinity)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(0)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(0.5)).to.deep.equal([]);
-            this.stream([1,2,3,4,5,6], s => s.slice(1)).to.deep.equal([[1],[2],[3],[4],[5],[6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(2)).to.deep.equal([[1,2],[3,4],[5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(3)).to.deep.equal([[1,2,3],[4, 5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(3.9)).to.deep.equal([[1,2,3],[4, 5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(4)).to.deep.equal([[1,2,3,4],[5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(5)).to.deep.equal([[1,2,3,4,5],[6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(6)).to.deep.equal([[1,2,3,4,5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(7)).to.deep.equal([[1,2,3,4,5,6]]);
-            this.stream([1,2,3,4,5,6], s => s.slice(Infinity)).to.deep.equal([[1,2,3,4,5,6]]);
-            this.stream(this.inf(), s => s.slice(2).limit(3)).to.deep.equal([[0,1],[2,3],[4,5]]);
+                this.action([1,2,3], s => {s.chunk(1);s.chunk(1)}).to.throw();
+            this.stream([], s => s.chunk(2)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(-1)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(NaN)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(-Infinity)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(0)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(0.5)).to.deep.equal([]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(1)).to.deep.equal([[1],[2],[3],[4],[5],[6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(2)).to.deep.equal([[1,2],[3,4],[5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(3)).to.deep.equal([[1,2,3],[4, 5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(3.9)).to.deep.equal([[1,2,3],[4, 5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(4)).to.deep.equal([[1,2,3,4],[5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(5)).to.deep.equal([[1,2,3,4,5],[6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(6)).to.deep.equal([[1,2,3,4,5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(7)).to.deep.equal([[1,2,3,4,5,6]]);
+            this.stream([1,2,3,4,5,6], s => s.chunk(Infinity)).to.deep.equal([[1,2,3,4,5,6]]);
+            this.stream(this.inf(), s => s.chunk(2).limit(3)).to.deep.equal([[0,1],[2,3],[4,5]]);
         }
 
         @test("should zip the items with another iterable")
@@ -552,46 +552,46 @@ export const hack: any[] = [];
             sink = [];s([1,2,3]).consume(add);
             expect(sink).to.deep.equal([1,2,3]);
 
-            sink = [];s([1,2,3]).consume(add, -9999999999);
+            sink = [];s([1,2,3]).consume(add, 0, -9999999999);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,2,3]).consume(add, -Infinity);
+            sink = [];s([1,2,3]).consume(add, 0, -Infinity);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,2,3]).consume(add, 0);
+            sink = [];s([1,2,3]).consume(add, 0, 0);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,2,3]).consume(add, 0.9);
+            sink = [];s([1,2,3]).consume(add, 0, 0.9);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,2,3]).consume(add, 1);
+            sink = [];s([1,2,3]).consume(add, 0, 1);
             expect(sink).to.deep.equal([1]);
 
-            sink = [];s([1,2,3]).consume(add, NaN);
+            sink = [];s([1,2,3]).consume(add, 0, NaN);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,2,3]).consume(add, 1.9);
+            sink = [];s([1,2,3]).consume(add, 0, 1.9);
             expect(sink).to.deep.equal([1]);
 
-            sink = [];s([11,12,3]).consume(add, 9);
+            sink = [];s([11,12,3]).consume(add, 0, 9);
             expect(sink).to.deep.equal([11,12,3]);
 
-            sink = [];s([1,12,13]).consume(add, Infinity);
+            sink = [];s([1,12,13]).consume(add, 0, Infinity);
             expect(sink).to.deep.equal([1,12,13]);
 
-            sink = [];s([1,12,3,9,7]).consume(add, 2, -999999);
+            sink = [];s([1,12,3,9,7]).consume(add, -999999, 2);
             expect(sink).to.deep.equal([1,12]);
 
-            sink = [];s([1,12,3,9,7]).consume(add, 2, 1);
+            sink = [];s([1,12,3,9,7]).consume(add, 1, 2);
             expect(sink).to.deep.equal([12,3]);
 
-            sink = [];s([1,12,3,9,7]).consume(add, 2, 1.9);
+            sink = [];s([1,12,3,9,7]).consume(add, 1.9, 2);
             expect(sink).to.deep.equal([12,3]);
 
-            sink = [];s([1,12,3,9,7]).consume(add, 2, Infinity);
+            sink = [];s([1,12,3,9,7]).consume(add, Infinity, 2);
             expect(sink).to.deep.equal([]);
 
-            sink = [];s([1,12,3,9,7]).consume(add, 2, NaN);
+            sink = [];s([1,12,3,9,7]).consume(add, NaN, 2);
             expect(sink).to.deep.equal([]);
         }
 
@@ -613,46 +613,46 @@ export const hack: any[] = [];
                     }
                 }
             };
-            this.terminal(simpleIterable, s => s.splice(2)).to.deep.equal([0,1]);
-            this.terminal(simpleIterable, s => s.splice(2, 1)).to.deep.equal([1,2]);
+            this.terminal(simpleIterable, s => s.splice(0, 2)).to.deep.equal([0,1]);
+            this.terminal(simpleIterable, s => s.splice(1, 2)).to.deep.equal([1,2]);
             const s3 = this.factory.stream(simpleIterable);
-            expect(s3.splice(3,4)).to.deep.equal([4,5,6]);
+            expect(s3.splice(4,3)).to.deep.equal([4,5,6]);
             Expect(s3.limit(5)).to.deep.equal([0,1,2,3,7]);
 
-            this.terminal([1,2,3], s => s.splice(NaN)).to.deep.equal([]);
-            this.terminal("foo", s => s.splice(NaN)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(2, NaN)).to.deep.equal([]);
-            this.terminal("foo", s => s.splice(2, NaN)).to.deep.equal([]);
-            this.terminal([], s => s.splice(0)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(0)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(0.9)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(1, 9)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(5, 9)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(5, Infinity)).to.deep.equal([]);
-            this.terminal([1,5,3], s => s.splice(5, -Infinity)).to.deep.equal([1,5,3]);
-            this.terminal([1,2,3], s => s.splice(-99999999)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(-99999999, 99999999)).to.deep.equal([]);
-            this.terminal([1,2,3], s => s.splice(1)).to.deep.equal([1]);
-            this.terminal([9,2,3], s => s.splice(2)).to.deep.equal([9,2]);
-            this.terminal([8,2,3], s => s.splice(2, 0.5)).to.deep.equal([8,2]);
-            this.terminal([1,2,3], s => s.splice(2.9)).to.deep.equal([1,2]);
-            this.terminal([1,2,3], s => s.splice(2,1)).to.deep.equal([2,3]);
-            this.terminal([1,6,3], s => s.splice(2,1.5)).to.deep.equal([6,3]);
-            this.terminal([1,2,7], s => s.splice(7)).to.deep.equal([1,2,7]);
-            this.terminal([1,2,11], s => s.splice(7,1)).to.deep.equal([2,11]);
-            this.terminal([1,4,3], s => s.splice(Infinity)).to.deep.equal([1,4,3]);
-            this.terminal([1,2,13], s => s.splice(Infinity,1)).to.deep.equal([2,13]);
-            this.terminal(this.inf(), s => s.splice(3)).to.deep.equal([0,1,2]);
+            this.terminal([1,2,3], s => s.splice(0, NaN)).to.deep.equal([]);
+            this.terminal("foo", s => s.splice(0, NaN)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(NaN, 2)).to.deep.equal([]);
+            this.terminal("foo", s => s.splice(NaN, 2)).to.deep.equal([]);
+            this.terminal([], s => s.splice(0, 0)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(0, 0)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(0, 0.9)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(9, 1)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(9, 5)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(Infinity, 5)).to.deep.equal([]);
+            this.terminal([1,5,3], s => s.splice(-Infinity, 5)).to.deep.equal([1,5,3]);
+            this.terminal([1,2,3], s => s.splice(0, -99999999)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(99999999, -99999999)).to.deep.equal([]);
+            this.terminal([1,2,3], s => s.splice(0, 1)).to.deep.equal([1]);
+            this.terminal([9,2,3], s => s.splice(0, 2)).to.deep.equal([9,2]);
+            this.terminal([8,2,3], s => s.splice(0.5, 2)).to.deep.equal([8,2]);
+            this.terminal([1,2,3], s => s.splice(0, 2.9)).to.deep.equal([1,2]);
+            this.terminal([1,2,3], s => s.splice(1, 2)).to.deep.equal([2,3]);
+            this.terminal([1,6,3], s => s.splice(1.5, 2)).to.deep.equal([6,3]);
+            this.terminal([1,2,7], s => s.splice(0, 7)).to.deep.equal([1,2,7]);
+            this.terminal([1,2,11], s => s.splice(1, 7)).to.deep.equal([2,11]);
+            this.terminal([1,4,3], s => s.splice(0, Infinity)).to.deep.equal([1,4,3]);
+            this.terminal([1,2,13], s => s.splice(1, Infinity)).to.deep.equal([2,13]);
+            this.terminal(this.inf(), s => s.splice(0, 3)).to.deep.equal([0,1,2]);
             this.terminal([1,12,3], s => s.splice()).to.deep.equal([1,12,3]);
-            this.terminal([11,2,3], s => s.splice(9999999999999)).to.deep.equal([11,2,3]);
+            this.terminal([11,2,3], s => s.splice(0, 9999999999999)).to.deep.equal([11,2,3]);
 
             const s = this.factory.stream("foobar");
-            expect(s.splice(2)).to.deep.equal(["f", "o"]);
-            expect(s.splice(1)).to.deep.equal(["o"]);
+            expect(s.splice(0, 2)).to.deep.equal(["f", "o"]);
+            expect(s.splice(0, 1)).to.deep.equal(["o"]);
             expect(s.join()).to.equal("bar");
 
             const s2 = this.factory.stream("foobar");
-            expect(s2.splice(3,2)).to.deep.equal(["o", "b", "a"]);
+            expect(s2.splice(2, 3)).to.deep.equal(["o", "b", "a"]);
             expect(s2.join()).to.equal("for");
         }
 
