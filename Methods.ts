@@ -353,6 +353,9 @@ export function join<T>(iterable: Iterable<T>, delimiter?: string, prefix?: stri
  * Sorts the items. Consider converting the iterable to an array and sorting
  * this array if you do not need an iterable for further operations.
  *
+ * This method might create a new array, but if it does, calling `toArray` with
+ * the returned iterable will return that array instead of allocating a new array.
+ *
  * ```javascript
  * sort(["foobar", "a", "bar", Comparators.byField("length")] // => Iterable["a", "bar", "foobar"]
  * ```
@@ -559,6 +562,9 @@ export function* skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iter
  * does not work with unlimite streams, as the last item needs to
  * be accesed first.
  *
+ * This method might create a new array, but if it does, calling `toArray` with
+ * the returned iterable will return that array instead of allocating a new array.
+ *
  * ```javascript
  * reverse([1,2,3]) // => Iterable[3,2,1]
  * reverse([]) // => Iterable[]
@@ -618,6 +624,9 @@ export function size(iterable: Iterable<any>): number {
  * Similar to {@link Methods}#sort, but sorts items by comparing them according
  * to the given key extractor and comparator. For each item, a key is extracted,
  * two items are then compared by comparing theirs keys with the given comparator.
+ *
+ * This method might create a new array, but if it does, calling `toArray` with
+ * the returned iterable will return that array instead of allocating a new array.
  *
  * ```javascript
  * sortBy(["foo", "foobar", "bar"], x => x.length)

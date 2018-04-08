@@ -1203,8 +1203,11 @@ export interface IStream<T> {
      * Reverses the order of the items.
      *
      * Note that the items need to be saved temporarily, so that this
-     * does not work with unlimite streams, as the last item needs to
+     * does not work with unlimited streams, as the last item needs to
      * be accesed first.
+     *
+     * This method might create a new array, but if it does, calling `toArray` on
+     * the returned stream will return that array instead of allocating a new array.
      *
      * ```javascript
      * stream([1,2,3]).reverse() // => Stream[3,2,1]
@@ -1255,6 +1258,9 @@ export interface IStream<T> {
      * Sorts the items. Consider converting the stream to an array and sorting
      * this array if you do not need a stream for further operations.
      *
+     * This method might create a new array, but if it does, calling `toArray` on
+     * the returned stream will return that array instead of allocating a new array.
+     *
      * ```javascript
      * stream(["foobar", "a", "bar").sor(Comparators.byField("length")]
      * // => Stream["a", "bar", "foobar"]
@@ -1269,6 +1275,9 @@ export interface IStream<T> {
      * Similar to {@link IStream}#sort, but sorts items by comparing them according
      * to the given key extractor and comparator. For each item, a key is extracted,
      * two items are then compared by comparing theirs keys with the given comparator.
+     *
+     * This method might create a new array, but if it does, calling `toArray` on
+     * the returned stream will return that array instead of allocating a new array.
      *
      * ```javascript
      * stream(["foo", "foobar", "bar"]).sortBy(x => x.length)
