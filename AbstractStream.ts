@@ -31,6 +31,8 @@ import {
     fork,
     group,
     has,
+    isEmpty,
+    isSizeBetween,
     join,
     last,
     max,
@@ -111,11 +113,9 @@ export abstract class AbstractStream<T> implements IStream<T> {
     }
 
     public fork(): this {
-        this.check();
-        this.done = false;
-        const iterable = fork(this.iterable);
-        this.iterable = iterable;
-        return this.clone(iterable);
+        this.checkOnly();
+        this.iterable = fork(this.iterable);
+        return this.clone(this.iterable);
     }
 
     public group<K>(classifier: TypedFunction<T, K>): Map<K, T[]> {
@@ -126,6 +126,20 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public has(object: T): boolean {
         this.check();
         return has(this.iterable, object);
+    }
+
+    public isEmpty(): boolean {
+        this.checkOnly();
+        const result = isEmpty(this.iterable);
+        this.iterable = result.iterable;
+        return result.result;
+    }
+
+    public isSizeBetween(lower?: number, upper?: number): boolean {
+        this.checkOnly();
+        const result = isSizeBetween(this.iterable, lower, upper);
+        this.iterable = result.iterable;
+        return result.result;
     }
 
     public join(delimiter?: string, prefix?: string, suffix?: string): string {

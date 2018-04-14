@@ -144,6 +144,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#has" class="tsd-kind-icon">has</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="itrystream.html#include" class="tsd-kind-icon">include</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#index" class="tsd-kind-icon">index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#issizebetween" class="tsd-kind-icon">is<wbr>Size<wbr>Between</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#join" class="tsd-kind-icon">join</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#last" class="tsd-kind-icon">last</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="itrystream.html#limit" class="tsd-kind-icon">limit</a></li>
@@ -202,7 +204,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L627">Interfaces.ts:627</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L627">Interfaces.ts:627</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -220,7 +222,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#chunk">chunk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L643">Interfaces.ts:643</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L644">Interfaces.ts:644</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -233,6 +235,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]).chunk(<span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; Stream[]</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]).chunk(<span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; Stream[[1,2,3,4,5]]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -259,7 +266,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#chunkby">chunkBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L657">Interfaces.ts:657</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L659">Interfaces.ts:659</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,6 +276,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>]).chunkBy(<span class="hljs-function"><span class="hljs-params">i</span> =&gt;</span> i &amp; <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; Stream[ [1,2], [3,4], [5,6], [1] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -304,7 +316,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#collect">collect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L671">Interfaces.ts:671</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L674">Interfaces.ts:674</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,6 +325,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(Collectors.summarize) <span class="hljs-comment">// =&gt; Statistic[min:1, max:3, count: 3, sum: 6, average: 2, variance: 0.67]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -354,7 +371,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#collectwith">collectWith</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L688">Interfaces.ts:688</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L692">Interfaces.ts:692</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -364,6 +381,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).collect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> [], (array, x) =&gt; array.push(x), x =&gt; <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>(x)) <span class="hljs-comment">// =&gt; Set[1,2,3]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -414,7 +436,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#concat">concat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L700">Interfaces.ts:700</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L705">Interfaces.ts:705</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,6 +445,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).concat(<span class="hljs-string">"bar"</span>, <span class="hljs-string">"baz"</span>) <span class="hljs-comment">// =&gt; Stream["f", "o", "o", "b", "a", "r", "b", "a", "z"]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -446,7 +473,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#consume">consume</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L731">Interfaces.ts:731</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L737">Interfaces.ts:737</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,6 +499,11 @@ stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-buil
 stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-built_in">console</span>.log, <span class="hljs-number">0</span>, <span class="hljs-number">-3</span>);
 <span class="hljs-comment">// =&gt; logs nothing</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams; unless parameter <code>offset</code> or <code>maxAmount</code> is set to `Infinity.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -509,7 +541,7 @@ stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-buil
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1624">Interfaces.ts:1624</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1753">Interfaces.ts:1753</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -521,6 +553,11 @@ stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-buil
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span>*x)
 <span class="hljs-comment">// Stream[ Try[value=1], Try[value=2], Try[error="invalidJSON"] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -562,7 +599,7 @@ stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-buil
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#cycle">cycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L746">Interfaces.ts:746</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L753">Interfaces.ts:753</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -574,6 +611,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).cycle(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,1,2,3,1,2,3]</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).cycle().limit(<span class="hljs-number">5</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,1,2]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -599,7 +641,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1559">Interfaces.ts:1559</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1684">Interfaces.ts:1684</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -611,6 +653,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 <span class="hljs-comment">// =&gt; [json1, json2, ...]</span>
 <span class="hljs-comment">// prints all errors encountered during parsing</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -637,7 +684,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#end">end</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L757">Interfaces.ts:757</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L765">Interfaces.ts:765</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -647,6 +694,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log) <span class="hljs-comment">// Stream[1,2,3]; prints nothing</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log).end() <span class="hljs-comment">// prints 1,2,3</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -663,7 +715,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#every">every</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L769">Interfaces.ts:769</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L778">Interfaces.ts:778</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -672,6 +724,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).every(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless an item is encountered that does not match the predicate.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -698,7 +755,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#filter">filter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L842">Interfaces.ts:842</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L856">Interfaces.ts:856</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -708,6 +765,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">-4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">-9</span>]).filter(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[4,2]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -719,7 +781,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-							<p>A stream over all item for which the predicate returned <code>true</code>.</p>
+							<p>A stream over all items for which the predicate returned <code>true</code>.</p>
 						</li>
 					</ul>
 				</section>
@@ -734,7 +796,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#filterby">filterBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L866">Interfaces.ts:866</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L882">Interfaces.ts:882</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -754,6 +816,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, user =&gt; user.birth, (lhs,rhs) =&gt; lhs.year - rhs.year)
 <span class="hljs-comment">// =&gt; Stream[user1, user2]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -783,6 +850,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<p>A stream over all items whose keys compare equal to the given target.</p>
 						</li>
 					</ul>
 				</section>
@@ -797,7 +865,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L781">Interfaces.ts:781</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L791">Interfaces.ts:791</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -806,6 +874,11 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar,"</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; "</span>foo1<span class="hljs-string">"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless an item is encountered that matches the predicate.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -832,7 +905,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#findindex">findIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L794">Interfaces.ts:794</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L805">Interfaces.ts:805</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -842,6 +915,11 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo1"</span>, <span class="hljs-string">"bar, "</span>foo2<span class="hljs-string">").find(x =&gt; x.startsWith("</span>foo<span class="hljs-string">")) // =&gt; 0</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless an item is encountered that matches the predicate.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -868,7 +946,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L810">Interfaces.ts:810</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L822">Interfaces.ts:822</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -882,6 +960,11 @@ stream(<span class="hljs-string">""</span>).first() <span class="hljs-comment">/
 s.first()
 s.first() <span class="hljs-comment">// =&gt; Error</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the first position, or undefined if empty.</p>
@@ -898,7 +981,7 @@ s.first() <span class="hljs-comment">// =&gt; Error</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1607">Interfaces.ts:1607</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1735">Interfaces.ts:1735</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -912,6 +995,11 @@ s.first() <span class="hljs-comment">// =&gt; Error</span>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"\"1\""</span>, <span class="hljs-string">"\"1.5\""</span>]).try(<span class="hljs-built_in">JSON</span>.parse).convert(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> Try.of(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> parseIntSafe(x)))
 <span class="hljs-comment">// Stream[ Try[value=1], Try[error="not an int" ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -953,7 +1041,7 @@ s.first() <span class="hljs-comment">// =&gt; Error</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L829">Interfaces.ts:829</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L842">Interfaces.ts:842</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -968,6 +1056,11 @@ s.first() <span class="hljs-comment">// =&gt; Error</span>
 stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"</span>,<span class="hljs-string">"[4,]"</span>]).try(<span class="hljs-built_in">JSON</span>.parse).flatMap(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x.stream())
 <span class="hljs-comment">// =&gt; Stream[ [1], [2, 3] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1003,7 +1096,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L877">Interfaces.ts:877</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L894">Interfaces.ts:894</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1012,6 +1105,11 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).forEach(<span class="hljs-built_in">console</span>.log); <span class="hljs-comment">// prints 1,2,3</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1036,7 +1134,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1574">Interfaces.ts:1574</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1700">Interfaces.ts:1700</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1048,6 +1146,11 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
   error =&gt; <span class="hljs-built_in">console</span>.error(error)
 )
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1079,7 +1182,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#fork">fork</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L918">Interfaces.ts:918</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L936">Interfaces.ts:936</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1107,7 +1210,7 @@ persistentStream.fork()           <span class="hljs-comment">// =&gt; Error: Str
 								<p>Note that buffering takes place on-demand, so the following will not
 								enter an infinite loop:</p>
 								<pre><code class="lang-javascript"><span class="hljs-comment">// Create a stream with an unlimited amount of items.</span>
-<span class="hljs-keyword">const</span> stream = TypesafeStreamFactory.repeat(<span class="hljs-built_in">Math</span>.random, <span class="hljs-literal">Infinity</span>);
+<span class="hljs-keyword">const</span> stream = TypesafeStreamFactory.generate(<span class="hljs-built_in">Math</span>.random, <span class="hljs-literal">Infinity</span>);
 
 <span class="hljs-comment">// Fork the stream first, then limit to a finite number of items.</span>
 <span class="hljs-comment">// Items already produced are not recomputed.</span>
@@ -1115,6 +1218,11 @@ stream.fork().limit(<span class="hljs-number">3</span>).toArray() <span class="h
 stream.fork().limit(<span class="hljs-number">2</span>).toArray() <span class="hljs-comment">// =&gt; [0.28, 0.14]</span>
 stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="hljs-comment">// =&gt; [0.28, 0.14, 0.97, 0.31]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 							<p>A forked stream that leaves the original stream usable.</p>
@@ -1132,7 +1240,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#group">group</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L932">Interfaces.ts:932</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L951">Interfaces.ts:951</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1145,6 +1253,9 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 								<dl class="tsd-comment-tags">
 									<dt>typearam</dt>
 									<dd><p>K Type of the group key.</p>
+									</dd>
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
 									</dd>
 								</dl>
 							</div>
@@ -1179,17 +1290,22 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L945">Interfaces.ts:945</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L965">Interfaces.ts:965</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Determines whether thsi stream contains the given item.
+									<p>Determines whether this stream contains the given item.
 										Equivalence is checked with <code>===</code>. This is
 									equivalent to <code>`</code>stream(...).some(x =&gt; x === object)`.</p>
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).has(<span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless the item is encountered.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1212,7 +1328,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1588">Interfaces.ts:1588</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1715">Interfaces.ts:1715</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1223,6 +1339,11 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).include(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-number">2</span>)
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[error="does not match"], Try[error="invalid JSON"] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1249,7 +1370,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#index">index</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L986">Interfaces.ts:986</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1076">Interfaces.ts:1076</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1259,9 +1380,135 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).index().toMap(<span class="hljs-function">(<span class="hljs-params">{value}</span>) =&gt;</span> value, ({index}) =&gt; index})
 <span class="hljs-comment">// =&gt; Map&lt;"foo" =&gt; 0, "bar" =&gt; 1&gt;</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with each item being an array consisting of the item&#39;s index and the item itself. The index starts at 0.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="isempty" class="tsd-anchor"></a>
+					<h3>is<wbr>Empty</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Empty<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#isempty">isEmpty</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L990">Interfaces.ts:990</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether this stream contains no items. This consumes at most one
+									item from the stream and works with infinite streams.</p>
+								</div>
+								<p>This method leaves the original stream intact, ie. you can call other methods on the original
+								stream and get the same result as if this methods had not been called.</p>
+								<pre><code class="lang-javascript">stream([]).isEmpty()      <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isEmpty() <span class="hljs-comment">// =&gt; false</span>
+
+<span class="hljs-keyword">const</span> s = stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]);
+<span class="hljs-keyword">if</span> (!s.isEmpty()) {
+  <span class="hljs-comment">// This works and includes all three items because</span>
+  <span class="hljs-comment">// isEmpty left the stream intact.</span>
+  s.map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x*x).toArray() <span class="hljs-comment">// =&gt; [2,4,6]</span>
+}
+</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="istream.html">IStream</a>#isSizeBetween</p>
+									</dd>
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True iff this stream contains no items.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="issizebetween" class="tsd-anchor"></a>
+					<h3>is<wbr>Size<wbr>Between</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Size<wbr>Between<span class="tsd-signature-symbol">(</span>lower<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span>, upper<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#issizebetween">isSizeBetween</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1033">Interfaces.ts:1033</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether the number of items in this stream is at least <code>lower</code> and at most <code>upper</code>.
+										This method only consumes as many elements from the stream as necessary and may be used with
+									infinite stream. Using <code>stream.size() === 0</code> would force an endless iteration of all its item.</p>
+								</div>
+								<p>This method leaves the original stream intact, ie. you can call other methods on the original
+								stream and get the same result as if this methods had not been called.</p>
+								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">3</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">2</span>, <span class="hljs-literal">Infinity</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">-4</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; false</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">4</span>, <span class="hljs-number">9</span>) <span class="hljs-comment">// =&gt; false</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; false</span>
+
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">1</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; false</span>
+
+stream([]).isSizeBetween(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; true</span>
+stream([]).isSizeBetween(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; false</span>
+
+stream([]).isSizeBetween()      <span class="hljs-comment">// =&gt; true</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween() <span class="hljs-comment">// =&gt; true</span>
+
+stream([]).isSizeBetween(<span class="hljs-literal">NaN</span>)           <span class="hljs-comment">// =&gt; false</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-literal">NaN</span>)      <span class="hljs-comment">// =&gt; false</span>
+stream([]).isSizeBetween(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>)      <span class="hljs-comment">// =&gt; false</span>
+stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).isSizeBetween(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; false</span>
+</code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="istream.html">IStream</a>#isEmpty</p>
+									</dd>
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams; unless argument <code>lower</code> is set to <code>Infinity</code>.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> lower: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Minimum number of items allowed. Defaults to <code>0</code>.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> upper: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Maximum number of items allowed. Defaults to <code>Infinity</code>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>True iff this stream contains the specified number of items.</p>
 						</li>
 					</ul>
 				</section>
@@ -1276,7 +1523,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1001">Interfaces.ts:1001</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1092">Interfaces.ts:1092</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1286,6 +1533,11 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).join(<span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>) <span class="hljs-comment">// =&gt; "[1,2,3]"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1324,7 +1576,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1013">Interfaces.ts:1013</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1105">Interfaces.ts:1105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1334,6 +1586,11 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foo"</span>).last() <span class="hljs-comment">// =&gt; "o"</span>
 stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the last position, or undefined if empty.</p>
@@ -1351,7 +1608,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#limit">limit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1027">Interfaces.ts:1027</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1120">Interfaces.ts:1120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1362,6 +1619,11 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
  stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).limit(<span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3,4,5,6]</span>
  stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]).limit(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1385,7 +1647,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1040">Interfaces.ts:1040</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1134">Interfaces.ts:1134</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1394,6 +1656,11 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> <span class="hljs-number">2</span> * x) <span class="hljs-comment">// =&gt; Stream[0,2,4,6]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1429,7 +1696,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#max">max</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1054">Interfaces.ts:1054</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1149">Interfaces.ts:1149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1440,6 +1707,11 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>]).max(Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "foo"</span>
 stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1466,7 +1738,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#maxby">maxBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1067">Interfaces.ts:1067</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1163">Interfaces.ts:1163</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1476,6 +1748,11 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>]).maxBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length)
 <span class="hljs-comment">// =&gt; "gg"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1508,7 +1785,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#min">min</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1081">Interfaces.ts:1081</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1178">Interfaces.ts:1178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1519,6 +1796,11 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>, <span class="hljs-string">"I"</span>].min(Comparators.byField(<span class="hljs-string">"length"</span>)) <span class="hljs-comment">// =&gt; "I"</span>
 stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1545,7 +1827,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#minby">minBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1094">Interfaces.ts:1094</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1192">Interfaces.ts:1192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1555,6 +1837,11 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foo"</span>,<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"gg"</span>]).minBy(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length)
 <span class="hljs-comment">// =&gt; "gg"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1587,7 +1874,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#none">none</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1126">Interfaces.ts:1126</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1206">Interfaces.ts:1206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1597,6 +1884,11 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).none(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x === <span class="hljs-string">"o"</span>) <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless an item matches the predicate.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1623,7 +1915,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#nth">nth</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1140">Interfaces.ts:1140</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1221">Interfaces.ts:1221</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1634,6 +1926,11 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 
 stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</span>) <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams; unless argument <code>n</code> is set to <code>Infinity</code>.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1659,17 +1956,22 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1653">Interfaces.ts:1653</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1784">Interfaces.ts:1784</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Calls the given error handler for all errors.</p>
+									<p>Calls the given error handler for all errors once the stream is consumed.</p>
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).onError(<span class="hljs-built_in">console</span>.warn).end()
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[value=2], Try[error="invalid JSON"] ]</span>
 <span class="hljs-comment">// Warns about errors once the stream is consumed.</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1692,7 +1994,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1669">Interfaces.ts:1669</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1801">Interfaces.ts:1801</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1704,6 +2006,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 <span class="hljs-comment">// =&gt; Stream[ Try[value=1], Try[value=2], Try[error="invalid JSON"] ]</span>
 <span class="hljs-comment">// Informs about success and warns about errors once the stream is consumed.</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1735,7 +2042,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1638">Interfaces.ts:1638</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1768">Interfaces.ts:1768</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1746,6 +2053,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orElse(<span class="hljs-literal">undefined</span>)
 <span class="hljs-comment">// Stream[1,2,undefined]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1771,7 +2083,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1683">Interfaces.ts:1683</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1816">Interfaces.ts:1816</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1783,6 +2095,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"12a"</span>).try(<span class="hljs-built_in">JSON</span>.parse).orThrow().toArray()
 <span class="hljs-comment">// throws Error("invalid JSON")</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A stream with the successful values.</p>
@@ -1799,7 +2116,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1699">Interfaces.ts:1699</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1833">Interfaces.ts:1833</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1812,6 +2129,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"https://..."</span>, <span class="hljs-string">"https://..."</span>]).try(GetSync).orTry(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.status)
 <span class="hljs-comment">// Stream[ Try[value="response"], Try[value="Not found"] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1838,7 +2160,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#partition">partition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1153">Interfaces.ts:1153</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1235">Interfaces.ts:1235</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1848,6 +2170,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">-3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">9</span>,<span class="hljs-number">-4</span>]).partition(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &gt; <span class="hljs-number">0</span>) <span class="hljs-comment">// =&gt; { false: [-3,-4], true: [2,9]}</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -1882,7 +2209,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#promise">promise</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1173">Interfaces.ts:1173</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1256">Interfaces.ts:1256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1898,6 +2225,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
   .catch(<span class="hljs-built_in">console</span>.error)
 <span class="hljs-comment">// Calls the renderUser method with the Response for each user request.</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1933,7 +2265,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#reduce">reduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1187">Interfaces.ts:1187</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1271">Interfaces.ts:1271</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1942,6 +2274,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduce(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x, <span class="hljs-number">10</span>) <span class="hljs-comment">// =&gt; 16</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -1983,7 +2320,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#reducesame">reduceSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1200">Interfaces.ts:1200</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1285">Interfaces.ts:1285</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1993,6 +2330,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reduceSame(<span class="hljs-function">(<span class="hljs-params">sum,x</span>) =&gt;</span> sum + x) <span class="hljs-comment">// =&gt; 6</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2019,7 +2361,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#reverse">reverse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1219">Interfaces.ts:1219</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1305">Interfaces.ts:1305</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2034,6 +2376,11 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).reverse() <span class="hljs-comment">// =&gt; Stream[3,2,1]</span>
 stream(factory.step(<span class="hljs-literal">Infinity</span>)).reverse() <span class="hljs-comment">// hangs</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 							<p>A stream with the items in reversed order.</p>
@@ -2051,7 +2398,7 @@ stream(factory.step(<span class="hljs-literal">Infinity</span>)).reverse() <span
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#shift">shift</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1113">Interfaces.ts:1113</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1325">Interfaces.ts:1325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2068,6 +2415,11 @@ s.shift() <span class="hljs-comment">// =&gt; "o"</span>
 s.shift() <span class="hljs-comment">// =&gt; "o"</span>
 s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The item at the first position, or undefined if empty.</p>
@@ -2085,7 +2437,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1230">Interfaces.ts:1230</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1337">Interfaces.ts:1337</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2094,6 +2446,11 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).count() <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>The number of items in this stream.</p>
@@ -2111,7 +2468,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#skip">skip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1243">Interfaces.ts:1243</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1351">Interfaces.ts:1351</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2123,6 +2480,9 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 								<dl class="tsd-comment-tags">
 									<dt>see</dt>
 									<dd><p><a href="itrystream.html#limit">limit</a></p>
+									</dd>
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
 									</dd>
 								</dl>
 							</div>
@@ -2151,7 +2511,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#some">some</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1255">Interfaces.ts:1255</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1364">Interfaces.ts:1364</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2160,6 +2520,11 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 								</div>
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"fooz"</span>).some(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x &lt; <span class="hljs-string">"j"</span>) <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams; unless an item matches the predicate.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2186,19 +2551,23 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#sort">sort</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1272">Interfaces.ts:1272</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1381">Interfaces.ts:1381</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sorts the items. Consider converting the stream to an array and sorting
-									this array if you do not need a stream for further operations.</p>
+									<p>Sorts the items according to the given comparator.</p>
 								</div>
 								<p>This method might create a new array, but if it does, calling <code>toArray</code> on
 								the returned stream will return that array instead of allocating a new array.</p>
 								<pre><code class="lang-javascript">stream([<span class="hljs-string">"foobar"</span>, <span class="hljs-string">"a"</span>, <span class="hljs-string">"bar"</span>).sor(Comparators.byField(<span class="hljs-string">"length"</span>)]
 <span class="hljs-comment">// =&gt; Stream["a", "bar", "foobar"]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2225,7 +2594,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#sortby">sortBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1297">Interfaces.ts:1297</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1407">Interfaces.ts:1407</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2246,6 +2615,11 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 stream([user1, user2, user3]).filterBy(<span class="hljs-function"><span class="hljs-params">user</span> =&gt;</span> user.birth, (lhs,rhs) =&gt; lhs.year - rhs.year)
 <span class="hljs-comment">// =&gt; Stream[user1, user3, user1]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2283,7 +2657,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-function"><span class="
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#splice">splice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L974">Interfaces.ts:974</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1063">Interfaces.ts:1063</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2308,6 +2682,11 @@ stream(<span class="hljs-string">"foo"</span>).splice(<span class="hljs-number">
 stream(<span class="hljs-string">"foo"</span>).splice(<span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>) <span class="hljs-comment">// =&gt; []</span>
 stream(<span class="hljs-string">"foo"</span>).splice(<span class="hljs-literal">NaN</span>, <span class="hljs-number">2</span>) <span class="hljs-comment">// =&gt; []</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams; unless argument <code>offset</code> or <code>maxAmount</code> is set to <code>Infinity</code>.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2340,7 +2719,7 @@ stream(<span class="hljs-string">"foo"</span>).splice(<span class="hljs-literal"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#sum">sum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1312">Interfaces.ts:1312</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1423">Interfaces.ts:1423</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2352,6 +2731,11 @@ stream(<span class="hljs-string">"foo"</span>).splice(<span class="hljs-literal"
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).sum() <span class="hljs-comment">// =&gt; 6</span>
 stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>, <span class="hljs-string">"Borg"</span>]).sum(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.length) <span class="hljs-comment">// =&gt; 7</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2375,7 +2759,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1390">Interfaces.ts:1390</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1507">Interfaces.ts:1507</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2387,6 +2771,11 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toArray()
 <span class="hljs-comment">// =&gt; ["f", "o", "o", "b", "a", "r"]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2413,7 +2802,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1327">Interfaces.ts:1327</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1440">Interfaces.ts:1440</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2428,8 +2817,14 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 <span class="hljs-built_in">JSON</span>.stringify(stream(<span class="hljs-string">"foo"</span>))
 <span class="hljs-comment">// =&gt; '["f","o","o"]'</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array with the items of this stream, in the order they are encountered.</p>
 						</li>
 					</ul>
 				</section>
@@ -2444,7 +2839,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#tomap">toMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1434">Interfaces.ts:1434</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1553">Interfaces.ts:1553</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2466,6 +2861,11 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.id, x =&gt; x.name, (name1, name2) =&gt; name1 + <span class="hljs-string">","</span> + name2)
 <span class="hljs-comment">// =&gt; Map[ 0 =&gt; "foo,bar" ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2519,7 +2919,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#toset">toSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1405">Interfaces.ts:1405</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1523">Interfaces.ts:1523</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2531,6 +2931,11 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 								<pre><code class="lang-javascript">stream(<span class="hljs-string">"foobar"</span>).toSet()
 <span class="hljs-comment">// =&gt; Set["f", "o", "b", "a", "r"]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2557,7 +2962,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#try">try</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1345">Interfaces.ts:1345</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1459">Interfaces.ts:1459</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2571,6 +2976,11 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
   .toArray();
 <span class="hljs-comment">// =&gt; ["success", "success", "error"]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2606,7 +3016,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#trycompute">tryCompute</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1362">Interfaces.ts:1362</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1477">Interfaces.ts:1477</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2619,6 +3029,11 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).tryCompute(<span class="hljs-function"><span class="hljs-params">s</span> =&gt;</span> s.sum(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>()}))
 <span class="hljs-comment">// =&gt; Try[success=false]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Whether it hangs when used on infinite (unlimited) streams depends on the given operation.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2654,7 +3069,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#tryend">tryEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1375">Interfaces.ts:1375</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1491">Interfaces.ts:1491</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2665,6 +3080,11 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 								<pre><code class="lang-javascript"><span class="hljs-comment">// prints 1,2,3</span>
 stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]).visit(<span class="hljs-built_in">console</span>.log).tryEnd()
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>The encapsulated error, if any was thrown.</p>
@@ -2682,14 +3102,14 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#unique">unique</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1453">Interfaces.ts:1453</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1573">Interfaces.ts:1573</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Filters all elements that are considered equal according to
 										the given comparator. If two items are equal, the first one
-										is included in the resulting stream. Consider using
+										encountered is included in the resulting stream. Consider using
 									{@link #uniqueBy} if possible for better performance.</p>
 								</div>
 								<pre><code class="lang-javascript">stream([<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">9</span>]).unique()
@@ -2698,6 +3118,11 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}).unique(<span class="hljs-function">(<span class="hljs-params">x,y</span>) =&gt;</span> x.id - y.id)
 <span class="hljs-comment">// =&gt; Stream[ {id:4}, {id:2} ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2724,7 +3149,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#uniqueby">uniqueBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1473">Interfaces.ts:1473</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1594">Interfaces.ts:1594</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2741,6 +3166,11 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">2</span>},{<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>]}, customer =&gt; customer.id).distinct()
 <span class="hljs-comment">// =&gt; Stream[ {id:4}, {id:2} ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2773,7 +3203,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#visit">visit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1488">Interfaces.ts:1488</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1610">Interfaces.ts:1610</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2785,6 +3215,11 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 <span class="hljs-comment">// =&gt; Stream[1,2,3]</span>
 <span class="hljs-comment">// prints `1,2,3` once the stream is consumed.</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Hangs when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2811,7 +3246,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#zip">zip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1507">Interfaces.ts:1507</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1630">Interfaces.ts:1630</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2827,6 +3262,11 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"</span>]).zip([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>]).toMap(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x[<span class="hljs-number">0</span>], x=&gt;x[<span class="hljs-number">1</span>])
 <span class="hljs-comment">// =&gt; Map[ "foo" =&gt; 3, "bar" =&gt; 4] ]</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
@@ -2859,7 +3299,7 @@ stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"<
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="istream.html">IStream</a>.<a href="istream.html#zipsame">zipSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/34ce09b/Interfaces.ts#L1529">Interfaces.ts:1529</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/b9c4792/Interfaces.ts#L1653">Interfaces.ts:1653</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2878,6 +3318,11 @@ stream(<span class="hljs-string">"abc"</span>).zipSame([<span class="hljs-string
 stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string">"oa"</span>,<span class="hljs-string">"or"</span>]).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x.map(<span class="hljs-built_in">String</span>).join(<span class="hljs-string">""</span>)).join(<span class="hljs-string">""</span>).toArray()
 <span class="hljs-comment">// =&gt; "foobar"</span>
 </code></pre>
+								<dl class="tsd-comment-tags">
+									<dt>infinite-stream</dt>
+									<dd><p>Does not hang when used on infinite (unlimited) streams.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -2987,6 +3432,12 @@ stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string"
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="itrystream.html#index" class="tsd-kind-icon">index</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="itrystream.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="itrystream.html#issizebetween" class="tsd-kind-icon">is<wbr>Size<wbr>Between</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="itrystream.html#join" class="tsd-kind-icon">join</a>

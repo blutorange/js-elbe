@@ -13,7 +13,7 @@
     "doc-create": "npx typedoc --mode file --name elbe --readme README.md --out docs --excludeExternals --excludePrivate --excludeProtected ./*.ts",
     "doc-coverage": "npx nyc --reporter html --report-dir docs/coverage npx mocha --reporter spec dist/node/test",
     "lint": "npx tslint --project tsconfig.json -c tslint.json *.ts",
-    "test": "npm run transpile && npm run test-run",
+    "test": "npm run transpile && npm run web && npm run test-run",
     "test-run": "npx nyc --reporter=html --reporter=text npx mocha --reporter spec dist/node/test",
     "transpile": "npx tsc -p tsconfig.json",
     "web": "npm run web-babel && npm run web-babelfix && npm run web-browserify && npm run web-minify",

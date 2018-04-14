@@ -63,7 +63,7 @@ export function * map<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, S>):
  * @param mapper Mapping function taking each item and producing a new iterable.
  * @return An iterable over all the items of the iterables produced by the mapper.
  */
-export function* flatMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, Iterable<S>>): Iterable<S> {
+export function * flatMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, Iterable<S>>): Iterable<S> {
     for (const items of iterable) {
         for (const item of mapper(items)) {
             yield item;
@@ -247,7 +247,7 @@ export function * filter<T>(iterable: Iterable<T>, predicate: Predicate<T>): Ite
  * @param mapper Mapping function that takes an item of the given iterable and produces a mapped item. If it throws an error, the resulting {@link Try} is not successful.
  * @return An iterable over the mapped elements, wrapped in a {@link Try} for encapsulating thrown errors.
  */
-export function* tryMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, S>): Iterable<ITry<S>> {
+export function * tryMap<T, S>(iterable: Iterable<T>, mapper: TypedFunction<T, S>): Iterable<ITry<S>> {
     for (const item of iterable) {
         yield TryFactory.of(() => mapper(item));
     }
@@ -418,7 +418,7 @@ export function * uniqueBy<T, K = any>(iterable: Iterable<T>, keyExtractor: Type
  * @param comparator Takes two items and returns 0 if they are equal. Defaults to taking determining equality by `===`.
  * @return An iterable with all duplicates removed.
  */
-export function* unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T> {
+export function * unique<T>(iterable: Iterable<T>, comparator?: Comparator<T>): Iterable<T> {
     if (comparator !== undefined) {
         const set = new RBTree(comparator);
         for (const item of iterable) {
@@ -536,6 +536,7 @@ export function* visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
  * Discards the given number of items from the iterable.
  *
  * ```javascript
+ * skip([1,2,3,4,5,6], Infinity) // => Iterable[]
  * skip([1,2,3,4,5,6], NaN) // => Iterable[1,2,3,4,5,6]
  * skip([1,2,3,4,5,6], 0) // => Iterable[1,2,3,4,5,6]
  * skip([1,2,3,4,5,6], 3) // => Iterable[4,5,6]
@@ -547,7 +548,10 @@ export function* visit<T>(iterable: Iterable<T>, consumer: Consumer<T>) {
  * @return An iterable with the given number of items skipped.
  * @see {@link limit}
  */
-export function* skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iterable<T> {
+export function * skip<T>(iterable: Iterable<T>, toSkip: number = Infinity): Iterable<T> {
+    if (toSkip === Infinity) {
+        return EMPTY_ITERABLE;
+    }
     const it = iterable[Symbol.iterator]();
     while (--toSkip >= 0 && !it.next().done) {/**/}
     for (let entry = it.next(); !entry.done; entry = it.next()) {
@@ -618,6 +622,79 @@ export function size(iterable: Iterable<any>): number {
         ++i;
     }
     return i;
+}
+
+/**
+ * Determines whether the iterable contains no items. This consumes at most one
+ * item from the stream and works with infinite iterables.
+ *
+ * ```javascript
+ * isEmpty([])      // => true
+ * isEmpty([1,2,3]) // => false
+ * ```
+ *
+ * @return True iff the iterable contains no items or false otherwise; and an iterable over the original items.
+ * @see {@link isSizeBetween}
+ * @infinite-iterable Does not hang when used on infinite (unlimited) iterables.
+ */
+export function isEmpty<T>(iterable: Iterable<T>): {result: boolean, iterable: Iterable<T>} {
+    return isSizeBetween(iterable, 0, 0);
+}
+
+/**
+ * Determines whether the number of items in the iterable is at least `lower` and at most `upper`.
+ * This method only consumes as many elements from the iterable as necessary and may be used with
+ * infinite iterables. Using `size(iterable) === 0` would force an endless iteration of all its item.
+ *
+ * ```javascript
+ * isSizeBetween[1,2,3])        // => true
+ * isSizeBetween[1,2,3], 1, 3)  // => true
+ * isSizeBetween[1,2,3], 3, 3)  // => true
+ * isSizeBetween[1,2,3], 3, 4)  // => true
+ * isSizeBetween[1,2,3], -4, 2) // => false
+ * isSizeBetween[1,2,3], 4, 9)  // => false
+ * isSizeBetween[1,2,3], 1, 2)  // => false
+ * isSizeBetween[1,2,3], 2, Infinity) // => true
+ *
+ * isSizeBetween[1,2,3], 0) // => true
+ * isSizeBetween[1,2,3], 1) // => true
+ * isSizeBetween[1,2,3], 3) // => true
+ * isSizeBetween[1,2,3], 4) // => false
+ *
+ * isSizeBetween[], 0, 0) // => true
+ * isSizeBetween[], 1, 3) // => false
+ *
+ * isSizeBetween[])      // => true
+ * isSizeBetween[1,2,3]) // => true
+ *
+ * isSizeBetween[], NaN)           // => false
+ * isSizeBetween[1,2,3], NaN)      // => false
+ * isSizeBetween[], NaN, NaN)      // => false
+ * isSizeBetween[1,2,3], NaN, NaN) // => false
+ * ```
+ *
+ * @param lower Minimum number of items allowed. Defaults to `0`.
+ * @param upper Maximum number of items allowed. Defaults to `Infinity`.
+ * @return True iff the iterable contains the specified number of items or false otherwise; and an iterable over the original items.
+ * @see {@link isEmpty}
+ * @infinite-iterable Does not hang when used on infinite (unlimited) streams; unless argument `lower` is set to `Infinity`.
+ */
+export function isSizeBetween<T>(iterable: Iterable<T>, lower: number = 0, upper: number = Infinity): {result: boolean, iterable: Iterable<T>} {
+    if (isNaN(lower) || isNaN(upper)) {
+        return {iterable, result: false};
+    }
+    const forked = fork(iterable);
+    let i = 0;
+    for (const _ of forked) {
+        i += 1;
+        if (i > upper) {
+            return {iterable: forked, result: false};
+        }
+        if (upper === Infinity && i >= lower) {
+            return {iterable: forked, result: true};
+        }
+    }
+    return {iterable: forked, result: i <= upper && i >= lower};
 }
 
 /**
@@ -1262,7 +1339,7 @@ export function toArray<T>(iterable: Iterable<T>, fresh: boolean = false): T[] {
  *
  * ```javascript
  * // Create an iterable with an unlimited amount of items.
- * const iterable = repeat(Math.random, Infinity);
+ * const iterable = generate(Math.random, Infinity);
  *
  * // Fork the iterable first, then limit to a finite number of items.
  * // Items already produced are not recomputed.

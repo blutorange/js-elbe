@@ -639,6 +639,7 @@ export interface IStream<T> {
      *
      * @param chunkSize Size of the produced chunks.
      * @return A stream over the chunked items.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     chunk(chunkSize: number): IStream<T[]>;
 
@@ -653,6 +654,7 @@ export interface IStream<T> {
      * @typeparam K Type of the returned value of the chunker,
      * @param classifier It is passed the item as its first argument and the index as its second. Items are chunked together according to the returned value.
      * @return A stream over the chunked items.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     chunkBy<K = any>(classifier: TypedBiFunction<T, number, K>): IStream<T[]>;
 
@@ -667,6 +669,7 @@ export interface IStream<T> {
      * @typeparam R Type of the final collected value.
      * @param collector How to collect the items.
      * @return The collected value.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     collect<S, R = S>(collector: Collector<T, S, R>): R;
 
@@ -684,6 +687,7 @@ export interface IStream<T> {
      * @param accumulator Takes the intermediate objects as its first argument and the current items as its seconds, and incorporates the item into the intermediate value.
      * @param finisher Takes the intermediate object with all the items incoporated, and transforms it into the final value.
      * @return The final collected value.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     collectWith<S, R = S>(supplier: Supplier<S>, accumulator: BiConsumer<S, T>, finisher: TypedFunction<S, R>): R;
 
@@ -696,6 +700,7 @@ export interface IStream<T> {
      *
      * @param moreIterable Other iteratbles to be concatenated.
      * @return A stream over all the items of this stream and the given iterables.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     concat(...iterables: Iterable<T>[]): this;
 
@@ -727,6 +732,7 @@ export interface IStream<T> {
      * @param maxAmount Maximum number of items to consume. Defaults to `Infinity`.
      * @param offset Where to start consuming items. Defaults to `0`.
      * @return A stream over the remaining items.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams; unless parameter `offset` or `maxAmount` is set to `Infinity.
      */
     consume(sink: T[] | Consumer<T>, offset?: number, maxAmount?: number): this;
 
@@ -742,6 +748,7 @@ export interface IStream<T> {
      *
      * @param count The number of cycle. If not given, cycles an unlimited amount of times.
      * @return A stream with the items of the this stream repeating.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     cycle(count?: number): this;
 
@@ -753,6 +760,7 @@ export interface IStream<T> {
      * stream([1,2,3]).visit(console.log).end() // prints 1,2,3
      * ```
      *
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     end(): void;
 
@@ -765,6 +773,7 @@ export interface IStream<T> {
      *
      * @param predicate Test to be performed on the items.
      * @return Whether every items matches the given predicate.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless an item is encountered that does not match the predicate.
      */
     every(predicate: Predicate<T>): boolean;
 
@@ -777,6 +786,7 @@ export interface IStream<T> {
      *
      * @param predicate Test to be performed on the items. It is passed the current item and the current index.
      * @return The item iff found, `undefined` otherwise.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless an item is encountered that matches the predicate.
      */
     find(predicate: BiPredicate<T, number>): Maybe<T>;
 
@@ -790,6 +800,7 @@ export interface IStream<T> {
      *
      * @param predicate Test to be performed on the items. It is passed the current item and the current index.
      * @return The index iff the item was found, `-1` otherwise.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless an item is encountered that matches the predicate.
      */
     findIndex(predicate: BiPredicate<T, number>): number;
 
@@ -806,6 +817,7 @@ export interface IStream<T> {
      * ```
      *
      * @return The item at the first position, or undefined if empty.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     first(): Maybe<T>;
 
@@ -825,6 +837,7 @@ export interface IStream<T> {
      * @typeparam S Type of the elements in the produced stream.
      * @param mapper Mapping function taking each item and producing a new stream or iterable.
      * @return A stream over all the items of the iterables produced by the mapper.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     flatMap<S>(mapper: TypedFunction<T, Iterable<S>>): IStream<S>;
 
@@ -837,7 +850,8 @@ export interface IStream<T> {
      * ```
      *
      * @param predicate Testing function returning `true` iff the item is to be kept, `false` otherwise.
-     * @return A stream over all item for which the predicate returned `true`.
+     * @return A stream over all items for which the predicate returned `true`.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     filter(predicate: Predicate<T>): this;
 
@@ -862,6 +876,8 @@ export interface IStream<T> {
      * @param target Target for filterting. All items in the stream not equivalent to the target are removed.
      * @param keyExtractor Extracts the key by which equality is determined. Default to identity `x => x`.
      * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+     * @return A stream over all items whose keys compare equal to the given target.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     filterBy<K>(target: K, keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;
 
@@ -873,6 +889,7 @@ export interface IStream<T> {
      * ```
      *
      * @param consumer A callback that receives each item of this stream in order.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     forEach(consumer: Consumer<T>): void;
 
@@ -904,7 +921,7 @@ export interface IStream<T> {
      *
      * ```javascript
      * // Create a stream with an unlimited amount of items.
-     * const stream = TypesafeStreamFactory.repeat(Math.random, Infinity);
+     * const stream = TypesafeStreamFactory.generate(Math.random, Infinity);
      *
      * // Fork the stream first, then limit to a finite number of items.
      * // Items already produced are not recomputed.
@@ -914,6 +931,7 @@ export interface IStream<T> {
      * ```
      *
      * @return A forked stream that leaves the original stream usable.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     fork(): this;
 
@@ -928,11 +946,12 @@ export interface IStream<T> {
      * @typearam K Type of the group key.
      * @param classifier Returns the group for each item.
      * @return A map with the groups as keys and arrays as values, containing all the items for that group.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     group<K = any>(classifier: TypedFunction<T, K>): Map<K, T[]>;
 
     /**
-     * Determines whether thsi stream contains the given item.
+     * Determines whether this stream contains the given item.
      * Equivalence is checked with ```===```. This is
      * equivalent to ```stream(...).some(x => x === object)`.
      *
@@ -941,8 +960,77 @@ export interface IStream<T> {
      * ```
      *
      * @return Whether the given object is contained in this stream.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless the item is encountered.
      */
     has(object: T): boolean;
+
+    /**
+     * Determines whether this stream contains no items. This consumes at most one
+     * item from the stream and works with infinite streams.
+     *
+     * This method leaves the original stream intact, ie. you can call other methods on the original
+     * stream and get the same result as if this methods had not been called.
+     *
+     * ```javascript
+     * stream([]).isEmpty()      // => true
+     * stream([1,2,3]).isEmpty() // => false
+     *
+     * const s = stream([1,2,3]);
+     * if (!s.isEmpty()) {
+     *   // This works and includes all three items because
+     *   // isEmpty left the stream intact.
+     *   s.map(x=>x*x).toArray() // => [2,4,6]
+     * }
+     * ```
+     *
+     * @return True iff this stream contains no items.
+     * @see {@link IStream}#isSizeBetween
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
+     */
+    isEmpty(): boolean;
+
+    /**
+     * Determines whether the number of items in this stream is at least `lower` and at most `upper`.
+     * This method only consumes as many elements from the stream as necessary and may be used with
+     * infinite stream. Using `stream.size() === 0` would force an endless iteration of all its item.
+     *
+     * This method leaves the original stream intact, ie. you can call other methods on the original
+     * stream and get the same result as if this methods had not been called.
+     *
+     * ```javascript
+     * stream([1,2,3]).isSizeBetween(0, 3) // => true
+     * stream([1,2,3]).isSizeBetween(1, 3) // => true
+     * stream([1,2,3]).isSizeBetween(3, 3) // => true
+     * stream([1,2,3]).isSizeBetween(3, 4) // => true
+     * stream([1,2,3]).isSizeBetween(2, Infinity) // => true
+     * stream([1,2,3]).isSizeBetween(-4, 2) // => false
+     * stream([1,2,3]).isSizeBetween(4, 9) // => false
+     * stream([1,2,3]).isSizeBetween(1, 2) // => false
+     *
+     * stream([1,2,3]).isSizeBetween(0) // => true
+     * stream([1,2,3]).isSizeBetween(1) // => true
+     * stream([1,2,3]).isSizeBetween(3) // => true
+     * stream([1,2,3]).isSizeBetween(4) // => false
+     *
+     * stream([]).isSizeBetween(0, 0) // => true
+     * stream([]).isSizeBetween(1, 3) // => false
+     *
+     * stream([]).isSizeBetween()      // => true
+     * stream([1,2,3]).isSizeBetween() // => true
+     *
+     * stream([]).isSizeBetween(NaN)           // => false
+     * stream([1,2,3]).isSizeBetween(NaN)      // => false
+     * stream([]).isSizeBetween(NaN, NaN)      // => false
+     * stream([1,2,3]).isSizeBetween(NaN, NaN) // => false
+     * ```
+     *
+     * @param lower Minimum number of items allowed. Defaults to `0`.
+     * @param upper Maximum number of items allowed. Defaults to `Infinity`.
+     * @return True iff this stream contains the specified number of items.
+     * @see {@link IStream}#isEmpty
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams; unless argument `lower` is set to `Infinity`.
+     */
+    isSizeBetween(lower?: number, upper?: number): boolean;
 
     /**
      * Extracts and return at most `maxAmount` items of this stream, starting
@@ -970,6 +1058,7 @@ export interface IStream<T> {
      * @param maxAmount Maximum number if items to read from this stream. Defaults to `Infinity`.
      * @param offset Position at which to start removing items from the stream. Default to `0`.
      * @return At most `maxAmount` items from the given start position of this stream.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams; unless argument `offset` or `maxAmount` is set to `Infinity`.
      */
     splice(offset?: number, maxAmount?: number): T[];
 
@@ -982,6 +1071,7 @@ export interface IStream<T> {
      * ```
      *
      * @return A stream with each item being an array consisting of the item's index and the item itself. The index starts at 0.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     index(): IStream<{index: number, value: T}>;
 
@@ -997,6 +1087,7 @@ export interface IStream<T> {
      * @param prefix String prepended to the joined string. Defaults to the empty string.
      * @param suffix String appended to the joined string. Defaults to the empty string.
      * @return A string consisting of the prefix, the items joined with the delimiter, and the suffix.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     join(delimiter?: string, prefix?: string, suffix?: string): string;
 
@@ -1009,6 +1100,7 @@ export interface IStream<T> {
      * ```
      *
      * @return The item at the last position, or undefined if empty.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     last(): Maybe<T>;
 
@@ -1023,6 +1115,7 @@ export interface IStream<T> {
      *
      * @param limit The maximum number of items in the resulting stream. Defaults to Infinity.
      * @return A stream with at most the given number of items.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     limit(limitTo?: number): this;
 
@@ -1036,6 +1129,7 @@ export interface IStream<T> {
      * @typeparam S Type of the elements in the produced stream.
      * @param mapper A function taking each item of this stream and transforms it into another item.
      * @return A stream over the mapped elements.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     map<S>(mapper: TypedFunction<T, S>): IStream<S>;
 
@@ -1050,6 +1144,7 @@ export interface IStream<T> {
      *
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The largest item. If there are multiple largest items, returns the first. `undefined` iff this stream is empty.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     max(comparator?: Comparator<T>): Maybe<T>;
 
@@ -1063,6 +1158,7 @@ export interface IStream<T> {
      *
      * @param sortKey Takes an item and produces the key by which the maximum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     maxBy<K = any>(sortKey: TypedFunction<T, K>): Maybe<T>;
 
@@ -1077,6 +1173,7 @@ export interface IStream<T> {
      *
      * @param comparator How two items are compared. Defaults to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return The smallest item. If there are multiple smallest items, returns the first.  `undefined` iff this stream is empty.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     min(comparator?: Comparator<T>): Maybe<T>;
 
@@ -1090,27 +1187,9 @@ export interface IStream<T> {
      *
      * @param sortKey Takes an item and produces the key by which the minimum is determined.
      * @return The smallest item, or `undefined` iff there are no items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     minBy<K = any>(sortKey: TypedFunction<T, K>): Maybe<T>;
-
-    /**
-     * Returns the first item and keeps the stream open. The remaining
-     * items can still be read from the stream.
-     *
-     * ```javascript
-     * stream("foo").shift() // => "f"
-     * stream("").shift() // => undefined
-     *
-     * const s = stream("foobar");
-     * s.shift() // => "f"
-     * s.shift() // => "o"
-     * s.shift() // => "o"
-     * s.join() // => "bar"
-     * ```
-     *
-     * @return The item at the first position, or undefined if empty.
-     */
-    shift(): Maybe<T>;
 
     /**
      * Determines whether no item matches the given predicate. This
@@ -1122,6 +1201,7 @@ export interface IStream<T> {
      *
      * @param predicate Test to be performed on each item.
      * @return Whether no item matches the given predicate.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless an item matches the predicate.
      */
     none(predicate: Predicate<T>): boolean;
 
@@ -1136,6 +1216,7 @@ export interface IStream<T> {
      *
      * @param n The position of the item to get.
      * @return The item at the given position, or undefined if not found.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams; unless argument `n` is set to `Infinity`.
      */
     nth(n: number): Maybe<T>;
 
@@ -1149,6 +1230,7 @@ export interface IStream<T> {
      *
      * @param discriminator Partitions each item into one of two groups by returning `true` of `false`.
      * @return An object containing the partitioned items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     partition(discriminator: Predicate<T>): { false: T[], true: T[] };
 
@@ -1169,6 +1251,7 @@ export interface IStream<T> {
      * @typeparam S Type of the item of the promises.
      * @param promiseConverter Takes each item and creates a promise.
      * @return A promise that resolves when all promises resolve; or is rejected when any promise is rejected.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     promise<S>(promiseConverter: TypedFunction<T, Promise<S>>): Promise<IStream<S>>;
 
@@ -1183,6 +1266,7 @@ export interface IStream<T> {
      * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
      * @param initialValue The initial value of the reduction.
      * @return The reduced value, or the initial value iff this stream is empty.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     reduce<S>(reducer: TypedBiFunction<S, T, S>, initialValue: S): S;
 
@@ -1196,6 +1280,7 @@ export interface IStream<T> {
      *
      * @param reducer Takes the current reduced value as its first argument and the current item as its second, combines the item with the current reduced value, and returns that value.
      * @return The reduced value, or undefined iff the stream is empty.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     reduceSame(reducer: TypedBiFunction<T, T, T>): Maybe<T>;
 
@@ -1215,8 +1300,29 @@ export interface IStream<T> {
      * ```
      *
      * @return A stream with the items in reversed order.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     reverse(): this;
+
+    /**
+     * Returns the first item and keeps the stream open. The remaining
+     * items can still be read from the stream.
+     *
+     * ```javascript
+     * stream("foo").shift() // => "f"
+     * stream("").shift() // => undefined
+     *
+     * const s = stream("foobar");
+     * s.shift() // => "f"
+     * s.shift() // => "o"
+     * s.shift() // => "o"
+     * s.join() // => "bar"
+     * ```
+     *
+     * @return The item at the first position, or undefined if empty.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
+     */
+    shift(): Maybe<T>;
 
     /**
      * Counts the items.
@@ -1226,6 +1332,7 @@ export interface IStream<T> {
      * ```
      *
      * @return The number of items in this stream.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     size(): number;
 
@@ -1239,6 +1346,7 @@ export interface IStream<T> {
      * @param toSkip How many items to skip. Default to `Infinity`.
      * @return A stream with the given number of items skipped.
      * @see {@link limit}
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     skip(toSkip?: number): this;
 
@@ -1251,12 +1359,12 @@ export interface IStream<T> {
      *
      * @param predicate Test to be performed on the items.
      * @return Whether some (at least one) item matches the given predicate.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams; unless an item matches the predicate.
      */
     some(predicate: Predicate<T>): boolean;
 
     /**
-     * Sorts the items. Consider converting the stream to an array and sorting
-     * this array if you do not need a stream for further operations.
+     * Sorts the items according to the given comparator.
      *
      * This method might create a new array, but if it does, calling `toArray` on
      * the returned stream will return that array instead of allocating a new array.
@@ -1268,6 +1376,7 @@ export interface IStream<T> {
      *
      * @param comparator How to sort the items. Default to the natural order, ie. by using `&lt;` and `&gt;`.
      * @return A stream with the items in sorted order.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     sort(comparator?: Comparator<T>): this;
 
@@ -1293,6 +1402,7 @@ export interface IStream<T> {
      *
      * @param keyExtractor Extracts the key by which the sort order is determined. Default to identity `x => x`.
      * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     sortBy<K>(keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;
 
@@ -1308,6 +1418,7 @@ export interface IStream<T> {
      *
      * @param converted Converts an item into a number. Defaults to `Number(...)`.
      * @return The sum of the items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     sum(converter?: TypedFunction<T, number>): number;
 
@@ -1323,6 +1434,8 @@ export interface IStream<T> {
      * JSON.stringify(stream("foo"))
      * // => '["f","o","o"]'
      * ```
+     * @return An array with the items of this stream, in the order they are encountered.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     toJSON(): T[] ;
 
@@ -1341,6 +1454,7 @@ export interface IStream<T> {
      * @typeparam S Type of the result of the operation.
      * @param operation Takes each item and returns a mapped value, or throws an `Error`.
      * @return A stream with the mapped values and additional methods for handling errors.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     try<S>(operation: TypedFunction<T, S>): ITryStream<S>;
 
@@ -1358,6 +1472,7 @@ export interface IStream<T> {
      * @typeparam S Type of the value produced by the operation.
      * @param operation Takes this stream and returns value. If it throws an error, the resulting {@link ITry} is not successful.
      * @return The result of the operation, wrapped in a {@link ITry} for encapsulating thrown errors.
+     * @infinite-stream Whether it hangs when used on infinite (unlimited) streams depends on the given operation.
      */
     tryCompute<S>(operation: TypedFunction<IStream<T>, S>): ITry<S>;
 
@@ -1371,6 +1486,7 @@ export interface IStream<T> {
      * ```
      *
      * @return The encapsulated error, if any was thrown.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     tryEnd(): ITry<void>;
 
@@ -1386,6 +1502,7 @@ export interface IStream<T> {
      *
      * @param fresh Iff true, always creates a new array. Otherise, reuses existing array when possible.
      * @return An array with the items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     toArray(fresh?: boolean): T[];
 
@@ -1401,6 +1518,7 @@ export interface IStream<T> {
      *
      * @param fresh Iff true, always creates a new set. Otherwise, reuses existing set when possible.
      * @return A set with the items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     toSet(fresh?: boolean): Set<T>;
 
@@ -1430,13 +1548,14 @@ export interface IStream<T> {
      * @param valueMapper Transforms an item into the value used for the corresponding key.
      * @param merger A merge function called when two items map to the same key and returns the merged value. Called with two items having the same key, the first argument is the item encountered first in the stream.
      * @return A map with all the mapped key-value-pairs of the items.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     toMap<K, V>(keyMapper: TypedFunction<T, K>, valueMapper: TypedFunction<T, V>, merger?: BinaryOperator<V>): Map<K, V>;
 
     /**
      * Filters all elements that are considered equal according to
      * the given comparator. If two items are equal, the first one
-     * is included in the resulting stream. Consider using
+     * encountered is included in the resulting stream. Consider using
      * {@link #uniqueBy} if possible for better performance.
      *
      * ```javascript
@@ -1449,6 +1568,7 @@ export interface IStream<T> {
      *
      * @param comparator Takes two items and returns 0 if they are equal. Defaults to taking determining equality by `===`.
      * @return A stream with all duplicates removed.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     unique(comparator?: Comparator<T>): this;
 
@@ -1469,6 +1589,7 @@ export interface IStream<T> {
      *
      * @param keyExtractor Returns a key for each item. Items with duplicate keys are removed. Defaults to taking the item itself as the key.
      * @return A stream with all duplicates removed.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     uniqueBy<K = any>(keyExtractor: TypedFunction<T, K>): this;
 
@@ -1484,6 +1605,7 @@ export interface IStream<T> {
      *
      * @param consumer Callback taking each item.
      * @return A stream with the same items as this stream.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     visit(consumer: Consumer<T>): this;
 
@@ -1503,6 +1625,7 @@ export interface IStream<T> {
      *
      * @param other Other iterable to be zipped to this stream.
      * @return A stream over all the produced tuples.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     zip<S>(other: Iterable<S>): IStream<[Maybe<T>, Maybe<S>]>;
 
@@ -1525,6 +1648,7 @@ export interface IStream<T> {
      *
      * @param others Other iterable to be zipped to the given iterable.
      * @return A stream over al the produced tuples.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     zipSame(...others: Iterable<T>[]): IStream<Maybe<T>[]>;
 }
@@ -1555,6 +1679,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      *
      * @param handler For handling the errors. Defaults to `console.error`.
      * @return A stream with all the errors removed.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     discardError(handler?: Consumer<Error>): IStream<T>;
 
@@ -1570,6 +1695,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      *
      * @param success Handler that is passed all successful values.
      * @param error Optional handler that is passed all errors. Defaults to `console.error`.
+     * @infinite-stream Hangs when used on infinite (unlimited) streams.
      */
     forEachResult(success: Consumer<T>, error?: Consumer<Error>): void;
 
@@ -1584,6 +1710,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      *
      * @param predicate Test successful values need to pass for includsion.
      * @return A try-stream with all successful values passing the test.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     include(predicate: Predicate<T>): this;
 
@@ -1603,6 +1730,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param operation Mapper that converts each succesful values into a {@link ITry} of the new value.
      * @param backup Optional mapper that converts each error into a {@link ITry} of the new value.
      * @return A try-stream with the converted values, or any thrown errors.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     flatConvert<S>(operation: TypedFunction<T, ITry<S>>, backup?: TypedFunction<Error, ITry<S>>): ITryStream<S>;
 
@@ -1620,6 +1748,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param operation Mapper that converts each succesful values into the new one.
      * @param backup Optional mapper that converts each error into the new value.
      * @return A try-stream with the converted values, or any thrown errors.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     convert<S>(operation: TypedFunction<T, S>, backup?: TypedFunction<Error, S>): ITryStream<S>;
 
@@ -1634,11 +1763,12 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      *
      * @param backup A default value for errors.
      * @return A stream with either the successful value or the backup value.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     orElse(backup: T): IStream<T>;
 
     /**
-     * Calls the given error handler for all errors.
+     * Calls the given error handler for all errors once the stream is consumed.
      *
      * ```javascript
      * stream("12a").try(JSON.parse).onError(console.warn).end()
@@ -1649,6 +1779,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param success Handler called with successful values.
      * @param error Handler called with errors. If not present, it is not called.
      * @return This try-stream.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     onError(handler: Consumer<Error>): this;
 
@@ -1665,6 +1796,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * @param success Handler called with successful values.
      * @param error Handler called with errors. If not present, it is not called.
      * @return This try-stream.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     onSuccess(success: Consumer<T>, error?: Consumer<Error>): this;
 
@@ -1679,6 +1811,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      * ```
      *
      * @return A stream with the successful values.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     orThrow(): IStream<T>;
 
@@ -1695,6 +1828,7 @@ export interface ITryStream<T> extends IStream<ITry<T>> {
      *
      * @param backup Handler that takes each error and produces a backup value.
      * @return A try-stream with all erronous values replaced with the backup values.
+     * @infinite-stream Does not hang when used on infinite (unlimited) streams.
      */
     orTry(backup: TypedFunction<Error, T>): this;
 }

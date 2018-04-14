@@ -350,11 +350,13 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					<li><code>Changed</code> A change that is not backwards-compatible.</li>
 					<li><code>Fixed</code> A bug or error that was fixed.</li>
 				</ul>
-				<h1 id="0-4-0-work-in-progress-">0.4.0 (work-in-progress)</h1>
+				<h2 id="0-4-0-work-in-progress-">0.4.0 (work-in-progress)</h2>
 				<ul>
+					<li>Added methods <code>IStream#isEmpty</code> and <code>IStream#isSizeBetween</code>.</li>
 					<li>Changed method <code>IStream#splice</code> and exchanged the <code>offset</code> and <code>maxAmount</code> parameters to bring it in line with how <code>Array#splice</code> works. This also resulted in the same change for method <code>IStream#consume</code>.</li>
 					<li>Changed the named of method <code>IStream#slice</code> to <code>chunk</code>, to avoid confusion with JavaScript&#39;s method <code>Array#slice</code>. The former method <code>IStream#chunk</code> is now called <code>IStream#chunkBy</code>.</li>
 					<li>Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from <code>elbe</code> to <code>andross</code>.</li>
+					<li>Fixed method <code>IStream#skip</code> when used with infinite stream and passed <code>Infinity</code>. This skips all items and returns an empty stream.</li>
 				</ul>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Predicate } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
 <span class="hljs-comment">// change to</span>
@@ -599,6 +601,12 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#index" class="tsd-kind-icon">index</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#isempty" class="tsd-kind-icon">is<wbr>Empty</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#issizebetween" class="tsd-kind-icon">is<wbr>Size<wbr>Between</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#istry" class="tsd-kind-icon">is<wbr>Try</a>

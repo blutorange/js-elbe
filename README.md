@@ -375,11 +375,13 @@ I use the following keywords:
 - `Changed` A change that is not backwards-compatible.
 - `Fixed` A bug or error that was fixed.
 
-# 0.4.0 (work-in-progress)
+## 0.4.0 (work-in-progress)
 
+- Added methods `IStream#isEmpty` and `IStream#isSizeBetween`.
 - Changed method `IStream#splice` and exchanged the `offset` and `maxAmount` parameters to bring it in line with how `Array#splice` works. This also resulted in the same change for method `IStream#consume`.
 - Changed the named of method `IStream#slice` to `chunk`, to avoid confusion with JavaScript's method `Array#slice`. The former method `IStream#chunk` is now called `IStream#chunkBy`.
 - Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from `elbe` to `andross`.
+- Fixed method `IStream#skip` when used with infinite stream and passed `Infinity`. This skips all items and returns an empty stream.
 
 ```typescript
 import { Predicate } from "elbe";

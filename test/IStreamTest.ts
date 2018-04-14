@@ -77,6 +77,7 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
             public limit() {
                 if (factory === TypesafeStreamFactory)
                     this.action([1,2,3], s => {s.limit(2);s.limit(2)}).to.throw();
+                this.stream([1,2,3], s => s.limit(Infinity)).to.deep.equal([1,2,3]);
                 this.stream([1,2,3], s => s.limit(NaN)).to.deep.equal([1,2,3]);
                 this.stream([1,2,3,4,5], s => s.limit()).to.deep.equal([1,2,3,4,5]);
                 this.stream([1,2,3], s => s.limit(0)).to.deep.equal([]);
@@ -93,6 +94,8 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
             public skip() {
                 if (factory === TypesafeStreamFactory)
                     this.action([1,2,3], s => {s.skip(2);s.skip(2)}).to.throw();
+                this.stream([1,2,3], s => s.skip(Infinity)).to.deep.equal([]);
+                //this.stream(this.inf(), s => s.skip(Infinity)).to.deep.equal([]);
                 this.stream([1,2,3], s => s.skip(NaN)).to.deep.equal([1,2,3]);
                 this.stream([], s => s.skip(0)).to.deep.equal([]);
                 this.stream([1,2,3], s => s.skip()).to.deep.equal([]);
@@ -506,6 +509,51 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
                 this.terminal([], s => s.size()).to.equal(0);
                 this.terminal("f", s => s.size()).to.equal(1);
                 this.terminal("foo", s => s.size()).to.equal(3);
+            }
+
+            @test("should check whether the stream is empty")
+            public isEmpty() {
+                const s = this.factory.stream("foo");
+                expect(s.isEmpty()).to.be.false;
+                expect(s.toArray()).to.deep.equal(["f", "o", "o"]);
+                this.terminal([], s => s.isEmpty()).to.be.true;
+                this.terminal("foo", s => s.isEmpty()).to.be.false;
+                this.terminal(this.inf(), s => s.isEmpty()).to.be.false;
+            }
+
+            @test("should check whether the stream contains a certain amount of items")
+            public isSizeBetween() {
+                const s = this.factory.stream("foo");
+                expect(s.isSizeBetween(1,2)).to.be.false;
+                expect(s.isSizeBetween(1,3)).to.be.true;
+                expect(s.isSizeBetween(3,99)).to.be.true;
+                expect(s.toArray()).to.deep.equal(["f", "o", "o"]);
+
+                this.terminal([1,2,3], s => s.isSizeBetween(0,3)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(1,3)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(3,3)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(3,4)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(2,Infinity)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(-4,4)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(-4,2)).to.be.false;
+                this.terminal([1,2,3], s => s.isSizeBetween(4,9)).to.be.false;
+                this.terminal([1,2,3], s => s.isSizeBetween(1,2)).to.be.false;
+
+                this.terminal([1,2,3], s => s.isSizeBetween(0)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(1)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(3)).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween(4)).to.be.false;
+
+                this.terminal([], s => s.isSizeBetween(0, 0)).to.be.true;
+                this.terminal([], s => s.isSizeBetween(1, 3)).to.be.false;
+
+                this.terminal([], s => s.isSizeBetween()).to.be.true;
+                this.terminal([1,2,3], s => s.isSizeBetween()).to.be.true;
+
+                this.terminal([], s => s.isSizeBetween(NaN)).to.be.false;
+                this.terminal([], s => s.isSizeBetween(NaN, NaN)).to.be.false;
+                this.terminal([1,2,3], s => s.isSizeBetween(NaN)).to.be.false;
+                this.terminal([1,2,3], s => s.isSizeBetween(NaN, NaN)).to.be.false;
             }
 
             @test("should return the nth item, if it exists")
