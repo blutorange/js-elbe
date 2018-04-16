@@ -1,6 +1,7 @@
 settings.json
 README.typedoc
 docs
+.nyc_output
 .vscode
 check.js
 

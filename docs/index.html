@@ -92,7 +92,6 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 </code></pre>
 				<h1 id="roadmap">Roadmap</h1>
 				<ul>
-					<li>investigate a IStream#rewind method. IStream#fork already serves this purpose.</li>
 					<li>testing the API in practice, making it easier to use</li>
 				</ul>
 				<h1 id="versioning">Versioning</h1>
@@ -117,7 +116,6 @@ stream(input).try(<span class="hljs-built_in">JSON</span>.parse)
 				</ul>
 				<p>The <a href="https://blutorange.github.io/js-elbe/interfaces/istream.html">IStream</a> contains all the juicy methods you want. A stream is created by an <a href="https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory">InplaceStreamFactory</a>, accessible via <code>require(&quot;elbe&quot;).factory</code>. Read
 				below for further details.</p>
-				<p><a href="https://blutorange.github.io/js-elbe/coverage/">Coverage report.</a></p>
 				<h1 id="install">Install</h1>
 				<p>You know the drill.</p>
 				<pre><code class="lang-sh">npm install --save elbe
@@ -350,13 +348,13 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					<li><code>Changed</code> A change that is not backwards-compatible.</li>
 					<li><code>Fixed</code> A bug or error that was fixed.</li>
 				</ul>
-				<h2 id="0-4-0-work-in-progress-">0.4.0 (work-in-progress)</h2>
+				<h2 id="0-4-0">0.4.0</h2>
 				<ul>
 					<li>Added methods <code>IStream#isEmpty</code> and <code>IStream#isSizeBetween</code>.</li>
 					<li>Added method <code>IStream#slice</code> that works like <code>IStream#splice</code>, but does not remove the items from the stream.</li>
 					<li>Changed method <code>IStream#splice</code> and exchanged the <code>offset</code> and <code>maxAmount</code> parameters to bring it in line with how <code>Array#splice</code> works. This also resulted in the same change for method <code>IStream#consume</code>.</li>
 					<li>Changed the named of method <code>IStream#slice</code> to <code>chunk</code>, to avoid confusion with JavaScript&#39;s method <code>Array#slice</code>. The former method <code>IStream#chunk</code> is now called <code>IStream#chunkBy</code>.</li>
-					<li>Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from <code>elbe</code> to <code>andross</code>.</li>
+					<li>Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from <code>elbe</code> to <code>andross</code>, see below.</li>
 					<li>Fixed method <code>IStream#skip</code> when used with infinite stream and passed <code>Infinity</code>. This skips all items and returns an empty stream.</li>
 				</ul>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Consumer, Predicate, <span class="hljs-comment">/*...*/</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;

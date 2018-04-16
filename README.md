@@ -32,7 +32,6 @@ Array.from(function*(data) {
 
 # Roadmap
 
-- investigate a IStream#rewind method. IStream#fork already serves this purpose.
 - testing the API in practice, making it easier to use
 
 # Versioning
@@ -65,8 +64,6 @@ This returns an object with the following entries:
 
 The [IStream](https://blutorange.github.io/js-elbe/interfaces/istream.html) contains all the juicy methods you want. A stream is created by an [InplaceStreamFactory](https://blutorange.github.io/js-elbe/globals.html#inplacestreamfactory), accessible via `require("elbe").factory`. Read
 below for further details.
-
-[Coverage report.](https://blutorange.github.io/js-elbe/coverage/)
 
 # Install
 
@@ -375,13 +372,13 @@ I use the following keywords:
 - `Changed` A change that is not backwards-compatible.
 - `Fixed` A bug or error that was fixed.
 
-## 0.4.0 (work-in-progress)
+## 0.4.0
 
 - Added methods `IStream#isEmpty` and `IStream#isSizeBetween`.
 - Added method `IStream#slice` that works like `IStream#splice`, but does not remove the items from the stream.
 - Changed method `IStream#splice` and exchanged the `offset` and `maxAmount` parameters to bring it in line with how `Array#splice` works. This also resulted in the same change for method `IStream#consume`.
 - Changed the named of method `IStream#slice` to `chunk`, to avoid confusion with JavaScript's method `Array#slice`. The former method `IStream#chunk` is now called `IStream#chunkBy`.
-- Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from `elbe` to `andross`.
+- Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from `elbe` to `andross`, see below.
 - Fixed method `IStream#skip` when used with infinite stream and passed `Infinity`. This skips all items and returns an empty stream.
 
 ```typescript
