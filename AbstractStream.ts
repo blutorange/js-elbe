@@ -21,7 +21,6 @@ import {
 import {
     collect,
     collectWith,
-    consume,
     consumeFirst,
     end,
     every,
@@ -45,7 +44,9 @@ import {
     reduce,
     reduceSame,
     size,
+    slice,
     some,
+    splice,
     sum,
     toArray,
     toMap,
@@ -106,10 +107,7 @@ export abstract class AbstractStream<T> implements IStream<T> {
     }
 
     public forEach(consumer: Consumer<T>): void {
-        this.check();
-        for (const item of this.iterable) {
-            consumer(item);
-        }
+        this.visit(consumer).end();
     }
 
     public fork(): this {
@@ -214,11 +212,18 @@ export abstract class AbstractStream<T> implements IStream<T> {
         return some(this.iterable, predicate);
     }
 
+    public slice(startOffset?: number, endOffset?: number): T[] {
+        this.checkOnly();
+        const result = slice(this.iterable, startOffset, endOffset);
+        this.iterable = result.iterable;
+        return result.result;
+    }
+
     public splice(offset?: number, maxAmount?: number): T[] {
         this.checkOnly();
-        const result: T[] = [];
-        this.iterable = consume(this.iterable, result, offset, maxAmount);
-        return result;
+        const result = splice(this.iterable, offset, maxAmount);
+        this.iterable = result.iterable;
+        return result.result;
     }
 
     public sum(converter?: TypedFunction<T, number>): number {
@@ -250,8 +255,8 @@ export abstract class AbstractStream<T> implements IStream<T> {
     }
 
     public tryCompute<S>(operation: TypedFunction<IStream<T>, S>): ITry<S> {
-        this.check();
-        return tryCompute(this.iterable, operation);
+        this.checkOnly();
+        return tryCompute(this, operation);
     }
 
     public tryEnd(): ITry<void> {

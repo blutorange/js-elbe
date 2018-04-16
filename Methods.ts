@@ -18,7 +18,7 @@ import { byKey, natural, sort as arraySort, sortBy as arraySortBy } from "kagura
 
 import { Collectors } from "./Collectors";
 
-import { ITry } from "./Interfaces";
+import { IForkedResult, ITry } from "./Interfaces";
 
 import { LazyBufferedIterable } from "./LazyBufferedIterable";
 
@@ -626,18 +626,19 @@ export function size(iterable: Iterable<any>): number {
 
 /**
  * Determines whether the iterable contains no items. This consumes at most one
- * item from the stream and works with infinite iterables.
+ * item from the iterable and works with infinite iterables.
  *
  * ```javascript
- * isEmpty([])      // => true
- * isEmpty([1,2,3]) // => false
+ * isEmpty([]).result      // => true
+ * isEmpty([1,2,3]).result // => false
  * ```
  *
+ * @typeparam T Type of the elements in the given iterable.
  * @return True iff the iterable contains no items or false otherwise; and an iterable over the original items.
  * @see {@link isSizeBetween}
- * @infinite-iterable Does not hang when used on infinite (unlimited) iterables.
+ * @infinite_iterable Does not hang when used on infinite (unlimited) iterables.
  */
-export function isEmpty<T>(iterable: Iterable<T>): {result: boolean, iterable: Iterable<T>} {
+export function isEmpty<T>(iterable: Iterable<T>): IForkedResult<T, boolean> {
     return isSizeBetween(iterable, 0, 0);
 }
 
@@ -647,39 +648,41 @@ export function isEmpty<T>(iterable: Iterable<T>): {result: boolean, iterable: I
  * infinite iterables. Using `size(iterable) === 0` would force an endless iteration of all its item.
  *
  * ```javascript
- * isSizeBetween[1,2,3])        // => true
- * isSizeBetween[1,2,3], 1, 3)  // => true
- * isSizeBetween[1,2,3], 3, 3)  // => true
- * isSizeBetween[1,2,3], 3, 4)  // => true
- * isSizeBetween[1,2,3], -4, 2) // => false
- * isSizeBetween[1,2,3], 4, 9)  // => false
- * isSizeBetween[1,2,3], 1, 2)  // => false
- * isSizeBetween[1,2,3], 2, Infinity) // => true
+ * isSizeBetween[1,2,3]).result        // => true
+ * isSizeBetween[1,2,3], 1, 3).result  // => true
+ * isSizeBetween[1,2,3], 3, 3).result  // => true
+ * isSizeBetween[1,2,3], 3, 4).result  // => true
+ * isSizeBetween[1,2,3], -4, 2).result // => false
+ * isSizeBetween[1,2,3], 4, 9).result  // => false
+ * isSizeBetween[1,2,3], 1, 2).result  // => false
+ * isSizeBetween[1,2,3], 2, Infinity).result // => true
  *
- * isSizeBetween[1,2,3], 0) // => true
- * isSizeBetween[1,2,3], 1) // => true
- * isSizeBetween[1,2,3], 3) // => true
- * isSizeBetween[1,2,3], 4) // => false
+ * isSizeBetween[1,2,3], 0).result // => true
+ * isSizeBetween[1,2,3], 1).result // => true
+ * isSizeBetween[1,2,3], 3).result // => true
+ * isSizeBetween[1,2,3], 4).result // => false
  *
- * isSizeBetween[], 0, 0) // => true
- * isSizeBetween[], 1, 3) // => false
+ * isSizeBetween[], 0, 0).result // => true
+ * isSizeBetween[], 1, 3).result // => false
  *
- * isSizeBetween[])      // => true
- * isSizeBetween[1,2,3]) // => true
+ * isSizeBetween[]).result      // => true
+ * isSizeBetween[1,2,3]).result // => true
  *
- * isSizeBetween[], NaN)           // => false
- * isSizeBetween[1,2,3], NaN)      // => false
- * isSizeBetween[], NaN, NaN)      // => false
- * isSizeBetween[1,2,3], NaN, NaN) // => false
+ * isSizeBetween[], NaN).result           // => false
+ * isSizeBetween[1,2,3], NaN).result      // => false
+ * isSizeBetween[], NaN, NaN).result      // => false
+ * isSizeBetween[1,2,3], NaN, NaN).result // => false
  * ```
  *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be counted.
  * @param lower Minimum number of items allowed. Defaults to `0`.
  * @param upper Maximum number of items allowed. Defaults to `Infinity`.
  * @return True iff the iterable contains the specified number of items or false otherwise; and an iterable over the original items.
  * @see {@link isEmpty}
- * @infinite-iterable Does not hang when used on infinite (unlimited) streams; unless argument `lower` is set to `Infinity`.
+ * @infinite_iterable Does not hang when used on infinite (unlimited) iterables; unless argument `lower` is set to `Infinity`.
  */
-export function isSizeBetween<T>(iterable: Iterable<T>, lower: number = 0, upper: number = Infinity): {result: boolean, iterable: Iterable<T>} {
+export function isSizeBetween<T>(iterable: Iterable<T>, lower: number = 0, upper: number = Infinity): IForkedResult<T, boolean> {
     if (isNaN(lower) || isNaN(upper)) {
         return {iterable, result: false};
     }
@@ -695,6 +698,86 @@ export function isSizeBetween<T>(iterable: Iterable<T>, lower: number = 0, upper
         }
     }
     return {iterable: forked, result: i <= upper && i >= lower};
+}
+
+/**
+ * Returns the items from the `startOffset` up to, but not including, the `endOffset`.
+ * The returned iterable is left unchanged, all items are still available for further
+ * consumption.
+ *
+ * ```javascript
+ * const iterable = slice("foobar", 0, 3);
+ * // => ["f", "o", "o"]
+ * join(iterable) // => "foobar"
+ *
+ * const iterabl2 = slice("foobar", 2, 5);
+ * // => ["o", "b", "a"]
+ * join(s) // => "forbar"
+ *
+ * // special cases
+ * slice("foo", 0, 0)        // => []
+ * slice("foo", 3, 2)        // => []
+ * slice("foo", 0, 2.5)      // => ["f", "o"]
+ * slice("foo", 0.5, 2)      // => ["f", "o"]
+ * slice("foo", -5, 2)       // => ["f", "o"]
+ * slice("foo", 0, Infinity) // => ["f", "o", "o"]
+ * slice("foo", Infinity, 9) // => []
+ * slice("foo", 0, NaN)      // => []
+ * slice("foo", NaN, 2)      // => []
+ * slice("foo", NaN, NaN)    // => []
+ * slice(generate(Math.random), Infinity, Infinity) // => []
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be counted.
+ * @param startOffset Position (inclusive) at which to start removing items from the iterable. Default to `0`.
+ * @param endOffset Position (not inclusive) at which to stop removing items from the iterable. Defaults to `Infinity`.
+ * @return The items in the iterable from `startOffset` up to, but not including, `endOffset`.
+ * @infinite_iterable Does not hang when used on infinite (unlimited) iterables; unless argument `startOffset` or `endOffset` is set to `Infinity`.
+ */
+export function slice<T>(iterable: Iterable<T>, startOffset: number = 0, endOffset: number = Infinity): IForkedResult<T, T[]> {
+    const forked = fork(iterable);
+    const items: T[] = [];
+    startOffset = Math.floor(Math.max(startOffset, 0));
+    consume(forked, items, startOffset, endOffset - startOffset);
+    return {iterable: forked, result: items};
+}
+
+/**
+ * Extracts and return at most `maxAmount` items from the iterable, starting
+ * at the given start position. All items up to the starting point and the
+ * remaining items are left in the returned iterable and can still be iterated over.
+ *
+ * ```javascript
+ * const result = splice("foobar", 0, 3);
+ * // => {iterable: {}, result: ["f", "o", "o"]}
+ * join(result.iterable) // => "bar"
+ *
+ * const result2 = splice("foobar", 2,3);
+ * // => {iterable: {}, result: ["o", "b", "a"]}
+ * join(result2.iterable) // => "for"
+ *
+ * // special cases
+ * splice("foo", 0, 0).result        // => []
+ * splice("foo", 0, Infinity).result // => ["f", "o", "o"]
+ * splice("foo", Infinity, 9).result // => []
+ * splice("foo", 0, NaN).result      // => []
+ * splice("foo", NaN, 2).result      // => []
+ * splice("foo", NaN, NaN)           // => []
+ * splice(generate(Math.random), Infinity, 0) // => []
+ * ```
+ *
+ * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be counted.
+ * @param offset Position at which to start removing items from the stream. Default to `0`.
+ * @param maxAmount Maximum number if items to read from this stream. Defaults to `Infinity`.
+ * @return At most `maxAmount` items from the given start position of this stream.
+ * @infinite_iterable Does not hang when used on infinite (unlimited) iterables; unless argument `offset` or `maxAmount` is set to `Infinity`.
+ */
+export function splice<T>(iterable: Iterable<T>, offset?: number, maxAmount?: number): IForkedResult<T, T[]> {
+    const items: T[] = [];
+    const consumed = consume(iterable, items, offset, maxAmount);
+    return {iterable: consumed, result: items};
 }
 
 /**
@@ -718,6 +801,7 @@ export function isSizeBetween<T>(iterable: Iterable<T>, lower: number = 0, upper
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be counted.
  * @param keyExtractor Extracts the key by which the sort order is determined. Default to identity `x => x`.
  * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.
  * @return An iterable with the items in sorted order.
@@ -747,6 +831,7 @@ export function sortBy<T, K>(iterable: Iterable<T>, keyExtractor: TypedFunction<
  * ```
  *
  * @typeparam T Type of the elements in the given iterable.
+ * @param iterable The iterable to be counted.
  * @param target Target for filterting. All items in the iterable not equivalent to the target are removed.
  * @param keyExtractor Extracts the key by which equality is determined. Default to identity `x => x`.
  * @param comparator Comparator for comparing two keys. Defaults to the natural comparator using `<` and `>`.

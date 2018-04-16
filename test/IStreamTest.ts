@@ -14,7 +14,7 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
             }
 
             @test("should chunk items according to the classifier")
-            public chunk() {
+            public chunkBy() {
                 if (factory === TypesafeStreamFactory)
                     this.action([1,2,3], s => {s.chunkBy(x=>x);s.chunkBy(x=>x)}).to.throw();
                 this.stream([], s => s.chunkBy(i => i)).to.deep.equal([]);
@@ -217,8 +217,8 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
                 this.stream([1,2,3], s => s.sortBy(x=>-x, (lhs, rhs) => rhs - lhs)).to.deep.equal([1,2,3]);
             }
 
-            @test("should slice the items into slices of a given length")
-            public slice() {
+            @test("should chunk the items into slicechunks of a given length")
+            public chunk() {
                 if (factory === TypesafeStreamFactory)
                     this.action([1,2,3], s => {s.chunk(1);s.chunk(1)}).to.throw();
                 this.stream([], s => s.chunk(2)).to.deep.equal([]);
@@ -302,7 +302,15 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
 
             @test("should try performing an operation on the stream")
             public tryCompute() {
-                this.action([1,2,3], s => {s.tryCompute(m=>0);s.tryCompute(m=>0)}).to.throw();
+                function * foo() {
+                    yield 1;
+                    yield 2;
+                    yield 3;
+                }
+                this.action([1,2,3], s => {s.tryCompute(m=>0);s.tryCompute(m=>0)}).to.not.throw();
+                this.action([1,2,3], s => {s.tryCompute(m=>m.size());s.tryCompute(m=>m.size())}).to.throw();
+                this.terminal("foobar", s => s.tryCompute(s => s.size()).orElse(-1)).to.equal(6);
+                this.terminal(foo(), s => s.tryCompute(s => s.sum()).orElse(-1)).to.equal(6);
                 this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => s+x, 0)).orElse(-1)).to.equal(40);
                 this.terminal([6,7,8,9,10], s => s.tryCompute(s => s.reduce((s,x) => {throw new Error}, 0)).orElse(-1)).to.equal(-1);
             }
@@ -513,6 +521,7 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
 
             @test("should check whether the stream is empty")
             public isEmpty() {
+                this.action([1,2,3], s => {s.isEmpty();s.isEmpty()}).to.not.throw();
                 const s = this.factory.stream("foo");
                 expect(s.isEmpty()).to.be.false;
                 expect(s.toArray()).to.deep.equal(["f", "o", "o"]);
@@ -523,6 +532,7 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
 
             @test("should check whether the stream contains a certain amount of items")
             public isSizeBetween() {
+                this.action([1,2,3], s => {s.isSizeBetween(2,4);s.isSizeBetween(2,4)}).to.not.throw();
                 const s = this.factory.stream("foo");
                 expect(s.isSizeBetween(1,2)).to.be.false;
                 expect(s.isSizeBetween(1,3)).to.be.true;
@@ -698,7 +708,39 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
                 expect(sink).to.deep.equal([]);
             }
 
-            @test("should return the first few items of the stream")
+            @test("should return the first few items of the stream and leave it unchanged")
+            public slice() {
+                this.action([1,2,3], s => {s.slice();s.slice();}).to.not.throw();
+                this.action([1,2,3], s => {s.first();s.slice();}).to.throw();
+
+                const s = factory.stream("foobar");
+                expect(s.slice(0, 3)).to.deep.equal(["f", "o", "o"]);
+                expect(s.toArray()).to.deep.equal(["f", "o", "o", "b", "a", "r"]);
+
+                const s2 = factory.stream("barfoo");
+                expect(s2.slice(2, 5)).to.deep.equal(["r", "f", "o"]);
+                expect(s2.toArray()).to.deep.equal(["b", "a", "r", "f", "o", "o"]);
+
+                this.terminal("foo", s => s.slice()).to.deep.equal(["f", "o", "o"]);
+                this.terminal("foo", s => s.slice(0)).to.deep.equal(["f", "o", "o"]);
+                this.terminal("foo", s => s.slice(1)).to.deep.equal(["o", "o"]);
+                this.terminal("foo", s => s.slice(0, 0)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(3, 2)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(0, 2.5)).to.deep.equal(["f", "o"]);
+                this.terminal([1,2,3], s => s.slice(0, 2.5)).to.deep.equal([1, 2]);
+                this.terminal("foo", s => s.slice(0.5, 2)).to.deep.equal(["f", "o"]);
+                this.terminal("foo", s => s.slice(-5, 2)).to.deep.equal(["f", "o"]);
+                this.terminal("foo", s => s.slice(0, Infinity)).to.deep.equal(["f", "o", "o"]);
+                this.terminal("foo", s => s.slice(Infinity, 9)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(Infinity, 0)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(0, NaN)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(NaN, 9)).to.deep.equal([]);
+                this.terminal("foo", s => s.slice(NaN, NaN)).to.deep.equal([]);
+                this.terminal(this.inf(), s => s.slice(2, 5)).to.deep.equal([2,3,4]);
+                this.terminal(this.inf(), s => s.slice(Infinity, Infinity)).to.deep.equal([]);
+            }
+
+            @test("should return and remove the first few items of the stream")
             public splice() {
                 this.action([1,2,3], s => {s.splice();s.splice();}).to.not.throw();
                 this.action([1,2,3], s => {s.first();s.splice();}).to.throw();
@@ -746,6 +788,7 @@ load(({ InplaceStreamFactory, TypesafeStreamFactory, consumeFirst }) => {
                 this.terminal([1,4,3], s => s.splice(0, Infinity)).to.deep.equal([1,4,3]);
                 this.terminal([1,2,13], s => s.splice(1, Infinity)).to.deep.equal([2,13]);
                 this.terminal(this.inf(), s => s.splice(0, 3)).to.deep.equal([0,1,2]);
+                this.terminal(this.inf(), s => s.splice(Infinity, 0)).to.deep.equal([]);
                 this.terminal([1,12,3], s => s.splice()).to.deep.equal([1,12,3]);
                 this.terminal([11,2,3], s => s.splice(0, 9999999999999)).to.deep.equal([11,2,3]);
 

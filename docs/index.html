@@ -353,14 +353,15 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 				<h2 id="0-4-0-work-in-progress-">0.4.0 (work-in-progress)</h2>
 				<ul>
 					<li>Added methods <code>IStream#isEmpty</code> and <code>IStream#isSizeBetween</code>.</li>
+					<li>Added method <code>IStream#slice</code> that works like <code>IStream#splice</code>, but does not remove the items from the stream.</li>
 					<li>Changed method <code>IStream#splice</code> and exchanged the <code>offset</code> and <code>maxAmount</code> parameters to bring it in line with how <code>Array#splice</code> works. This also resulted in the same change for method <code>IStream#consume</code>.</li>
 					<li>Changed the named of method <code>IStream#slice</code> to <code>chunk</code>, to avoid confusion with JavaScript&#39;s method <code>Array#slice</code>. The former method <code>IStream#chunk</code> is now called <code>IStream#chunkBy</code>.</li>
 					<li>Changed: Extracted common interfaces and types to their own package. If you are using typescript and are referring to these types explicity, change the import statement from <code>elbe</code> to <code>andross</code>.</li>
 					<li>Fixed method <code>IStream#skip</code> when used with infinite stream and passed <code>Infinity</code>. This skips all items and returns an empty stream.</li>
 				</ul>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Predicate } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
+				<pre><code class="lang-typescript"><span class="hljs-keyword">import</span> { Consumer, Predicate, <span class="hljs-comment">/*...*/</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"elbe"</span>;
 <span class="hljs-comment">// change to</span>
-<span class="hljs-keyword">import</span> { Predicate } <span class="hljs-keyword">from</span> <span class="hljs-string">"andross"</span>;
+<span class="hljs-keyword">import</span> { Consumer, Predicate, <span class="hljs-comment">/*...*/</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"andross"</span>;
 </code></pre>
 				<h2 id="0-3-0">0.3.0</h2>
 				<ul>
@@ -484,6 +485,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/icollectors.html" class="tsd-kind-icon">ICollectors</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/iforkedresult.html" class="tsd-kind-icon">IForked<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/istatistics.html" class="tsd-kind-icon">IStatistics</a>
@@ -681,6 +685,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 						<a href="globals.html#skip" class="tsd-kind-icon">skip</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#slice" class="tsd-kind-icon">slice</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#some" class="tsd-kind-icon">some</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -688,6 +695,9 @@ s.then(<span class="hljs-function"><span class="hljs-params">json</span> =&gt;</
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#sortby" class="tsd-kind-icon">sort<wbr>By</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter">
+						<a href="globals.html#splice" class="tsd-kind-icon">splice</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#step" class="tsd-kind-icon">step</a>
