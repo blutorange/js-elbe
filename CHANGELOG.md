@@ -6,6 +6,10 @@ I use the following keywords:
 - `Changed` A change that is not backwards-compatible.
 - `Fixed` A bug or error that was fixed.
 
+## 0.4.1
+
+- Added interface `Iterable` to `IStream`. It already implemented the corresponded, just made it extend `Iterable` explicitly.
+
 ## 0.4.0
 
 - Added methods `IStream#isEmpty` and `IStream#isSizeBetween`.

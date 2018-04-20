@@ -623,19 +623,7 @@ export interface ITry<T> {
  * ```
  * @typeparam T Type of the items in the stream.
  */
-export interface IStream<T> {
-    /**
-     * A stream is also an Iterable.
-     * ```javascript
-     * // logs "ff", "oo", "oo"
-     * for (const item of stream("foo").map(x=>x+x)) {
-     *   console.log(item);
-     * }
-     * ```
-     * @return An iterator over the items in this stream.
-     */
-    [Symbol.iterator](): Iterator<T>;
-
+export interface IStream<T> extends Iterable<T> {
     /**
      * Chunks the items into chunks of chunkSize.
      *

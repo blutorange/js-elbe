@@ -112,10 +112,15 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">IStream</span>
+						<span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="itrystream.html" class="tsd-signature-type">ITryStream</a>
+								<span class="target">IStream</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="itrystream.html" class="tsd-signature-type">ITryStream</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -138,7 +143,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="istream.html#___iterator" class="tsd-kind-icon">__@iterator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="istream.html#chunk" class="tsd-kind-icon">chunk</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#chunkby" class="tsd-kind-icon">chunk<wbr>By</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="istream.html#collect" class="tsd-kind-icon">collect</a></li>
@@ -204,31 +209,21 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="___iterator" class="tsd-anchor"></a>
 					<h3>__@iterator</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">__@iterator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from Iterable.[Symbol.iterator]</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L637">Interfaces.ts:637</a></li>
+									<li>Defined in node_modules/typedoc/node_modules/typescript/lib/lib.es2015.iterable.d.ts:43</li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>A stream is also an Iterable.</p>
-									<pre><code class="lang-javascript"><span class="hljs-comment">// logs "ff", "oo", "oo"</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> item <span class="hljs-keyword">of</span> stream(<span class="hljs-string">"foo"</span>).map(<span class="hljs-function"><span class="hljs-params">x</span>=&gt;</span>x+x)) {
-  <span class="hljs-built_in">console</span>.log(item);
-}
-</code></pre>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>An iterator over the items in this stream.</p>
 						</li>
 					</ul>
 				</section>
@@ -242,7 +237,7 @@ myStream.forEach(<span class="hljs-built_in">console</span>.log) <span class="hl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L655">Interfaces.ts:655</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L643">Interfaces.ts:643</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,7 +283,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L672">Interfaces.ts:672</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L660">Interfaces.ts:660</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +336,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L689">Interfaces.ts:689</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L677">Interfaces.ts:677</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -399,7 +394,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L709">Interfaces.ts:709</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L697">Interfaces.ts:697</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -467,7 +462,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L724">Interfaces.ts:724</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L712">Interfaces.ts:712</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -507,7 +502,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L757">Interfaces.ts:757</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L745">Interfaces.ts:745</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -578,7 +573,7 @@ stream(<span class="hljs-string">"foobar"</span>).consume(<span class="hljs-buil
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L774">Interfaces.ts:774</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L762">Interfaces.ts:762</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -623,7 +618,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L793">Interfaces.ts:793</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L781">Interfaces.ts:781</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -659,7 +654,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L807">Interfaces.ts:807</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L795">Interfaces.ts:795</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -701,7 +696,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L890">Interfaces.ts:890</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L878">Interfaces.ts:878</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,7 +739,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L917">Interfaces.ts:917</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L905">Interfaces.ts:905</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -815,7 +810,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L821">Interfaces.ts:821</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L809">Interfaces.ts:809</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -857,7 +852,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L836">Interfaces.ts:836</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L824">Interfaces.ts:824</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -900,7 +895,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-number">2005</span>, us
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L854">Interfaces.ts:854</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L842">Interfaces.ts:842</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -938,7 +933,7 @@ s.first() <span class="hljs-comment">// =&gt; Error</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L875">Interfaces.ts:875</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L863">Interfaces.ts:863</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -995,7 +990,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L930">Interfaces.ts:930</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L918">Interfaces.ts:918</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1036,7 +1031,7 @@ stream([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">"[2,3]"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L973">Interfaces.ts:973</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L961">Interfaces.ts:961</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1096,7 +1091,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L989">Interfaces.ts:989</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L977">Interfaces.ts:977</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1148,7 +1143,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1004">Interfaces.ts:1004</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L992">Interfaces.ts:992</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1189,7 +1184,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1088">Interfaces.ts:1088</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1076">Interfaces.ts:1076</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1223,7 +1218,7 @@ stream.fork().limit(<span class="hljs-number">4</span>).toArray() <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1030">Interfaces.ts:1030</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1018">Interfaces.ts:1018</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1270,7 +1265,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1074">Interfaces.ts:1074</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1062">Interfaces.ts:1062</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1348,7 +1343,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1105">Interfaces.ts:1105</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1093">Interfaces.ts:1093</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1403,7 +1398,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1119">Interfaces.ts:1119</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1107">Interfaces.ts:1107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1437,7 +1432,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1135">Interfaces.ts:1135</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1123">Interfaces.ts:1123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1478,7 +1473,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1150">Interfaces.ts:1150</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1138">Interfaces.ts:1138</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1529,7 +1524,7 @@ stream(<span class="hljs-string">""</span>).last() <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1166">Interfaces.ts:1166</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1154">Interfaces.ts:1154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1573,7 +1568,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1181">Interfaces.ts:1181</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1169">Interfaces.ts:1169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1622,7 +1617,7 @@ stream([]).max() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1197">Interfaces.ts:1197</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1185">Interfaces.ts:1185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1666,7 +1661,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1212">Interfaces.ts:1212</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1200">Interfaces.ts:1200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1715,7 +1710,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1227">Interfaces.ts:1227</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1215">Interfaces.ts:1215</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1758,7 +1753,7 @@ stream([]).min() <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1243">Interfaces.ts:1243</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1231">Interfaces.ts:1231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1802,7 +1797,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1258">Interfaces.ts:1258</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1246">Interfaces.ts:1246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1853,7 +1848,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1280">Interfaces.ts:1280</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1268">Interfaces.ts:1268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1911,7 +1906,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1296">Interfaces.ts:1296</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1284">Interfaces.ts:1284</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1968,7 +1963,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1311">Interfaces.ts:1311</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1299">Interfaces.ts:1299</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2011,7 +2006,7 @@ stream(<span class="hljs-string">"foo"</span>).nth(<span class="hljs-number">3</
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1332">Interfaces.ts:1332</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1320">Interfaces.ts:1320</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2050,7 +2045,7 @@ stream(factory.step(<span class="hljs-literal">Infinity</span>)).reverse() <span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1353">Interfaces.ts:1353</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1341">Interfaces.ts:1341</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2091,7 +2086,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1366">Interfaces.ts:1366</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1354">Interfaces.ts:1354</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2124,7 +2119,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1381">Interfaces.ts:1381</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1369">Interfaces.ts:1369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2169,7 +2164,7 @@ s.join() <span class="hljs-comment">// =&gt; "bar"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1417">Interfaces.ts:1417</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1405">Interfaces.ts:1405</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2238,7 +2233,7 @@ factory.generate(<span class="hljs-built_in">Math</span>.random).slice(<span cla
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1431">Interfaces.ts:1431</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1419">Interfaces.ts:1419</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2280,7 +2275,7 @@ factory.generate(<span class="hljs-built_in">Math</span>.random).slice(<span cla
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1449">Interfaces.ts:1449</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1437">Interfaces.ts:1437</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2325,7 +2320,7 @@ factory.generate(<span class="hljs-built_in">Math</span>.random).slice(<span cla
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1476">Interfaces.ts:1476</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1464">Interfaces.ts:1464</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2390,7 +2385,7 @@ stream([user1, user2, user3]).filterBy(<span class="hljs-function"><span class="
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1508">Interfaces.ts:1508</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1496">Interfaces.ts:1496</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2455,7 +2450,7 @@ factory.generate(<span class="hljs-built_in">Math</span>.random).splice(<span cl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1525">Interfaces.ts:1525</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1513">Interfaces.ts:1513</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2497,7 +2492,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1614">Interfaces.ts:1614</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1602">Interfaces.ts:1602</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2542,7 +2537,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1543">Interfaces.ts:1543</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1531">Interfaces.ts:1531</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2581,7 +2576,7 @@ stream([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1662">Interfaces.ts:1662</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1650">Interfaces.ts:1650</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2663,7 +2658,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1631">Interfaces.ts:1631</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1619">Interfaces.ts:1619</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2708,7 +2703,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1563">Interfaces.ts:1563</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1551">Interfaces.ts:1551</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2764,7 +2759,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1582">Interfaces.ts:1582</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1570">Interfaces.ts:1570</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2819,7 +2814,7 @@ stream(data).toMap(<span class="hljs-function"><span class="hljs-params">x</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1597">Interfaces.ts:1597</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1585">Interfaces.ts:1585</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2854,7 +2849,7 @@ stream([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<s
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1683">Interfaces.ts:1683</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1671">Interfaces.ts:1671</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2903,7 +2898,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1705">Interfaces.ts:1705</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1693">Interfaces.ts:1693</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2959,7 +2954,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1722">Interfaces.ts:1722</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1710">Interfaces.ts:1710</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3004,7 +2999,7 @@ stream({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1743">Interfaces.ts:1743</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1731">Interfaces.ts:1731</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3059,7 +3054,7 @@ stream([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"bar"<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/6b9fa4a/Interfaces.ts#L1767">Interfaces.ts:1767</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/45073ce/Interfaces.ts#L1755">Interfaces.ts:1755</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3118,7 +3113,7 @@ stream(<span class="hljs-string">"fb"</span>).zipSame([<span class="hljs-string"
 					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="istream.html" class="tsd-kind-icon">IStream</a>
 						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="istream.html#___iterator" class="tsd-kind-icon">__@iterator</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
