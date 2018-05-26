@@ -5,9 +5,19 @@ import {
     Collector,
     Comparator,
     Consumer,
+    Decuple,
     Maybe,
+    Nonuple,
+    Octuple,
+    Pair,
     Predicate,
+    Quadruple,
+    Quintuple,
+    Septuple,
+    Sextuple,
+    Single,
     Supplier,
+    Triple,
     TypedBiFunction,
     TypedFunction,
 } from "andross";
@@ -90,6 +100,11 @@ export interface ITryFactory {
     flatOf<T>(operation: Supplier<ITry<T>>, cause?: Error): ITry<T>;
 }
 
+/**
+ * Factory for creating streams. One of the most common
+ * methods is `IStreamFactory#stream(iterable)`, which wraps
+ * an iterable such as `array` or `set` in an object-oriented stream.
+ */
 export interface IStreamFactory {
     /**
      * Creates a stream from the given iterable. The iterable
@@ -624,6 +639,28 @@ export interface ITry<T> {
  * @typeparam T Type of the items in the stream.
  */
 export interface IStream<T> extends Iterable<T> {
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 0): IStream<never>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 1): IStream<Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 2): IStream<Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 3): IStream<Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 4): IStream<Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 5): IStream<Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 6): IStream<Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 7): IStream<Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 8): IStream<Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 9): IStream<Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    /** Overload with tuple types for `IStream#chunk(chunkSize: number): IStream<T[]>` */
+    chunk(chunkSize: 10): IStream<Decuple<T> | Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
     /**
      * Chunks the items into chunks of chunkSize.
      *

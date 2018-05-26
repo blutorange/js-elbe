@@ -6,9 +6,16 @@ I use the following keywords:
 - `Changed` A change that is not backwards-compatible.
 - `Fixed` A bug or error that was fixed.
 
-## 0.4.1 (work-in-progress)
+## 0.4.2 (work-in-progress)
 
-- Added interface `Iterable` to `IStream`. It already implemented the corresponded, just made it extend `Iterable` explicitly.
+nothing yet.
+
+## 0.4.1
+
+- Added interface `Iterable` to `IStream`. It already implemented the corresponding methods, just made it extend `Iterable` explicitly.
+- Added better typings for `IStream#chunk` (tuples types for chunk sizes from 0 to 10).
+- Retain doc comments in `.d.ts` declaration file.
+- Updated dependencies.
 
 ## 0.4.0
 

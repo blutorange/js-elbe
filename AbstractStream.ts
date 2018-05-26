@@ -5,9 +5,19 @@ import {
     Collector,
     Comparator,
     Consumer,
+    Decuple,
     Maybe,
+    Nonuple,
+    Octuple,
+    Pair,
     Predicate,
+    Quadruple,
+    Quintuple,
+    Septuple,
+    Sextuple,
+    Single,
     Supplier,
+    Triple,
     TypedBiFunction,
     TypedFunction,
 } from "andross";
@@ -277,6 +287,17 @@ export abstract class AbstractStream<T> implements IStream<T> {
     public abstract promise<S>(promiseConverter: TypedFunction<T, Promise<S>>): Promise<IStream<S>>;
     public abstract reverse(): this;
     public abstract skip(toSkip: number): this;
+    public abstract chunk(chunkSize: 0): IStream<never>;
+    public abstract chunk(chunkSize: 1): IStream<Single<T>>;
+    public abstract chunk(chunkSize: 2): IStream<Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 3): IStream<Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 4): IStream<Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 5): IStream<Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 6): IStream<Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 7): IStream<Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 8): IStream<Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 9): IStream<Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public abstract chunk(chunkSize: 10): IStream<Decuple<T> | Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
     public abstract chunk(sliceSize: number): IStream<T[]>;
     public abstract sort(comparator?: Comparator<T>): this;
     public abstract sortBy<K>(keyExtractor: TypedFunction<T, K>, comparator?: Comparator<K>): this;

@@ -1,8 +1,18 @@
 import {
     Comparator,
     Consumer,
+    Decuple,
     Maybe,
+    Nonuple,
+    Octuple,
+    Pair,
     Predicate,
+    Quadruple,
+    Quintuple,
+    Septuple,
+    Sextuple,
+    Single,
+    Triple,
     TypedBiFunction,
     TypedFunction,
 } from "andross";
@@ -39,6 +49,18 @@ import {
 export class TypesafeStream<T> extends AbstractStream<T> {
     public ["constructor"]: (typeof TypesafeStream);
 
+    public chunk(chunkSize: 0): IStream<never>;
+    public chunk(chunkSize: 1): IStream<Single<T>>;
+    public chunk(chunkSize: 2): IStream<Pair<T> | Single<T>>;
+    public chunk(chunkSize: 3): IStream<Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 4): IStream<Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 5): IStream<Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 6): IStream<Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 7): IStream<Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 8): IStream<Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 9): IStream<Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: 10): IStream<Decuple<T> | Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+    public chunk(chunkSize: number): IStream<T[]>;
     public chunk(chunkSize: number): IStream<T[]> {
         this.check();
         return new TypesafeStream(chunk(this.iterable, chunkSize));

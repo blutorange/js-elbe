@@ -1,8 +1,9 @@
-settings.json
-README.typedoc
 docs
+coverage
 .nyc_output
 .vscode
+settings.json
+README.typedoc
 check.js
 
 # ---> Linux

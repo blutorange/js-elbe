@@ -188,7 +188,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L63">AbstractStream.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L73">AbstractStream.ts:73</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -215,7 +215,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L69">AbstractStream.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -226,6 +226,17 @@
 					<a name="chunk" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> chunk</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">5</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">6</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">7</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">8</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">9</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">10</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>sliceSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
@@ -233,7 +244,172 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L280">AbstractStream.ts:280</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L290">AbstractStream.ts:290</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">0</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L291">AbstractStream.ts:291</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">1</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L292">AbstractStream.ts:292</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">2</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L293">AbstractStream.ts:293</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">3</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L294">AbstractStream.ts:294</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">4</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L295">AbstractStream.ts:295</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">5</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L296">AbstractStream.ts:296</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">6</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L297">AbstractStream.ts:297</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">7</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L298">AbstractStream.ts:298</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">8</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L299">AbstractStream.ts:299</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">9</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L300">AbstractStream.ts:300</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">10</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L301">AbstractStream.ts:301</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -257,7 +433,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#chunkby">chunkBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L267">AbstractStream.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L277">AbstractStream.ts:277</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -287,7 +463,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#collect">collect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L74">AbstractStream.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -320,7 +496,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#collectwith">collectWith</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -359,7 +535,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#concat">concat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L268">AbstractStream.ts:268</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L278">AbstractStream.ts:278</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -383,7 +559,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#consume">consume</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L269">AbstractStream.ts:269</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L279">AbstractStream.ts:279</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -413,7 +589,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#cycle">cycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L270">AbstractStream.ts:270</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L280">AbstractStream.ts:280</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -437,7 +613,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#end">end</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -455,7 +631,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#every">every</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -479,7 +655,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#filter">filter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L272">AbstractStream.ts:272</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L282">AbstractStream.ts:282</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +679,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#filterby">filterBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L273">AbstractStream.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L283">AbstractStream.ts:283</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -539,7 +715,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -563,7 +739,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#findindex">findIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -587,7 +763,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L114">AbstractStream.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -605,7 +781,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L271">AbstractStream.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L281">AbstractStream.ts:281</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -635,7 +811,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -659,7 +835,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#fork">fork</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L113">AbstractStream.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L123">AbstractStream.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -677,7 +853,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#group">group</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L129">AbstractStream.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -707,7 +883,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L124">AbstractStream.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L134">AbstractStream.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -731,7 +907,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#index">index</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L274">AbstractStream.ts:274</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L284">AbstractStream.ts:284</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -749,7 +925,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L129">AbstractStream.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L139">AbstractStream.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -767,7 +943,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#issizebetween">isSizeBetween</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L136">AbstractStream.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L146">AbstractStream.ts:146</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -794,7 +970,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L143">AbstractStream.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L153">AbstractStream.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -824,7 +1000,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L148">AbstractStream.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L158">AbstractStream.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -841,7 +1017,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L275">AbstractStream.ts:275</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L285">AbstractStream.ts:285</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -865,7 +1041,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L276">AbstractStream.ts:276</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L286">AbstractStream.ts:286</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -895,7 +1071,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#max">max</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L163">AbstractStream.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L173">AbstractStream.ts:173</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -919,7 +1095,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#maxby">maxBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L168">AbstractStream.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L178">AbstractStream.ts:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -949,7 +1125,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#min">min</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L173">AbstractStream.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L183">AbstractStream.ts:183</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -973,7 +1149,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#minby">minBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L178">AbstractStream.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L188">AbstractStream.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1003,7 +1179,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#none">none</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L153">AbstractStream.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L163">AbstractStream.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1027,7 +1203,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#nth">nth</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L158">AbstractStream.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L168">AbstractStream.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1051,7 +1227,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#partition">partition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L183">AbstractStream.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L193">AbstractStream.ts:193</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1083,7 +1259,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#promise">promise</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L277">AbstractStream.ts:277</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L287">AbstractStream.ts:287</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1113,7 +1289,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reduce">reduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L188">AbstractStream.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L198">AbstractStream.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1146,7 +1322,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reducesame">reduceSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L193">AbstractStream.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L203">AbstractStream.ts:203</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1170,7 +1346,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#reverse">reverse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L278">AbstractStream.ts:278</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L288">AbstractStream.ts:288</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1188,7 +1364,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#shift">shift</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L203">AbstractStream.ts:203</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L213">AbstractStream.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1206,7 +1382,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L198">AbstractStream.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L208">AbstractStream.ts:208</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1223,7 +1399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L279">AbstractStream.ts:279</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L289">AbstractStream.ts:289</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1247,7 +1423,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#slice">slice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L215">AbstractStream.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L225">AbstractStream.ts:225</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1274,7 +1450,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#some">some</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L210">AbstractStream.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L220">AbstractStream.ts:220</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1298,7 +1474,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#sort">sort</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L281">AbstractStream.ts:281</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L302">AbstractStream.ts:302</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1322,7 +1498,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#sortby">sortBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L282">AbstractStream.ts:282</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L303">AbstractStream.ts:303</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1355,7 +1531,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#splice">splice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L222">AbstractStream.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L232">AbstractStream.ts:232</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1382,7 +1558,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#sum">sum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L229">AbstractStream.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L239">AbstractStream.ts:239</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1406,7 +1582,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L234">AbstractStream.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L244">AbstractStream.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1430,7 +1606,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L244">AbstractStream.ts:244</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L254">AbstractStream.ts:254</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -1448,7 +1624,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tomap">toMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L252">AbstractStream.ts:252</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L262">AbstractStream.ts:262</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1487,7 +1663,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#toset">toSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L239">AbstractStream.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L249">AbstractStream.ts:249</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1510,7 +1686,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L248">AbstractStream.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L258">AbstractStream.ts:258</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1528,7 +1704,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#try">try</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L283">AbstractStream.ts:283</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L304">AbstractStream.ts:304</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1558,7 +1734,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#trycompute">tryCompute</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L257">AbstractStream.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L267">AbstractStream.ts:267</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1588,7 +1764,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#tryend">tryEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L262">AbstractStream.ts:262</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L272">AbstractStream.ts:272</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1606,7 +1782,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#unique">unique</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L284">AbstractStream.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L305">AbstractStream.ts:305</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1630,7 +1806,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#uniqueby">uniqueBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L285">AbstractStream.ts:285</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L306">AbstractStream.ts:306</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1654,7 +1830,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#visit">visit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L286">AbstractStream.ts:286</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L307">AbstractStream.ts:307</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1678,7 +1854,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#zip">zip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L287">AbstractStream.ts:287</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L308">AbstractStream.ts:308</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1708,7 +1884,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/istream.html">IStream</a>.<a href="../interfaces/istream.html#zipsame">zipSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L288">AbstractStream.ts:288</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L309">AbstractStream.ts:309</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

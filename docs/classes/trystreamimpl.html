@@ -196,7 +196,7 @@
 						<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#constructor">constructor</a></p>
 						<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#constructor">constructor</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L40">InplaceStream.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L50">InplaceStream.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,7 +216,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#___iterator">__@iterator</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#___iterator">__@iterator</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L69">AbstractStream.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -227,6 +227,17 @@
 					<a name="chunk" class="tsd-anchor"></a>
 					<h3>chunk</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">5</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">6</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">7</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">8</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">9</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">10</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 						<li class="tsd-signature tsd-kind-icon">chunk<span class="tsd-signature-symbol">(</span>chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
@@ -236,7 +247,194 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L42">InplaceStream.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L52">InplaceStream.ts:52</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">0</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L53">InplaceStream.ts:53</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">1</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L54">InplaceStream.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">2</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L55">InplaceStream.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">3</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L56">InplaceStream.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">4</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L57">InplaceStream.ts:57</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">5</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L58">InplaceStream.ts:58</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">6</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L59">InplaceStream.ts:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">7</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L60">InplaceStream.ts:60</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">8</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L61">InplaceStream.ts:61</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">9</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L62">InplaceStream.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">10</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#chunk">chunk</a></p>
+								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunk">chunk</a></p>
+								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunk">chunk</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L63">InplaceStream.ts:63</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -262,7 +460,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#chunkby">chunkBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#chunkby">chunkBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L47">InplaceStream.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L69">InplaceStream.ts:69</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -294,7 +492,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collect">collect</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collect">collect</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L74">AbstractStream.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -329,7 +527,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collectwith">collectWith</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#collectwith">collectWith</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L79">AbstractStream.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -370,7 +568,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#concat">concat</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#concat">concat</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L52">InplaceStream.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L74">InplaceStream.ts:74</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -395,7 +593,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#consume">consume</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#consume">consume</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L57">InplaceStream.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L79">InplaceStream.ts:79</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -425,7 +623,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#convert">convert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L201">InplaceStream.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L223">InplaceStream.ts:223</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -460,7 +658,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#cycle">cycle</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#cycle">cycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L63">InplaceStream.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L85">InplaceStream.ts:85</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -484,7 +682,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#discarderror">discardError</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L192">InplaceStream.ts:192</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L214">InplaceStream.ts:214</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -510,7 +708,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#end">end</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#end">end</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L84">AbstractStream.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -530,7 +728,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#every">every</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#every">every</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L89">AbstractStream.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -556,7 +754,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#filter">filter</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#filter">filter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L73">InplaceStream.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L95">InplaceStream.ts:95</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -582,7 +780,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#filterby">filterBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#filterby">filterBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L78">InplaceStream.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L100">InplaceStream.ts:100</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -620,7 +818,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#find">find</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#find">find</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L94">AbstractStream.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -646,7 +844,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#findindex">findIndex</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#findindex">findIndex</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L99">AbstractStream.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -672,7 +870,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#first">first</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#first">first</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L104">AbstractStream.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L114">AbstractStream.ts:114</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -690,7 +888,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#flatconvert">flatConvert</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L196">InplaceStream.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L218">InplaceStream.ts:218</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -725,7 +923,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#flatmap">flatMap</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#flatmap">flatMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L68">InplaceStream.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L90">InplaceStream.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -757,7 +955,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#foreach">forEach</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#foreach">forEach</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L109">AbstractStream.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -781,7 +979,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#foreachresult">forEachResult</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L165">InplaceStream.ts:165</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L187">InplaceStream.ts:187</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -810,7 +1008,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#fork">fork</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#fork">fork</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L113">AbstractStream.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L123">AbstractStream.ts:123</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -830,7 +1028,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#group">group</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#group">group</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L119">AbstractStream.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L129">AbstractStream.ts:129</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -861,7 +1059,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#has">has</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#has">has</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L124">AbstractStream.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L134">AbstractStream.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -885,7 +1083,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#include">include</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L172">InplaceStream.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L194">InplaceStream.ts:194</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -911,7 +1109,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#index">index</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#index">index</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L83">InplaceStream.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L105">InplaceStream.ts:105</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -931,7 +1129,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#isempty">isEmpty</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#isempty">isEmpty</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L129">AbstractStream.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L139">AbstractStream.ts:139</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -951,7 +1149,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#issizebetween">isSizeBetween</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#issizebetween">isSizeBetween</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L136">AbstractStream.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L146">AbstractStream.ts:146</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -980,7 +1178,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#join">join</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#join">join</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L143">AbstractStream.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L153">AbstractStream.ts:153</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1012,7 +1210,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#last">last</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#last">last</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L148">AbstractStream.ts:148</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L158">AbstractStream.ts:158</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1032,7 +1230,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#limit">limit</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#limit">limit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L88">InplaceStream.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L110">InplaceStream.ts:110</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1058,7 +1256,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#map">map</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#map">map</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L93">InplaceStream.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L115">InplaceStream.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1090,7 +1288,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#max">max</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#max">max</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L163">AbstractStream.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L173">AbstractStream.ts:173</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1116,7 +1314,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#maxby">maxBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#maxby">maxBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L168">AbstractStream.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L178">AbstractStream.ts:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1148,7 +1346,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#min">min</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#min">min</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L173">AbstractStream.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L183">AbstractStream.ts:183</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1174,7 +1372,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#minby">minBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#minby">minBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L178">AbstractStream.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L188">AbstractStream.ts:188</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1206,7 +1404,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#none">none</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#none">none</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L153">AbstractStream.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L163">AbstractStream.ts:163</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1232,7 +1430,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#nth">nth</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#nth">nth</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L158">AbstractStream.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L168">AbstractStream.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1256,7 +1454,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#onerror">onError</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L176">InplaceStream.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L198">InplaceStream.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1280,7 +1478,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#onsuccess">onSuccess</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L180">InplaceStream.ts:180</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L202">InplaceStream.ts:202</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1306,7 +1504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L188">InplaceStream.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L210">InplaceStream.ts:210</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1330,7 +1528,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#orthrow">orThrow</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L184">InplaceStream.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L206">InplaceStream.ts:206</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/istream.html" class="tsd-signature-type">IStream</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1348,7 +1546,7 @@
 							<aside class="tsd-sources">
 								<p>Implementation of <a href="../interfaces/itrystream.html">ITryStream</a>.<a href="../interfaces/itrystream.html#ortry">orTry</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L206">InplaceStream.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L228">InplaceStream.ts:228</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1374,7 +1572,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#partition">partition</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#partition">partition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L183">AbstractStream.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L193">AbstractStream.ts:193</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1408,7 +1606,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#promise">promise</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#promise">promise</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L98">InplaceStream.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L120">InplaceStream.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1440,7 +1638,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reduce">reduce</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reduce">reduce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L188">AbstractStream.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L198">AbstractStream.ts:198</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1475,7 +1673,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reducesame">reduceSame</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reducesame">reduceSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L193">AbstractStream.ts:193</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L203">AbstractStream.ts:203</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1500,7 +1698,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#replace">replace</a></p>
 								<p>Overrides <a href="typesafestream.html">TypesafeStream</a>.<a href="typesafestream.html#replace">replace</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L104">InplaceStream.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L126">InplaceStream.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1532,7 +1730,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#reverse">reverse</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#reverse">reverse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L114">InplaceStream.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L136">InplaceStream.ts:136</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -1552,7 +1750,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#shift">shift</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#shift">shift</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L203">AbstractStream.ts:203</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L213">AbstractStream.ts:213</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Maybe</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -1572,7 +1770,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#size">size</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#size">size</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L198">AbstractStream.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L208">AbstractStream.ts:208</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -1592,7 +1790,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#skip">skip</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#skip">skip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L119">InplaceStream.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L141">InplaceStream.ts:141</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1618,7 +1816,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#slice">slice</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#slice">slice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L215">AbstractStream.ts:215</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L225">AbstractStream.ts:225</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1647,7 +1845,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#some">some</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#some">some</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L210">AbstractStream.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L220">AbstractStream.ts:220</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1673,7 +1871,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#sort">sort</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sort">sort</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L124">InplaceStream.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L146">InplaceStream.ts:146</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1699,7 +1897,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#sortby">sortBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sortby">sortBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L129">InplaceStream.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L151">InplaceStream.ts:151</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1734,7 +1932,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#splice">splice</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#splice">splice</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L222">AbstractStream.ts:222</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L232">AbstractStream.ts:232</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1763,7 +1961,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sum">sum</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#sum">sum</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L229">AbstractStream.ts:229</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L239">AbstractStream.ts:239</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1789,7 +1987,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toarray">toArray</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toarray">toArray</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L234">AbstractStream.ts:234</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L244">AbstractStream.ts:244</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1815,7 +2013,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tojson">toJSON</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L244">AbstractStream.ts:244</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L254">AbstractStream.ts:254</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -1835,7 +2033,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tomap">toMap</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tomap">toMap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L252">AbstractStream.ts:252</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L262">AbstractStream.ts:262</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1876,7 +2074,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toset">toSet</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#toset">toSet</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L239">AbstractStream.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L249">AbstractStream.ts:249</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1901,7 +2099,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tostring">toString</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L248">AbstractStream.ts:248</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L258">AbstractStream.ts:258</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -1921,7 +2119,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#try">try</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#try">try</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L134">InplaceStream.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L156">InplaceStream.ts:156</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1953,7 +2151,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#trycompute">tryCompute</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#trycompute">tryCompute</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L257">AbstractStream.ts:257</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L267">AbstractStream.ts:267</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1985,7 +2183,7 @@
 								<p>Inherited from <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tryend">tryEnd</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#tryend">tryEnd</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/AbstractStream.ts#L262">AbstractStream.ts:262</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/AbstractStream.ts#L272">AbstractStream.ts:272</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/itry.html" class="tsd-signature-type">ITry</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -2005,7 +2203,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#unique">unique</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#unique">unique</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L139">InplaceStream.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L161">InplaceStream.ts:161</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2031,7 +2229,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#uniqueby">uniqueBy</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#uniqueby">uniqueBy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L144">InplaceStream.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L166">InplaceStream.ts:166</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2057,7 +2255,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#visit">visit</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#visit">visit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L109">InplaceStream.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L131">InplaceStream.ts:131</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2083,7 +2281,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#zip">zip</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#zip">zip</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L149">InplaceStream.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L171">InplaceStream.ts:171</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2115,7 +2313,7 @@
 								<p>Inherited from <a href="inplacestream.html">InplaceStream</a>.<a href="inplacestream.html#zipsame">zipSame</a></p>
 								<p>Overrides <a href="abstractstream.html">AbstractStream</a>.<a href="abstractstream.html#zipsame">zipSame</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/InplaceStream.ts#L154">InplaceStream.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/InplaceStream.ts#L176">InplaceStream.ts:176</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

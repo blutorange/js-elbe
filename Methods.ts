@@ -5,9 +5,19 @@ import {
     Collector,
     Comparator,
     Consumer,
+    Decuple,
     Maybe,
+    Nonuple,
+    Octuple,
+    Pair,
     Predicate,
+    Quadruple,
+    Quintuple,
+    Septuple,
+    Sextuple,
+    Single,
     Supplier,
+    Triple,
     TypedBiFunction,
     TypedFunction,
 } from "andross";
@@ -105,6 +115,28 @@ export function* chunkBy<T, K = any>(iterable: Iterable<T>, classifier: TypedBiF
     }
 }
 
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 0): Iterable<never>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 1): Iterable<Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 2): Iterable<Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 3): Iterable<Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 4): Iterable<Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 5): Iterable<Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 6): Iterable<Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 7): Iterable<Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 8): Iterable<Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 9): Iterable<Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
+/** Overload with tuple types for `chunk(chunkSize: number): Iterable<T[]>` */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: 10): Iterable<Decuple<T> | Nonuple<T> | Octuple<T> | Septuple<T> | Sextuple<T> | Quintuple<T> | Quadruple<T> | Triple<T> | Pair<T> | Single<T>>;
 /**
  * Chunks the items into chunks of chunkSize. This is equivalent
  * to `chunkBy(iterable, (_, i) => Math.floor(i/chunkSize))`.
@@ -123,6 +155,7 @@ export function* chunkBy<T, K = any>(iterable: Iterable<T>, classifier: TypedBiF
  * @param chunkSize Size of the produced chunks.
  * @return An iterable over the chunked items.
  */
+export function chunk<T>(iterable: Iterable<T>, chunkSize: number): Iterable<T[]>;
 export function* chunk<T>(iterable: Iterable<T>, chunkSize: number): Iterable<T[]> {
     if (chunkSize < 1 || isNaN(chunkSize)) {
         return;

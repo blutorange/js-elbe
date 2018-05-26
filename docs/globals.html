@@ -204,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">Inplace<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(true)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L123">StreamFactory.ts:123</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L123">StreamFactory.ts:123</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -247,7 +247,7 @@ stream1.toArray();
 					<div class="tsd-signature tsd-kind-icon">Typesafe<wbr>Stream<wbr>Factory<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;createFactory(false)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L90">StreamFactory.ts:90</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L90">StreamFactory.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -286,7 +286,7 @@ stream1.toArray();
 					<div class="tsd-signature tsd-kind-icon">factory<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html" class="tsd-signature-type">IStreamFactory</a><span class="tsd-signature-symbol"> =&nbsp;InplaceStreamFactory</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L149">StreamFactory.ts:149</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L149">StreamFactory.ts:149</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -307,7 +307,7 @@ factory.times(<span class="hljs-number">5</span>) <span class="hljs-comment">// 
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Property<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">hasOwnProperty</span><span class="tsd-signature-symbol"> =&nbsp;Object.prototype.hasOwnProperty</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L29">Methods.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L39">Methods.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -317,7 +317,7 @@ factory.times(<span class="hljs-number">5</span>) <span class="hljs-comment">// 
 					<div class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">:</span> <a href="interfaces/istreamfactory.html#stream" class="tsd-signature-type">stream</a><span class="tsd-signature-symbol"> =&nbsp;InplaceStreamFactory.stream</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L135">StreamFactory.ts:135</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L135">StreamFactory.ts:135</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -343,7 +343,7 @@ stream.size() <span class="hljs-comment">// =&gt; 6</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L36">util.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L36">util.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -363,13 +363,332 @@ stream.size() <span class="hljs-comment">// =&gt; 6</span>
 					<a name="chunk" class="tsd-anchor"></a>
 					<h3>chunk</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">1</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">2</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">3</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">4</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">5</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">6</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">7</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">8</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">9</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">10</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 						<li class="tsd-signature tsd-kind-icon">chunk&lt;T&gt;<span class="tsd-signature-symbol">(</span>iterable<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, chunkSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L126">Methods.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L119">Methods.ts:119</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">0</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">never</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L121">Methods.ts:121</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">1</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L123">Methods.ts:123</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">2</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L125">Methods.ts:125</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">3</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L127">Methods.ts:127</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">4</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L129">Methods.ts:129</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">5</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L131">Methods.ts:131</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">6</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L133">Methods.ts:133</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">7</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L135">Methods.ts:135</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">8</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L137">Methods.ts:137</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">9</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L139">Methods.ts:139</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overload with tuple types for <code>chunk(chunkSize: number): Iterable&lt;T[]&gt;</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iterable: <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+								<li>
+									<h5>chunkSize: <span class="tsd-signature-type">10</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Decuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Nonuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Octuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Septuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Sextuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quintuple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Quadruple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Triple</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Pair</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Single</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L158">Methods.ts:158</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +743,7 @@ chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L88">Methods.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L98">Methods.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,7 +799,7 @@ chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1349">Methods.ts:1349</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1382">Methods.ts:1382</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -541,7 +860,7 @@ chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1371">Methods.ts:1371</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1404">Methods.ts:1404</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -613,7 +932,7 @@ chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L600">Methods.ts:600</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L633">Methods.ts:633</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -653,7 +972,7 @@ chunk([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1002">Methods.ts:1002</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1035">Methods.ts:1035</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -723,7 +1042,7 @@ consume(<span class="hljs-string">"foobar"</span>, <span class="hljs-built_in">c
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1048">Methods.ts:1048</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1081">Methods.ts:1081</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -755,7 +1074,7 @@ consume(<span class="hljs-string">"foobar"</span>, <span class="hljs-built_in">c
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L12">StreamFactory.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L12">StreamFactory.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -778,7 +1097,7 @@ consume(<span class="hljs-string">"foobar"</span>, <span class="hljs-built_in">c
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L501">Methods.ts:501</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L534">Methods.ts:534</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -829,7 +1148,7 @@ limit(cycle([<span class="hljs-number">1</span>,<span class="hljs-number">2</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1258">Methods.ts:1258</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1291">Methods.ts:1291</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -872,7 +1191,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L915">Methods.ts:915</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L948">Methods.ts:948</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -921,7 +1240,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L226">Methods.ts:226</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L259">Methods.ts:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -971,7 +1290,7 @@ end(visit([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L840">Methods.ts:840</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L873">Methods.ts:873</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1046,7 +1365,7 @@ filterBy([user1, user2, user3], <span class="hljs-number">2005</span>, user =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L869">Methods.ts:869</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L902">Methods.ts:902</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1095,7 +1414,7 @@ filterBy([user1, user2, user3], <span class="hljs-number">2005</span>, user =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L892">Methods.ts:892</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L925">Methods.ts:925</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1145,7 +1464,7 @@ filterBy([user1, user2, user3], <span class="hljs-number">2005</span>, user =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1308">Methods.ts:1308</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1341">Methods.ts:1341</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1189,7 +1508,7 @@ first(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; u
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L66">Methods.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L76">Methods.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1247,7 +1566,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1440">Methods.ts:1440</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1473">Methods.ts:1473</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1315,7 +1634,7 @@ flatMap(doTry([<span class="hljs-string">"[1]"</span>,<span class="hljs-string">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1603">Methods.ts:1603</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1636">Methods.ts:1636</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1363,7 +1682,7 @@ fromIter(set.values().next()) <span class="hljs-comment">// =&gt; Iterable[2,3]<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1510">Methods.ts:1510</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1543">Methods.ts:1543</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1413,7 +1732,7 @@ fromIter(set.values().next()) <span class="hljs-comment">// =&gt; Iterable[2,3]<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1530">Methods.ts:1530</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1563">Methods.ts:1563</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1454,7 +1773,7 @@ fromIter(set.values().next()) <span class="hljs-comment">// =&gt; Iterable[2,3]<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1551">Methods.ts:1551</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1584">Methods.ts:1584</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1504,7 +1823,7 @@ fromIter(set.values().next()) <span class="hljs-comment">// =&gt; Iterable[2,3]<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1627">Methods.ts:1627</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1660">Methods.ts:1660</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1558,7 +1877,7 @@ generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L329">Methods.ts:329</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L362">Methods.ts:362</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1617,7 +1936,7 @@ generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L975">Methods.ts:975</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1008">Methods.ts:1008</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1665,7 +1984,7 @@ generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L24">util.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L24">util.ts:24</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1694,7 +2013,7 @@ generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L452">Methods.ts:452</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L485">Methods.ts:485</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1737,7 +2056,7 @@ generate(<span class="hljs-function"><span class="hljs-params">index</span> =&gt
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L641">Methods.ts:641</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L674">Methods.ts:674</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1787,7 +2106,7 @@ isEmpty([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L685">Methods.ts:685</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L718">Methods.ts:718</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1875,7 +2194,7 @@ isSizeBetween[<span class="hljs-number">1</span>,<span class="hljs-number">2</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L12">TryFactory.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L12">TryFactory.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -1904,7 +2223,7 @@ isSizeBetween[<span class="hljs-number">1</span>,<span class="hljs-number">2</sp
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1783">Methods.ts:1783</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1816">Methods.ts:1816</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1966,7 +2285,7 @@ iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L348">Methods.ts:348</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L381">Methods.ts:381</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2028,7 +2347,7 @@ iterate(<span class="hljs-number">2</span>, x =&gt; <span class="hljs-number">2<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1327">Methods.ts:1327</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1360">Methods.ts:1360</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2072,7 +2391,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L474">Methods.ts:474</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L507">Methods.ts:507</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2123,7 +2442,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/StreamFactory.ts#L8">StreamFactory.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/StreamFactory.ts#L8">StreamFactory.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2155,7 +2474,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L44">Methods.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L54">Methods.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2210,7 +2529,7 @@ last(<span class="hljs-string">""</span>) <span class="hljs-comment">// =&gt; un
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1164">Methods.ts:1164</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1197">Methods.ts:1197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2261,7 +2580,7 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1115">Methods.ts:1115</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1148">Methods.ts:1148</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2314,7 +2633,7 @@ max([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1133">Methods.ts:1133</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1166">Methods.ts:1166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2365,7 +2684,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1098">Methods.ts:1098</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1131">Methods.ts:1131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2418,7 +2737,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/monkeypatch.ts#L46">monkeypatch.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/monkeypatch.ts#L46">monkeypatch.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2472,7 +2791,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L958">Methods.ts:958</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L991">Methods.ts:991</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2522,7 +2841,7 @@ min([]) <span class="hljs-comment">// =&gt; undefined</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1282">Methods.ts:1282</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1315">Methods.ts:1315</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2577,7 +2896,7 @@ nth(<span class="hljs-string">"foo"</span>, <span class="hljs-number">3</span>) 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L310">Methods.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L343">Methods.ts:343</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2639,7 +2958,7 @@ partition([], x =&gt; x &gt; <span class="hljs-number">0</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/monkeypatch.ts#L6">monkeypatch.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/monkeypatch.ts#L6">monkeypatch.ts:6</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2733,7 +3052,7 @@ partition([], x =&gt; x &gt; <span class="hljs-number">0</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1081">Methods.ts:1081</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1114">Methods.ts:1114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2794,7 +3113,7 @@ partition([], x =&gt; x &gt; <span class="hljs-number">0</span>)
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1583">Methods.ts:1583</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1616">Methods.ts:1616</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2841,7 +3160,7 @@ first(random(<span class="hljs-number">10</span>)) <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1195">Methods.ts:1195</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1228">Methods.ts:1228</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2902,7 +3221,7 @@ first(random(<span class="hljs-number">10</span>)) <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1215">Methods.ts:1215</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1248">Methods.ts:1248</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2952,7 +3271,7 @@ first(random(<span class="hljs-number">10</span>)) <span class="hljs-comment">//
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1754">Methods.ts:1754</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1787">Methods.ts:1787</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3008,7 +3327,7 @@ repeat(<span class="hljs-number">0</span>, <span class="hljs-literal">NaN</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L582">Methods.ts:582</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L615">Methods.ts:615</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3058,7 +3377,7 @@ reverse(factory.step(<span class="hljs-literal">Infinity</span>)) <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L619">Methods.ts:619</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L652">Methods.ts:652</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3097,7 +3416,7 @@ reverse(factory.step(<span class="hljs-literal">Infinity</span>)) <span class="h
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L551">Methods.ts:551</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L584">Methods.ts:584</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3154,7 +3473,7 @@ skip([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L738">Methods.ts:738</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L771">Methods.ts:771</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3235,7 +3554,7 @@ slice(generate(<span class="hljs-built_in">Math</span>.random), <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L936">Methods.ts:936</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L969">Methods.ts:969</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3284,7 +3603,7 @@ slice(generate(<span class="hljs-built_in">Math</span>.random), <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L368">Methods.ts:368</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L401">Methods.ts:401</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3336,7 +3655,7 @@ slice(generate(<span class="hljs-built_in">Math</span>.random), <span class="hlj
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L809">Methods.ts:809</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L842">Methods.ts:842</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3406,7 +3725,7 @@ sortBy([user1, user2, user3], user =&gt; user.birth, (lhs,rhs) =&gt; lhs.year - 
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L777">Methods.ts:777</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L810">Methods.ts:810</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3483,7 +3802,7 @@ splice(generate(<span class="hljs-built_in">Math</span>.random), <span class="hl
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1726">Methods.ts:1726</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1759">Methods.ts:1759</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3561,7 +3880,7 @@ step(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</span
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1243">Methods.ts:1243</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1276">Methods.ts:1276</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3608,7 +3927,7 @@ sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L32">util.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L32">util.ts:32</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3640,7 +3959,7 @@ sum([<span class="hljs-string">"I"</span>, <span class="hljs-string">"of"</span>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1668">Methods.ts:1668</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1701">Methods.ts:1701</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3709,7 +4028,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1394">Methods.ts:1394</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1427">Methods.ts:1427</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3761,7 +4080,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1493">Methods.ts:1493</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1526">Methods.ts:1526</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3841,7 +4160,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L28">util.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L28">util.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -3870,7 +4189,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L1462">Methods.ts:1462</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L1495">Methods.ts:1495</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3922,7 +4241,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L273">Methods.ts:273</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L306">Methods.ts:306</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3981,7 +4300,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L289">Methods.ts:289</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L322">Methods.ts:322</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4025,7 +4344,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L250">Methods.ts:250</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L283">Methods.ts:283</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4083,7 +4402,7 @@ times(<span class="hljs-literal">NaN</span>, <span class="hljs-literal">NaN</spa
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L421">Methods.ts:421</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L454">Methods.ts:454</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4139,7 +4458,7 @@ unique({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},{<
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L391">Methods.ts:391</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L424">Methods.ts:424</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4196,7 +4515,7 @@ distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L528">Methods.ts:528</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L561">Methods.ts:561</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4248,7 +4567,7 @@ distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L18">util.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L18">util.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4277,7 +4596,7 @@ distinct({<span class="hljs-attr">id</span>:<span class="hljs-number">4</span>},
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L167">Methods.ts:167</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L200">Methods.ts:200</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4338,7 +4657,7 @@ toMap(zip([<span class="hljs-string">"foo"</span>, <span class="hljs-string">"ba
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Methods.ts#L201">Methods.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Methods.ts#L234">Methods.ts:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4396,7 +4715,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">Collectors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L82">Collectors.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L82">Collectors.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -4419,7 +4738,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L241">Collectors.ts:241</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L241">Collectors.ts:241</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4448,7 +4767,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L258">Collectors.ts:258</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L258">Collectors.ts:258</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4477,7 +4796,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L275">Collectors.ts:275</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L275">Collectors.ts:275</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4506,7 +4825,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L95">Collectors.ts:95</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L95">Collectors.ts:95</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Collector</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -4523,7 +4842,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L142">Collectors.ts:142</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L142">Collectors.ts:142</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4555,7 +4874,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L161">Collectors.ts:161</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L161">Collectors.ts:161</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4596,7 +4915,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L201">Collectors.ts:201</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L201">Collectors.ts:201</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4631,7 +4950,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L187">Collectors.ts:187</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L187">Collectors.ts:187</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4672,7 +4991,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L305">Collectors.ts:305</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L305">Collectors.ts:305</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4701,7 +5020,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L322">Collectors.ts:322</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L322">Collectors.ts:322</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4730,7 +5049,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L342">Collectors.ts:342</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L342">Collectors.ts:342</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4768,7 +5087,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L224">Collectors.ts:224</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L224">Collectors.ts:224</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4797,7 +5116,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L292">Collectors.ts:292</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L292">Collectors.ts:292</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4826,7 +5145,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L83">Collectors.ts:83</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L83">Collectors.ts:83</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4849,7 +5168,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L123">Collectors.ts:123</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L123">Collectors.ts:123</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4890,7 +5209,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/Collectors.ts#L111">Collectors.ts:111</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/Collectors.ts#L111">Collectors.ts:111</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -4910,7 +5229,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">DONE_<wbr>RESULT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L1">util.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L1">util.ts:1</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -4919,7 +5238,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<div class="tsd-signature tsd-kind-icon">done<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L2">util.ts:2</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L2">util.ts:2</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -4929,7 +5248,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 						<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> =&nbsp;undefined</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L3">util.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L3">util.ts:3</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -4940,7 +5259,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">EMPTY_<wbr>ITERABLE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L12">util.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L12">util.ts:12</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -4953,7 +5272,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L13">util.ts:13</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L13">util.ts:13</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Iterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -4967,7 +5286,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">EMPTY_<wbr>ITERATOR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L6">util.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L6">util.ts:6</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
@@ -4980,7 +5299,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/util.ts#L7">util.ts:7</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/util.ts#L7">util.ts:7</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-parameters-title">Parameters</h4>
@@ -5000,7 +5319,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 					<div class="tsd-signature tsd-kind-icon">Try<wbr>Factory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L203">TryFactory.ts:203</a></li>
+							<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L203">TryFactory.ts:203</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -5023,7 +5342,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L208">TryFactory.ts:208</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L208">TryFactory.ts:208</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -5055,7 +5374,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L225">TryFactory.ts:225</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L225">TryFactory.ts:225</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -5087,7 +5406,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L216">TryFactory.ts:216</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L216">TryFactory.ts:216</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -5119,7 +5438,7 @@ toArray(zipSame(<span class="hljs-string">"fb"</span>,[<span class="hljs-string"
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/7305f62/TryFactory.ts#L204">TryFactory.ts:204</a></li>
+										<li>Defined in <a href="https://github.com/blutorange/js-elbe/blob/019fd6f/TryFactory.ts#L204">TryFactory.ts:204</a></li>
 									</ul>
 								</aside>
 								<h4 class="tsd-type-parameters-title">Type parameters</h4>

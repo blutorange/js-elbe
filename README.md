@@ -36,8 +36,8 @@ Array.from(function*(data) {
 
 # Versioning
 
-This is currently in version 0.x. Once this package is used by other packages other than my own, the version will be
-increased to 1.0 and start using [semantic versioning](https://semver.org/).
+This is currently in version `0.x.y`. Increase in patch version (y) indicates
+backwards-compatible change, change in minor version non-compatible changes.
 
 # Docs
 
